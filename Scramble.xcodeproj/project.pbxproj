@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		A504EC41309BB6B400B32F98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A51222CC2FFD53CD0054442F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A51222D32FFD53CD0054442F;
+			remoteInfo = Scramble;
+		};
+		A51222E62FFD53CE0054442F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A51222CC2FFD53CD0054442F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A51222D32FFD53CD0054442F;
+			remoteInfo = Scramble;
+		};
+		A51222F02FFD53CE0054442F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A51222CC2FFD53CD0054442F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A51222D32FFD53CD0054442F;
+			remoteInfo = Scramble;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A504EC3D309BB6B400B32F98 /* StatisticalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StatisticalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51222D42FFD53CD0054442F /* Scramble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scramble.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51222E52FFD53CE0054442F /* ScrambleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrambleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51222EF2FFD53CE0054442F /* ScrambleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrambleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A52313342FFE95110016915A /* Scramble.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Scramble.xctestplan; sourceTree = "<group>"; };
+		A53CB0FA2FFF759900D5B395 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A504EC3E309BB6B400B32F98 /* StatisticalTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = StatisticalTests;
+			sourceTree = "<group>";
+		};
+		A51222D62FFD53CD0054442F /* Scramble */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+				Composer/BitPlaneFarmData.inc = sourcecode.c.h;
+			};
+			path = Scramble;
+			sourceTree = "<group>";
+		};
+		A51222E82FFD53CE0054442F /* ScrambleTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ScrambleTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A504EC3A309BB6B400B32F98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222D12FFD53CD0054442F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222E22FFD53CE0054442F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222EC2FFD53CE0054442F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A51222CB2FFD53CD0054442F = {
+			isa = PBXGroup;
+			children = (
+				A52313342FFE95110016915A /* Scramble.xctestplan */,
+				A53CB0FA2FFF759900D5B395 /* README.md */,
+				A51222D62FFD53CD0054442F /* Scramble */,
+				A51222E82FFD53CE0054442F /* ScrambleTests */,
+				A504EC3E309BB6B400B32F98 /* StatisticalTests */,
+				A51222D52FFD53CD0054442F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A51222D52FFD53CD0054442F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A51222D42FFD53CD0054442F /* Scramble.app */,
+				A51222E52FFD53CE0054442F /* ScrambleTests.xctest */,
+				A51222EF2FFD53CE0054442F /* ScrambleUITests.xctest */,
+				A504EC3D309BB6B400B32F98 /* StatisticalTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A504EC3C309BB6B400B32F98 /* StatisticalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A504EC43309BB6B400B32F98 /* Build configuration list for PBXNativeTarget "StatisticalTests" */;
+			buildPhases = (
+				A504EC39309BB6B400B32F98 /* Sources */,
+				A504EC3A309BB6B400B32F98 /* Frameworks */,
+				A504EC3B309BB6B400B32F98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A504EC42309BB6B400B32F98 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A504EC3E309BB6B400B32F98 /* StatisticalTests */,
+			);
+			name = StatisticalTests;
+			packageProductDependencies = (
+			);
+			productName = StatisticalTests;
+			productReference = A504EC3D309BB6B400B32F98 /* StatisticalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A51222D32FFD53CD0054442F /* Scramble */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A51222F92FFD53CE0054442F /* Build configuration list for PBXNativeTarget "Scramble" */;
+			buildPhases = (
+				A51222D02FFD53CD0054442F /* Sources */,
+				A51222D12FFD53CD0054442F /* Frameworks */,
+				A51222D22FFD53CD0054442F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A51222D62FFD53CD0054442F /* Scramble */,
+			);
+			name = Scramble;
+			packageProductDependencies = (
+			);
+			productName = Scramble;
+			productReference = A51222D42FFD53CD0054442F /* Scramble.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A51222E42FFD53CE0054442F /* ScrambleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A51222FC2FFD53CE0054442F /* Build configuration list for PBXNativeTarget "ScrambleTests" */;
+			buildPhases = (
+				A51222E12FFD53CE0054442F /* Sources */,
+				A51222E22FFD53CE0054442F /* Frameworks */,
+				A51222E32FFD53CE0054442F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A51222E72FFD53CE0054442F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A51222E82FFD53CE0054442F /* ScrambleTests */,
+			);
+			name = ScrambleTests;
+			packageProductDependencies = (
+			);
+			productName = ScrambleTests;
+			productReference = A51222E52FFD53CE0054442F /* ScrambleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A51222EE2FFD53CE0054442F /* ScrambleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A51222FF2FFD53CE0054442F /* Build configuration list for PBXNativeTarget "ScrambleUITests" */;
+			buildPhases = (
+				A51222EB2FFD53CE0054442F /* Sources */,
+				A51222EC2FFD53CE0054442F /* Frameworks */,
+				A51222ED2FFD53CE0054442F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A51222F12FFD53CE0054442F /* PBXTargetDependency */,
+			);
+			name = ScrambleUITests;
+			packageProductDependencies = (
+			);
+			productName = ScrambleUITests;
+			productReference = A51222EF2FFD53CE0054442F /* ScrambleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A51222CC2FFD53CD0054442F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2720;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					A504EC3C309BB6B400B32F98 = {
+						CreatedOnToolsVersion = 27.2;
+						TestTargetID = A51222D32FFD53CD0054442F;
+					};
+					A51222D32FFD53CD0054442F = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					A51222E42FFD53CE0054442F = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A51222D32FFD53CD0054442F;
+					};
+					A51222EE2FFD53CE0054442F = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A51222D32FFD53CD0054442F;
+					};
+				};
+			};
+			buildConfigurationList = A51222CF2FFD53CD0054442F /* Build configuration list for PBXProject "Scramble" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A51222CB2FFD53CD0054442F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A51222D52FFD53CD0054442F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A51222D32FFD53CD0054442F /* Scramble */,
+				A51222E42FFD53CE0054442F /* ScrambleTests */,
+				A51222EE2FFD53CE0054442F /* ScrambleUITests */,
+				A504EC3C309BB6B400B32F98 /* StatisticalTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A504EC3B309BB6B400B32F98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222D22FFD53CD0054442F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222E32FFD53CE0054442F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222ED2FFD53CE0054442F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A504EC39309BB6B400B32F98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222D02FFD53CD0054442F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222E12FFD53CE0054442F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51222EB2FFD53CE0054442F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A504EC42309BB6B400B32F98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A51222D32FFD53CD0054442F /* Scramble */;
+			targetProxy = A504EC41309BB6B400B32F98 /* PBXContainerItemProxy */;
+		};
+		A51222E72FFD53CE0054442F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A51222D32FFD53CD0054442F /* Scramble */;
+			targetProxy = A51222E62FFD53CE0054442F /* PBXContainerItemProxy */;
+		};
+		A51222F12FFD53CE0054442F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A51222D32FFD53CD0054442F /* Scramble */;
+			targetProxy = A51222F02FFD53CE0054442F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A504EC44309BB6B400B32F98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Scramble",
+					"$(SRCROOT)/Scramble/Composer",
+					"$(SRCROOT)/Scramble/Expander/Core",
+					"$(SRCROOT)/Scramble/Expander/Family",
+					"$(SRCROOT)/Scramble/Encrypter",
+					"$(SRCROOT)/Scramble/Encrypter/Ciphers",
+					"$(SRCROOT)/Scramble/Public",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usda.agriculture.StatisticalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scramble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Scramble";
+			};
+			name = Debug;
+		};
+		A504EC45309BB6B400B32F98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Scramble",
+					"$(SRCROOT)/Scramble/Composer",
+					"$(SRCROOT)/Scramble/Expander/Core",
+					"$(SRCROOT)/Scramble/Expander/Family",
+					"$(SRCROOT)/Scramble/Encrypter",
+					"$(SRCROOT)/Scramble/Encrypter/Ciphers",
+					"$(SRCROOT)/Scramble/Public",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usda.agriculture.StatisticalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scramble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Scramble";
+			};
+			name = Release;
+		};
+		A51222F72FFD53CE0054442F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A51222F82FFD53CE0054442F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A51222FA2FFD53CE0054442F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.road.scramble.Scramble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		A51222FB2FFD53CE0054442F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.road.scramble.Scramble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		A51222FD2FFD53CE0054442F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.road.scramble.ScrambleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scramble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Scramble";
+			};
+			name = Debug;
+		};
+		A51222FE2FFD53CE0054442F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.road.scramble.ScrambleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scramble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Scramble";
+			};
+			name = Release;
+		};
+		A51223002FFD53CE0054442F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.road.scramble.ScrambleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = Scramble;
+			};
+			name = Debug;
+		};
+		A51223012FFD53CE0054442F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.road.scramble.ScrambleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = Scramble;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A504EC43309BB6B400B32F98 /* Build configuration list for PBXNativeTarget "StatisticalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A504EC44309BB6B400B32F98 /* Debug */,
+				A504EC45309BB6B400B32F98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A51222CF2FFD53CD0054442F /* Build configuration list for PBXProject "Scramble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A51222F72FFD53CE0054442F /* Debug */,
+				A51222F82FFD53CE0054442F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A51222F92FFD53CE0054442F /* Build configuration list for PBXNativeTarget "Scramble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A51222FA2FFD53CE0054442F /* Debug */,
+				A51222FB2FFD53CE0054442F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A51222FC2FFD53CE0054442F /* Build configuration list for PBXNativeTarget "ScrambleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A51222FD2FFD53CE0054442F /* Debug */,
+				A51222FE2FFD53CE0054442F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A51222FF2FFD53CE0054442F /* Build configuration list for PBXNativeTarget "ScrambleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A51223002FFD53CE0054442F /* Debug */,
+				A51223012FFD53CE0054442F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A51222CC2FFD53CD0054442F /* Project object */;
+}

@@ -1,0 +1,67 @@
+#pragma once
+inline const char* SweepCipherName(CipherType type) {
+    switch(type) {
+        case CipherType::kNone: return "None";
+        case CipherType::kGateCipher: return "GateCipher";
+        case CipherType::kPasswordXORCipher: return "PasswordXORCipher";
+        case CipherType::kPasswordAddCipher: return "PasswordAddCipher";
+        case CipherType::kPasswordSubtractCipher: return "PasswordSubtractCipher";
+        case CipherType::kPasswordJumpXORCipher: return "PasswordJumpXORCipher";
+        case CipherType::kPasswordJumpAddCipher: return "PasswordJumpAddCipher";
+        case CipherType::kPasswordJumpSubtractCipher: return "PasswordJumpSubtractCipher";
+        case CipherType::kPepperNoiseXORCipher: return "PepperNoiseXORCipher";
+        case CipherType::kPepperJumpNoiseXORCipher: return "PepperJumpNoiseXORCipher";
+        case CipherType::kPepperDualJumpNoiseXORCipher: return "PepperDualJumpNoiseXORCipher";
+        case CipherType::kRotateMaskCipher: return "RotateMaskCipher";
+        case CipherType::kRotateCipher: return "RotateCipher";
+        case CipherType::kBitRotationCipher: return "BitRotationCipher";
+        case CipherType::kBitRotationCipherA: return "BitRotationCipherA";
+        case CipherType::kBitRotationCipherB: return "BitRotationCipherB";
+        case CipherType::kBitReverseCipher: return "BitReverseCipher";
+        case CipherType::kBitRotationThreeCipher: return "BitRotationThreeCipher";
+        case CipherType::kTreeFrogTwo: return "TreeFrogTwo";
+        case CipherType::kFlameToadCipher: return "FlameToadCipher";
+        case CipherType::kMixCipherA: return "MixCipherA";
+        case CipherType::kMixCipherB: return "MixCipherB";
+        case CipherType::kMixCipherC: return "MixCipherC";
+        case CipherType::kMixCipherD: return "MixCipherD";
+        case CipherType::kMixCipherE: return "MixCipherE";
+        case CipherType::kMixCipherF: return "MixCipherF";
+        case CipherType::kMixCipherG: return "MixCipherG";
+        case CipherType::kMixCipherH: return "MixCipherH";
+        case CipherType::kSpreadCipherA: return "SpreadCipherA";
+        case CipherType::kSpreadCipherB: return "SpreadCipherB";
+        case CipherType::kSpreadCipherC: return "SpreadCipherC";
+        case CipherType::kSpreadCipherD: return "SpreadCipherD";
+        case CipherType::kSpreadCipherE: return "SpreadCipherE";
+        case CipherType::kSpreadCipherF: return "SpreadCipherF";
+        case CipherType::kSpreadCipherG: return "SpreadCipherG";
+        case CipherType::kSpreadCipherH: return "SpreadCipherH";
+        case CipherType::kMudgeCipherA: return "MudgeCipherA";
+        case CipherType::kMudgeCipherB: return "MudgeCipherB";
+        case CipherType::kMudgeCipherC: return "MudgeCipherC";
+        case CipherType::kSkullCipherA: return "SkullCipherA";
+        case CipherType::kSkullCipherB: return "SkullCipherB";
+        case CipherType::kSkullCipherC: return "SkullCipherC";
+        case CipherType::kSkullCipherD: return "SkullCipherD";
+        case CipherType::kDanceCipherA: return "DanceCipherA";
+        case CipherType::kDanceCipherB: return "DanceCipherB";
+        case CipherType::kFrogTwoCipherA: return "FrogTwoCipherA";
+        case CipherType::kFrogThreeCipherA: return "FrogThreeCipherA";
+        case CipherType::kFrogTwoCipherB: return "FrogTwoCipherB";
+        case CipherType::kFrogThreeCipherB: return "FrogThreeCipherB";
+        case CipherType::kToadTwoCipherA: return "ToadTwoCipherA";
+        case CipherType::kToadThreeCipherA: return "ToadThreeCipherA";
+        case CipherType::kNewtTwoCipherA: return "NewtTwoCipherA";
+        case CipherType::kNewtThreeCipherA: return "NewtThreeCipherA";
+        case CipherType::kReverseMaskCipher: return "ReverseMaskCipher";
+        case CipherType::kSplintMaskBlockCipher32: return "SplintMaskBlockCipher32";
+        case CipherType::kSplintMaskBlockCipher64: return "SplintMaskBlockCipher64";
+        case CipherType::kRippleMaskBlockCipher32: return "RippleMaskBlockCipher32";
+        case CipherType::kRippleMaskBlockCipher64: return "RippleMaskBlockCipher64";
+        case CipherType::kInvertMaskCipher: return "InvertMaskCipher";
+        case CipherType::kReverseMaskByteBlockCipher32: return "ReverseMaskByteBlockCipher32";
+        case CipherType::kReverseMaskByteBlockCipher64: return "ReverseMaskByteBlockCipher64";
+        default: return "Unknown";
+    }
+}

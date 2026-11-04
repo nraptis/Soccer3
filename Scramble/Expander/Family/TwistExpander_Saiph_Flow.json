@@ -1,0 +1,5912 @@
+{
+  "expander": {
+    "name": "Saiph",
+    "candidate_index": 13
+  },
+  "loops": [
+    {
+      "id": "KDF_A_A_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_A",
+      "loop_letter": "A",
+      "inputs": ["source", "nonce", "nonce", "source"],
+      "destination": "shadow_a"
+    },
+    {
+      "id": "KDF_A_A_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_A",
+      "loop_letter": "B",
+      "inputs": ["shadow_a", "source", "source", "nonce"],
+      "destination": "shadow_b"
+    },
+    {
+      "id": "KDF_A_A_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_A",
+      "loop_letter": "C",
+      "inputs": ["shadow_b", "source", "shadow_a", "nonce"],
+      "destination": "shadow_c"
+    },
+    {
+      "id": "KDF_A_A_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_A",
+      "loop_letter": "D",
+      "inputs": ["shadow_c", "shadow_a", "nonce", "shadow_b", "source"],
+      "destination": "shadow_d"
+    },
+    {
+      "id": "KDF_A_B_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_A",
+      "loop_letter": "A",
+      "inputs": ["shadow_d", "shadow_b", "source", "shadow_c", "shadow_a", "nonce"],
+      "destination": "fire_a"
+    },
+    {
+      "id": "KDF_A_B_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_A",
+      "loop_letter": "B",
+      "inputs": ["fire_a", "shadow_c", "shadow_d", "shadow_b"],
+      "destination": "fire_b"
+    },
+    {
+      "id": "KDF_A_B_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_A",
+      "loop_letter": "C",
+      "inputs": ["fire_b", "shadow_d", "fire_a", "shadow_c"],
+      "destination": "fire_c"
+    },
+    {
+      "id": "KDF_A_B_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_A",
+      "loop_letter": "D",
+      "inputs": ["fire_c", "fire_a", "fire_b", "shadow_d"],
+      "destination": "fire_d"
+    },
+    {
+      "id": "KDF_A_C_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_A",
+      "loop_letter": "A",
+      "inputs": ["vapor_a", "vapor_b", "fire_d", "shadow_d", "vapor_c", "vapor_d", "fire_a"],
+      "destination": "kinetic_a"
+    },
+    {
+      "id": "KDF_A_C_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_A",
+      "loop_letter": "B",
+      "inputs": ["kinetic_a", "vapor_c", "nonce", "vapor_a", "vapor_b", "source"],
+      "destination": "kinetic_b"
+    },
+    {
+      "id": "KDF_A_C_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_A",
+      "loop_letter": "C",
+      "inputs": ["kinetic_b", "vapor_d", "shadow_b", "kinetic_a", "vapor_b", "shadow_c"],
+      "destination": "kinetic_c"
+    },
+    {
+      "id": "KDF_A_C_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_A",
+      "loop_letter": "D",
+      "inputs": ["kinetic_c", "kinetic_a", "shadow_a", "kinetic_b", "fire_c", "fire_b"],
+      "destination": "kinetic_d"
+    },
+    {
+      "id": "KDF_B_A_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_A",
+      "loop_letter": "A",
+      "inputs": ["kinetic_d", "kinetic_b", "vapor_d", "fire_d", "kinetic_c", "kinetic_a", "fire_a", "vapor_c"],
+      "destination": "evocation_a"
+    },
+    {
+      "id": "KDF_B_A_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_A",
+      "loop_letter": "B",
+      "inputs": ["evocation_a", "kinetic_c", "fire_b", "vapor_b", "kinetic_d", "kinetic_b", "shadow_d", "shadow_c"],
+      "destination": "evocation_b"
+    },
+    {
+      "id": "KDF_B_A_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_A",
+      "loop_letter": "C",
+      "inputs": ["evocation_b", "kinetic_d", "vapor_a", "source", "evocation_a", "kinetic_c", "shadow_a"],
+      "destination": "evocation_c"
+    },
+    {
+      "id": "KDF_B_A_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_A",
+      "loop_letter": "D",
+      "inputs": ["evocation_c", "evocation_a", "shadow_b", "evocation_b", "kinetic_d", "fire_c"],
+      "destination": "evocation_d"
+    },
+    {
+      "id": "KDF_B_B_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_A",
+      "loop_letter": "A",
+      "inputs": ["evocation_d", "evocation_b", "kinetic_b", "vapor_a", "evocation_c", "evocation_a", "fire_d", "kinetic_a"],
+      "destination": "runic_a"
+    },
+    {
+      "id": "KDF_B_B_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_A",
+      "loop_letter": "B",
+      "inputs": ["runic_a", "evocation_c", "shadow_c", "shadow_b", "evocation_d", "evocation_b", "fire_b", "fire_c"],
+      "destination": "runic_b"
+    },
+    {
+      "id": "KDF_B_B_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_A",
+      "loop_letter": "C",
+      "inputs": ["runic_b", "evocation_d", "kinetic_c", "source", "runic_a", "evocation_c", "vapor_d", "vapor_b"],
+      "destination": "runic_c"
+    },
+    {
+      "id": "KDF_B_B_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_A",
+      "loop_letter": "D",
+      "inputs": ["runic_c", "runic_a", "shadow_d", "shadow_a", "runic_b", "evocation_d", "kinetic_d", "vapor_c"],
+      "destination": "runic_d"
+    },
+    {
+      "id": "KDF_B_C_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_A",
+      "loop_letter": "A",
+      "inputs": ["divination_a", "divination_b", "kinetic_b", "kinetic_d", "divination_c", "divination_d", "fire_a", "runic_d"],
+      "destination": "abjuration_a"
+    },
+    {
+      "id": "KDF_B_C_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_A",
+      "loop_letter": "B",
+      "inputs": ["abjuration_a", "divination_c", "evocation_b", "runic_a", "divination_a", "divination_b", "kinetic_c", "runic_b"],
+      "destination": "abjuration_b"
+    },
+    {
+      "id": "KDF_B_C_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_A",
+      "loop_letter": "C",
+      "inputs": ["abjuration_b", "divination_d", "runic_c", "evocation_d", "abjuration_a", "divination_b", "source", "evocation_c"],
+      "destination": "abjuration_c"
+    },
+    {
+      "id": "KDF_B_C_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_A",
+      "loop_letter": "D",
+      "inputs": ["abjuration_c", "abjuration_a", "kinetic_a", "vapor_a", "abjuration_b", "vapor_b", "evocation_a"],
+      "destination": "abjuration_d"
+    },
+    {
+      "id": "KDF_C_A_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_A",
+      "loop_letter": "A",
+      "inputs": ["abjuration_d", "abjuration_b", "runic_a", "runic_d", "abjuration_c", "abjuration_a", "evocation_c", "divination_c"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "KDF_C_A_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_A",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "abjuration_c", "divination_d", "kinetic_a", "abjuration_d", "abjuration_b", "runic_b", "source"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "KDF_C_A_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_A",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "abjuration_d", "kinetic_d", "evocation_d", "aether_a", "abjuration_c", "divination_b", "divination_a"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "KDF_C_A_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_A",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "runic_c", "evocation_b", "aether_b", "abjuration_d", "evocation_a", "vapor_c"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "KDF_C_B_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_A",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "abjuration_c", "evocation_c", "aether_c", "aether_a", "vapor_d", "kinetic_b"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "KDF_C_B_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_A",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "abjuration_d", "divination_d", "aether_d", "aether_b", "evocation_d", "abjuration_a"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "KDF_C_B_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_A",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "runic_c", "source", "lunar_a", "aether_c", "evocation_b", "divination_b"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "KDF_C_B_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_A",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "divination_c", "abjuration_b", "lunar_b", "aether_d", "divination_a", "kinetic_c"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "KDF_C_C_A_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "lunar_c", "aether_b", "earth_c", "earth_d", "abjuration_d", "aether_d"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "KDF_C_C_A_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_A",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "lunar_b", "divination_c", "earth_a", "earth_b", "aether_a", "abjuration_c"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "KDF_C_C_A_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_A",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "lunar_d", "divination_a", "crystal_a", "earth_b", "abjuration_b", "runic_d"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "KDF_C_C_A_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_A",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "aether_c", "lunar_a", "crystal_b", "source", "abjuration_a"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "KDF_A_A_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_B",
+      "loop_letter": "A",
+      "inputs": ["source", "nonce", "nonce", "source"],
+      "destination": "shadow_a"
+    },
+    {
+      "id": "KDF_A_A_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_B",
+      "loop_letter": "B",
+      "inputs": ["shadow_a", "source", "source", "nonce"],
+      "destination": "shadow_b"
+    },
+    {
+      "id": "KDF_A_A_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_B",
+      "loop_letter": "C",
+      "inputs": ["shadow_b", "nonce", "shadow_a", "source"],
+      "destination": "shadow_c"
+    },
+    {
+      "id": "KDF_A_A_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_B",
+      "loop_letter": "D",
+      "inputs": ["shadow_c", "shadow_a", "source", "shadow_b", "nonce"],
+      "destination": "shadow_d"
+    },
+    {
+      "id": "KDF_A_B_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_B",
+      "loop_letter": "A",
+      "inputs": ["shadow_d", "shadow_b", "source", "shadow_c", "shadow_a", "nonce"],
+      "destination": "fire_a"
+    },
+    {
+      "id": "KDF_A_B_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_B",
+      "loop_letter": "B",
+      "inputs": ["fire_a", "shadow_c", "shadow_d", "shadow_b"],
+      "destination": "fire_b"
+    },
+    {
+      "id": "KDF_A_B_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_B",
+      "loop_letter": "C",
+      "inputs": ["fire_b", "shadow_d", "fire_a", "shadow_c"],
+      "destination": "fire_c"
+    },
+    {
+      "id": "KDF_A_B_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_B",
+      "loop_letter": "D",
+      "inputs": ["fire_c", "fire_a", "fire_b", "shadow_d"],
+      "destination": "fire_d"
+    },
+    {
+      "id": "KDF_A_C_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_B",
+      "loop_letter": "A",
+      "inputs": ["vapor_a", "vapor_b", "source", "fire_a", "vapor_c", "vapor_d", "shadow_b"],
+      "destination": "kinetic_a"
+    },
+    {
+      "id": "KDF_A_C_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_B",
+      "loop_letter": "B",
+      "inputs": ["kinetic_a", "vapor_c", "shadow_c", "vapor_a", "vapor_b", "shadow_a"],
+      "destination": "kinetic_b"
+    },
+    {
+      "id": "KDF_A_C_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_B",
+      "loop_letter": "C",
+      "inputs": ["kinetic_b", "vapor_d", "nonce", "kinetic_a", "vapor_b", "shadow_d"],
+      "destination": "kinetic_c"
+    },
+    {
+      "id": "KDF_A_C_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_B",
+      "loop_letter": "D",
+      "inputs": ["kinetic_c", "kinetic_a", "fire_d", "kinetic_b", "fire_c", "fire_b"],
+      "destination": "kinetic_d"
+    },
+    {
+      "id": "KDF_B_A_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_B",
+      "loop_letter": "A",
+      "inputs": ["kinetic_d", "kinetic_b", "fire_a", "shadow_b", "kinetic_c", "kinetic_a", "vapor_d", "shadow_a"],
+      "destination": "evocation_a"
+    },
+    {
+      "id": "KDF_B_A_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_B",
+      "loop_letter": "B",
+      "inputs": ["evocation_a", "kinetic_c", "fire_c", "vapor_c", "kinetic_d", "kinetic_b", "fire_d", "source"],
+      "destination": "evocation_b"
+    },
+    {
+      "id": "KDF_B_A_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_B",
+      "loop_letter": "C",
+      "inputs": ["evocation_b", "kinetic_d", "vapor_b", "vapor_a", "evocation_a", "kinetic_c", "shadow_d"],
+      "destination": "evocation_c"
+    },
+    {
+      "id": "KDF_B_A_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_B",
+      "loop_letter": "D",
+      "inputs": ["evocation_c", "evocation_a", "shadow_c", "evocation_b", "kinetic_d", "fire_b"],
+      "destination": "evocation_d"
+    },
+    {
+      "id": "KDF_B_B_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_B",
+      "loop_letter": "A",
+      "inputs": ["evocation_d", "evocation_b", "fire_c", "vapor_b", "evocation_c", "evocation_a", "fire_d", "kinetic_d"],
+      "destination": "runic_a"
+    },
+    {
+      "id": "KDF_B_B_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_B",
+      "loop_letter": "B",
+      "inputs": ["runic_a", "evocation_c", "shadow_d", "fire_b", "evocation_d", "evocation_b", "source", "vapor_c"],
+      "destination": "runic_b"
+    },
+    {
+      "id": "KDF_B_B_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_B",
+      "loop_letter": "C",
+      "inputs": ["runic_b", "evocation_d", "vapor_a", "vapor_d", "runic_a", "evocation_c", "shadow_c", "fire_a"],
+      "destination": "runic_c"
+    },
+    {
+      "id": "KDF_B_B_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_B",
+      "loop_letter": "D",
+      "inputs": ["runic_c", "runic_a", "kinetic_c", "shadow_b", "runic_b", "evocation_d", "kinetic_a", "kinetic_b"],
+      "destination": "runic_d"
+    },
+    {
+      "id": "KDF_B_C_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_B",
+      "loop_letter": "A",
+      "inputs": ["divination_a", "divination_b", "vapor_c", "evocation_a", "divination_c", "divination_d", "runic_a", "kinetic_b"],
+      "destination": "abjuration_a"
+    },
+    {
+      "id": "KDF_B_C_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_B",
+      "loop_letter": "B",
+      "inputs": ["abjuration_a", "divination_c", "evocation_d", "vapor_b", "divination_a", "divination_b", "kinetic_c", "source"],
+      "destination": "abjuration_b"
+    },
+    {
+      "id": "KDF_B_C_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_B",
+      "loop_letter": "C",
+      "inputs": ["abjuration_b", "divination_d", "runic_c", "kinetic_a", "abjuration_a", "divination_b", "evocation_c", "vapor_d"],
+      "destination": "abjuration_c"
+    },
+    {
+      "id": "KDF_B_C_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_B",
+      "loop_letter": "D",
+      "inputs": ["abjuration_c", "abjuration_a", "runic_d", "evocation_b", "abjuration_b", "runic_b", "kinetic_d"],
+      "destination": "abjuration_d"
+    },
+    {
+      "id": "KDF_C_A_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_B",
+      "loop_letter": "A",
+      "inputs": ["abjuration_d", "abjuration_b", "evocation_b", "divination_c", "abjuration_c", "abjuration_a", "runic_c", "runic_b"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "KDF_C_A_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_B",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "abjuration_c", "divination_a", "vapor_a", "abjuration_d", "abjuration_b", "runic_d", "evocation_c"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "KDF_C_A_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_B",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "abjuration_d", "kinetic_b", "divination_d", "aether_a", "abjuration_c", "source", "evocation_a"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "KDF_C_A_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_B",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "runic_a", "divination_b", "aether_b", "abjuration_d", "kinetic_a", "evocation_d"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "KDF_C_B_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_B",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "runic_b", "abjuration_a", "aether_c", "aether_a", "source", "evocation_c"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "KDF_C_B_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_B",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "abjuration_c", "kinetic_d", "aether_d", "aether_b", "evocation_d", "divination_b"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "KDF_C_B_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_B",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "divination_d", "evocation_b", "lunar_a", "aether_c", "runic_a", "abjuration_b"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "KDF_C_B_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_B",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "divination_a", "shadow_a", "lunar_b", "aether_d", "abjuration_d", "divination_c"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "KDF_C_C_B_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_B",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "lunar_a", "abjuration_c", "earth_c", "earth_d", "abjuration_b", "abjuration_a"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "KDF_C_C_B_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_B",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "aether_c", "runic_c", "earth_a", "earth_b", "source", "kinetic_c"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "KDF_C_C_B_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_B",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "aether_b", "lunar_c", "crystal_a", "earth_b", "evocation_a", "abjuration_d"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "KDF_C_C_B_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_B",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "lunar_b", "aether_a", "crystal_b", "aether_d", "lunar_d"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "KDF_A_A_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_C",
+      "loop_letter": "A",
+      "inputs": ["source", "nonce", "nonce", "source"],
+      "destination": "shadow_a"
+    },
+    {
+      "id": "KDF_A_A_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_C",
+      "loop_letter": "B",
+      "inputs": ["shadow_a", "source", "source", "nonce"],
+      "destination": "shadow_b"
+    },
+    {
+      "id": "KDF_A_A_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_C",
+      "loop_letter": "C",
+      "inputs": ["shadow_b", "nonce", "shadow_a", "source"],
+      "destination": "shadow_c"
+    },
+    {
+      "id": "KDF_A_A_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_C",
+      "loop_letter": "D",
+      "inputs": ["shadow_c", "shadow_a", "nonce", "shadow_b", "source"],
+      "destination": "shadow_d"
+    },
+    {
+      "id": "KDF_A_B_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_C",
+      "loop_letter": "A",
+      "inputs": ["shadow_d", "shadow_b", "source", "shadow_c", "shadow_a", "nonce"],
+      "destination": "fire_a"
+    },
+    {
+      "id": "KDF_A_B_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_C",
+      "loop_letter": "B",
+      "inputs": ["fire_a", "shadow_c", "shadow_d", "shadow_b"],
+      "destination": "fire_b"
+    },
+    {
+      "id": "KDF_A_B_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_C",
+      "loop_letter": "C",
+      "inputs": ["fire_b", "shadow_d", "fire_a", "shadow_c"],
+      "destination": "fire_c"
+    },
+    {
+      "id": "KDF_A_B_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_C",
+      "loop_letter": "D",
+      "inputs": ["fire_c", "fire_a", "fire_b", "shadow_d"],
+      "destination": "fire_d"
+    },
+    {
+      "id": "KDF_A_C_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_C",
+      "loop_letter": "A",
+      "inputs": ["vapor_a", "vapor_b", "shadow_c", "fire_c", "vapor_c", "vapor_d", "fire_d"],
+      "destination": "kinetic_a"
+    },
+    {
+      "id": "KDF_A_C_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_C",
+      "loop_letter": "B",
+      "inputs": ["kinetic_a", "vapor_c", "source", "vapor_a", "vapor_b", "shadow_a"],
+      "destination": "kinetic_b"
+    },
+    {
+      "id": "KDF_A_C_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_C",
+      "loop_letter": "C",
+      "inputs": ["kinetic_b", "vapor_d", "nonce", "kinetic_a", "vapor_b", "fire_a"],
+      "destination": "kinetic_c"
+    },
+    {
+      "id": "KDF_A_C_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_C",
+      "loop_letter": "D",
+      "inputs": ["kinetic_c", "kinetic_a", "shadow_d", "kinetic_b", "fire_b", "shadow_b"],
+      "destination": "kinetic_d"
+    },
+    {
+      "id": "KDF_B_A_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_C",
+      "loop_letter": "A",
+      "inputs": ["kinetic_d", "kinetic_b", "shadow_a", "shadow_d", "kinetic_c", "kinetic_a", "fire_a", "fire_d"],
+      "destination": "evocation_a"
+    },
+    {
+      "id": "KDF_B_A_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_C",
+      "loop_letter": "B",
+      "inputs": ["evocation_a", "kinetic_c", "vapor_b", "source", "kinetic_d", "kinetic_b", "fire_b", "shadow_b"],
+      "destination": "evocation_b"
+    },
+    {
+      "id": "KDF_B_A_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_C",
+      "loop_letter": "C",
+      "inputs": ["evocation_b", "kinetic_d", "vapor_c", "vapor_a", "evocation_a", "kinetic_c", "fire_c"],
+      "destination": "evocation_c"
+    },
+    {
+      "id": "KDF_B_A_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_C",
+      "loop_letter": "D",
+      "inputs": ["evocation_c", "evocation_a", "vapor_d", "evocation_b", "kinetic_d", "shadow_c"],
+      "destination": "evocation_d"
+    },
+    {
+      "id": "KDF_B_B_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_C",
+      "loop_letter": "A",
+      "inputs": ["evocation_d", "evocation_b", "source", "vapor_d", "evocation_c", "evocation_a", "kinetic_b", "kinetic_c"],
+      "destination": "runic_a"
+    },
+    {
+      "id": "KDF_B_B_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_C",
+      "loop_letter": "B",
+      "inputs": ["runic_a", "evocation_c", "kinetic_a", "vapor_c", "evocation_d", "evocation_b", "shadow_b", "vapor_b"],
+      "destination": "runic_b"
+    },
+    {
+      "id": "KDF_B_B_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_C",
+      "loop_letter": "C",
+      "inputs": ["runic_b", "evocation_d", "fire_a", "shadow_c", "runic_a", "evocation_c", "kinetic_d", "fire_c"],
+      "destination": "runic_c"
+    },
+    {
+      "id": "KDF_B_B_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_C",
+      "loop_letter": "D",
+      "inputs": ["runic_c", "runic_a", "shadow_d", "vapor_a", "runic_b", "evocation_d", "fire_d", "shadow_a"],
+      "destination": "runic_d"
+    },
+    {
+      "id": "KDF_B_C_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_C",
+      "loop_letter": "A",
+      "inputs": ["divination_a", "divination_b", "kinetic_a", "runic_d", "divination_c", "divination_d", "evocation_d", "kinetic_c"],
+      "destination": "abjuration_a"
+    },
+    {
+      "id": "KDF_B_C_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_C",
+      "loop_letter": "B",
+      "inputs": ["abjuration_a", "divination_c", "vapor_d", "runic_b", "divination_a", "divination_b", "evocation_c", "runic_c"],
+      "destination": "abjuration_b"
+    },
+    {
+      "id": "KDF_B_C_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_C",
+      "loop_letter": "C",
+      "inputs": ["abjuration_b", "divination_d", "evocation_b", "vapor_c", "abjuration_a", "divination_b", "kinetic_d", "source"],
+      "destination": "abjuration_c"
+    },
+    {
+      "id": "KDF_B_C_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_C",
+      "loop_letter": "D",
+      "inputs": ["abjuration_c", "abjuration_a", "vapor_a", "evocation_a", "abjuration_b", "runic_a", "kinetic_b"],
+      "destination": "abjuration_d"
+    },
+    {
+      "id": "KDF_C_A_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_C",
+      "loop_letter": "A",
+      "inputs": ["abjuration_d", "abjuration_b", "runic_d", "source", "abjuration_c", "abjuration_a", "evocation_c", "divination_c"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "KDF_C_A_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_C",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "abjuration_c", "kinetic_c", "evocation_d", "abjuration_d", "abjuration_b", "runic_a", "kinetic_d"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "KDF_C_A_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_C",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "abjuration_d", "runic_c", "runic_b", "aether_a", "abjuration_c", "divination_a", "kinetic_b"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "KDF_C_A_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_C",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "divination_d", "divination_b", "aether_b", "abjuration_d", "evocation_a", "evocation_b"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "KDF_C_B_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_C",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "divination_b", "evocation_a", "aether_c", "aether_a", "kinetic_a", "evocation_d"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "KDF_C_B_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_C",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "divination_d", "abjuration_a", "aether_d", "aether_b", "abjuration_c", "abjuration_d"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "KDF_C_B_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_C",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "abjuration_b", "evocation_c", "lunar_a", "aether_c", "vapor_b", "runic_a"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "KDF_C_B_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_C",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "source", "divination_c", "lunar_b", "aether_d", "divination_a", "runic_c"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "KDF_C_C_C_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_C",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "runic_d", "divination_a", "earth_c", "earth_d", "aether_d", "lunar_c"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "KDF_C_C_C_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_C",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "aether_b", "abjuration_b", "earth_a", "earth_b", "abjuration_d", "aether_a"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "KDF_C_C_C_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_C",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "abjuration_c", "lunar_d", "crystal_a", "earth_b", "lunar_a", "abjuration_a"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "KDF_C_C_C_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_C",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "aether_c", "source", "crystal_b", "lunar_b", "divination_d"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "KDF_A_A_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_D",
+      "loop_letter": "A",
+      "inputs": ["source", "nonce", "nonce", "source"],
+      "destination": "shadow_a"
+    },
+    {
+      "id": "KDF_A_A_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_D",
+      "loop_letter": "B",
+      "inputs": ["shadow_a", "source", "source", "nonce"],
+      "destination": "shadow_b"
+    },
+    {
+      "id": "KDF_A_A_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_D",
+      "loop_letter": "C",
+      "inputs": ["shadow_b", "source", "shadow_a", "nonce"],
+      "destination": "shadow_c"
+    },
+    {
+      "id": "KDF_A_A_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_D",
+      "loop_letter": "D",
+      "inputs": ["shadow_c", "shadow_a", "source", "shadow_b", "nonce"],
+      "destination": "shadow_d"
+    },
+    {
+      "id": "KDF_A_B_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_D",
+      "loop_letter": "A",
+      "inputs": ["shadow_d", "shadow_b", "source", "shadow_c", "shadow_a", "nonce"],
+      "destination": "fire_a"
+    },
+    {
+      "id": "KDF_A_B_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_D",
+      "loop_letter": "B",
+      "inputs": ["fire_a", "shadow_c", "shadow_d", "shadow_b"],
+      "destination": "fire_b"
+    },
+    {
+      "id": "KDF_A_B_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_D",
+      "loop_letter": "C",
+      "inputs": ["fire_b", "shadow_d", "fire_a", "shadow_c"],
+      "destination": "fire_c"
+    },
+    {
+      "id": "KDF_A_B_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_D",
+      "loop_letter": "D",
+      "inputs": ["fire_c", "fire_a", "fire_b", "shadow_d"],
+      "destination": "fire_d"
+    },
+    {
+      "id": "KDF_A_C_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_D",
+      "loop_letter": "A",
+      "inputs": ["vapor_a", "vapor_b", "fire_b", "shadow_d", "vapor_c", "vapor_d", "fire_d"],
+      "destination": "kinetic_a"
+    },
+    {
+      "id": "KDF_A_C_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_D",
+      "loop_letter": "B",
+      "inputs": ["kinetic_a", "vapor_c", "fire_a", "vapor_a", "vapor_b", "fire_c"],
+      "destination": "kinetic_b"
+    },
+    {
+      "id": "KDF_A_C_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_D",
+      "loop_letter": "C",
+      "inputs": ["kinetic_b", "vapor_d", "source", "kinetic_a", "vapor_b", "nonce"],
+      "destination": "kinetic_c"
+    },
+    {
+      "id": "KDF_A_C_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_D",
+      "loop_letter": "D",
+      "inputs": ["kinetic_c", "kinetic_a", "shadow_b", "kinetic_b", "shadow_c", "shadow_a"],
+      "destination": "kinetic_d"
+    },
+    {
+      "id": "KDF_B_A_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_D",
+      "loop_letter": "A",
+      "inputs": ["kinetic_d", "kinetic_b", "fire_d", "vapor_c", "kinetic_c", "kinetic_a", "shadow_a", "vapor_b"],
+      "destination": "evocation_a"
+    },
+    {
+      "id": "KDF_B_A_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_D",
+      "loop_letter": "B",
+      "inputs": ["evocation_a", "kinetic_c", "shadow_d", "shadow_c", "kinetic_d", "kinetic_b", "fire_b", "vapor_a"],
+      "destination": "evocation_b"
+    },
+    {
+      "id": "KDF_B_A_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_D",
+      "loop_letter": "C",
+      "inputs": ["evocation_b", "kinetic_d", "fire_a", "vapor_d", "evocation_a", "kinetic_c", "shadow_b"],
+      "destination": "evocation_c"
+    },
+    {
+      "id": "KDF_B_A_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_D",
+      "loop_letter": "D",
+      "inputs": ["evocation_c", "evocation_a", "source", "evocation_b", "kinetic_d", "fire_c"],
+      "destination": "evocation_d"
+    },
+    {
+      "id": "KDF_B_B_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_D",
+      "loop_letter": "A",
+      "inputs": ["evocation_d", "evocation_b", "shadow_a", "shadow_b", "evocation_c", "evocation_a", "kinetic_c", "vapor_c"],
+      "destination": "runic_a"
+    },
+    {
+      "id": "KDF_B_B_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_D",
+      "loop_letter": "B",
+      "inputs": ["runic_a", "evocation_c", "vapor_a", "fire_d", "evocation_d", "evocation_b", "kinetic_b", "shadow_c"],
+      "destination": "runic_b"
+    },
+    {
+      "id": "KDF_B_B_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_D",
+      "loop_letter": "C",
+      "inputs": ["runic_b", "evocation_d", "fire_a", "kinetic_a", "runic_a", "evocation_c", "kinetic_d", "vapor_d"],
+      "destination": "runic_c"
+    },
+    {
+      "id": "KDF_B_B_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_D",
+      "loop_letter": "D",
+      "inputs": ["runic_c", "runic_a", "shadow_d", "fire_c", "runic_b", "evocation_d", "vapor_b", "source"],
+      "destination": "runic_d"
+    },
+    {
+      "id": "KDF_B_C_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_D",
+      "loop_letter": "A",
+      "inputs": ["divination_a", "divination_b", "kinetic_d", "kinetic_c", "divination_c", "divination_d", "runic_a", "runic_c"],
+      "destination": "abjuration_a"
+    },
+    {
+      "id": "KDF_B_C_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_D",
+      "loop_letter": "B",
+      "inputs": ["abjuration_a", "divination_c", "kinetic_a", "vapor_a", "divination_a", "divination_b", "evocation_d", "kinetic_b"],
+      "destination": "abjuration_b"
+    },
+    {
+      "id": "KDF_B_C_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_D",
+      "loop_letter": "C",
+      "inputs": ["abjuration_b", "divination_d", "runic_d", "evocation_a", "abjuration_a", "divination_b", "vapor_d", "evocation_c"],
+      "destination": "abjuration_c"
+    },
+    {
+      "id": "KDF_B_C_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_D",
+      "loop_letter": "D",
+      "inputs": ["abjuration_c", "abjuration_a", "source", "runic_b", "abjuration_b", "evocation_b", "vapor_c"],
+      "destination": "abjuration_d"
+    },
+    {
+      "id": "KDF_C_A_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_D",
+      "loop_letter": "A",
+      "inputs": ["abjuration_d", "abjuration_b", "evocation_a", "evocation_c", "abjuration_c", "abjuration_a", "kinetic_a", "evocation_b"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "KDF_C_A_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_D",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "abjuration_c", "runic_c", "runic_b", "abjuration_d", "abjuration_b", "divination_d", "evocation_d"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "KDF_C_A_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_D",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "abjuration_d", "fire_b", "divination_c", "aether_a", "abjuration_c", "source", "runic_a"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "KDF_C_A_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_D",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "divination_b", "kinetic_b", "aether_b", "abjuration_d", "runic_d", "divination_a"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "KDF_C_B_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_D",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "kinetic_d", "divination_d", "aether_c", "aether_a", "divination_a", "evocation_b"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "KDF_C_B_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_D",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "runic_d", "evocation_a", "aether_d", "aether_b", "divination_c", "divination_b"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "KDF_C_B_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_D",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "evocation_d", "runic_a", "lunar_a", "aether_c", "source", "abjuration_a"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "KDF_C_B_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_D",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "abjuration_c", "abjuration_b", "lunar_b", "aether_d", "vapor_b", "abjuration_d"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "KDF_C_C_D_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_D",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "divination_a", "abjuration_a", "earth_c", "earth_d", "aether_d", "aether_a"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "KDF_C_C_D_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_D",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "abjuration_d", "source", "earth_a", "earth_b", "lunar_b", "lunar_c"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "KDF_C_C_D_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_D",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "aether_c", "lunar_d", "crystal_a", "earth_b", "lunar_a", "aether_b"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "KDF_C_C_D_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_D",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "divination_d", "abjuration_c", "crystal_b", "kinetic_c", "abjuration_b"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "KDF_A_A_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_E",
+      "loop_letter": "A",
+      "inputs": ["source", "nonce", "nonce", "source"],
+      "destination": "shadow_a"
+    },
+    {
+      "id": "KDF_A_A_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_E",
+      "loop_letter": "B",
+      "inputs": ["shadow_a", "source", "source", "nonce"],
+      "destination": "shadow_b"
+    },
+    {
+      "id": "KDF_A_A_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_E",
+      "loop_letter": "C",
+      "inputs": ["shadow_b", "source", "shadow_a", "nonce"],
+      "destination": "shadow_c"
+    },
+    {
+      "id": "KDF_A_A_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_E",
+      "loop_letter": "D",
+      "inputs": ["shadow_c", "shadow_a", "nonce", "shadow_b", "source"],
+      "destination": "shadow_d"
+    },
+    {
+      "id": "KDF_A_B_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_E",
+      "loop_letter": "A",
+      "inputs": ["shadow_d", "shadow_b", "source", "shadow_c", "shadow_a", "nonce"],
+      "destination": "fire_a"
+    },
+    {
+      "id": "KDF_A_B_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_E",
+      "loop_letter": "B",
+      "inputs": ["fire_a", "shadow_c", "shadow_d", "shadow_b"],
+      "destination": "fire_b"
+    },
+    {
+      "id": "KDF_A_B_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_E",
+      "loop_letter": "C",
+      "inputs": ["fire_b", "shadow_d", "fire_a", "shadow_c"],
+      "destination": "fire_c"
+    },
+    {
+      "id": "KDF_A_B_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_E",
+      "loop_letter": "D",
+      "inputs": ["fire_c", "fire_a", "fire_b", "shadow_d"],
+      "destination": "fire_d"
+    },
+    {
+      "id": "KDF_A_C_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_E",
+      "loop_letter": "A",
+      "inputs": ["vapor_a", "vapor_b", "fire_d", "shadow_a", "vapor_c", "vapor_d", "shadow_d"],
+      "destination": "kinetic_a"
+    },
+    {
+      "id": "KDF_A_C_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_E",
+      "loop_letter": "B",
+      "inputs": ["kinetic_a", "vapor_c", "source", "vapor_a", "vapor_b", "fire_a"],
+      "destination": "kinetic_b"
+    },
+    {
+      "id": "KDF_A_C_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_E",
+      "loop_letter": "C",
+      "inputs": ["kinetic_b", "vapor_d", "fire_c", "kinetic_a", "vapor_b", "shadow_b"],
+      "destination": "kinetic_c"
+    },
+    {
+      "id": "KDF_A_C_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_E",
+      "loop_letter": "D",
+      "inputs": ["kinetic_c", "kinetic_a", "nonce", "kinetic_b", "shadow_c", "fire_b"],
+      "destination": "kinetic_d"
+    },
+    {
+      "id": "KDF_B_A_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_E",
+      "loop_letter": "A",
+      "inputs": ["kinetic_d", "kinetic_b", "shadow_b", "vapor_c", "kinetic_c", "kinetic_a", "fire_a", "vapor_a"],
+      "destination": "evocation_a"
+    },
+    {
+      "id": "KDF_B_A_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_E",
+      "loop_letter": "B",
+      "inputs": ["evocation_a", "kinetic_c", "fire_c", "vapor_d", "kinetic_d", "kinetic_b", "fire_d", "vapor_b"],
+      "destination": "evocation_b"
+    },
+    {
+      "id": "KDF_B_A_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_E",
+      "loop_letter": "C",
+      "inputs": ["evocation_b", "kinetic_d", "shadow_c", "shadow_d", "evocation_a", "kinetic_c", "shadow_a"],
+      "destination": "evocation_c"
+    },
+    {
+      "id": "KDF_B_A_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_E",
+      "loop_letter": "D",
+      "inputs": ["evocation_c", "evocation_a", "fire_b", "evocation_b", "kinetic_d", "source"],
+      "destination": "evocation_d"
+    },
+    {
+      "id": "KDF_B_B_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_E",
+      "loop_letter": "A",
+      "inputs": ["evocation_d", "evocation_b", "source", "fire_c", "evocation_c", "evocation_a", "kinetic_a", "vapor_b"],
+      "destination": "runic_a"
+    },
+    {
+      "id": "KDF_B_B_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_E",
+      "loop_letter": "B",
+      "inputs": ["runic_a", "evocation_c", "fire_b", "kinetic_d", "evocation_d", "evocation_b", "shadow_c", "kinetic_b"],
+      "destination": "runic_b"
+    },
+    {
+      "id": "KDF_B_B_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_E",
+      "loop_letter": "C",
+      "inputs": ["runic_b", "evocation_d", "shadow_b", "vapor_c", "runic_a", "evocation_c", "fire_a", "vapor_d"],
+      "destination": "runic_c"
+    },
+    {
+      "id": "KDF_B_B_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_E",
+      "loop_letter": "D",
+      "inputs": ["runic_c", "runic_a", "shadow_d", "kinetic_c", "runic_b", "evocation_d", "shadow_a", "vapor_a"],
+      "destination": "runic_d"
+    },
+    {
+      "id": "KDF_B_C_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_E",
+      "loop_letter": "A",
+      "inputs": ["divination_a", "divination_b", "source", "evocation_a", "divination_c", "divination_d", "vapor_d", "evocation_d"],
+      "destination": "abjuration_a"
+    },
+    {
+      "id": "KDF_B_C_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_E",
+      "loop_letter": "B",
+      "inputs": ["abjuration_a", "divination_c", "kinetic_a", "vapor_a", "divination_a", "divination_b", "kinetic_d", "kinetic_b"],
+      "destination": "abjuration_b"
+    },
+    {
+      "id": "KDF_B_C_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_E",
+      "loop_letter": "C",
+      "inputs": ["abjuration_b", "divination_d", "runic_d", "evocation_b", "abjuration_a", "divination_b", "evocation_c", "runic_a"],
+      "destination": "abjuration_c"
+    },
+    {
+      "id": "KDF_B_C_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_E",
+      "loop_letter": "D",
+      "inputs": ["abjuration_c", "abjuration_a", "kinetic_c", "runic_b", "abjuration_b", "runic_c", "vapor_b"],
+      "destination": "abjuration_d"
+    },
+    {
+      "id": "KDF_C_A_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_E",
+      "loop_letter": "A",
+      "inputs": ["abjuration_d", "abjuration_b", "evocation_c", "evocation_d", "abjuration_c", "abjuration_a", "vapor_c", "divination_a"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "KDF_C_A_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_E",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "abjuration_c", "evocation_a", "runic_b", "abjuration_d", "abjuration_b", "kinetic_a", "runic_a"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "KDF_C_A_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_E",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "abjuration_d", "divination_c", "fire_d", "aether_a", "abjuration_c", "evocation_b", "runic_c"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "KDF_C_A_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_E",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "divination_d", "source", "aether_b", "abjuration_d", "runic_d", "divination_b"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "KDF_C_B_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_E",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "divination_a", "divination_d", "aether_c", "aether_a", "evocation_c", "evocation_d"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "KDF_C_B_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_E",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "abjuration_a", "kinetic_c", "aether_d", "aether_b", "abjuration_b", "divination_c"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "KDF_C_B_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_E",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "evocation_b", "kinetic_d", "lunar_a", "aether_c", "divination_b", "source"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "KDF_C_B_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_E",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "runic_b", "evocation_a", "lunar_b", "aether_d", "abjuration_c", "abjuration_d"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "KDF_C_C_E_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_E",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "abjuration_d", "aether_c", "earth_c", "earth_d", "kinetic_b", "divination_c"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "KDF_C_C_E_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_E",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "aether_b", "source", "earth_a", "earth_b", "lunar_b", "abjuration_a"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "KDF_C_C_E_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_E",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "lunar_a", "lunar_c", "crystal_a", "earth_b", "divination_b", "abjuration_b"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "KDF_C_C_E_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_E",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "aether_a", "aether_d", "crystal_b", "lunar_d", "abjuration_c"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "KDF_A_A_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_F",
+      "loop_letter": "A",
+      "inputs": ["source", "nonce", "nonce", "source"],
+      "destination": "shadow_a"
+    },
+    {
+      "id": "KDF_A_A_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_F",
+      "loop_letter": "B",
+      "inputs": ["shadow_a", "source", "source", "nonce"],
+      "destination": "shadow_b"
+    },
+    {
+      "id": "KDF_A_A_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_F",
+      "loop_letter": "C",
+      "inputs": ["shadow_b", "nonce", "shadow_a", "source"],
+      "destination": "shadow_c"
+    },
+    {
+      "id": "KDF_A_A_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_A_F",
+      "loop_letter": "D",
+      "inputs": ["shadow_c", "shadow_a", "source", "shadow_b", "nonce"],
+      "destination": "shadow_d"
+    },
+    {
+      "id": "KDF_A_B_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_F",
+      "loop_letter": "A",
+      "inputs": ["shadow_d", "shadow_b", "source", "shadow_c", "shadow_a", "nonce"],
+      "destination": "fire_a"
+    },
+    {
+      "id": "KDF_A_B_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_F",
+      "loop_letter": "B",
+      "inputs": ["fire_a", "shadow_c", "shadow_d", "shadow_b"],
+      "destination": "fire_b"
+    },
+    {
+      "id": "KDF_A_B_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_F",
+      "loop_letter": "C",
+      "inputs": ["fire_b", "shadow_d", "fire_a", "shadow_c"],
+      "destination": "fire_c"
+    },
+    {
+      "id": "KDF_A_B_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_B_F",
+      "loop_letter": "D",
+      "inputs": ["fire_c", "fire_a", "fire_b", "shadow_d"],
+      "destination": "fire_d"
+    },
+    {
+      "id": "KDF_A_C_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_F",
+      "loop_letter": "A",
+      "inputs": ["vapor_a", "vapor_b", "fire_b", "shadow_c", "vapor_c", "vapor_d", "fire_c"],
+      "destination": "kinetic_a"
+    },
+    {
+      "id": "KDF_A_C_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_F",
+      "loop_letter": "B",
+      "inputs": ["kinetic_a", "vapor_c", "source", "vapor_a", "vapor_b", "shadow_b"],
+      "destination": "kinetic_b"
+    },
+    {
+      "id": "KDF_A_C_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_F",
+      "loop_letter": "C",
+      "inputs": ["kinetic_b", "vapor_d", "fire_a", "kinetic_a", "vapor_b", "nonce"],
+      "destination": "kinetic_c"
+    },
+    {
+      "id": "KDF_A_C_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_A",
+      "function_id": "KDF_A_C_F",
+      "loop_letter": "D",
+      "inputs": ["kinetic_c", "kinetic_a", "shadow_a", "kinetic_b", "fire_d", "shadow_d"],
+      "destination": "kinetic_d"
+    },
+    {
+      "id": "KDF_B_A_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_F",
+      "loop_letter": "A",
+      "inputs": ["kinetic_d", "kinetic_b", "vapor_a", "fire_a", "kinetic_c", "kinetic_a", "source", "fire_b"],
+      "destination": "evocation_a"
+    },
+    {
+      "id": "KDF_B_A_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_F",
+      "loop_letter": "B",
+      "inputs": ["evocation_a", "kinetic_c", "fire_c", "fire_d", "kinetic_d", "kinetic_b", "shadow_b", "vapor_d"],
+      "destination": "evocation_b"
+    },
+    {
+      "id": "KDF_B_A_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_F",
+      "loop_letter": "C",
+      "inputs": ["evocation_b", "kinetic_d", "vapor_b", "vapor_c", "evocation_a", "kinetic_c", "shadow_d"],
+      "destination": "evocation_c"
+    },
+    {
+      "id": "KDF_B_A_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_A_F",
+      "loop_letter": "D",
+      "inputs": ["evocation_c", "evocation_a", "shadow_a", "evocation_b", "kinetic_d", "shadow_c"],
+      "destination": "evocation_d"
+    },
+    {
+      "id": "KDF_B_B_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_F",
+      "loop_letter": "A",
+      "inputs": ["evocation_d", "evocation_b", "vapor_b", "shadow_b", "evocation_c", "evocation_a", "shadow_d", "shadow_c"],
+      "destination": "runic_a"
+    },
+    {
+      "id": "KDF_B_B_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_F",
+      "loop_letter": "B",
+      "inputs": ["runic_a", "evocation_c", "vapor_d", "source", "evocation_d", "evocation_b", "fire_c", "kinetic_d"],
+      "destination": "runic_b"
+    },
+    {
+      "id": "KDF_B_B_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_F",
+      "loop_letter": "C",
+      "inputs": ["runic_b", "evocation_d", "kinetic_b", "kinetic_c", "runic_a", "evocation_c", "fire_d", "vapor_c"],
+      "destination": "runic_c"
+    },
+    {
+      "id": "KDF_B_B_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_B_F",
+      "loop_letter": "D",
+      "inputs": ["runic_c", "runic_a", "fire_b", "vapor_a", "runic_b", "evocation_d", "kinetic_a", "shadow_a"],
+      "destination": "runic_d"
+    },
+    {
+      "id": "KDF_B_C_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_F",
+      "loop_letter": "A",
+      "inputs": ["divination_a", "divination_b", "runic_c", "kinetic_a", "divination_c", "divination_d", "vapor_a", "evocation_c"],
+      "destination": "abjuration_a"
+    },
+    {
+      "id": "KDF_B_C_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_F",
+      "loop_letter": "B",
+      "inputs": ["abjuration_a", "divination_c", "vapor_c", "runic_d", "divination_a", "divination_b", "runic_a", "evocation_b"],
+      "destination": "abjuration_b"
+    },
+    {
+      "id": "KDF_B_C_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_F",
+      "loop_letter": "C",
+      "inputs": ["abjuration_b", "divination_d", "kinetic_d", "kinetic_c", "abjuration_a", "divination_b", "runic_b", "source"],
+      "destination": "abjuration_c"
+    },
+    {
+      "id": "KDF_B_C_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_B",
+      "function_id": "KDF_B_C_F",
+      "loop_letter": "D",
+      "inputs": ["abjuration_c", "abjuration_a", "vapor_d", "evocation_a", "abjuration_b", "kinetic_b", "evocation_d"],
+      "destination": "abjuration_d"
+    },
+    {
+      "id": "KDF_C_A_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_F",
+      "loop_letter": "A",
+      "inputs": ["abjuration_d", "abjuration_b", "runic_a", "divination_a", "abjuration_c", "abjuration_a", "kinetic_b", "divination_d"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "KDF_C_A_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_F",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "abjuration_c", "runic_c", "divination_b", "abjuration_d", "abjuration_b", "divination_c", "evocation_c"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "KDF_C_A_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_F",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "abjuration_d", "evocation_b", "evocation_a", "aether_a", "abjuration_c", "runic_d", "vapor_b"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "KDF_C_A_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_A_F",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "evocation_d", "kinetic_c", "aether_b", "abjuration_d", "runic_b", "source"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "KDF_C_B_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_F",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "evocation_d", "kinetic_d", "aether_c", "aether_a", "abjuration_a", "divination_b"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "KDF_C_B_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_F",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "divination_d", "source", "aether_d", "aether_b", "divination_a", "divination_c"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "KDF_C_B_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_F",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "abjuration_c", "evocation_c", "lunar_a", "aether_c", "fire_a", "abjuration_b"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "KDF_C_B_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_B_F",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "evocation_a", "kinetic_a", "lunar_b", "aether_d", "abjuration_d", "runic_c"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "KDF_C_C_F_LOOP_A",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_F",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "divination_b", "aether_b", "earth_c", "earth_d", "aether_a", "abjuration_b"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "KDF_C_C_F_LOOP_B",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_F",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "lunar_c", "abjuration_a", "earth_a", "earth_b", "aether_c", "aether_d"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "KDF_C_C_F_LOOP_C",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_F",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "lunar_d", "lunar_b", "crystal_a", "earth_b", "abjuration_c", "source"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "KDF_C_C_F_LOOP_D",
+      "section_id": "KDF",
+      "family_id": "KDF_C",
+      "function_id": "KDF_C_C_F",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "divination_a", "lunar_a", "crystal_b", "abjuration_d", "runic_d"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "SEED_A_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_A",
+      "loop_letter": "A",
+      "inputs": ["source", "nonce", "nonce", "source"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "SEED_A_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_A",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "source", "source", "nonce"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "SEED_A_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_A",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "source", "ice_a", "nonce"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "SEED_A_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_A",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "nonce", "ice_b", "source"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "SEED_B_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_B",
+      "loop_letter": "A",
+      "inputs": ["ice_d", "ice_b", "nonce", "ice_c", "ice_a", "source"],
+      "destination": "rainbow_a"
+    },
+    {
+      "id": "SEED_B_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_B",
+      "loop_letter": "B",
+      "inputs": ["rainbow_a", "ice_c", "ice_d", "ice_b"],
+      "destination": "rainbow_b"
+    },
+    {
+      "id": "SEED_B_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_B",
+      "loop_letter": "C",
+      "inputs": ["rainbow_b", "ice_d", "rainbow_a", "ice_c"],
+      "destination": "rainbow_c"
+    },
+    {
+      "id": "SEED_B_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_B",
+      "loop_letter": "D",
+      "inputs": ["rainbow_c", "rainbow_a", "rainbow_b", "ice_d"],
+      "destination": "rainbow_d"
+    },
+    {
+      "id": "SEED_C_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_C",
+      "loop_letter": "A",
+      "inputs": ["alchemy_a", "alchemy_b", "source", "rainbow_d", "alchemy_c", "alchemy_d", "nonce"],
+      "destination": "augury_a"
+    },
+    {
+      "id": "SEED_C_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_C",
+      "loop_letter": "B",
+      "inputs": ["augury_a", "alchemy_c", "rainbow_c", "alchemy_a", "alchemy_b", "ice_b"],
+      "destination": "augury_b"
+    },
+    {
+      "id": "SEED_C_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_C",
+      "loop_letter": "C",
+      "inputs": ["augury_b", "alchemy_d", "ice_d", "augury_a", "alchemy_b", "rainbow_a"],
+      "destination": "augury_c"
+    },
+    {
+      "id": "SEED_C_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_C",
+      "loop_letter": "D",
+      "inputs": ["augury_c", "augury_a", "ice_c", "augury_b", "ice_a", "rainbow_b"],
+      "destination": "augury_d"
+    },
+    {
+      "id": "SEED_D_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_D",
+      "loop_letter": "A",
+      "inputs": ["augury_d", "augury_b", "alchemy_d", "alchemy_b", "augury_c", "augury_a", "rainbow_c", "rainbow_a"],
+      "destination": "spirit_a"
+    },
+    {
+      "id": "SEED_D_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_D",
+      "loop_letter": "B",
+      "inputs": ["spirit_a", "augury_c", "ice_b", "ice_d", "augury_d", "augury_b", "source", "alchemy_c"],
+      "destination": "spirit_b"
+    },
+    {
+      "id": "SEED_D_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_D",
+      "loop_letter": "C",
+      "inputs": ["spirit_b", "augury_d", "rainbow_b", "ice_a", "spirit_a", "augury_c", "ice_c", "alchemy_a"],
+      "destination": "spirit_c"
+    },
+    {
+      "id": "SEED_D_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_D",
+      "loop_letter": "D",
+      "inputs": ["spirit_c", "spirit_a", "nonce", "spirit_b", "augury_d", "rainbow_d"],
+      "destination": "spirit_d"
+    },
+    {
+      "id": "SEED_E_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_E",
+      "loop_letter": "A",
+      "inputs": ["divination_a", "divination_b", "augury_d", "source", "divination_c", "divination_d", "augury_c", "alchemy_b"],
+      "destination": "psychic_a"
+    },
+    {
+      "id": "SEED_E_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_E",
+      "loop_letter": "B",
+      "inputs": ["psychic_a", "divination_c", "spirit_d", "rainbow_b", "divination_a", "divination_b", "nonce", "spirit_b"],
+      "destination": "psychic_b"
+    },
+    {
+      "id": "SEED_E_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_E",
+      "loop_letter": "C",
+      "inputs": ["psychic_b", "divination_d", "spirit_c", "spirit_a", "psychic_a", "divination_b", "augury_a", "alchemy_c"],
+      "destination": "psychic_c"
+    },
+    {
+      "id": "SEED_E_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_E",
+      "loop_letter": "D",
+      "inputs": ["psychic_c", "psychic_a", "alchemy_a", "alchemy_d", "psychic_b", "rainbow_c", "augury_b"],
+      "destination": "psychic_d"
+    },
+    {
+      "id": "SEED_F_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_F",
+      "loop_letter": "A",
+      "inputs": ["psychic_d", "psychic_b", "divination_a", "divination_c", "psychic_c", "psychic_a", "source", "augury_c"],
+      "destination": "voodoo_a"
+    },
+    {
+      "id": "SEED_F_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_F",
+      "loop_letter": "B",
+      "inputs": ["voodoo_a", "psychic_c", "augury_b", "augury_a", "psychic_d", "psychic_b", "spirit_a", "nonce"],
+      "destination": "voodoo_b"
+    },
+    {
+      "id": "SEED_F_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_F",
+      "loop_letter": "C",
+      "inputs": ["voodoo_b", "psychic_d", "alchemy_d", "ice_b", "voodoo_a", "psychic_c", "spirit_d", "augury_d"],
+      "destination": "voodoo_c"
+    },
+    {
+      "id": "SEED_F_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_F",
+      "loop_letter": "D",
+      "inputs": ["voodoo_c", "voodoo_a", "spirit_c", "divination_d", "voodoo_b", "psychic_d", "divination_b", "spirit_b"],
+      "destination": "voodoo_d"
+    },
+    {
+      "id": "SEED_G_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_G",
+      "loop_letter": "A",
+      "inputs": ["vapor_a", "vapor_b", "divination_a", "psychic_d", "vapor_c", "vapor_d", "divination_d", "spirit_b"],
+      "destination": "sonic_a"
+    },
+    {
+      "id": "SEED_G_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_G",
+      "loop_letter": "B",
+      "inputs": ["sonic_a", "vapor_c", "psychic_b", "psychic_a", "vapor_a", "vapor_b", "voodoo_b", "voodoo_a"],
+      "destination": "sonic_b"
+    },
+    {
+      "id": "SEED_G_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_G",
+      "loop_letter": "C",
+      "inputs": ["sonic_b", "vapor_d", "divination_b", "augury_d", "sonic_a", "vapor_b", "psychic_c", "spirit_c"],
+      "destination": "sonic_c"
+    },
+    {
+      "id": "SEED_G_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_G",
+      "loop_letter": "D",
+      "inputs": ["sonic_c", "sonic_a", "voodoo_d", "voodoo_c", "sonic_b", "divination_c", "source"],
+      "destination": "sonic_d"
+    },
+    {
+      "id": "SEED_H_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_H",
+      "loop_letter": "A",
+      "inputs": ["sonic_d", "sonic_b", "vapor_c", "augury_b", "sonic_c", "sonic_a", "psychic_c", "vapor_d"],
+      "destination": "planar_a"
+    },
+    {
+      "id": "SEED_H_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_H",
+      "loop_letter": "B",
+      "inputs": ["planar_a", "sonic_c", "voodoo_b", "psychic_d", "sonic_d", "sonic_b", "source", "vapor_a"],
+      "destination": "planar_b"
+    },
+    {
+      "id": "SEED_H_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_H",
+      "loop_letter": "C",
+      "inputs": ["planar_b", "sonic_d", "spirit_a", "voodoo_a", "planar_a", "sonic_c", "psychic_b", "vapor_b"],
+      "destination": "planar_c"
+    },
+    {
+      "id": "SEED_H_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_H",
+      "loop_letter": "D",
+      "inputs": ["planar_c", "planar_a", "voodoo_c", "psychic_a", "planar_b", "sonic_d", "alchemy_b", "voodoo_d"],
+      "destination": "planar_d"
+    },
+    {
+      "id": "SEED_I_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_I",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "planar_d", "planar_a", "frost_c", "frost_d", "vapor_c", "planar_c"],
+      "destination": "gloom_a"
+    },
+    {
+      "id": "SEED_I_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_I",
+      "loop_letter": "B",
+      "inputs": ["gloom_a", "frost_c", "sonic_c", "augury_a", "frost_a", "frost_b", "sonic_a", "vapor_d"],
+      "destination": "gloom_b"
+    },
+    {
+      "id": "SEED_I_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_I",
+      "loop_letter": "C",
+      "inputs": ["gloom_b", "frost_d", "sonic_d", "vapor_a", "gloom_a", "frost_b", "psychic_a", "source"],
+      "destination": "gloom_c"
+    },
+    {
+      "id": "SEED_I_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_I",
+      "loop_letter": "D",
+      "inputs": ["gloom_c", "gloom_a", "vapor_b", "planar_b", "gloom_b", "sonic_b", "ice_a"],
+      "destination": "gloom_d"
+    },
+    {
+      "id": "SEED_J_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_J",
+      "loop_letter": "A",
+      "inputs": ["gloom_d", "gloom_b", "frost_d", "planar_c", "gloom_c", "gloom_a", "frost_a", "sonic_c"],
+      "destination": "lightning_a"
+    },
+    {
+      "id": "SEED_J_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_J",
+      "loop_letter": "B",
+      "inputs": ["lightning_a", "gloom_c", "source", "sonic_b", "gloom_d", "gloom_b", "voodoo_c", "frost_c"],
+      "destination": "lightning_b"
+    },
+    {
+      "id": "SEED_J_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_J",
+      "loop_letter": "C",
+      "inputs": ["lightning_b", "gloom_d", "voodoo_a", "planar_b", "lightning_a", "gloom_c", "planar_d", "planar_a"],
+      "destination": "lightning_c"
+    },
+    {
+      "id": "SEED_J_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_J",
+      "loop_letter": "D",
+      "inputs": ["lightning_c", "lightning_a", "frost_b", "divination_b", "lightning_b", "gloom_d", "sonic_a", "sonic_d"],
+      "destination": "lightning_d"
+    },
+    {
+      "id": "SEED_K_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_K",
+      "loop_letter": "A",
+      "inputs": ["wind_a", "wind_b", "gloom_c", "frost_c", "wind_c", "wind_d", "gloom_b", "lightning_a"],
+      "destination": "shadow_a"
+    },
+    {
+      "id": "SEED_K_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_K",
+      "loop_letter": "B",
+      "inputs": ["shadow_a", "wind_c", "ice_c", "lightning_d", "wind_a", "wind_b", "frost_d", "spirit_d"],
+      "destination": "shadow_b"
+    },
+    {
+      "id": "SEED_K_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_K",
+      "loop_letter": "C",
+      "inputs": ["shadow_b", "wind_d", "nonce", "lightning_b", "shadow_a", "wind_b", "gloom_a", "frost_b"],
+      "destination": "shadow_c"
+    },
+    {
+      "id": "SEED_K_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_K",
+      "loop_letter": "D",
+      "inputs": ["shadow_c", "shadow_a", "gloom_d", "lightning_c", "shadow_b", "alchemy_a", "frost_a"],
+      "destination": "shadow_d"
+    },
+    {
+      "id": "SEED_L_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_L",
+      "loop_letter": "A",
+      "inputs": ["shadow_d", "shadow_b", "lightning_a", "lightning_b", "shadow_c", "shadow_a", "lightning_c", "wind_c"],
+      "destination": "fire_a"
+    },
+    {
+      "id": "SEED_L_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_L",
+      "loop_letter": "B",
+      "inputs": ["fire_a", "shadow_c", "lightning_d", "gloom_a", "shadow_d", "shadow_b", "gloom_d", "gloom_c"],
+      "destination": "fire_b"
+    },
+    {
+      "id": "SEED_L_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_L",
+      "loop_letter": "C",
+      "inputs": ["fire_b", "shadow_d", "frost_d", "alchemy_c", "fire_a", "shadow_c", "wind_b", "nonce"],
+      "destination": "fire_c"
+    },
+    {
+      "id": "SEED_L_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_L",
+      "loop_letter": "D",
+      "inputs": ["fire_c", "fire_a", "wind_a", "wind_d", "fire_b", "shadow_d", "gloom_b", "planar_a"],
+      "destination": "fire_d"
+    },
+    {
+      "id": "SEED_M_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_M",
+      "loop_letter": "A",
+      "inputs": ["kinetic_a", "kinetic_b", "vapor_b", "shadow_a", "kinetic_c", "kinetic_d", "fire_c", "sonic_b"],
+      "destination": "evocation_a"
+    },
+    {
+      "id": "SEED_M_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_M",
+      "loop_letter": "B",
+      "inputs": ["evocation_a", "kinetic_c", "rainbow_a", "fire_a", "kinetic_a", "kinetic_b", "shadow_b", "wind_a"],
+      "destination": "evocation_b"
+    },
+    {
+      "id": "SEED_M_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_M",
+      "loop_letter": "C",
+      "inputs": ["evocation_b", "kinetic_d", "shadow_d", "wind_c", "evocation_a", "kinetic_b", "wind_d", "source"],
+      "destination": "evocation_c"
+    },
+    {
+      "id": "SEED_M_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_M",
+      "loop_letter": "D",
+      "inputs": ["evocation_c", "evocation_a", "fire_b", "wind_b", "evocation_b", "shadow_c", "fire_d"],
+      "destination": "evocation_d"
+    },
+    {
+      "id": "SEED_N_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_N",
+      "loop_letter": "A",
+      "inputs": ["evocation_d", "evocation_b", "kinetic_d", "fire_c", "evocation_c", "evocation_a", "shadow_c", "kinetic_a"],
+      "destination": "runic_a"
+    },
+    {
+      "id": "SEED_N_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_N",
+      "loop_letter": "B",
+      "inputs": ["runic_a", "evocation_c", "vapor_c", "fire_d", "evocation_d", "evocation_b", "fire_a", "wind_a"],
+      "destination": "runic_b"
+    },
+    {
+      "id": "SEED_N_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_N",
+      "loop_letter": "C",
+      "inputs": ["runic_b", "evocation_d", "kinetic_c", "shadow_d", "runic_a", "evocation_c", "fire_b", "wind_b"],
+      "destination": "runic_c"
+    },
+    {
+      "id": "SEED_N_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_N",
+      "loop_letter": "D",
+      "inputs": ["runic_c", "runic_a", "shadow_a", "source", "runic_b", "evocation_d", "shadow_b", "kinetic_b"],
+      "destination": "runic_d"
+    },
+    {
+      "id": "SEED_O_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_O",
+      "loop_letter": "A",
+      "inputs": ["abjuration_a", "abjuration_b", "rainbow_d", "kinetic_d", "abjuration_c", "abjuration_d", "evocation_b", "kinetic_b"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "SEED_O_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_O",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "abjuration_c", "kinetic_c", "runic_a", "abjuration_a", "abjuration_b", "evocation_d", "evocation_a"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "SEED_O_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_O",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "abjuration_d", "runic_b", "runic_c", "aether_a", "abjuration_b", "runic_d", "planar_c"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "SEED_O_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_O",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "planar_b", "source", "aether_b", "kinetic_a", "evocation_c"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "SEED_P_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_P",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "evocation_a", "evocation_b", "aether_c", "aether_a", "abjuration_b", "evocation_c"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "SEED_P_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_P",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "runic_d", "psychic_d", "aether_d", "aether_b", "abjuration_a", "abjuration_c"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "SEED_P_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_P",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "kinetic_b", "runic_c", "lunar_a", "aether_c", "source", "abjuration_d"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "SEED_P_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_P",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "evocation_d", "sonic_c", "lunar_b", "aether_d", "runic_a", "runic_b"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "SEED_Q_LOOP_A",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_Q",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "psychic_c", "aether_c", "earth_c", "earth_d", "abjuration_c", "lunar_b"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "SEED_Q_LOOP_B",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_Q",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "wind_c", "lunar_c", "earth_a", "earth_b", "abjuration_d", "shadow_c"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "SEED_Q_LOOP_C",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_Q",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "aether_a", "kinetic_d", "crystal_a", "earth_b", "aether_d", "abjuration_b"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "SEED_Q_LOOP_D",
+      "section_id": "SEED",
+      "family_id": "SEED",
+      "function_id": "SEED_Q",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "lunar_a", "lunar_d", "crystal_b", "abjuration_a", "aether_b"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "KEY_A_A_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_A_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "abjuration_d", "earth_a", "earth_b", "shadow_d", "sonic_c"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_A_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "gloom_c", "gloom_d", "arcane_a", "earth_c", "voodoo_d", "ice_c"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_A_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "voodoo_d", "arcane_b", "earth_d", "ice_c", "evocation_d"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_B_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_B_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "runic_c", "earth_a", "earth_b", "voodoo_c", "augury_c"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_B_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "psychic_c", "wind_d", "arcane_a", "earth_c", "aether_b", "sonic_c"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_B_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "aether_b", "arcane_b", "earth_d", "sonic_c", "spirit_c"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_C_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_C_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "divination_d", "earth_a", "earth_b", "spirit_d", "ice_b"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_C_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "augury_b", "vapor_a", "arcane_a", "earth_c", "rainbow_a", "aether_c"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_C_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "rainbow_a", "arcane_b", "earth_d", "aether_c", "spirit_b"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_D_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_D_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "divination_a", "earth_a", "earth_b", "voodoo_d", "voodoo_a"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_D_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "vapor_d", "wind_b", "arcane_a", "earth_c", "rainbow_b", "evocation_d"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_D_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "rainbow_b", "arcane_b", "earth_d", "evocation_d", "frost_b"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_E_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_E_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "runic_d", "earth_a", "earth_b", "spirit_d", "divination_d"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_E_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "abjuration_a", "abjuration_b", "arcane_a", "earth_c", "psychic_d", "psychic_b"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_E_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "psychic_d", "arcane_b", "earth_d", "psychic_b", "fire_a"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_F_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_F_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "shadow_d", "earth_a", "earth_b", "wind_a", "gloom_d"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_F_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "divination_c", "planar_d", "arcane_a", "earth_c", "gloom_c", "vapor_a"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_F_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "gloom_c", "arcane_b", "earth_d", "vapor_a", "kinetic_b"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_G_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_G_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "abjuration_a", "earth_a", "earth_b", "spirit_b", "abjuration_d"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_G_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "lunar_b", "voodoo_a", "arcane_a", "earth_c", "divination_a", "lightning_a"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_G_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "divination_a", "arcane_b", "earth_d", "lightning_a", "abjuration_c"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_H_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_A_H_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "lunar_d", "earth_a", "earth_b", "alchemy_c", "abjuration_a"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_A_H_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "spirit_c", "fire_c", "arcane_a", "earth_c", "sonic_c", "planar_c"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_A_H_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "sonic_c", "arcane_b", "earth_d", "planar_c", "augury_c"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_A_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_A_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "shadow_a", "earth_a", "earth_b", "abjuration_a", "abjuration_c"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_A_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "wind_c", "rainbow_a", "arcane_a", "earth_c", "frost_b", "frost_c"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_A_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "frost_b", "arcane_b", "earth_d", "frost_c", "abjuration_d"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_B_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_B_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "lightning_b", "earth_a", "earth_b", "abjuration_a", "aether_c"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_B_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "runic_b", "shadow_b", "arcane_a", "earth_c", "shadow_c", "fire_a"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_B_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "shadow_c", "arcane_b", "earth_d", "fire_a", "shadow_a"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_C_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_C_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "gloom_d", "earth_a", "earth_b", "alchemy_d", "alchemy_b"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_C_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "aether_b", "sonic_c", "arcane_a", "earth_c", "voodoo_b", "psychic_d"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_C_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "voodoo_b", "arcane_b", "earth_d", "psychic_d", "wind_d"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_D_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_D_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "divination_b", "earth_a", "earth_b", "vapor_b", "kinetic_a"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_D_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "ice_b", "runic_c", "arcane_a", "earth_c", "aether_d", "spirit_d"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_D_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "aether_d", "arcane_b", "earth_d", "spirit_d", "abjuration_b"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_E_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_E_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "divination_d", "earth_a", "earth_b", "kinetic_c", "planar_b"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_E_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "runic_a", "lunar_d", "arcane_a", "earth_c", "gloom_b", "psychic_d"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_E_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "gloom_b", "arcane_b", "earth_d", "psychic_d", "rainbow_b"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_F_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_F_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "evocation_d", "earth_a", "earth_b", "spirit_a", "alchemy_b"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_F_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "rainbow_d", "evocation_c", "arcane_a", "earth_c", "evocation_a", "lunar_c"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_F_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "evocation_a", "arcane_b", "earth_d", "lunar_c", "gloom_c"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_G_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_G_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "spirit_a", "earth_a", "earth_b", "ice_c", "planar_a"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_G_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "voodoo_a", "spirit_b", "arcane_a", "earth_c", "rainbow_c", "divination_a"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_G_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "rainbow_c", "arcane_b", "earth_d", "divination_a", "divination_c"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_B_H_A_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_A",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "earth_c", "earth_d", "crystal_a", "crystal_b", "crystal_c", "crystal_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "KEY_B_H_A_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "crystal_a", "crystal_b", "wind_c", "earth_a", "earth_b", "augury_d", "divination_c"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "KEY_B_H_A_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "crystal_c", "wind_a", "wind_b", "arcane_a", "earth_c", "rainbow_a", "sonic_c"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "KEY_B_H_A_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "crystal_d", "rainbow_a", "arcane_b", "earth_d", "sonic_c", "divination_a"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "KEY_A_A_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "voodoo_c", "lunar_c", "arcane_c", "arcane_a", "kinetic_c", "kinetic_a"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_A_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "lunar_b", "divination_d", "arcane_d", "arcane_b", "abjuration_c", "shadow_c"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_A_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "frost_c", "planar_d", "plasma_a", "arcane_c", "psychic_d"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_A_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "vapor_c", "plasma_b", "arcane_d", "psychic_c"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_B_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "vapor_b", "abjuration_b", "arcane_c", "arcane_a", "alchemy_c", "evocation_d"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_B_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "voodoo_b", "planar_d", "arcane_d", "arcane_b", "fire_a", "planar_b"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_B_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "vapor_a", "lightning_a", "plasma_a", "arcane_c", "divination_b"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_B_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "planar_c", "plasma_b", "arcane_d", "evocation_c"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_C_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "voodoo_a", "vapor_b", "arcane_c", "arcane_a", "wind_b", "alchemy_c"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_C_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "frost_b", "abjuration_d", "arcane_d", "arcane_b", "gloom_d", "vapor_c"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_C_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "rainbow_c", "fire_d", "plasma_a", "arcane_c", "lunar_b"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_C_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "spirit_a", "plasma_b", "arcane_d", "lunar_c"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_D_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "augury_c", "sonic_b", "arcane_c", "arcane_a", "lightning_a", "spirit_c"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_D_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "lunar_c", "alchemy_b", "arcane_d", "arcane_b", "lightning_d", "gloom_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_D_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "wind_c", "ice_c", "plasma_a", "arcane_c", "runic_c"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_D_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "sonic_a", "plasma_b", "arcane_d", "runic_b"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_E_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "voodoo_a", "frost_a", "arcane_c", "arcane_a", "rainbow_c", "runic_b"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_E_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "wind_a", "evocation_c", "arcane_d", "arcane_b", "kinetic_d", "runic_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_E_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "aether_b", "vapor_a", "plasma_a", "arcane_c", "lunar_c"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_E_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "shadow_b", "plasma_b", "arcane_d", "fire_c"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_F_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "abjuration_d", "wind_b", "arcane_c", "arcane_a", "rainbow_b", "runic_b"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_F_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "evocation_d", "vapor_c", "arcane_d", "arcane_b", "rainbow_d", "alchemy_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_F_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "sonic_a", "ice_d", "plasma_a", "arcane_c", "ice_a"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_F_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "lightning_d", "plasma_b", "arcane_d", "voodoo_d"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_G_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "runic_a", "evocation_c", "arcane_c", "arcane_a", "lightning_b", "psychic_b"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_G_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "planar_c", "evocation_b", "arcane_d", "arcane_b", "planar_d", "evocation_d"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_G_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "sonic_d", "shadow_c", "plasma_a", "arcane_c", "ice_b"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_G_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "shadow_d", "plasma_b", "arcane_d", "psychic_a"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_H_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "psychic_a", "vapor_c", "arcane_c", "arcane_a", "kinetic_c", "psychic_d"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_A_H_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "voodoo_d", "ice_a", "arcane_d", "arcane_b", "kinetic_b", "wind_b"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_A_H_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "divination_d", "augury_a", "plasma_a", "arcane_c", "shadow_d"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_A_H_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "lunar_c", "plasma_b", "arcane_d", "ice_b"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_A_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "kinetic_c", "fire_a", "arcane_c", "arcane_a", "sonic_d", "divination_c"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_A_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "wind_b", "lightning_b", "arcane_d", "arcane_b", "divination_b", "vapor_d"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_A_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "rainbow_d", "frost_a", "plasma_a", "arcane_c", "psychic_a"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_A_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "rainbow_b", "plasma_b", "arcane_d", "augury_d"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_B_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "aether_b", "ice_c", "arcane_c", "arcane_a", "shadow_d", "runic_d"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_B_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "vapor_b", "evocation_d", "arcane_d", "arcane_b", "ice_a", "lunar_d"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_B_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "abjuration_b", "wind_d", "plasma_a", "arcane_c", "augury_d"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_B_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "alchemy_b", "plasma_b", "arcane_d", "augury_c"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_C_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "voodoo_c", "rainbow_a", "arcane_c", "arcane_a", "augury_a", "kinetic_c"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_C_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "shadow_c", "kinetic_a", "arcane_d", "arcane_b", "abjuration_b", "fire_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_C_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "shadow_d", "voodoo_a", "plasma_a", "arcane_c", "sonic_a"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_C_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "sonic_d", "plasma_b", "arcane_d", "gloom_c"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_D_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "planar_a", "divination_d", "arcane_c", "arcane_a", "shadow_d", "sonic_b"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_D_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "frost_a", "voodoo_c", "arcane_d", "arcane_b", "vapor_d", "lightning_c"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_D_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "runic_b", "fire_b", "plasma_a", "arcane_c", "vapor_a"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_D_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "wind_a", "plasma_b", "arcane_d", "wind_d"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_E_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "planar_a", "gloom_a", "arcane_c", "arcane_a", "shadow_d", "ice_d"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_E_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "frost_b", "spirit_d", "arcane_d", "arcane_b", "fire_a", "lightning_c"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_E_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "vapor_c", "lightning_b", "plasma_a", "arcane_c", "wind_d"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_E_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "divination_b", "plasma_b", "arcane_d", "fire_c"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_F_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "sonic_c", "kinetic_a", "arcane_c", "arcane_a", "gloom_d", "voodoo_b"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_F_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "lunar_d", "vapor_d", "arcane_d", "arcane_b", "aether_d", "alchemy_c"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_F_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "ice_c", "abjuration_c", "plasma_a", "arcane_c", "runic_c"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_F_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "runic_a", "plasma_b", "arcane_d", "wind_a"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_G_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "voodoo_c", "evocation_d", "arcane_c", "arcane_a", "psychic_a", "augury_c"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_G_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "alchemy_c", "runic_a", "arcane_d", "arcane_b", "augury_a", "abjuration_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_G_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "aether_b", "sonic_c", "plasma_a", "arcane_c", "rainbow_d"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_G_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "lunar_d", "plasma_b", "arcane_d", "rainbow_a"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_B_H_B_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "planar_c", "vapor_b", "arcane_c", "arcane_a", "divination_d", "wind_d"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "KEY_B_H_B_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "shadow_b", "gloom_c", "arcane_d", "arcane_b", "lunar_a", "vapor_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "KEY_B_H_B_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "kinetic_a", "lunar_b", "plasma_a", "arcane_c", "shadow_a"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "KEY_B_H_B_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "divination_b", "plasma_b", "arcane_d", "planar_b"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "KEY_A_A_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "frost_d", "spirit_b", "rainbow_c", "rainbow_d", "spirit_a", "augury_c"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_A_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "vapor_a", "augury_a", "rainbow_a", "rainbow_b", "runic_d", "lunar_d"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_A_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "planar_b", "water_a", "rainbow_b", "lightning_d"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_A_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "wind_c", "water_b", "alchemy_a", "lunar_a"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_B_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "kinetic_b", "lightning_b", "rainbow_c", "rainbow_d", "psychic_d", "lightning_d"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_B_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "kinetic_c", "voodoo_d", "rainbow_a", "rainbow_b", "ice_a", "frost_b"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_B_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "sonic_a", "water_a", "rainbow_b", "abjuration_a"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_B_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "sonic_d", "water_b", "fire_c", "lunar_a"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_C_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "lunar_a", "shadow_a", "rainbow_c", "rainbow_d", "frost_c", "planar_d"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_C_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "alchemy_a", "augury_d", "rainbow_a", "rainbow_b", "psychic_a", "sonic_a"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_C_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "augury_a", "water_a", "rainbow_b", "fire_b"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_C_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "runic_c", "water_b", "runic_d", "aether_b"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_D_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "kinetic_b", "aether_c", "rainbow_c", "rainbow_d", "vapor_b", "runic_d"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_D_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "kinetic_a", "psychic_d", "rainbow_a", "rainbow_b", "kinetic_d", "augury_b"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_D_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "lunar_a", "water_a", "rainbow_b", "divination_c"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_D_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "evocation_b", "water_b", "wind_a", "fire_a"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_E_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "vapor_c", "evocation_b", "rainbow_c", "rainbow_d", "vapor_d", "planar_b"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_E_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "planar_a", "voodoo_b", "rainbow_a", "rainbow_b", "lightning_a", "kinetic_a"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_E_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "sonic_d", "water_a", "rainbow_b", "aether_d"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_E_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "ice_b", "water_b", "augury_a", "augury_b"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_F_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "fire_c", "augury_a", "rainbow_c", "rainbow_d", "planar_c", "augury_d"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_F_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "divination_a", "fire_a", "rainbow_a", "rainbow_b", "psychic_d", "aether_a"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_F_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "lunar_c", "water_a", "rainbow_b", "runic_a"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_F_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "sonic_b", "water_b", "frost_d", "shadow_b"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_G_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "vapor_d", "shadow_a", "rainbow_c", "rainbow_d", "kinetic_d", "fire_c"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_G_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "voodoo_d", "alchemy_b", "rainbow_a", "rainbow_b", "lunar_a", "aether_a"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_G_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "sonic_b", "water_a", "rainbow_b", "spirit_d"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_G_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "fire_d", "water_b", "lightning_c", "aether_d"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_H_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "fire_a", "abjuration_d", "rainbow_c", "rainbow_d", "lunar_a", "fire_b"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_A_H_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "aether_a", "alchemy_d", "rainbow_a", "rainbow_b", "aether_b", "evocation_d"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_A_H_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "aether_c", "water_a", "rainbow_b", "ice_c"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_A_H_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "runic_c", "water_b", "divination_b", "evocation_a"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_A_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "voodoo_d", "evocation_b", "rainbow_c", "rainbow_d", "ice_a", "runic_b"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_A_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "aether_c", "shadow_b", "rainbow_a", "rainbow_b", "shadow_d", "wind_a"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_A_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "sonic_a", "water_a", "rainbow_b", "sonic_b"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_A_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "gloom_b", "water_b", "runic_c", "lunar_d"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_B_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "planar_b", "divination_d", "rainbow_c", "rainbow_d", "lunar_a", "spirit_c"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_B_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "fire_c", "runic_a", "rainbow_a", "rainbow_b", "lightning_a", "alchemy_a"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_B_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "voodoo_a", "water_a", "rainbow_b", "frost_c"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_B_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "planar_a", "water_b", "wind_c", "ice_d"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_C_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "augury_c", "lightning_a", "rainbow_c", "rainbow_d", "frost_d", "spirit_a"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_C_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "lightning_c", "lunar_b", "rainbow_a", "rainbow_b", "vapor_a", "vapor_c"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_C_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "alchemy_c", "water_a", "rainbow_b", "psychic_c"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_C_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "shadow_b", "water_b", "runic_d", "fire_d"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_D_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "planar_b", "spirit_b", "rainbow_c", "rainbow_d", "fire_a", "abjuration_c"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_D_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "voodoo_d", "voodoo_a", "rainbow_a", "rainbow_b", "sonic_d", "lightning_b"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_D_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "planar_d", "water_a", "rainbow_b", "lunar_a"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_D_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "fire_d", "water_b", "gloom_c", "psychic_a"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_E_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "kinetic_b", "ice_a", "rainbow_c", "rainbow_d", "spirit_a", "kinetic_a"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_E_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "alchemy_a", "aether_a", "rainbow_a", "rainbow_b", "divination_c", "alchemy_b"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_E_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "voodoo_c", "water_a", "rainbow_b", "evocation_a"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_E_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "evocation_b", "water_b", "runic_d", "aether_c"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_F_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "augury_b", "kinetic_b", "rainbow_c", "rainbow_d", "alchemy_d", "psychic_a"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_F_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "shadow_b", "planar_d", "rainbow_a", "rainbow_b", "frost_a", "fire_b"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_F_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "fire_c", "water_a", "rainbow_b", "gloom_a"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_F_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "voodoo_c", "water_b", "divination_a", "alchemy_a"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_G_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "runic_c", "augury_b", "rainbow_c", "rainbow_d", "ice_a", "shadow_a"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_G_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "sonic_d", "gloom_b", "rainbow_a", "rainbow_b", "planar_c", "planar_d"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_G_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "wind_a", "water_a", "rainbow_b", "fire_b"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_G_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "voodoo_b", "water_b", "runic_d", "gloom_d"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_B_H_C_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "shadow_d", "fire_a", "rainbow_c", "rainbow_d", "psychic_b", "alchemy_d"],
+      "destination": "water_a"
+    },
+    {
+      "id": "KEY_B_H_C_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "augury_b", "voodoo_c", "rainbow_a", "rainbow_b", "augury_a", "abjuration_a"],
+      "destination": "water_b"
+    },
+    {
+      "id": "KEY_B_H_C_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "aether_c", "water_a", "rainbow_b", "gloom_b"],
+      "destination": "water_c"
+    },
+    {
+      "id": "KEY_B_H_C_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "abjuration_c", "water_b", "evocation_b", "planar_d"],
+      "destination": "water_d"
+    },
+    {
+      "id": "KEY_A_A_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "augury_b", "kinetic_b", "water_c", "water_a", "shadow_a", "spirit_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_A_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "lightning_b", "planar_c", "water_d", "water_b", "ice_b", "fire_a"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_A_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "wind_a", "sonic_d", "vapor_a", "water_c", "runic_b"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_A_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "fire_c", "vapor_b", "water_d", "ice_d"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_B_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "shadow_d", "gloom_c", "water_c", "water_a", "lunar_d", "psychic_a"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_B_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "ice_c", "abjuration_d", "water_d", "water_b", "wind_a", "augury_d"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_B_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "spirit_d", "spirit_a", "vapor_a", "water_c", "abjuration_c"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_B_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "lunar_b", "vapor_b", "water_d", "sonic_b"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_C_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "planar_c", "lightning_b", "water_c", "water_a", "wind_a", "wind_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_C_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "divination_b", "frost_a", "water_d", "water_b", "evocation_a", "lightning_c"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_C_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "voodoo_d", "ice_c", "vapor_a", "water_c", "sonic_b"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_C_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "lightning_a", "vapor_b", "water_d", "psychic_c"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_D_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "gloom_b", "kinetic_c", "water_c", "water_a", "planar_d", "aether_d"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_D_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "fire_b", "psychic_a", "water_d", "water_b", "psychic_c", "wind_d"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_D_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "psychic_b", "shadow_d", "vapor_a", "water_c", "abjuration_a"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_D_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "abjuration_c", "vapor_b", "water_d", "augury_a"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_E_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "ice_a", "alchemy_c", "water_c", "water_a", "psychic_c", "abjuration_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_E_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "shadow_d", "lunar_b", "water_d", "water_b", "gloom_b", "fire_b"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_E_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "lightning_d", "voodoo_c", "vapor_a", "water_c", "ice_d"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_E_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "planar_d", "vapor_b", "water_d", "lightning_c"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_F_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "psychic_a", "alchemy_b", "water_c", "water_a", "divination_b", "voodoo_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_F_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "psychic_c", "augury_b", "water_d", "water_b", "fire_d", "alchemy_d"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_F_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "lightning_a", "spirit_d", "vapor_a", "water_c", "shadow_c"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_F_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "shadow_a", "vapor_b", "water_d", "spirit_b"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_G_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "augury_b", "augury_a", "water_c", "water_a", "lunar_d", "kinetic_b"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_G_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "gloom_c", "kinetic_c", "water_d", "water_b", "abjuration_b", "spirit_c"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_G_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "gloom_a", "planar_a", "vapor_a", "water_c", "alchemy_a"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_G_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "augury_c", "vapor_b", "water_d", "spirit_a"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_H_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "kinetic_a", "runic_a", "water_c", "water_a", "spirit_a", "frost_a"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_A_H_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "planar_a", "evocation_b", "water_d", "water_b", "fire_d", "ice_d"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_A_H_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "lightning_a", "lightning_d", "vapor_a", "water_c", "alchemy_a"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_A_H_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "evocation_c", "vapor_b", "water_d", "frost_c"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_A_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "gloom_d", "fire_d", "water_c", "water_a", "lunar_b", "planar_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_A_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "lightning_c", "psychic_c", "water_d", "water_b", "lightning_a", "kinetic_d"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_A_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "alchemy_c", "runic_d", "vapor_a", "water_c", "abjuration_b"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_A_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "frost_d", "vapor_b", "water_d", "alchemy_d"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_B_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "evocation_b", "sonic_a", "water_c", "water_a", "alchemy_d", "aether_d"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_B_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "spirit_a", "spirit_d", "water_d", "water_b", "alchemy_c", "abjuration_d"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_B_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "ice_b", "psychic_b", "vapor_a", "water_c", "sonic_b"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_B_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "frost_a", "vapor_b", "water_d", "voodoo_d"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_C_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "wind_b", "lunar_d", "water_c", "water_a", "runic_a", "abjuration_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_C_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "augury_d", "gloom_b", "water_d", "water_b", "runic_b", "psychic_b"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_C_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "evocation_a", "divination_d", "vapor_a", "water_c", "kinetic_b"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_C_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "aether_d", "vapor_b", "water_d", "frost_a"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_D_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "psychic_b", "psychic_c", "water_c", "water_a", "aether_b", "sonic_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_D_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "augury_a", "frost_b", "water_d", "water_b", "evocation_b", "divination_c"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_D_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "wind_c", "sonic_a", "vapor_a", "water_c", "lightning_a"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_D_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "ice_c", "vapor_b", "water_d", "alchemy_a"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_E_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "divination_a", "gloom_d", "water_c", "water_a", "runic_c", "runic_b"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_E_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "frost_d", "abjuration_d", "water_d", "water_b", "augury_d", "sonic_c"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_E_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "gloom_c", "lightning_a", "vapor_a", "water_c", "voodoo_a"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_E_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "lunar_a", "vapor_b", "water_d", "evocation_d"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_F_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "lunar_a", "spirit_b", "water_c", "water_a", "augury_d", "voodoo_a"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_F_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "runic_b", "abjuration_b", "water_d", "water_b", "planar_a", "lunar_b"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_F_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "ice_b", "augury_c", "vapor_a", "water_c", "wind_c"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_F_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "sonic_d", "vapor_b", "water_d", "lightning_a"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_G_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "aether_c", "planar_b", "water_c", "water_a", "ice_d", "lightning_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_G_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "psychic_d", "wind_c", "water_d", "water_b", "shadow_c", "augury_d"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_G_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "psychic_c", "spirit_d", "vapor_a", "water_c", "lightning_d"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_G_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "runic_b", "vapor_b", "water_d", "evocation_a"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_B_H_D_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "ice_b", "spirit_a", "water_c", "water_a", "voodoo_d", "kinetic_d"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "KEY_B_H_D_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "fire_c", "psychic_d", "water_d", "water_b", "kinetic_b", "psychic_c"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "KEY_B_H_D_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "abjuration_b", "fire_b", "vapor_a", "water_c", "voodoo_b"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "KEY_B_H_D_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "voodoo_a", "vapor_b", "water_d", "augury_c"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "KEY_A_A_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "alchemy_c", "divination_c", "frost_c", "frost_d", "psychic_b", "lightning_c"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_A_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "kinetic_d", "lightning_a", "frost_a", "frost_b", "aether_a", "divination_b"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_A_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "shadow_b", "ice_a", "frost_b", "voodoo_b"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_A_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_A_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "wind_b", "ice_b", "spirit_d", "gloom_a"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_A_B_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "lunar_c", "spirit_b", "frost_c", "frost_d", "fire_b", "runic_a"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_B_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "augury_b", "divination_d", "frost_a", "frost_b", "evocation_b", "evocation_a"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_B_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "runic_b", "ice_a", "frost_b", "shadow_a"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_B_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_B_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "aether_c", "ice_b", "gloom_a", "alchemy_a"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_A_C_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "alchemy_d", "aether_a", "frost_c", "frost_d", "fire_a", "shadow_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_C_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "voodoo_b", "gloom_a", "frost_a", "frost_b", "evocation_c", "voodoo_c"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_C_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "fire_c", "ice_a", "frost_b", "lightning_d"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_C_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_C_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "evocation_b", "ice_b", "shadow_b", "sonic_c"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_A_D_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "sonic_d", "lunar_b", "frost_c", "frost_d", "voodoo_c", "gloom_c"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_D_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "divination_b", "voodoo_b", "frost_a", "frost_b", "spirit_b", "aether_b"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_D_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "evocation_a", "ice_a", "frost_b", "gloom_d"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_D_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_D_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "shadow_a", "ice_b", "sonic_c", "alchemy_a"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_A_E_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "aether_a", "evocation_d", "frost_c", "frost_d", "planar_c", "gloom_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_E_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "runic_c", "kinetic_c", "frost_a", "frost_b", "augury_d", "augury_c"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_E_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "lunar_a", "ice_a", "frost_b", "alchemy_b"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_E_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_E_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "lunar_d", "ice_b", "gloom_a", "divination_b"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_A_F_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "sonic_c", "lightning_b", "frost_c", "frost_d", "wind_d", "aether_c"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_F_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "kinetic_c", "kinetic_d", "frost_a", "frost_b", "aether_d", "spirit_a"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_F_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "divination_d", "ice_a", "frost_b", "evocation_a"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_F_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_F_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "alchemy_c", "ice_b", "augury_c", "lunar_a"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_A_G_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "evocation_a", "sonic_c", "frost_c", "frost_d", "alchemy_c", "alchemy_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_G_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "planar_b", "gloom_b", "frost_a", "frost_b", "augury_d", "wind_a"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_G_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "divination_b", "ice_a", "frost_b", "runic_d"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_G_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_G_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "voodoo_b", "ice_b", "wind_c", "wind_b"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_A_H_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "aether_d", "voodoo_a", "frost_c", "frost_d", "runic_b", "shadow_b"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_A_H_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "voodoo_b", "divination_c", "frost_a", "frost_b", "lightning_b", "sonic_d"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_A_H_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "shadow_a", "ice_a", "frost_b", "wind_d"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_A_H_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_A",
+      "function_id": "KEY_A_H_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "gloom_c", "ice_b", "spirit_d", "psychic_b"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_A_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "lunar_a", "planar_b", "frost_c", "frost_d", "planar_d", "evocation_c"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_A_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "aether_a", "spirit_c", "frost_a", "frost_b", "psychic_d", "wind_d"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_A_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "psychic_b", "ice_a", "frost_b", "fire_c"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_A_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_A_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "divination_a", "ice_b", "evocation_d", "augury_c"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_B_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "divination_c", "lunar_c", "frost_c", "frost_d", "voodoo_b", "aether_a"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_B_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "abjuration_c", "kinetic_b", "frost_a", "frost_b", "psychic_c", "wind_a"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_B_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "gloom_a", "ice_a", "frost_b", "gloom_b"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_B_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_B_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "divination_a", "ice_b", "lunar_b", "runic_c"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_C_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "planar_a", "aether_c", "frost_c", "frost_d", "sonic_b", "divination_a"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_C_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "lunar_c", "evocation_b", "frost_a", "frost_b", "spirit_b", "shadow_a"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_C_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "divination_c", "ice_a", "frost_b", "gloom_a"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_C_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_C_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "spirit_d", "ice_b", "planar_d", "lightning_d"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_D_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "abjuration_d", "kinetic_b", "frost_c", "frost_d", "augury_d", "lunar_b"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_D_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "alchemy_b", "gloom_b", "frost_a", "frost_b", "augury_b", "aether_a"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_D_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "planar_c", "ice_a", "frost_b", "evocation_d"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_D_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_D_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "lunar_c", "ice_b", "abjuration_a", "gloom_d"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_E_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "sonic_a", "augury_b", "frost_c", "frost_d", "shadow_c", "alchemy_c"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_E_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "evocation_c", "abjuration_a", "frost_a", "frost_b", "wind_c", "aether_d"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_E_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "sonic_b", "ice_a", "frost_b", "voodoo_b"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_E_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_E_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "wind_b", "ice_b", "fire_d", "abjuration_c"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_F_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "aether_a", "abjuration_d", "frost_c", "frost_d", "fire_d", "lightning_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_F_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "runic_d", "aether_c", "frost_a", "frost_b", "wind_d", "spirit_d"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_F_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "divination_b", "ice_a", "frost_b", "divination_c"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_F_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_F_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "sonic_b", "ice_b", "wind_b", "lightning_c"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_G_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "fire_d", "kinetic_c", "frost_c", "frost_d", "abjuration_d", "shadow_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_G_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "spirit_c", "lunar_a", "frost_a", "frost_b", "evocation_c", "abjuration_b"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_G_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "divination_b", "ice_a", "frost_b", "kinetic_b"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_G_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_G_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "fire_a", "ice_b", "fire_c", "lunar_b"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "KEY_B_H_E_LOOP_A",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "alchemy_a", "aether_b", "frost_c", "frost_d", "alchemy_c", "aether_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "KEY_B_H_E_LOOP_B",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "psychic_a", "spirit_d", "frost_a", "frost_b", "evocation_a", "planar_a"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "KEY_B_H_E_LOOP_C",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "runic_a", "ice_a", "frost_b", "evocation_c"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "KEY_B_H_E_LOOP_D",
+      "section_id": "KEY",
+      "family_id": "KEY_B",
+      "function_id": "KEY_B_H_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "lunar_d", "ice_b", "sonic_a", "alchemy_b"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "TWIST_A_LOOP_A",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_A",
+      "loop_letter": "A",
+      "inputs": ["source", "key_a", "key_b", "cross_b"],
+      "destination": "aether_a"
+    },
+    {
+      "id": "TWIST_A_LOOP_B",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_A",
+      "loop_letter": "B",
+      "inputs": ["aether_a", "source", "key_b", "key_a", "cross_d"],
+      "destination": "aether_b"
+    },
+    {
+      "id": "TWIST_A_LOOP_C",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_A",
+      "loop_letter": "C",
+      "inputs": ["aether_b", "key_a", "cross_c", "aether_a", "source", "key_b"],
+      "destination": "aether_c"
+    },
+    {
+      "id": "TWIST_A_LOOP_D",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_A",
+      "loop_letter": "D",
+      "inputs": ["aether_c", "aether_a", "key_b", "cross_a", "aether_b", "source", "key_a"],
+      "destination": "aether_d"
+    },
+    {
+      "id": "TWIST_B_LOOP_A",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_B",
+      "loop_letter": "A",
+      "inputs": ["aether_d", "aether_b", "cross_a", "aether_c", "aether_a", "source"],
+      "destination": "lunar_a"
+    },
+    {
+      "id": "TWIST_B_LOOP_B",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_B",
+      "loop_letter": "B",
+      "inputs": ["lunar_a", "aether_c", "cross_b", "aether_d", "aether_b", "cross_d"],
+      "destination": "lunar_b"
+    },
+    {
+      "id": "TWIST_B_LOOP_C",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_B",
+      "loop_letter": "C",
+      "inputs": ["lunar_b", "aether_d", "cross_c", "lunar_a", "aether_c"],
+      "destination": "lunar_c"
+    },
+    {
+      "id": "TWIST_B_LOOP_D",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_B",
+      "loop_letter": "D",
+      "inputs": ["lunar_c", "lunar_a", "lunar_b", "aether_d"],
+      "destination": "lunar_d"
+    },
+    {
+      "id": "TWIST_C_LOOP_A",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_C",
+      "loop_letter": "A",
+      "inputs": ["earth_a", "earth_b", "cross_d", "lunar_b", "earth_c", "earth_d", "aether_d", "lunar_a"],
+      "destination": "crystal_a"
+    },
+    {
+      "id": "TWIST_C_LOOP_B",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_C",
+      "loop_letter": "B",
+      "inputs": ["crystal_a", "earth_c", "source", "cross_a", "earth_a", "earth_b", "lunar_d", "aether_b"],
+      "destination": "crystal_b"
+    },
+    {
+      "id": "TWIST_C_LOOP_C",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_C",
+      "loop_letter": "C",
+      "inputs": ["crystal_b", "earth_d", "lunar_c", "crystal_a", "earth_b", "aether_c"],
+      "destination": "crystal_c"
+    },
+    {
+      "id": "TWIST_C_LOOP_D",
+      "section_id": "TWIST",
+      "family_id": "TWIST",
+      "function_id": "TWIST_C",
+      "loop_letter": "D",
+      "inputs": ["crystal_c", "crystal_a", "cross_c", "crystal_b", "cross_b", "aether_a"],
+      "destination": "crystal_d"
+    },
+    {
+      "id": "GROW_A_A_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_A",
+      "loop_letter": "A",
+      "inputs": ["spirit_d", "spirit_b", "cross_a", "earth_a", "spirit_c", "spirit_a", "cross_a", "earth_c"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "GROW_A_A_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "spirit_c", "cross_b", "lunar_a", "spirit_d", "spirit_b", "cross_a", "earth_a"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "GROW_A_A_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "spirit_d", "earth_c", "lunar_c", "arcane_a", "spirit_c", "lunar_a", "earth_a"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "GROW_A_A_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "earth_c", "lunar_c", "arcane_b", "spirit_d", "aether_c", "aether_a"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "GROW_A_B_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "spirit_d", "arcane_c", "arcane_a", "spirit_b"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "GROW_A_B_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "spirit_c", "arcane_d", "arcane_b", "spirit_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "GROW_A_B_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "plasma_a", "arcane_c"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "GROW_A_B_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "plasma_b", "arcane_d"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "GROW_A_C_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "plasma_a", "rainbow_c", "rainbow_d"],
+      "destination": "water_a"
+    },
+    {
+      "id": "GROW_A_C_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "rainbow_a", "rainbow_b"],
+      "destination": "water_b"
+    },
+    {
+      "id": "GROW_A_C_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "water_a", "rainbow_b"],
+      "destination": "water_c"
+    },
+    {
+      "id": "GROW_A_C_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "water_b", "arcane_a"],
+      "destination": "water_d"
+    },
+    {
+      "id": "GROW_A_D_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "plasma_d", "water_c", "water_a", "rainbow_d"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "GROW_A_D_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "rainbow_c", "water_d", "water_b", "arcane_c"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "GROW_A_D_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "vapor_a", "water_c"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "GROW_A_D_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "vapor_b", "water_d"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "GROW_A_E_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "rainbow_a", "frost_c", "frost_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "GROW_A_E_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "frost_a", "frost_b"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "GROW_A_E_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "ice_a", "frost_b"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "GROW_A_E_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_A",
+      "function_id": "GROW_A_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "ice_b", "vapor_d"],
+      "destination": "ice_d"
+    },
+    {
+      "id": "GROW_B_A_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_A",
+      "loop_letter": "A",
+      "inputs": ["divination_d", "divination_b", "cross_a", "earth_b", "divination_c", "divination_a", "cross_a", "earth_d"],
+      "destination": "arcane_a"
+    },
+    {
+      "id": "GROW_B_A_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_A",
+      "loop_letter": "B",
+      "inputs": ["arcane_a", "divination_c", "cross_b", "earth_d", "divination_d", "divination_b", "cross_a", "earth_b"],
+      "destination": "arcane_b"
+    },
+    {
+      "id": "GROW_B_A_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_A",
+      "loop_letter": "C",
+      "inputs": ["arcane_b", "divination_d", "lunar_b", "lunar_d", "arcane_a", "divination_c", "earth_b", "earth_d"],
+      "destination": "arcane_c"
+    },
+    {
+      "id": "GROW_B_A_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_A",
+      "loop_letter": "D",
+      "inputs": ["arcane_c", "arcane_a", "lunar_d", "aether_b", "arcane_b", "divination_d", "lunar_b", "aether_d"],
+      "destination": "arcane_d"
+    },
+    {
+      "id": "GROW_B_B_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_B",
+      "loop_letter": "A",
+      "inputs": ["arcane_d", "arcane_b", "divination_c", "arcane_c", "arcane_a", "divination_d"],
+      "destination": "plasma_a"
+    },
+    {
+      "id": "GROW_B_B_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_B",
+      "loop_letter": "B",
+      "inputs": ["plasma_a", "arcane_c", "divination_b", "arcane_d", "arcane_b", "divination_a"],
+      "destination": "plasma_b"
+    },
+    {
+      "id": "GROW_B_B_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_B",
+      "loop_letter": "C",
+      "inputs": ["plasma_b", "arcane_d", "plasma_a", "arcane_c"],
+      "destination": "plasma_c"
+    },
+    {
+      "id": "GROW_B_B_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_B",
+      "loop_letter": "D",
+      "inputs": ["plasma_c", "plasma_a", "plasma_b", "arcane_d"],
+      "destination": "plasma_d"
+    },
+    {
+      "id": "GROW_B_C_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_C",
+      "loop_letter": "A",
+      "inputs": ["rainbow_a", "rainbow_b", "plasma_a", "rainbow_c", "rainbow_d"],
+      "destination": "water_a"
+    },
+    {
+      "id": "GROW_B_C_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_C",
+      "loop_letter": "B",
+      "inputs": ["water_a", "rainbow_c", "rainbow_a", "rainbow_b"],
+      "destination": "water_b"
+    },
+    {
+      "id": "GROW_B_C_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_C",
+      "loop_letter": "C",
+      "inputs": ["water_b", "rainbow_d", "water_a", "rainbow_b"],
+      "destination": "water_c"
+    },
+    {
+      "id": "GROW_B_C_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_C",
+      "loop_letter": "D",
+      "inputs": ["water_c", "water_a", "water_b", "arcane_b"],
+      "destination": "water_d"
+    },
+    {
+      "id": "GROW_B_D_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_D",
+      "loop_letter": "A",
+      "inputs": ["water_d", "water_b", "plasma_d", "water_c", "water_a", "rainbow_c"],
+      "destination": "vapor_a"
+    },
+    {
+      "id": "GROW_B_D_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_D",
+      "loop_letter": "B",
+      "inputs": ["vapor_a", "water_c", "arcane_d", "water_d", "water_b", "arcane_c"],
+      "destination": "vapor_b"
+    },
+    {
+      "id": "GROW_B_D_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_D",
+      "loop_letter": "C",
+      "inputs": ["vapor_b", "water_d", "vapor_a", "water_c"],
+      "destination": "vapor_c"
+    },
+    {
+      "id": "GROW_B_D_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_D",
+      "loop_letter": "D",
+      "inputs": ["vapor_c", "vapor_a", "vapor_b", "water_d"],
+      "destination": "vapor_d"
+    },
+    {
+      "id": "GROW_B_E_LOOP_A",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_E",
+      "loop_letter": "A",
+      "inputs": ["frost_a", "frost_b", "arcane_a", "frost_c", "frost_d"],
+      "destination": "ice_a"
+    },
+    {
+      "id": "GROW_B_E_LOOP_B",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_E",
+      "loop_letter": "B",
+      "inputs": ["ice_a", "frost_c", "frost_a", "frost_b"],
+      "destination": "ice_b"
+    },
+    {
+      "id": "GROW_B_E_LOOP_C",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_E",
+      "loop_letter": "C",
+      "inputs": ["ice_b", "frost_d", "ice_a", "frost_b"],
+      "destination": "ice_c"
+    },
+    {
+      "id": "GROW_B_E_LOOP_D",
+      "section_id": "GROW",
+      "family_id": "GROW_B",
+      "function_id": "GROW_B_E",
+      "loop_letter": "D",
+      "inputs": ["ice_c", "ice_a", "ice_b", "plasma_c"],
+      "destination": "ice_d"
+    }
+  ]
+}

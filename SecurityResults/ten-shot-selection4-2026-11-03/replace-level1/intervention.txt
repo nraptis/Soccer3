@@ -1,0 +1,1 @@
+Only level 1 rows replaced from selection 1; window values and materials unchanged. Cross-level partition may be broken.

@@ -1,0 +1,58 @@
+[
+  {
+    "experiment": "selection1-fixture1",
+    "best_correct": 8355,
+    "n": 16384,
+    "best_percent": 50.9949,
+    "significant_flags": 0,
+    "shuffled_flags": 0
+  },
+  {
+    "experiment": "selection4-fixture1",
+    "best_correct": 8990,
+    "n": 16384,
+    "best_percent": 54.8706,
+    "significant_flags": 6,
+    "shuffled_flags": 0
+  },
+  {
+    "experiment": "replace-level0",
+    "best_correct": 8355,
+    "n": 16384,
+    "best_percent": 50.9949,
+    "significant_flags": 0,
+    "shuffled_flags": 0
+  },
+  {
+    "experiment": "replace-level1",
+    "best_correct": 8367,
+    "n": 16384,
+    "best_percent": 51.0681,
+    "significant_flags": 0,
+    "shuffled_flags": 0
+  },
+  {
+    "experiment": "replace-level2",
+    "best_correct": 8960,
+    "n": 16384,
+    "best_percent": 54.6875,
+    "significant_flags": 4,
+    "shuffled_flags": 0
+  },
+  {
+    "experiment": "replace-stage6",
+    "best_correct": 8341,
+    "n": 16384,
+    "best_percent": 50.9094,
+    "significant_flags": 0,
+    "shuffled_flags": 0
+  },
+  {
+    "experiment": "replace-stage7",
+    "best_correct": 8285,
+    "n": 16384,
+    "best_percent": 50.5676,
+    "significant_flags": 0,
+    "shuffled_flags": 0
+  }
+]

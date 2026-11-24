@@ -1,0 +1,53 @@
+Seeded bit-plane integration — 2026-11-04
+
+mPremiumSeed remains removed. Soccer2 stores mBitPlane and three uint64_t words.
+Every Shuffle_CROWSCIMASSORMATEX call adds eight separate little-endian 64-bit
+words to each accumulator with unsigned modulo-2^64 wrap.
+
+A: mRandom bytes 1024..1087, representative selection.
+B: mRandom bytes 1088..1151, row permutation.
+C: mRandom bytes 1152..1215, column permutation.
+Cross shuffling now begins at 1216. Ordering and rotation regions are unchanged.
+Per seed: 38 calls, 304 source words per accumulator, 7,296 bytes total.
+Rotation shuffles still have exactly 589,824 source bytes per seed.
+
+Zero and both user-marked seed locations reset all words and the full plane.
+The epilogue selects the plane once and feeds BitPlaneRow to all eight layers.
+No old fixed selector controls or active archived-tool imports remain.
+The archived files stay in Dead Code; whole retired BitPlaneTool tests are in
+DeadTests. Active bank tests do not import the archived generator or table.
+TenShot's deliberate variants are now test-only deltas to the seeded words;
+its first variation uses the unchanged production seed. Full TenShot was not run.
+
+Validation
+- Xcode Release/arm64 build succeeded.
+- Functional suite: 25 tests, 0 failures, 52.557 seconds.
+  Covers bank coverage, every sum input, wrap, 38 rounds, both resets, all three
+  strengths, literal-reference ciphertext, independent blocks, full decryption
+  reseeding, every parameter reaching the vault, and nonoverlapping budgets.
+- Security suite: 10 tests, 0 failures, 482.526 seconds.
+  Aggregate bit-plane and whole-block parity: weak/normal/strong, two fixtures each.
+  Strong statistical recovery: two fixtures, 16,384 held-out queries each.
+- Standalone strong sweep source passes C++20 syntax validation; its build script
+  includes both new BitPlane implementation files. Full overnight sweep not run.
+- git diff --check passed.
+
+Bit-plane parity | flame-toad-vault | strength=1 fixture=0 | best=52.9785% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=1 fixture=1 | best=53.6133% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=2 fixture=0 | best=53.6133% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=2 fixture=1 | best=53.2227% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=0 fixture=0 | best=52.7344% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=0 fixture=1 | best=52.7832% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+CONFIG | flame-toad-vault | strength=2 fixture=0 bit_plane_words=9572725890057245763,3997420812340764201,1522026780627795736 bit_plane_policy=seeded-word-sums-v1 rotation_policy=window-pack-alternating-budget-v2 pack_candidates=150 shuffle_bytes=589824
+PASS | flame-toad-vault | strength=2 fixture=0 | best prediction=50.9094% | significant=0/64 confirmed=0/64 | 133.3s
+CONFIG | flame-toad-vault | strength=2 fixture=1 bit_plane_words=8450598687429053000,2989755489955998863,16691307637076213675 bit_plane_policy=seeded-word-sums-v1 rotation_policy=window-pack-alternating-budget-v2 pack_candidates=149 shuffle_bytes=589824
+PASS | flame-toad-vault | strength=2 fixture=1 | best prediction=50.6226% | significant=0/64 confirmed=0/64 | 133.3s
+Whole-block parity | flame-toad-vault | strength=1 fixture=0 | prediction=47.0703% | two-sided best=52.9297% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=1 fixture=1 | prediction=47.7539% | two-sided best=52.2461% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=2 fixture=0 | prediction=51.7578% | two-sided best=51.7578% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=2 fixture=1 | prediction=50.1953% | two-sided best=50.1953% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=0 fixture=0 | prediction=49.6094% | two-sided best=50.3906% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=0 fixture=1 | prediction=51.1719% | two-sided best=51.1719% cutoff=58.9214% | PASS
+
+See legacy-inventory.txt for remaining state and shuffle cleanup candidates.
+The changed seeding changes ciphertext; the existing pVersion arguments remain unused.

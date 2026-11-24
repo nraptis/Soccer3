@@ -1,0 +1,21 @@
+
+Cipher benchmark: 9 ciphers, 1000 x 1 MiB each (1000 MiB = 0.9765625 GiB).
+Only SealData is timed. Excluding slowest 5% from trimmed statistics.
+Priority ciphers run first; each result prints as soon as it finishes.
+Reports: /Users/icarus/Desktop/Codex Maga/Soccer/BenchmarkResults/cipher-cleanup-20261103
+
+Priority ciphers
+Cipher                            median us fastest us     p95 us    trim MiB/s   raw MiB/s
+FlameToadCipher                      110.33     101.17     128.75        9047.5      8935.1
+FlameToadCipher (direct)             177.96     164.00     198.33        5693.9      5645.1
+PasswordXORCipher                     29.17      28.83      38.62       32740.7     32158.6
+RotateCipher                          16.04      15.75      21.00       60225.5     58557.9
+RotateMaskCipher                      31.71      23.38      39.54       31735.8     31164.8
+BitRotationThreeCipher                20.58      18.21      28.62       47981.9     46502.9
+BitReverseCipher                      20.54      18.54      29.21       47921.1     46493.2
+
+Masked movers
+Cipher                            median us fastest us     p95 us    trim MiB/s   raw MiB/s
+ReverseMaskCipher                     27.67      27.21      36.67       34519.7     33889.5
+InvertMaskCipher                      19.25      18.83      27.67       48994.6     47539.0
+Finished. All 9 ciphers passed the untimed round-trip guard.

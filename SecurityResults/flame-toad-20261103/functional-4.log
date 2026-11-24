@@ -1,0 +1,102 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Scramble.xcodeproj -scheme Scramble -configuration Release -destination platform=macOS,arch=arm64 -derivedDataPath /private/tmp/soccer-flame-overhaul/DerivedData -resultBundlePath /private/tmp/soccer-flame-overhaul/functional-4.xcresult -parallel-testing-enabled NO "-only-testing:ScrambleTests/FlameToadCipherTests" "-only-testing:ScrambleTests/RotationWindowTests" "-only-testing:ScrambleTests/EncryptionVaultPlanTests" "-only-testing:ScrambleTests/EncryptionVaultTests" "-only-testing:ScrambleTests/BitPlaneToolTests" "-only-testing:ScrambleTests/BitRotationThreeCipherTests" "-only-testing:ScrambleTests/DiscardableTestTenShot/testTenSelectionsProduceDistinctMasksAndRestoreConfiguration" "-only-testing:ScrambleTests/DiscardableTestTenShot/testCampaignCorrectionDetectsBiasedControl" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/soccer-flame-overhaul/functional-4.xcresult
+
+2026-11-03 13:09:12.990869-0500 Scramble[18356:226698] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.991060-0500 Scramble[18356:226698] [Application] Error registering app with intents framework: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.991276-0500 Scramble[18356:226704] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.991290-0500 Scramble[18356:226704] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.991670-0500 Scramble[18356:226697] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.991679-0500 Scramble[18356:226697] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.992020-0500 Scramble[18356:226698] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.992115-0500 Scramble[18356:226698] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.992337-0500 Scramble[18356:226698] [Connection] Will NOT re-try to establish the connection
+2026-11-03 13:09:12.992364-0500 Scramble[18356:226704] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:12.992466-0500 Scramble[18356:226704] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:09:13.003135-0500 Scramble[18356:226624] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/p8/80ypymb56jngdf60h84pshtr0000gn/T/com.star.road.scramble.Scramble.savedState
+Skipping App Delegate Test Code, On Test Target
+Test Suite 'Selected tests' started at 2026-11-03 13:09:13.096.
+Test Suite 'ScrambleTests.xctest' started at 2026-11-03 13:09:13.096.
+Test Suite 'BitPlaneToolTests' started at 2026-11-03 13:09:13.096.
+Test Case '-[BitPlaneToolTests testAll211392PlansAreValidUniqueAndComplete]' started.
+Test Case '-[BitPlaneToolTests testAll211392PlansAreValidUniqueAndComplete]' passed (0.100 seconds).
+Test Case '-[BitPlaneToolTests testExtremeSeedsPairOrderAndInvalidPlans]' started.
+Test Case '-[BitPlaneToolTests testExtremeSeedsPairOrderAndInvalidPlans]' passed (0.001 seconds).
+Test Suite 'BitPlaneToolTests' passed at 2026-11-03 13:09:13.198.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.101 (0.101) seconds
+Test Suite 'BitRotationThreeCipherTests' started at 2026-11-03 13:09:13.198.
+Test Case '-[BitRotationThreeCipherTests testByteMappingInverseUnalignedBuffersAndErrors]' started.
+Test Case '-[BitRotationThreeCipherTests testByteMappingInverseUnalignedBuffersAndErrors]' passed (0.005 seconds).
+Test Case '-[BitRotationThreeCipherTests testMatchesTheOldPair]' started.
+Test Case '-[BitRotationThreeCipherTests testMatchesTheOldPair]' passed (0.000 seconds).
+Test Suite 'BitRotationThreeCipherTests' passed at 2026-11-03 13:09:13.204.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'DiscardableTestTenShot' started at 2026-11-03 13:09:13.204.
+Test Case '-[DiscardableTestTenShot testCampaignCorrectionDetectsBiasedControl]' started.
+Test Case '-[DiscardableTestTenShot testCampaignCorrectionDetectsBiasedControl]' passed (0.049 seconds).
+Test Case '-[DiscardableTestTenShot testTenSelectionsProduceDistinctMasksAndRestoreConfiguration]' started.
+Test Case '-[DiscardableTestTenShot testTenSelectionsProduceDistinctMasksAndRestoreConfiguration]' passed (0.015 seconds).
+Test Suite 'DiscardableTestTenShot' passed at 2026-11-03 13:09:13.268.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.064 (0.064) seconds
+Test Suite 'EncryptionVaultPlanTests' started at 2026-11-03 13:09:13.268.
+Test Case '-[EncryptionVaultPlanTests testBothSelectorsAll144RotationsAndAllStrongMaterialsReachTheVault]' started.
+Test Case '-[EncryptionVaultPlanTests testBothSelectorsAll144RotationsAndAllStrongMaterialsReachTheVault]' passed (1.263 seconds).
+Test Case '-[EncryptionVaultPlanTests testExactRowsMasksRotationsAndMaterialSchedule]' started.
+Test Case '-[EncryptionVaultPlanTests testExactRowsMasksRotationsAndMaterialSchedule]' passed (0.030 seconds).
+Test Case '-[EncryptionVaultPlanTests testFullMiBCiphertextMatchesLiteralReferenceForEveryStrength]' started.
+Test Case '-[EncryptionVaultPlanTests testFullMiBCiphertextMatchesLiteralReferenceForEveryStrength]' passed (1.721 seconds).
+Test Case '-[EncryptionVaultPlanTests testRealSeedRepeatsIndependentBlocksAndReconstructsVaultForDecryption]' started.
+Test Case '-[EncryptionVaultPlanTests testRealSeedRepeatsIndependentBlocksAndReconstructsVaultForDecryption]' passed (45.909 seconds).
+Test Case '-[EncryptionVaultPlanTests testRejectsInvalidPlansMissingMaterialsAndFailedConfiguration]' started.
+Test Case '-[EncryptionVaultPlanTests testRejectsInvalidPlansMissingMaterialsAndFailedConfiguration]' passed (0.019 seconds).
+Test Suite 'EncryptionVaultPlanTests' passed at 2026-11-03 13:10:02.213.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 48.943 (48.945) seconds
+Test Suite 'EncryptionVaultTests' started at 2026-11-03 13:10:02.213.
+Test Case '-[EncryptionVaultTests testActualCiphersMatchTwoRoundsAndRepeatIndependentBlocks]' started.
+Test Case '-[EncryptionVaultTests testActualCiphersMatchTwoRoundsAndRepeatIndependentBlocks]' passed (0.007 seconds).
+Test Case '-[EncryptionVaultTests testEightLayerVaultOrderWithEmptyOddAndEvenLayers]' started.
+Test Case '-[EncryptionVaultTests testEightLayerVaultOrderWithEmptyOddAndEvenLayers]' passed (0.047 seconds).
+Test Case '-[EncryptionVaultTests testErrorPropagationCleanupAndCipherOwnership]' started.
+Test Case '-[EncryptionVaultTests testErrorPropagationCleanupAndCipherOwnership]' passed (0.001 seconds).
+Test Case '-[EncryptionVaultTests testFourLayerRoundOrderAndInverseOnOneMiB]' started.
+Test Case '-[EncryptionVaultTests testFourLayerRoundOrderAndInverseOnOneMiB]' passed (0.036 seconds).
+Test Case '-[EncryptionVaultTests testRoundBufferValidationAndEmptyIdentity]' started.
+Test Case '-[EncryptionVaultTests testRoundBufferValidationAndEmptyIdentity]' passed (0.000 seconds).
+Test Case '-[EncryptionVaultTests testVaultBufferValidationAndEmptyIdentity]' started.
+Test Case '-[EncryptionVaultTests testVaultBufferValidationAndEmptyIdentity]' passed (0.000 seconds).
+Test Suite 'EncryptionVaultTests' passed at 2026-11-03 13:10:02.305.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.091 (0.093) seconds
+Test Suite 'FlameToadCipherTests' started at 2026-11-03 13:10:02.305.
+Test Case '-[FlameToadCipherTests testAllOrderedRowPairsPackingWrapsAndIndependentInverse]' started.
+Test Case '-[FlameToadCipherTests testAllOrderedRowPairsPackingWrapsAndIndependentInverse]' passed (0.011 seconds).
+Test Case '-[FlameToadCipherTests testUnalignedMiBGuardsAndRejectedArguments]' started.
+Test Case '-[FlameToadCipherTests testUnalignedMiBGuardsAndRejectedArguments]' passed (0.003 seconds).
+Test Suite 'FlameToadCipherTests' passed at 2026-11-03 13:10:02.319.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.014 (0.014) seconds
+Test Suite 'RotationWindowTests' started at 2026-11-03 13:10:02.319.
+Test Case '-[RotationWindowTests testExactBudgetAndComplementsOfEveryOneTwoAndThreeValueSum]' started.
+Test Case '-[RotationWindowTests testExactBudgetAndComplementsOfEveryOneTwoAndThreeValueSum]' passed (0.941 seconds).
+Test Case '-[RotationWindowTests testFarmingUsesAllL3AndReproducesFromExistingFoldMaterial]' started.
+Test Case '-[RotationWindowTests testFarmingUsesAllL3AndReproducesFromExistingFoldMaterial]' passed (0.004 seconds).
+Test Case '-[RotationWindowTests testIndependentExhaustiveNoZeroSumsUpToFourActualRotations]' started.
+Test Case '-[RotationWindowTests testIndependentExhaustiveNoZeroSumsUpToFourActualRotations]' passed (0.009 seconds).
+Test Case '-[RotationWindowTests testInvalidPoolsAndCollisionsFailClosed]' started.
+Test Case '-[RotationWindowTests testInvalidPoolsAndCollisionsFailClosed]' passed (0.001 seconds).
+Test Suite 'RotationWindowTests' passed at 2026-11-03 13:10:03.276.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.956 (0.956) seconds
+Test Suite 'ScrambleTests.xctest' passed at 2026-11-03 13:10:03.276.
+	 Executed 23 tests, with 0 failures (0 unexpected) in 50.173 (50.180) seconds
+Test Suite 'Selected tests' passed at 2026-11-03 13:10:03.276.
+	 Executed 23 tests, with 0 failures (0 unexpected) in 50.173 (50.180) seconds
+2026-11-03 13:10:03.570 xcodebuild[18353:226470] [MT] IDETestOperationsObserverDebug: 51.576 elapsed -- Testing started completed.
+2026-11-03 13:10:03.570 xcodebuild[18353:226470] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-03 13:10:03.570 xcodebuild[18353:226470] [MT] IDETestOperationsObserverDebug: 51.576 sec, +51.576 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/soccer-flame-overhaul/functional-4.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

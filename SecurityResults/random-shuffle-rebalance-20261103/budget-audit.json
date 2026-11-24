@@ -1,0 +1,32 @@
+[
+  {
+    "strength": "weak",
+    "old_ordering_passes": 608,
+    "new_ordering_passes": 152,
+    "old_cross_passes": 1776,
+    "new_cross_passes": 148,
+    "expected_old_random_bytes_read": 36410.918858918856,
+    "expected_new_random_bytes_read_including_rotations": 593593.3018981019,
+    "available_random_bytes": 1245184
+  },
+  {
+    "strength": "normal",
+    "old_ordering_passes": 608,
+    "new_ordering_passes": 152,
+    "old_cross_passes": 1776,
+    "new_cross_passes": 296,
+    "expected_old_random_bytes_read": 75383.15216517592,
+    "expected_new_random_bytes_read_including_rotations": 602948.2832622206,
+    "available_random_bytes": 1245184
+  },
+  {
+    "strength": "strong",
+    "old_ordering_passes": 608,
+    "new_ordering_passes": 152,
+    "old_cross_passes": 1776,
+    "new_cross_passes": 592,
+    "expected_old_random_bytes_read": 154398.8594770625,
+    "expected_new_random_bytes_read_including_rotations": 640326.8358393036,
+    "available_random_bytes": 1245184
+  }
+]

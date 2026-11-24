@@ -5,23 +5,15 @@
 //  Created by icarus black on 6/26/26.
 //
 
-/*
-Priority ciphers
-Cipher                            median us fastest us     p95 us    trim MiB/s   raw MiB/s
-FlameToadCipher                      133.79     130.58     402.17        5133.0      4807.4
-FlameToadCipher (direct)             187.58     185.88     677.92        3277.5      3044.7
-PasswordXORCipher                    121.79     115.50     172.79        7917.3      7705.5
-ShiftMaskedCipher                    127.50     125.67     189.08        7206.7      6990.8
-BitReverseCipher                     121.71     120.38     181.17        7445.6      7163.8
-*/
-
 #import "AppDelegate.h"
 
 #include <atomic>
 #include "Soccer3.hpp"
 #include "TimeLog.hpp"
 #include "Random.hpp"
-#include "Benchmarks/CipherBenchmark.hpp"
+#include "Benchmarks/KernelBenchmark.hpp"
+#include "Benchmarks/QBTests.hpp"
+#include "Benchmarks/KernelBenchmarkSet.hpp"
 
 #include <chrono>
 #include <cstddef>
@@ -208,7 +200,7 @@ void PrintStreamAvalanche(const std::uint8_t *pCiphertextA,
                 Percent(aScore.mDifferentBits, aTotalBitCount));
 }
 
-bool RunReadmeSoccerExample() {
+[[maybe_unused]] bool RunReadmeSoccerExample() {
     constexpr std::uint64_t aNonce = 0xF00DFACECAFEBEEFULL;
     const std::string aMessage = "Hello, Soccer!!";
     const std::string aPasswordA = "readme-password-A";
@@ -331,23 +323,23 @@ bool RunReadmeSoccerExample() {
 @interface AppDelegate () <NSMenuItemValidation>
 
 @property (strong) IBOutlet NSWindow *window;
-@property (assign) BOOL cipherBenchmarkRunning;
+@property (assign) BOOL kernelBenchmarkRunning;
 
 @end
 
 @implementation AppDelegate
 
-- (void)beginCipherBenchmark:(NSString *)directory quitWhenDone:(BOOL)quitWhenDone {
-    if (self.cipherBenchmarkRunning) return;
-    self.cipherBenchmarkRunning = YES;
+- (void)beginKernelBenchmark:(NSString *)directory quitWhenDone:(BOOL)quitWhenDone {
+    if (self.kernelBenchmarkRunning) return;
+    self.kernelBenchmarkRunning = YES;
     const std::string outputDirectory(directory.fileSystemRepresentation);
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        const bool succeeded = RunCipherBenchmarks(outputDirectory.c_str());
+        const bool succeeded = RunKernelBenchmarks(outputDirectory.c_str());
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.cipherBenchmarkRunning = NO;
+            self.kernelBenchmarkRunning = NO;
             if (quitWhenDone) std::exit(succeeded ? EXIT_SUCCESS : EXIT_FAILURE);
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = succeeded ? @"Cipher benchmark complete" : @"Cipher benchmark failed";
+            alert.messageText = succeeded ? @"Kernel benchmark complete" : @"Kernel benchmark failed";
             alert.informativeText = succeeded
                 ? [NSString stringWithFormat:@"Summary and all timing samples are saved in:\n%@", directory]
                 : @"See the app console for the error. Incomplete results are not a successful benchmark.";
@@ -356,15 +348,15 @@ bool RunReadmeSoccerExample() {
     });
 }
 
-- (void)runCipherBenchmark:(id)sender {
+- (void)runKernelBenchmark:(id)sender {
     (void)sender;
     NSString *directory = [NSTemporaryDirectory() stringByAppendingPathComponent:
-        [@"SoccerCipherBenchmarks-" stringByAppendingString:NSUUID.UUID.UUIDString]];
-    [self beginCipherBenchmark:directory quitWhenDone:NO];
+        [@"SoccerKernelBenchmarks-" stringByAppendingString:NSUUID.UUID.UUIDString]];
+    [self beginKernelBenchmark:directory quitWhenDone:NO];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-    if (menuItem.action == @selector(runCipherBenchmark:)) return !self.cipherBenchmarkRunning;
+    if (menuItem.action == @selector(runKernelBenchmark:)) return !self.kernelBenchmarkRunning;
     return YES;
 }
 
@@ -376,7 +368,31 @@ bool RunReadmeSoccerExample() {
         return;
     }
 
-    RunReadmeSoccerExample();
+    // The command-line report launcher uses the same five-kernel registry.
+    // Normal launch below retains QBTests::Execute(100, 0.1, 0.1).
+    const NSArray<NSString *> *arguments = NSProcessInfo.processInfo.arguments;
+    NSString *reportDirectory = nil;
+    const BOOL quitWhenDone = [arguments containsObject:@"--benchmark-exit"];
+    for (NSUInteger i = 1U; i < arguments.count; ++i) {
+        if ([arguments[i] isEqualToString:@"--benchmark-output"]) {
+            if (i + 1U >= arguments.count || [arguments[i + 1U] hasPrefix:@"--"]) {
+                std::fprintf(stderr, "--benchmark-output requires a new report directory.\n");
+                std::exit(EXIT_FAILURE);
+            }
+            reportDirectory = arguments[++i];
+        }
+    }
+    if (reportDirectory || quitWhenDone) {
+        if (!reportDirectory) {
+            reportDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent:
+                [@"SoccerKernelBenchmarks-" stringByAppendingString:NSUUID.UUID.UUIDString]];
+        }
+        [self beginKernelBenchmark:reportDirectory quitWhenDone:quitWhenDone];
+        return;
+    }
+
+    KernelBenchmarkSet aKernels;
+    QBTests::Execute(aKernels.GetKernels(), 100, 0.1, 0.1);
 
 }
 

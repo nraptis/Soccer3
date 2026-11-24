@@ -1,0 +1,26 @@
+selection=4 fixture=2 strength=normal
+selectors= 0x581eaeba523627e 0x4a53684c72f13ea4 0x7d1d4a3f25699329
+plan_selector=7707225314702927361
+Rows below are actual execution rows; row 0 is the least significant bit.
+L3A | frog0 rows=0,7 windows=2433,15206 | frog1 rows=2,3,6 windows=6249,5114,9798 | frog2 rows=1,4,5 windows=7541,1168,5794 | rotate_mask=129 rotate_bytes=465073
+ FrogTwoCipherA FrogThreeCipherB FrogThreeCipherA PepperDualJumpNoiseXORCipher RotateMaskCipher BitRotationThreeCipher
+L2A | frog0 rows=4,7,1 windows=3311,5869,6903 | frog1 rows=0,2 windows=4680,950 | frog2 rows=3,5,6 windows=3363,4864,6052 | rotate_mask=146 rotate_bytes=164102
+ FrogThreeCipherB FrogTwoCipherA FrogThreeCipherB PasswordAddCipher RotateMaskCipher BitRotationThreeCipher
+L1A | frog0 rows=0,1,3 windows=865,1020,1679 | frog1 rows=6,7,2 windows=3305,1947,299 | frog2 rows=4,5 windows=1045,647 | rotate_mask=11 rotate_bytes=74000
+ FrogThreeCipherA FrogThreeCipherB FrogTwoCipherA PasswordAddCipher RotateMaskCipher BitRotationThreeCipher
+L3B | frog0 rows=0,7 windows=14159,8837 | frog1 rows=2,3,6 windows=7086,407,12771 | frog2 rows=1,4,5 windows=7458,11499,8614 | rotate_mask=129 rotate_bytes=266784
+ FrogTwoCipherB FrogThreeCipherA FrogThreeCipherB PasswordAddCipher RotateMaskCipher BitRotationThreeCipher
+L2B | frog0 rows=4,7,1 windows=2824,5903,2532 | frog1 rows=0,2 windows=6988,2381 | frog2 rows=3,5,6 windows=7330,4879,6524 | rotate_mask=146 rotate_bytes=438368
+ FrogThreeCipherA FrogTwoCipherB FrogThreeCipherA RotateMaskCipher BitRotationThreeCipher
+L1B | frog0 rows=0,1,3 windows=2242,1979,3461 | frog1 rows=6,7,2 windows=613,1914,1937 | frog2 rows=4,5 windows=3270,3107 | rotate_mask=11 rotate_bytes=67452
+ FrogThreeCipherB FrogThreeCipherA FrogTwoCipherB RotateMaskCipher BitRotationThreeCipher
+L3C | frog0 rows=0,7 windows=6683,15233 | frog1 rows=2,3,6 windows=2402,510,10506 | frog2 rows=1,4,5 windows=14668,15883,14886 | rotate_mask=129 rotate_bytes=693402
+ FrogTwoCipherA FrogThreeCipherB FrogThreeCipherA PasswordSubtractCipher RotateMaskCipher BitRotationThreeCipher
+L2C | frog0 rows=4,7,1 windows=6649,7,6597 | frog1 rows=0,2 windows=8135,624 | frog2 rows=3,5,6 windows=4345,6861,300 | rotate_mask=146 rotate_bytes=421417
+ FrogThreeCipherB FrogTwoCipherA FrogThreeCipherB PasswordSubtractCipher RotateMaskCipher BitRotationThreeCipher
+L1C | frog0 rows=0,1,3 windows=755,42,1255 | frog1 rows=6,7,2 windows=3153,962,2338 | frog2 rows=4,5 windows=1013,1843 | rotate_mask=11 rotate_bytes=160773
+ FrogThreeCipherA FrogThreeCipherB FrogTwoCipherA PasswordJumpAddCipher RotateMaskCipher
+Base grid (before within-group rotation):
+ [07] [236] [145]
+ [146] [57] [023]
+ [235] [014] [67]

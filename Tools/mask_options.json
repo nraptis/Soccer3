@@ -1,0 +1,87 @@
+{
+  "definition": "unordered sets of distinct 8-bit masks; Hamming distance = popcount(a XOR b)",
+  "three_ones_distance_at_least_three": {
+    "candidate_masks": 56,
+    "maximum_list_length": 8,
+    "proof": "Equal weights give even distances. Each position can occur in at most 3 masks; 3*M <= 8*3.",
+    "maximum_witness": [
+      "0x07",
+      "0x19",
+      "0x2A",
+      "0x4C",
+      "0x70",
+      "0x92",
+      "0xA4",
+      "0xC1"
+    ],
+    "list_counts": {
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0
+    }
+  },
+  "balanced_construction": {
+    "list_length": 14,
+    "ones": 4,
+    "minimum_distance": 4,
+    "method": "Nonconstant affine functions on three input bits",
+    "example_14": [
+      "0x0F",
+      "0x33",
+      "0x3C",
+      "0x55",
+      "0x5A",
+      "0x66",
+      "0x69",
+      "0x96",
+      "0x99",
+      "0xA5",
+      "0xAA",
+      "0xC3",
+      "0xCC",
+      "0xF0"
+    ]
+  },
+  "alternatives": {
+    "four_ones_distance_four": {
+      "maximum_length": 14,
+      "proof": "Each position occurs in at most 7 masks, so 4*M <= 8*7."
+    },
+    "mixed_two_four_six_ones_distance_four": {
+      "maximum_length": 16,
+      "witness": [
+        "0x03",
+        "0x0C",
+        "0x30",
+        "0x3F",
+        "0x56",
+        "0x59",
+        "0x65",
+        "0x6A",
+        "0x95",
+        "0x9A",
+        "0xA6",
+        "0xA9",
+        "0xC0",
+        "0xCF",
+        "0xF3",
+        "0xFC"
+      ],
+      "proof": "Puncture one position: a length-7 distance-3 code. Disjoint radius-1 balls give M*8 <= 128.",
+      "tradeoff": "Changes mask density; selected/complement portions are no longer always equal."
+    },
+    "three_ones_distance_two": {
+      "maximum_length": 56,
+      "list_counts": {
+        "15": 16253249498640,
+        "16": 41648951840265,
+        "17": 97997533741800,
+        "18": 212327989773900,
+        "19": 424655979547800
+      },
+      "tradeoff": "Permits pairs differing in only two bit positions."
+    }
+  }
+}

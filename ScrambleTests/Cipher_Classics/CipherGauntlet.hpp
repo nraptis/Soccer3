@@ -10,8 +10,8 @@
 
 #include "TestConstants.hpp"
 #include <stdio.h>
-#include "Jelly.hpp"
-#include "Cipher.hpp"
+#include "Kernel.hpp"
+#include "Soccer3.hpp"
 #include <string>
 
 class CipherGauntlet {
@@ -22,13 +22,13 @@ public:
                                                                          std::uint8_t *pWorker,
                                                                          std::uint8_t *pDestination,
                                                                          std::size_t pSize,
-                                                                         Cipher *pCipher,
+                                                                         Kernel *pCipher,
                                                                          std::string pName);
     static bool                                 UnsealDataExpectingSuccess(const std::uint8_t *pSource,
                                                                            std::uint8_t *pWorker,
                                                                            std::uint8_t *pDestination,
                                                                            std::size_t pSize,
-                                                                           Cipher *pCipher,
+                                                                           Kernel *pCipher,
                                                                            std::string pName);
     static bool                                 Matches(const std::uint8_t *pOriginal,
                                                         const std::uint8_t *pUnencrypted,
@@ -36,10 +36,10 @@ public:
     
     
 
-    bool                                        RunCipher(Cipher *pCipher,
+    bool                                        RunCipher(Kernel *pCipher,
                                                           std::string pName);
 
-    bool                                        RunCipherWithSizeExpectingSuccess(Cipher *pCipher, std::size_t pSize, std::string pName, std::size_t pIndex);
+    bool                                        RunCipherWithSizeExpectingSuccess(Kernel *pCipher, std::size_t pSize, std::string pName, std::size_t pIndex);
     
     void                                        RandomizeSource(std::size_t pSize, std::size_t pIndex);
     static void                                 ArrayRandomize(std::uint8_t *pData, std::size_t pSize);

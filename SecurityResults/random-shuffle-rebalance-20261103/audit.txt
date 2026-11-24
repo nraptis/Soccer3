@@ -1,0 +1,83 @@
+Random shuffle budget audit — 2026-11-03
+
+BUDGET
+A complete non-test seed folds 38 fresh 32768-byte mRandom blocks:
+one initial warm-up seed block, five TwistRound warm-ups, then 32 regular
+TwistRound blocks. Total available: 1245184 bytes (1216 KiB).
+The new rotation budget consumes exactly 589824 bytes (576 KiB):
+18 lists * 16384 16-bit attempts. Rejections count against that budget.
+The remaining 655360 bytes are available to other shuffle ranges. This is
+an allocation count, not a claim that the small lists read every byte.
+
+The eighteen persistent uint16_t[16384] base arrays separately occupy
+589824 bytes of RAM. Each is initialized once per seed. Each random-block
+generation supplies 431 or 432 words per list; odd blocks traverse backwards,
+even blocks forwards. This is a sequence of bounded partial passes, not
+18 complete Fisher-Yates permutations guaranteed within a fixed budget.
+Only the positions fixed in the FINAL partial pass may be farmed, in that
+pass's direction. If those candidates cannot satisfy the constraints, seed
+creation fails. No modulo fallback, recycled words, or full epilogue shuffle.
+
+LAYOUT (RandomShuffleLayout.hpp)
+  0..255       material order
+  256..511     source order
+  512..767     workspace order
+  768..1023    expander order
+  1024..17215 or 17251: cross lists, divided among active 4/8/16 lanes
+  Remaining 15552 or 15516 bytes: 18 equal rotation ranges
+All range boundaries are end-exclusive in code. Rotation boundaries are
+word-aligned. Tests verify the full partition, no overlaps and exact budget.
+The final random generation has no subsequent cross shuffle.
+Small lists request one pass and can return on bounded-source exhaustion.
+They do not run extra passes merely to consume their assigned ranges.
+Consequently, this change does not claim 100% actual consumption of mRandom.
+
+REMOVED REPETITION
+  Ordering: four passes/list/random block -> one.
+    All strengths: 608 requested passes/seed -> 152.
+  Cross: three passes over all 16 lists -> one per active list.
+    Weak:   1776 -> 148.
+    Normal: 1776 -> 296.
+    Strong: 1776 -> 592.
+  Rotation epilogue: no additional full-list shuffles.
+    Existing standalone FarmPack full-shuffle API remains for tests.
+
+SEPARATE MATERIAL
+Only two 64-byte Stage2 tails (lane A and lane C) now provide the sixteen
+free intra-window offsets. The old eighteen 48 KiB shuffle slices are gone.
+No additional expander output or per-block material is generated.
+Changing the seed layout changes seeded plans and ciphertext. Old layouts
+are not reconstructed by a compatibility mode.
+
+REMAINING EXCESS / NOT CHANGED IN THIS PASS
+  SeedEpilogue_Regular_C: 32760 random-transposition attempts on only
+    4/8/16 material pointers. This is the clearest next simplification.
+    It is not a Fisher-Yates pass; replacing it also requires deciding how
+    to handle the large folded-material range currently dedicated to it.
+  SeedPrelude_Regular_C: eight complete-pass requests per each of three
+    16-entry lists (24 passes total), fed by separate prelude material.
+  Shuffle_MEWBlockZero: three passes per each of three 16-entry lists at
+    each of three claiming stages (27 passes total). It reads the latest
+    claimed 32 KiB material block, not mRandom; keep claimed-item exclusion.
+  TwistDiffuse also repeats index-list shuffles inside its diffusion
+    construction. Those are outside this mRandom rebalance and were not
+    classified as safely removable without examining the surrounding mix.
+
+One complete Fisher-Yates pass with independent uniform choices already
+produces a uniform permutation. Additional passes cannot improve that
+uniformity. This observation alone is not a security proof for the complete
+seed construction or for correlated/pseudorandom inputs.
+
+ADDITIONAL BUG FOUND DURING VALIDATION
+Random::Shuffle(T*, int) used (*pItems)[i] instead of pItems[i]. For an array
+of pointers this swapped pointed-to objects, rather than pointers. The
+workspace test exhausted its stack copying TwistWorkSpace objects. Corrected
+the pointer-array overload. The vector overload was unchanged.
+
+VALIDATION
+ASan/UBSan passed 128 prepared packs / 2304 jobs. Every pack consumed the
+exact rotation budget. Minimum final shuffled prefix: 418 entries; largest
+observed candidate scan: 12. Candidate exhaustion clears the failed result.
+The standalone strong_security_sweep builds with the new production code.
+Final XCTest result and statistical outcomes are recorded in results.txt.
+These are bounded checks, not a cryptographic security certification.

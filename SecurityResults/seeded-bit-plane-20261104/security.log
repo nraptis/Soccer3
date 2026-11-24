@@ -1,0 +1,233 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Scramble.xcodeproj -scheme Scramble -configuration Release -destination platform=macOS,arch=arm64 -derivedDataPath /private/tmp/soccer-bit-plane-farm/DerivedData -resultBundlePath /private/tmp/soccer-seeded-bit-plane/security.xcresult -parallel-testing-enabled NO "-only-testing:ScrambleTests/StatisticalPlaintextRecoveryTests/testStatisticalRecoveryStrong" "-only-testing:ScrambleTests/WholeBlockParityRecoveryTests" "-only-testing:ScrambleTests/BitPlaneParityRecoveryTests" CODE_SIGNING_ALLOWED=NO CLANG_ENABLE_CODE_COVERAGE=NO GCC_GENERATE_TEST_COVERAGE_FILES=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=NO test
+
+Build settings from command line:
+    CLANG_ENABLE_CODE_COVERAGE = NO
+    CODE_SIGNING_ALLOWED = NO
+    GCC_GENERATE_TEST_COVERAGE_FILES = NO
+    GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO
+
+Writing result bundle at path:
+	/private/tmp/soccer-seeded-bit-plane/security.xcresult
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (3 targets)
+    Target 'ScrambleUITests' in project 'Scramble'
+        ➜ Explicit dependency on target 'Scramble' in project 'Scramble'
+    Target 'ScrambleTests' in project 'Scramble'
+        ➜ Explicit dependency on target 'Scramble' in project 'Scramble'
+    Target 'Scramble' in project 'Scramble' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -x c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -x objective-c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 0d9054d877f4ec8619469f31ba722a43
+Build description path: /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/XCBuildData/0d9054d877f4ec8619469f31ba722a43.xcbuilddata
+ProcessInfoPlistFile /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/Info.plist /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/empty-Scramble.plist (in target 'Scramble' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    builtin-infoPlistUtility /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/empty-Scramble.plist -producttype com.apple.product-type.application -genpkginfo /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PkgInfo -expandbuildsettings -platform macosx -additionalcontentfile /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Base.lproj/MainMenu-PartialInfo.plist -additionalcontentfile /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/assetcatalog_generated_info.plist -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/Info.plist
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk /tmp/soccer-bit-plane-farm/DerivedData/SDKStatCaches.noindex/macosx27.2-26B118-a7ff82d74745d5ef33555b35c4238456.sdkstatcache
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer/Scramble.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -o /tmp/soccer-bit-plane-farm/DerivedData/SDKStatCaches.noindex/macosx27.2-26B118-a7ff82d74745d5ef33555b35c4238456.sdkstatcache
+
+CompileC /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/Soccer2-5785eef87c39e485d0184e08b9272749.o /Users/icarus/Desktop/Codex\ Maga/Soccer/Scramble/Composer/Soccer2.cpp normal arm64 c++ com.apple.compilers.llvm.clang.1_0.compiler (in target 'Scramble' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    
+    Using response file: /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/82b82416624d2658e5098eb0a28c15c5-common-args.resp
+    
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -ivfsstatcache /tmp/soccer-bit-plane-farm/DerivedData/SDKStatCaches.noindex/macosx27.2-26B118-a7ff82d74745d5ef33555b35c4238456.sdkstatcache -target arm64-apple-macos26.5 -fmessage-length\=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\=0 -fno-color-diagnostics -fmodules-prune-interval\=86400 -fmodules-prune-after\=345600 -fbuild-session-file\=/tmp/soccer-bit-plane-farm/DerivedData/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror\=non-modular-include-in-framework-module -Wno-trigraphs -Wno-missing-field-initializers -Wno-missing-prototypes -Werror\=return-type -Wdocumentation -Wunreachable-code -Wquoted-include-in-framework-header -Werror\=deprecated-objc-isa-usage -Werror\=objc-root-class -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -Wno-implicit-fallthrough -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -Wno-sign-conversion -Winfinite-recursion -Wmove -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wrange-loop-analysis -Wno-semicolon-before-method-body -Wunguarded-availability @/tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/82b82416624d2658e5098eb0a28c15c5-common-args.resp -MMD -MT dependencies -MF /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/Soccer2-5785eef87c39e485d0184e08b9272749.d --serialize-diagnostics /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/Soccer2-5785eef87c39e485d0184e08b9272749.dia -c /Users/icarus/Desktop/Codex\ Maga/Soccer/Scramble/Composer/Soccer2.cpp -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/Soccer2-5785eef87c39e485d0184e08b9272749.o
+
+Ld /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/MacOS/Scramble normal (in target 'Scramble' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -Xlinker -reproducible -target arm64-apple-macos26.5 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Release -L/tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release -F/tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Release -F/tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release -filelist /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/Scramble.LinkFileList -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/Scramble_lto.o -rdynamic -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/Scramble.build/Objects-normal/arm64/Scramble_dependency_info.dat -fobjc-arc -fobjc-link-runtime -fprofile-instr-generate -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/MacOS/Scramble
+
+GenerateDSYMFile /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app.dSYM /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/MacOS/Scramble (in target 'Scramble' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    export PATH\=/Applications/Xcode.app/Contents/SharedFrameworks/SwiftBuild.framework/Versions/A/PlugIns/SWBBuildService.bundle/Contents/PlugIns/SWBUniversalPlatformPlugin.bundle/Contents/Frameworks/SWBUniversalPlatform.framework/Resources:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/local/bin:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/quarto/bin:/Users/icarus/.codex/tmp/arg0-macos/codex-arg05Uq8Pl:/Users/icarus/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/opt/anaconda3/bin:/opt/anaconda3/condabin:/Users/icarus/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/MacOS/Scramble -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app.dSYM
+
+ProcessInfoPlistFile /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest/Contents/Info.plist /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/empty-ScrambleTests.plist (in target 'ScrambleTests' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    builtin-infoPlistUtility /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/empty-ScrambleTests.plist -producttype com.apple.product-type.bundle.unit-test -expandbuildsettings -platform macosx -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest/Contents/Info.plist
+
+CompileC /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/StatisticalPlaintextRecoveryTests.o /Users/icarus/Desktop/Codex\ Maga/Soccer/ScrambleTests/StatisticalPlaintextRecoveryTests.mm normal arm64 objective-c++ com.apple.compilers.llvm.clang.1_0.compiler (in target 'ScrambleTests' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    
+    Using response file: /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/af3fcb34312c57c0f52879cdce924b91-common-args.resp
+    
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -ivfsstatcache /tmp/soccer-bit-plane-farm/DerivedData/SDKStatCaches.noindex/macosx27.2-26B118-a7ff82d74745d5ef33555b35c4238456.sdkstatcache -target arm64-apple-macos26.5 -fmessage-length\=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit\=0 -fno-color-diagnostics -fmodules-prune-interval\=86400 -fmodules-prune-after\=345600 -fbuild-session-file\=/tmp/soccer-bit-plane-farm/DerivedData/ModuleCache.noindex/Session.modulevalidation -fmodules-validate-once-per-build-session -Wnon-modular-include-in-framework-module -Werror\=non-modular-include-in-framework-module -Wno-trigraphs -Wno-missing-field-initializers -Wno-missing-prototypes -Werror\=return-type -Wdocumentation -Wunreachable-code -Wquoted-include-in-framework-header -Wno-implicit-atomic-properties -Werror\=deprecated-objc-isa-usage -Wno-objc-interface-ivars -Werror\=objc-root-class -Wno-arc-repeated-use-of-weak -Wimplicit-retain-self -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wunused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wconditional-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wbool-conversion -Wenum-conversion -Wno-float-conversion -Wnon-literal-null-conversion -Wobjc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wundeclared-selector -Wdeprecated-implementations -Wno-c++11-extensions -Wno-implicit-fallthrough -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -Wno-sign-conversion -Winfinite-recursion -Wmove -Wcomma -Wblock-capture-autoreleasing -Wstrict-prototypes -Wrange-loop-analysis -Wno-semicolon-before-method-body -Wunguarded-availability @/tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/af3fcb34312c57c0f52879cdce924b91-common-args.resp -MMD -MT dependencies -MF /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/StatisticalPlaintextRecoveryTests.d --serialize-diagnostics /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/StatisticalPlaintextRecoveryTests.dia -c /Users/icarus/Desktop/Codex\ Maga/Soccer/ScrambleTests/StatisticalPlaintextRecoveryTests.mm -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/StatisticalPlaintextRecoveryTests.o
+
+Ld /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest/Contents/MacOS/ScrambleTests normal (in target 'ScrambleTests' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -Xlinker -reproducible -target arm64-apple-macos26.5 -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.2.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Release -L/tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release -L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F/tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/EagerLinkingTBDs/Release -F/tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -filelist /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/ScrambleTests.LinkFileList -Xlinker -rpath -Xlinker @loader_path/../Frameworks -Xlinker -rpath -Xlinker @executable_path/../Frameworks -bundle_loader /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/MacOS/Scramble -Xlinker -object_path_lto -Xlinker /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/ScrambleTests_lto.o -rdynamic -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleTests.build/Objects-normal/arm64/ScrambleTests_dependency_info.dat -fobjc-arc -fobjc-link-runtime -fprofile-instr-generate -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest/Contents/MacOS/ScrambleTests
+
+GenerateDSYMFile /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest.dSYM /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest/Contents/MacOS/ScrambleTests (in target 'ScrambleTests' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    export PATH\=/Applications/Xcode.app/Contents/SharedFrameworks/SwiftBuild.framework/Versions/A/PlugIns/SWBBuildService.bundle/Contents/PlugIns/SWBUniversalPlatformPlugin.bundle/Contents/Frameworks/SWBUniversalPlatform.framework/Resources:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/local/bin:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Applications/quarto/bin:/Users/icarus/.codex/tmp/arg0-macos/codex-arg05Uq8Pl:/Users/icarus/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/opt/anaconda3/bin:/opt/anaconda3/condabin:/Users/icarus/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest/Contents/MacOS/ScrambleTests -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app/Contents/PlugIns/ScrambleTests.xctest.dSYM
+
+Validate /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app (in target 'Scramble' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    builtin-validationUtility /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+RegisterWithLaunchServices /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app (in target 'Scramble' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    builtin-lsregisterurl --record-path /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/XCBuildData/registered-launchservices.txt -- /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/Scramble.app
+
+ProcessInfoPlistFile /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/ScrambleUITests-Runner.app/Contents/PlugIns/ScrambleUITests.xctest/Contents/Info.plist /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleUITests.build/empty-ScrambleUITests.plist (in target 'ScrambleUITests' from project 'Scramble')
+    cd /Users/icarus/Desktop/Codex\ Maga/Soccer
+    builtin-infoPlistUtility /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleUITests.build/empty-ScrambleUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -platform macosx -additionalcontentfile /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/Scramble.build/Release/ScrambleUITests.build/ProductTypeInfoPlistAdditions.plist -o /tmp/soccer-bit-plane-farm/DerivedData/Build/Products/Release/ScrambleUITests-Runner.app/Contents/PlugIns/ScrambleUITests.xctest/Contents/Info.plist
+
+PruneExplicitPrecompiledModules /tmp/soccer-bit-plane-farm/DerivedData/SDKExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/soccer-bit-plane-farm/DerivedData/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+2026-11-04 10:55:30.910818-0500 Scramble[13773:122377] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.910996-0500 Scramble[13773:122377] [Application] Error registering app with intents framework: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.911262-0500 Scramble[13773:122386] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.911276-0500 Scramble[13773:122386] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.911707-0500 Scramble[13773:122376] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.911717-0500 Scramble[13773:122376] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.912098-0500 Scramble[13773:122376] [Connection] Will NOT re-try to establish the connection
+2026-11-04 10:55:30.912125-0500 Scramble[13773:122377] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.912141-0500 Scramble[13773:122377] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-04 10:55:30.924353-0500 Scramble[13773:122352] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/p8/80ypymb56jngdf60h84pshtr0000gn/T/com.star.road.scramble.Scramble.savedState
+Skipping App Delegate Test Code, On Test Target
+Test Suite 'Selected tests' started at 2026-11-04 10:55:31.027.
+Test Suite 'ScrambleTests.xctest' started at 2026-11-04 10:55:31.027.
+Test Suite 'BitPlaneParityRecoveryTests' started at 2026-11-04 10:55:31.027.
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityNormal]' started.
+Bit-plane parity | flame-toad-vault | strength=1 fixture=0 | best=52.9785% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=1 fixture=1 | best=53.6133% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityNormal]' passed (40.466 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityStrong]' started.
+Bit-plane parity | flame-toad-vault | strength=2 fixture=0 | best=53.6133% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=2 fixture=1 | best=53.2227% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityStrong]' passed (54.659 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityWeak]' started.
+Bit-plane parity | flame-toad-vault | strength=0 fixture=0 | best=52.7344% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=0 fixture=1 | best=52.7832% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityWeak]' passed (34.722 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testControlRecoversRotatedPlanesWithFixedOffset]' started.
+Test Case '-[BitPlaneParityRecoveryTests testControlRecoversRotatedPlanesWithFixedOffset]' passed (0.014 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testControlRejectsIndependentOutputAndOracleErrors]' started.
+Test Case '-[BitPlaneParityRecoveryTests testControlRejectsIndependentOutputAndOracleErrors]' passed (0.015 seconds).
+Test Suite 'BitPlaneParityRecoveryTests' passed at 2026-11-04 10:57:40.906.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 129.877 (129.878) seconds
+Test Suite 'StatisticalPlaintextRecoveryTests' started at 2026-11-04 10:57:40.906.
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryStrong]' started.
+CONFIG | flame-toad-vault | strength=2 fixture=0 bit_plane_words=9572725890057245763,3997420812340764201,1522026780627795736 bit_plane_policy=seeded-word-sums-v1 rotation_policy=window-pack-alternating-budget-v2 pack_candidates=150 shuffle_bytes=589824
+Statistical recovery training: strength=2 fixture=0 budget=8257
+Statistical recovery training complete: queries=8257 features=211036 sampled_bytes=11043
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=2 fixture=0 queries=16384 features=211036 sampled_bytes=11043 best_flag=3 accuracy=8341/16384 (50.9094%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32890/65536 (50.1862%)
+  clustered row=1 correct=32596/65536 (49.7375%)
+  clustered row=2 correct=32794/65536 (50.0397%)
+  clustered row=3 correct=32962/65536 (50.2960%)
+  clustered row=4 correct=32778/65536 (50.0153%)
+  clustered row=5 correct=32818/65536 (50.0763%)
+  clustered row=6 correct=32707/65536 (49.9069%)
+  clustered row=7 correct=32595/65536 (49.7360%)
+  distributed row=0 correct=32731/65536 (49.9435%)
+  distributed row=1 correct=33077/65536 (50.4715%)
+  distributed row=2 correct=32978/65536 (50.3204%)
+  distributed row=3 correct=32678/65536 (49.8627%)
+  distributed row=4 correct=32852/65536 (50.1282%)
+  distributed row=5 correct=32737/65536 (49.9527%)
+  distributed row=6 correct=32894/65536 (50.1923%)
+  distributed row=7 correct=32733/65536 (49.9466%)
+PASS | flame-toad-vault | strength=2 fixture=0 | best prediction=50.9094% | significant=0/64 confirmed=0/64 | 133.3s
+CONFIG | flame-toad-vault | strength=2 fixture=1 bit_plane_words=8450598687429053000,2989755489955998863,16691307637076213675 bit_plane_policy=seeded-word-sums-v1 rotation_policy=window-pack-alternating-budget-v2 pack_candidates=149 shuffle_bytes=589824
+Statistical recovery training: strength=2 fixture=1 budget=8257
+Statistical recovery training complete: queries=8257 features=211168 sampled_bytes=11045
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=2 fixture=1 queries=16384 features=211168 sampled_bytes=11045 best_flag=3 accuracy=8294/16384 (50.6226%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32653/65536 (49.8245%)
+  clustered row=1 correct=32810/65536 (50.0641%)
+  clustered row=2 correct=32976/65536 (50.3174%)
+  clustered row=3 correct=32862/65536 (50.1434%)
+  clustered row=4 correct=32753/65536 (49.9771%)
+  clustered row=5 correct=32881/65536 (50.1724%)
+  clustered row=6 correct=32818/65536 (50.0763%)
+  clustered row=7 correct=32780/65536 (50.0183%)
+  distributed row=0 correct=32721/65536 (49.9283%)
+  distributed row=1 correct=32700/65536 (49.8962%)
+  distributed row=2 correct=32630/65536 (49.7894%)
+  distributed row=3 correct=32706/65536 (49.9054%)
+  distributed row=4 correct=32877/65536 (50.1663%)
+  distributed row=5 correct=32882/65536 (50.1740%)
+  distributed row=6 correct=32655/65536 (49.8276%)
+  distributed row=7 correct=32857/65536 (50.1358%)
+PASS | flame-toad-vault | strength=2 fixture=1 | best prediction=50.6226% | significant=0/64 confirmed=0/64 | 133.3s
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryStrong]' passed (266.728 seconds).
+Test Suite 'StatisticalPlaintextRecoveryTests' passed at 2026-11-04 11:02:07.634.
+	 Executed 1 test, with 0 failures (0 unexpected) in 266.728 (266.728) seconds
+Test Suite 'WholeBlockParityRecoveryTests' started at 2026-11-04 11:02:07.634.
+Test Case '-[WholeBlockParityRecoveryTests testControlRecoversFixedParityOffset]' started.
+Test Case '-[WholeBlockParityRecoveryTests testControlRecoversFixedParityOffset]' passed (0.001 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityNormal]' started.
+Whole-block parity | flame-toad-vault | strength=1 fixture=0 | prediction=47.0703% | two-sided best=52.9297% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=1 fixture=1 | prediction=47.7539% | two-sided best=52.2461% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityNormal]' passed (25.467 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityStrong]' started.
+Whole-block parity | flame-toad-vault | strength=2 fixture=0 | prediction=51.7578% | two-sided best=51.7578% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=2 fixture=1 | prediction=50.1953% | two-sided best=50.1953% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityStrong]' passed (40.052 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityWeak]' started.
+Whole-block parity | flame-toad-vault | strength=0 fixture=0 | prediction=49.6094% | two-sided best=50.3906% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=0 fixture=1 | prediction=51.1719% | two-sided best=51.1719% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityWeak]' passed (20.401 seconds).
+Test Suite 'WholeBlockParityRecoveryTests' passed at 2026-11-04 11:03:33.556.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 85.921 (85.922) seconds
+Test Suite 'ScrambleTests.xctest' passed at 2026-11-04 11:03:33.556.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 482.526 (482.529) seconds
+Test Suite 'Selected tests' passed at 2026-11-04 11:03:33.556.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 482.526 (482.530) seconds
+2026-11-04 11:03:33.846 xcodebuild[13742:122030] [MT] IDETestOperationsObserverDebug: 483.743 elapsed -- Testing started completed.
+2026-11-04 11:03:33.846 xcodebuild[13742:122030] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-04 11:03:33.846 xcodebuild[13742:122030] [MT] IDETestOperationsObserverDebug: 483.743 sec, +483.743 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/soccer-seeded-bit-plane/security.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

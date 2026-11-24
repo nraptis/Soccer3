@@ -56,10 +56,12 @@ set(SOCCER_LIBRARY_SOURCES
     "${SOCCER_SOURCE_ROOT}/Public/Soccer3.cpp"
     "${SOCCER_COMPOSER_ROOT}/BitPlane.cpp"
     "${SOCCER_COMPOSER_ROOT}/BitPlaneFarm.cpp"
-    "${SOCCER_COMPOSER_ROOT}/WindowRotationFarm.cpp"
     "${SOCCER_COMPOSER_ROOT}/Soccer3.cpp"
     "${SOCCER_COMPOSER_ROOT}/Soccer3Cryptex.cpp"
     "${SOCCER_COMPOSER_ROOT}/SoccerFolding.cpp"
+    "${SOCCER_ENCRYPTER_ROOT}/Kernels/FourToadKernel.cpp"
+    "${SOCCER_ENCRYPTER_ROOT}/Kernels/FourCrowKernel.cpp"
+    "${SOCCER_ENCRYPTER_ROOT}/Kernels/FourRavenKernel.cpp"
     "${SOCCER_ENCRYPTER_ROOT}/CryptexLayer.cpp"
     "${SOCCER_ENCRYPTER_ROOT}/Cryptex.cpp"
     ${SOCCER_CORE_SOURCES}
@@ -72,6 +74,9 @@ add_library(soccer STATIC
 )
 
 add_library(Soccer::soccer ALIAS soccer)
+
+find_package(Threads REQUIRED)
+target_link_libraries(soccer PRIVATE Threads::Threads)
 
 target_compile_features(soccer PUBLIC cxx_std_20)
 
@@ -86,13 +91,14 @@ set_target_properties(soccer PROPERTIES
 target_include_directories(soccer
     PUBLIC
         "$<BUILD_INTERFACE:${SOCCER_SOURCE_ROOT}/Public>"
+        "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/soccer>"
     PRIVATE
         "${SOCCER_COMPOSER_ROOT}"
         "${SOCCER_EXPANDER_ROOT}/Core"
         "${SOCCER_EXPANDER_ROOT}/Family"
         "${SOCCER_ENCRYPTER_ROOT}"
-        "${SOCCER_ENCRYPTER_ROOT}/Ciphers"
+        "${SOCCER_ENCRYPTER_ROOT}/Kernels"
 )
 
 if(MSVC)

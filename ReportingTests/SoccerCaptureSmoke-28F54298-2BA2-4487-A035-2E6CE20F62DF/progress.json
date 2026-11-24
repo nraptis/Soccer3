@@ -1,0 +1,12 @@
+{
+  "blocks_encrypted_in_phase" : 512,
+  "campaign_seed" : "0xf79062df8a905396",
+  "fixture_index" : 0,
+  "nonce" : "0x45438520ad0a18f3",
+  "password_hex" : "69682cebdc097432a6527e6cc00ab8fdd3a2cecf33d5d1fe48b3f433ed04a7d5",
+  "phase" : "verification",
+  "phase_total_blocks" : 512,
+  "run" : 1,
+  "status" : "completed",
+  "updated_unix_seconds" : 1793933437.685775
+}

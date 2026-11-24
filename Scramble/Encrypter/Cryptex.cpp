@@ -1,10 +1,10 @@
 #include "Cryptex.hpp"
-#include "Soccer3.hpp"
-#include "FlameToadCipher.hpp"
-#include "PasswordXORCipher.hpp"
-#include "ShiftMaskedCipher.hpp"
-#include "BitReverseCipher.hpp"
-#include "Jelly.hpp"
+#include "../Composer/Soccer3.hpp"
+#include "FourToadKernel.hpp"
+#include "PasswordXORKernel.hpp"
+#include "FourCrowKernel.hpp"
+#include "FourRavenKernel.hpp"
+#include "BitReverseKernel.hpp"
 
 void Cryptex::Clear() {
     mLayerAA.Clear();
@@ -38,424 +38,376 @@ bool Cryptex::Build(EncryptionStrength pStrength) {
 
     if (mStrength == EncryptionStrength::kWeak) {
         // Layer AA
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAA, Soccer3::mBitRowAB,
-            Soccer3::mFlameToadCipherRotationAAA, Soccer3::mFlameToadCipherRotationAAB, Soccer3::mFlameToadCipherRotationAAC, Soccer3::mFlameToadCipherRotationAAD,
+        mLayerAA.Add(new FourToadKernel(
+            {Soccer3::mBitRowAA, Soccer3::mBitRowAB,
+             {Soccer3::mToadCipherRotationAALeftA, Soccer3::mToadCipherRotationAALeftB, Soccer3::mToadCipherRotationAALeftC, Soccer3::mToadCipherRotationAALeftD}},
+            {Soccer3::mBitRowAC, Soccer3::mBitRowAD,
+             {Soccer3::mToadCipherRotationAALeftE, Soccer3::mToadCipherRotationAALeftF, Soccer3::mToadCipherRotationAALeftG, Soccer3::mToadCipherRotationAALeftH}},
+            {Soccer3::mBitRowAE, Soccer3::mBitRowAF,
+             {Soccer3::mToadCipherRotationAARightA, Soccer3::mToadCipherRotationAARightB, Soccer3::mToadCipherRotationAARightC, Soccer3::mToadCipherRotationAARightD}},
+            {Soccer3::mBitRowAG, Soccer3::mBitRowAH,
+             {Soccer3::mToadCipherRotationAARightE, Soccer3::mToadCipherRotationAARightF, Soccer3::mToadCipherRotationAARightG, Soccer3::mToadCipherRotationAARightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAC, Soccer3::mBitRowAD,
-            Soccer3::mFlameToadCipherRotationAAE, Soccer3::mFlameToadCipherRotationAAF, Soccer3::mFlameToadCipherRotationAAG, Soccer3::mFlameToadCipherRotationAAH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAE, Soccer3::mBitRowAF,
-            Soccer3::mFlameToadCipherRotationAAI, Soccer3::mFlameToadCipherRotationAAJ, Soccer3::mFlameToadCipherRotationAAK, Soccer3::mFlameToadCipherRotationAAL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAG, Soccer3::mBitRowAH,
-            Soccer3::mFlameToadCipherRotationAAM, Soccer3::mFlameToadCipherRotationAAN, Soccer3::mFlameToadCipherRotationAAO, Soccer3::mFlameToadCipherRotationAAP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskA, Soccer3::mShiftMaskedCipherRotationAA));
-        mLayerAA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskB, Soccer3::mShiftMaskedCipherRotationAB));
+        mLayerAA.Add(new FourCrowKernel(
+            Soccer3::mPlaneShiftAALeft, Soccer3::mPlaneShiftAARight));
 
         // Layer AB
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBA, Soccer3::mBitRowBB,
-            Soccer3::mFlameToadCipherRotationABA, Soccer3::mFlameToadCipherRotationABB, Soccer3::mFlameToadCipherRotationABC, Soccer3::mFlameToadCipherRotationABD,
+        mLayerAB.Add(new FourToadKernel(
+            {Soccer3::mBitRowBA, Soccer3::mBitRowBB,
+             {Soccer3::mToadCipherRotationABLeftA, Soccer3::mToadCipherRotationABLeftB, Soccer3::mToadCipherRotationABLeftC, Soccer3::mToadCipherRotationABLeftD}},
+            {Soccer3::mBitRowBC, Soccer3::mBitRowBD,
+             {Soccer3::mToadCipherRotationABLeftE, Soccer3::mToadCipherRotationABLeftF, Soccer3::mToadCipherRotationABLeftG, Soccer3::mToadCipherRotationABLeftH}},
+            {Soccer3::mBitRowBE, Soccer3::mBitRowBF,
+             {Soccer3::mToadCipherRotationABRightA, Soccer3::mToadCipherRotationABRightB, Soccer3::mToadCipherRotationABRightC, Soccer3::mToadCipherRotationABRightD}},
+            {Soccer3::mBitRowBG, Soccer3::mBitRowBH,
+             {Soccer3::mToadCipherRotationABRightE, Soccer3::mToadCipherRotationABRightF, Soccer3::mToadCipherRotationABRightG, Soccer3::mToadCipherRotationABRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBC, Soccer3::mBitRowBD,
-            Soccer3::mFlameToadCipherRotationABE, Soccer3::mFlameToadCipherRotationABF, Soccer3::mFlameToadCipherRotationABG, Soccer3::mFlameToadCipherRotationABH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBE, Soccer3::mBitRowBF,
-            Soccer3::mFlameToadCipherRotationABI, Soccer3::mFlameToadCipherRotationABJ, Soccer3::mFlameToadCipherRotationABK, Soccer3::mFlameToadCipherRotationABL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBG, Soccer3::mBitRowBH,
-            Soccer3::mFlameToadCipherRotationABM, Soccer3::mFlameToadCipherRotationABN, Soccer3::mFlameToadCipherRotationABO, Soccer3::mFlameToadCipherRotationABP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskC, Soccer3::mShiftMaskedCipherRotationAC));
-        mLayerAB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskD, Soccer3::mShiftMaskedCipherRotationAD));
+        mLayerAB.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftABLeft, Soccer3::mPlaneShiftABRight,
+            Soccer3::mMutateMaterialA));
 
         // Layer AC
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCA, Soccer3::mBitRowCB,
-            Soccer3::mFlameToadCipherRotationACA, Soccer3::mFlameToadCipherRotationACB, Soccer3::mFlameToadCipherRotationACC, Soccer3::mFlameToadCipherRotationACD,
+        mLayerAC.Add(new FourToadKernel(
+            {Soccer3::mBitRowCA, Soccer3::mBitRowCB,
+             {Soccer3::mToadCipherRotationACLeftA, Soccer3::mToadCipherRotationACLeftB, Soccer3::mToadCipherRotationACLeftC, Soccer3::mToadCipherRotationACLeftD}},
+            {Soccer3::mBitRowCC, Soccer3::mBitRowCD,
+             {Soccer3::mToadCipherRotationACLeftE, Soccer3::mToadCipherRotationACLeftF, Soccer3::mToadCipherRotationACLeftG, Soccer3::mToadCipherRotationACLeftH}},
+            {Soccer3::mBitRowCE, Soccer3::mBitRowCF,
+             {Soccer3::mToadCipherRotationACRightA, Soccer3::mToadCipherRotationACRightB, Soccer3::mToadCipherRotationACRightC, Soccer3::mToadCipherRotationACRightD}},
+            {Soccer3::mBitRowCG, Soccer3::mBitRowCH,
+             {Soccer3::mToadCipherRotationACRightE, Soccer3::mToadCipherRotationACRightF, Soccer3::mToadCipherRotationACRightG, Soccer3::mToadCipherRotationACRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCC, Soccer3::mBitRowCD,
-            Soccer3::mFlameToadCipherRotationACE, Soccer3::mFlameToadCipherRotationACF, Soccer3::mFlameToadCipherRotationACG, Soccer3::mFlameToadCipherRotationACH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCE, Soccer3::mBitRowCF,
-            Soccer3::mFlameToadCipherRotationACI, Soccer3::mFlameToadCipherRotationACJ, Soccer3::mFlameToadCipherRotationACK, Soccer3::mFlameToadCipherRotationACL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCG, Soccer3::mBitRowCH,
-            Soccer3::mFlameToadCipherRotationACM, Soccer3::mFlameToadCipherRotationACN, Soccer3::mFlameToadCipherRotationACO, Soccer3::mFlameToadCipherRotationACP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskE, Soccer3::mShiftMaskedCipherRotationAE));
-        mLayerAC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskF, Soccer3::mShiftMaskedCipherRotationAF));
-        mLayerAC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialA));
+        mLayerAC.Add(new FourCrowKernel(
+            Soccer3::mPlaneShiftACLeft, Soccer3::mPlaneShiftACRight));
 
         // Layer AD
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDA, Soccer3::mBitRowDB,
-            Soccer3::mFlameToadCipherRotationADA, Soccer3::mFlameToadCipherRotationADB, Soccer3::mFlameToadCipherRotationADC, Soccer3::mFlameToadCipherRotationADD,
+        mLayerAD.Add(new FourToadKernel(
+            {Soccer3::mBitRowDA, Soccer3::mBitRowDB,
+             {Soccer3::mToadCipherRotationADLeftA, Soccer3::mToadCipherRotationADLeftB, Soccer3::mToadCipherRotationADLeftC, Soccer3::mToadCipherRotationADLeftD}},
+            {Soccer3::mBitRowDC, Soccer3::mBitRowDD,
+             {Soccer3::mToadCipherRotationADLeftE, Soccer3::mToadCipherRotationADLeftF, Soccer3::mToadCipherRotationADLeftG, Soccer3::mToadCipherRotationADLeftH}},
+            {Soccer3::mBitRowDE, Soccer3::mBitRowDF,
+             {Soccer3::mToadCipherRotationADRightA, Soccer3::mToadCipherRotationADRightB, Soccer3::mToadCipherRotationADRightC, Soccer3::mToadCipherRotationADRightD}},
+            {Soccer3::mBitRowDG, Soccer3::mBitRowDH,
+             {Soccer3::mToadCipherRotationADRightE, Soccer3::mToadCipherRotationADRightF, Soccer3::mToadCipherRotationADRightG, Soccer3::mToadCipherRotationADRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDC, Soccer3::mBitRowDD,
-            Soccer3::mFlameToadCipherRotationADE, Soccer3::mFlameToadCipherRotationADF, Soccer3::mFlameToadCipherRotationADG, Soccer3::mFlameToadCipherRotationADH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDE, Soccer3::mBitRowDF,
-            Soccer3::mFlameToadCipherRotationADI, Soccer3::mFlameToadCipherRotationADJ, Soccer3::mFlameToadCipherRotationADK, Soccer3::mFlameToadCipherRotationADL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDG, Soccer3::mBitRowDH,
-            Soccer3::mFlameToadCipherRotationADM, Soccer3::mFlameToadCipherRotationADN, Soccer3::mFlameToadCipherRotationADO, Soccer3::mFlameToadCipherRotationADP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskG, Soccer3::mShiftMaskedCipherRotationAG));
-        mLayerAD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskH, Soccer3::mShiftMaskedCipherRotationAH));
-        mLayerAD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialB));
-        mLayerAD.Add(new BitReverseCipher{});
+        mLayerAD.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftADLeft, Soccer3::mPlaneShiftADRight,
+            Soccer3::mMutateMaterialB));
+        mLayerAD.Add(new BitReverseKernel{});
 
         // Layer BA
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAA, Soccer3::mBitRowAB,
-            Soccer3::mFlameToadCipherRotationBAA, Soccer3::mFlameToadCipherRotationBAB, Soccer3::mFlameToadCipherRotationBAC, Soccer3::mFlameToadCipherRotationBAD,
+        mLayerBA.Add(new FourToadKernel(
+            {Soccer3::mBitRowAA, Soccer3::mBitRowAB,
+             {Soccer3::mToadCipherRotationBALeftA, Soccer3::mToadCipherRotationBALeftB, Soccer3::mToadCipherRotationBALeftC, Soccer3::mToadCipherRotationBALeftD}},
+            {Soccer3::mBitRowAC, Soccer3::mBitRowAD,
+             {Soccer3::mToadCipherRotationBALeftE, Soccer3::mToadCipherRotationBALeftF, Soccer3::mToadCipherRotationBALeftG, Soccer3::mToadCipherRotationBALeftH}},
+            {Soccer3::mBitRowAE, Soccer3::mBitRowAF,
+             {Soccer3::mToadCipherRotationBARightA, Soccer3::mToadCipherRotationBARightB, Soccer3::mToadCipherRotationBARightC, Soccer3::mToadCipherRotationBARightD}},
+            {Soccer3::mBitRowAG, Soccer3::mBitRowAH,
+             {Soccer3::mToadCipherRotationBARightE, Soccer3::mToadCipherRotationBARightF, Soccer3::mToadCipherRotationBARightG, Soccer3::mToadCipherRotationBARightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAC, Soccer3::mBitRowAD,
-            Soccer3::mFlameToadCipherRotationBAE, Soccer3::mFlameToadCipherRotationBAF, Soccer3::mFlameToadCipherRotationBAG, Soccer3::mFlameToadCipherRotationBAH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAE, Soccer3::mBitRowAF,
-            Soccer3::mFlameToadCipherRotationBAI, Soccer3::mFlameToadCipherRotationBAJ, Soccer3::mFlameToadCipherRotationBAK, Soccer3::mFlameToadCipherRotationBAL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAG, Soccer3::mBitRowAH,
-            Soccer3::mFlameToadCipherRotationBAM, Soccer3::mFlameToadCipherRotationBAN, Soccer3::mFlameToadCipherRotationBAO, Soccer3::mFlameToadCipherRotationBAP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskA, Soccer3::mShiftMaskedCipherRotationBA));
-        mLayerBA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskB, Soccer3::mShiftMaskedCipherRotationBB));
+        mLayerBA.Add(new FourCrowKernel(
+            Soccer3::mPlaneShiftBALeft, Soccer3::mPlaneShiftBARight));
 
         // Layer BB
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBA, Soccer3::mBitRowBB,
-            Soccer3::mFlameToadCipherRotationBBA, Soccer3::mFlameToadCipherRotationBBB, Soccer3::mFlameToadCipherRotationBBC, Soccer3::mFlameToadCipherRotationBBD,
+        mLayerBB.Add(new FourToadKernel(
+            {Soccer3::mBitRowBA, Soccer3::mBitRowBB,
+             {Soccer3::mToadCipherRotationBBLeftA, Soccer3::mToadCipherRotationBBLeftB, Soccer3::mToadCipherRotationBBLeftC, Soccer3::mToadCipherRotationBBLeftD}},
+            {Soccer3::mBitRowBC, Soccer3::mBitRowBD,
+             {Soccer3::mToadCipherRotationBBLeftE, Soccer3::mToadCipherRotationBBLeftF, Soccer3::mToadCipherRotationBBLeftG, Soccer3::mToadCipherRotationBBLeftH}},
+            {Soccer3::mBitRowBE, Soccer3::mBitRowBF,
+             {Soccer3::mToadCipherRotationBBRightA, Soccer3::mToadCipherRotationBBRightB, Soccer3::mToadCipherRotationBBRightC, Soccer3::mToadCipherRotationBBRightD}},
+            {Soccer3::mBitRowBG, Soccer3::mBitRowBH,
+             {Soccer3::mToadCipherRotationBBRightE, Soccer3::mToadCipherRotationBBRightF, Soccer3::mToadCipherRotationBBRightG, Soccer3::mToadCipherRotationBBRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBC, Soccer3::mBitRowBD,
-            Soccer3::mFlameToadCipherRotationBBE, Soccer3::mFlameToadCipherRotationBBF, Soccer3::mFlameToadCipherRotationBBG, Soccer3::mFlameToadCipherRotationBBH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBE, Soccer3::mBitRowBF,
-            Soccer3::mFlameToadCipherRotationBBI, Soccer3::mFlameToadCipherRotationBBJ, Soccer3::mFlameToadCipherRotationBBK, Soccer3::mFlameToadCipherRotationBBL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBG, Soccer3::mBitRowBH,
-            Soccer3::mFlameToadCipherRotationBBM, Soccer3::mFlameToadCipherRotationBBN, Soccer3::mFlameToadCipherRotationBBO, Soccer3::mFlameToadCipherRotationBBP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskC, Soccer3::mShiftMaskedCipherRotationBC));
-        mLayerBB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskD, Soccer3::mShiftMaskedCipherRotationBD));
+        mLayerBB.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBBLeft, Soccer3::mPlaneShiftBBRight,
+            Soccer3::mMutateMaterialC));
 
         // Layer BC
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCA, Soccer3::mBitRowCB,
-            Soccer3::mFlameToadCipherRotationBCA, Soccer3::mFlameToadCipherRotationBCB, Soccer3::mFlameToadCipherRotationBCC, Soccer3::mFlameToadCipherRotationBCD,
+        mLayerBC.Add(new FourToadKernel(
+            {Soccer3::mBitRowCA, Soccer3::mBitRowCB,
+             {Soccer3::mToadCipherRotationBCLeftA, Soccer3::mToadCipherRotationBCLeftB, Soccer3::mToadCipherRotationBCLeftC, Soccer3::mToadCipherRotationBCLeftD}},
+            {Soccer3::mBitRowCC, Soccer3::mBitRowCD,
+             {Soccer3::mToadCipherRotationBCLeftE, Soccer3::mToadCipherRotationBCLeftF, Soccer3::mToadCipherRotationBCLeftG, Soccer3::mToadCipherRotationBCLeftH}},
+            {Soccer3::mBitRowCE, Soccer3::mBitRowCF,
+             {Soccer3::mToadCipherRotationBCRightA, Soccer3::mToadCipherRotationBCRightB, Soccer3::mToadCipherRotationBCRightC, Soccer3::mToadCipherRotationBCRightD}},
+            {Soccer3::mBitRowCG, Soccer3::mBitRowCH,
+             {Soccer3::mToadCipherRotationBCRightE, Soccer3::mToadCipherRotationBCRightF, Soccer3::mToadCipherRotationBCRightG, Soccer3::mToadCipherRotationBCRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCC, Soccer3::mBitRowCD,
-            Soccer3::mFlameToadCipherRotationBCE, Soccer3::mFlameToadCipherRotationBCF, Soccer3::mFlameToadCipherRotationBCG, Soccer3::mFlameToadCipherRotationBCH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCE, Soccer3::mBitRowCF,
-            Soccer3::mFlameToadCipherRotationBCI, Soccer3::mFlameToadCipherRotationBCJ, Soccer3::mFlameToadCipherRotationBCK, Soccer3::mFlameToadCipherRotationBCL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCG, Soccer3::mBitRowCH,
-            Soccer3::mFlameToadCipherRotationBCM, Soccer3::mFlameToadCipherRotationBCN, Soccer3::mFlameToadCipherRotationBCO, Soccer3::mFlameToadCipherRotationBCP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskE, Soccer3::mShiftMaskedCipherRotationBE));
-        mLayerBC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskF, Soccer3::mShiftMaskedCipherRotationBF));
-        mLayerBC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialC));
+        mLayerBC.Add(new FourCrowKernel(
+            Soccer3::mPlaneShiftBCLeft, Soccer3::mPlaneShiftBCRight));
 
         // Layer BD
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDA, Soccer3::mBitRowDB,
-            Soccer3::mFlameToadCipherRotationBDA, Soccer3::mFlameToadCipherRotationBDB, Soccer3::mFlameToadCipherRotationBDC, Soccer3::mFlameToadCipherRotationBDD,
+        mLayerBD.Add(new FourToadKernel(
+            {Soccer3::mBitRowDA, Soccer3::mBitRowDB,
+             {Soccer3::mToadCipherRotationBDLeftA, Soccer3::mToadCipherRotationBDLeftB, Soccer3::mToadCipherRotationBDLeftC, Soccer3::mToadCipherRotationBDLeftD}},
+            {Soccer3::mBitRowDC, Soccer3::mBitRowDD,
+             {Soccer3::mToadCipherRotationBDLeftE, Soccer3::mToadCipherRotationBDLeftF, Soccer3::mToadCipherRotationBDLeftG, Soccer3::mToadCipherRotationBDLeftH}},
+            {Soccer3::mBitRowDE, Soccer3::mBitRowDF,
+             {Soccer3::mToadCipherRotationBDRightA, Soccer3::mToadCipherRotationBDRightB, Soccer3::mToadCipherRotationBDRightC, Soccer3::mToadCipherRotationBDRightD}},
+            {Soccer3::mBitRowDG, Soccer3::mBitRowDH,
+             {Soccer3::mToadCipherRotationBDRightE, Soccer3::mToadCipherRotationBDRightF, Soccer3::mToadCipherRotationBDRightG, Soccer3::mToadCipherRotationBDRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDC, Soccer3::mBitRowDD,
-            Soccer3::mFlameToadCipherRotationBDE, Soccer3::mFlameToadCipherRotationBDF, Soccer3::mFlameToadCipherRotationBDG, Soccer3::mFlameToadCipherRotationBDH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDE, Soccer3::mBitRowDF,
-            Soccer3::mFlameToadCipherRotationBDI, Soccer3::mFlameToadCipherRotationBDJ, Soccer3::mFlameToadCipherRotationBDK, Soccer3::mFlameToadCipherRotationBDL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDG, Soccer3::mBitRowDH,
-            Soccer3::mFlameToadCipherRotationBDM, Soccer3::mFlameToadCipherRotationBDN, Soccer3::mFlameToadCipherRotationBDO, Soccer3::mFlameToadCipherRotationBDP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskG, Soccer3::mShiftMaskedCipherRotationBG));
-        mLayerBD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskH, Soccer3::mShiftMaskedCipherRotationBH));
-        mLayerBD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialD));
+        mLayerBD.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBDLeft, Soccer3::mPlaneShiftBDRight,
+            Soccer3::mMutateMaterialD));
 
         mMaterialCount = 4U;
     } else if (mStrength == EncryptionStrength::kStrong) {
         // Layer AA
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAA, Soccer3::mBitRowAB,
-            Soccer3::mFlameToadCipherRotationAAA, Soccer3::mFlameToadCipherRotationAAB, Soccer3::mFlameToadCipherRotationAAC, Soccer3::mFlameToadCipherRotationAAD,
+        mLayerAA.Add(new PasswordXORKernel(Soccer3::mMutateMaterialA));
+        mLayerAA.Add(new FourToadKernel(
+            {Soccer3::mBitRowAA, Soccer3::mBitRowAB,
+             {Soccer3::mToadCipherRotationAALeftA, Soccer3::mToadCipherRotationAALeftB, Soccer3::mToadCipherRotationAALeftC, Soccer3::mToadCipherRotationAALeftD}},
+            {Soccer3::mBitRowAC, Soccer3::mBitRowAD,
+             {Soccer3::mToadCipherRotationAALeftE, Soccer3::mToadCipherRotationAALeftF, Soccer3::mToadCipherRotationAALeftG, Soccer3::mToadCipherRotationAALeftH}},
+            {Soccer3::mBitRowAE, Soccer3::mBitRowAF,
+             {Soccer3::mToadCipherRotationAARightA, Soccer3::mToadCipherRotationAARightB, Soccer3::mToadCipherRotationAARightC, Soccer3::mToadCipherRotationAARightD}},
+            {Soccer3::mBitRowAG, Soccer3::mBitRowAH,
+             {Soccer3::mToadCipherRotationAARightE, Soccer3::mToadCipherRotationAARightF, Soccer3::mToadCipherRotationAARightG, Soccer3::mToadCipherRotationAARightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAC, Soccer3::mBitRowAD,
-            Soccer3::mFlameToadCipherRotationAAE, Soccer3::mFlameToadCipherRotationAAF, Soccer3::mFlameToadCipherRotationAAG, Soccer3::mFlameToadCipherRotationAAH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAE, Soccer3::mBitRowAF,
-            Soccer3::mFlameToadCipherRotationAAI, Soccer3::mFlameToadCipherRotationAAJ, Soccer3::mFlameToadCipherRotationAAK, Soccer3::mFlameToadCipherRotationAAL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAG, Soccer3::mBitRowAH,
-            Soccer3::mFlameToadCipherRotationAAM, Soccer3::mFlameToadCipherRotationAAN, Soccer3::mFlameToadCipherRotationAAO, Soccer3::mFlameToadCipherRotationAAP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new PasswordXORCipher(Soccer3::mMutateMaterialA));
-        mLayerAA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskA, Soccer3::mShiftMaskedCipherRotationAA));
-        mLayerAA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskB, Soccer3::mShiftMaskedCipherRotationAB));
-        mLayerAA.Add(new PasswordXORCipher(Soccer3::mMutateMaterialB));
+        mLayerAA.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftAALeft, Soccer3::mPlaneShiftAARight,
+            Soccer3::mMutateMaterialB));
 
         // Layer AB
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBA, Soccer3::mBitRowBB,
-            Soccer3::mFlameToadCipherRotationABA, Soccer3::mFlameToadCipherRotationABB, Soccer3::mFlameToadCipherRotationABC, Soccer3::mFlameToadCipherRotationABD,
+        mLayerAB.Add(new PasswordXORKernel(Soccer3::mMutateMaterialC));
+        mLayerAB.Add(new FourToadKernel(
+            {Soccer3::mBitRowBA, Soccer3::mBitRowBB,
+             {Soccer3::mToadCipherRotationABLeftA, Soccer3::mToadCipherRotationABLeftB, Soccer3::mToadCipherRotationABLeftC, Soccer3::mToadCipherRotationABLeftD}},
+            {Soccer3::mBitRowBC, Soccer3::mBitRowBD,
+             {Soccer3::mToadCipherRotationABLeftE, Soccer3::mToadCipherRotationABLeftF, Soccer3::mToadCipherRotationABLeftG, Soccer3::mToadCipherRotationABLeftH}},
+            {Soccer3::mBitRowBE, Soccer3::mBitRowBF,
+             {Soccer3::mToadCipherRotationABRightA, Soccer3::mToadCipherRotationABRightB, Soccer3::mToadCipherRotationABRightC, Soccer3::mToadCipherRotationABRightD}},
+            {Soccer3::mBitRowBG, Soccer3::mBitRowBH,
+             {Soccer3::mToadCipherRotationABRightE, Soccer3::mToadCipherRotationABRightF, Soccer3::mToadCipherRotationABRightG, Soccer3::mToadCipherRotationABRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBC, Soccer3::mBitRowBD,
-            Soccer3::mFlameToadCipherRotationABE, Soccer3::mFlameToadCipherRotationABF, Soccer3::mFlameToadCipherRotationABG, Soccer3::mFlameToadCipherRotationABH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBE, Soccer3::mBitRowBF,
-            Soccer3::mFlameToadCipherRotationABI, Soccer3::mFlameToadCipherRotationABJ, Soccer3::mFlameToadCipherRotationABK, Soccer3::mFlameToadCipherRotationABL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBG, Soccer3::mBitRowBH,
-            Soccer3::mFlameToadCipherRotationABM, Soccer3::mFlameToadCipherRotationABN, Soccer3::mFlameToadCipherRotationABO, Soccer3::mFlameToadCipherRotationABP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new PasswordXORCipher(Soccer3::mMutateMaterialC));
-        mLayerAB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskC, Soccer3::mShiftMaskedCipherRotationAC));
-        mLayerAB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskD, Soccer3::mShiftMaskedCipherRotationAD));
-        mLayerAB.Add(new PasswordXORCipher(Soccer3::mMutateMaterialD));
+        mLayerAB.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftABLeft, Soccer3::mPlaneShiftABRight,
+            Soccer3::mMutateMaterialD));
 
         // Layer AC
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCA, Soccer3::mBitRowCB,
-            Soccer3::mFlameToadCipherRotationACA, Soccer3::mFlameToadCipherRotationACB, Soccer3::mFlameToadCipherRotationACC, Soccer3::mFlameToadCipherRotationACD,
+        mLayerAC.Add(new PasswordXORKernel(Soccer3::mMutateMaterialE));
+        mLayerAC.Add(new FourToadKernel(
+            {Soccer3::mBitRowCA, Soccer3::mBitRowCB,
+             {Soccer3::mToadCipherRotationACLeftA, Soccer3::mToadCipherRotationACLeftB, Soccer3::mToadCipherRotationACLeftC, Soccer3::mToadCipherRotationACLeftD}},
+            {Soccer3::mBitRowCC, Soccer3::mBitRowCD,
+             {Soccer3::mToadCipherRotationACLeftE, Soccer3::mToadCipherRotationACLeftF, Soccer3::mToadCipherRotationACLeftG, Soccer3::mToadCipherRotationACLeftH}},
+            {Soccer3::mBitRowCE, Soccer3::mBitRowCF,
+             {Soccer3::mToadCipherRotationACRightA, Soccer3::mToadCipherRotationACRightB, Soccer3::mToadCipherRotationACRightC, Soccer3::mToadCipherRotationACRightD}},
+            {Soccer3::mBitRowCG, Soccer3::mBitRowCH,
+             {Soccer3::mToadCipherRotationACRightE, Soccer3::mToadCipherRotationACRightF, Soccer3::mToadCipherRotationACRightG, Soccer3::mToadCipherRotationACRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCC, Soccer3::mBitRowCD,
-            Soccer3::mFlameToadCipherRotationACE, Soccer3::mFlameToadCipherRotationACF, Soccer3::mFlameToadCipherRotationACG, Soccer3::mFlameToadCipherRotationACH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCE, Soccer3::mBitRowCF,
-            Soccer3::mFlameToadCipherRotationACI, Soccer3::mFlameToadCipherRotationACJ, Soccer3::mFlameToadCipherRotationACK, Soccer3::mFlameToadCipherRotationACL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCG, Soccer3::mBitRowCH,
-            Soccer3::mFlameToadCipherRotationACM, Soccer3::mFlameToadCipherRotationACN, Soccer3::mFlameToadCipherRotationACO, Soccer3::mFlameToadCipherRotationACP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialE));
-        mLayerAC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskE, Soccer3::mShiftMaskedCipherRotationAE));
-        mLayerAC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskF, Soccer3::mShiftMaskedCipherRotationAF));
-        mLayerAC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialF));
+        mLayerAC.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftACLeft, Soccer3::mPlaneShiftACRight,
+            Soccer3::mMutateMaterialF));
 
         // Layer AD
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDA, Soccer3::mBitRowDB,
-            Soccer3::mFlameToadCipherRotationADA, Soccer3::mFlameToadCipherRotationADB, Soccer3::mFlameToadCipherRotationADC, Soccer3::mFlameToadCipherRotationADD,
+        mLayerAD.Add(new PasswordXORKernel(Soccer3::mMutateMaterialG));
+        mLayerAD.Add(new FourToadKernel(
+            {Soccer3::mBitRowDA, Soccer3::mBitRowDB,
+             {Soccer3::mToadCipherRotationADLeftA, Soccer3::mToadCipherRotationADLeftB, Soccer3::mToadCipherRotationADLeftC, Soccer3::mToadCipherRotationADLeftD}},
+            {Soccer3::mBitRowDC, Soccer3::mBitRowDD,
+             {Soccer3::mToadCipherRotationADLeftE, Soccer3::mToadCipherRotationADLeftF, Soccer3::mToadCipherRotationADLeftG, Soccer3::mToadCipherRotationADLeftH}},
+            {Soccer3::mBitRowDE, Soccer3::mBitRowDF,
+             {Soccer3::mToadCipherRotationADRightA, Soccer3::mToadCipherRotationADRightB, Soccer3::mToadCipherRotationADRightC, Soccer3::mToadCipherRotationADRightD}},
+            {Soccer3::mBitRowDG, Soccer3::mBitRowDH,
+             {Soccer3::mToadCipherRotationADRightE, Soccer3::mToadCipherRotationADRightF, Soccer3::mToadCipherRotationADRightG, Soccer3::mToadCipherRotationADRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDC, Soccer3::mBitRowDD,
-            Soccer3::mFlameToadCipherRotationADE, Soccer3::mFlameToadCipherRotationADF, Soccer3::mFlameToadCipherRotationADG, Soccer3::mFlameToadCipherRotationADH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDE, Soccer3::mBitRowDF,
-            Soccer3::mFlameToadCipherRotationADI, Soccer3::mFlameToadCipherRotationADJ, Soccer3::mFlameToadCipherRotationADK, Soccer3::mFlameToadCipherRotationADL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDG, Soccer3::mBitRowDH,
-            Soccer3::mFlameToadCipherRotationADM, Soccer3::mFlameToadCipherRotationADN, Soccer3::mFlameToadCipherRotationADO, Soccer3::mFlameToadCipherRotationADP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialG));
-        mLayerAD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskG, Soccer3::mShiftMaskedCipherRotationAG));
-        mLayerAD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskH, Soccer3::mShiftMaskedCipherRotationAH));
-        mLayerAD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialH));
-        mLayerAD.Add(new BitReverseCipher{});
+        mLayerAD.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftADLeft, Soccer3::mPlaneShiftADRight,
+            Soccer3::mMutateMaterialH));
+        mLayerAD.Add(new BitReverseKernel{});
 
         // Layer BA
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAA, Soccer3::mBitRowAB,
-            Soccer3::mFlameToadCipherRotationBAA, Soccer3::mFlameToadCipherRotationBAB, Soccer3::mFlameToadCipherRotationBAC, Soccer3::mFlameToadCipherRotationBAD,
+        mLayerBA.Add(new PasswordXORKernel(Soccer3::mMutateMaterialI));
+        mLayerBA.Add(new FourToadKernel(
+            {Soccer3::mBitRowAA, Soccer3::mBitRowAB,
+             {Soccer3::mToadCipherRotationBALeftA, Soccer3::mToadCipherRotationBALeftB, Soccer3::mToadCipherRotationBALeftC, Soccer3::mToadCipherRotationBALeftD}},
+            {Soccer3::mBitRowAC, Soccer3::mBitRowAD,
+             {Soccer3::mToadCipherRotationBALeftE, Soccer3::mToadCipherRotationBALeftF, Soccer3::mToadCipherRotationBALeftG, Soccer3::mToadCipherRotationBALeftH}},
+            {Soccer3::mBitRowAE, Soccer3::mBitRowAF,
+             {Soccer3::mToadCipherRotationBARightA, Soccer3::mToadCipherRotationBARightB, Soccer3::mToadCipherRotationBARightC, Soccer3::mToadCipherRotationBARightD}},
+            {Soccer3::mBitRowAG, Soccer3::mBitRowAH,
+             {Soccer3::mToadCipherRotationBARightE, Soccer3::mToadCipherRotationBARightF, Soccer3::mToadCipherRotationBARightG, Soccer3::mToadCipherRotationBARightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAC, Soccer3::mBitRowAD,
-            Soccer3::mFlameToadCipherRotationBAE, Soccer3::mFlameToadCipherRotationBAF, Soccer3::mFlameToadCipherRotationBAG, Soccer3::mFlameToadCipherRotationBAH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAE, Soccer3::mBitRowAF,
-            Soccer3::mFlameToadCipherRotationBAI, Soccer3::mFlameToadCipherRotationBAJ, Soccer3::mFlameToadCipherRotationBAK, Soccer3::mFlameToadCipherRotationBAL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAG, Soccer3::mBitRowAH,
-            Soccer3::mFlameToadCipherRotationBAM, Soccer3::mFlameToadCipherRotationBAN, Soccer3::mFlameToadCipherRotationBAO, Soccer3::mFlameToadCipherRotationBAP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new PasswordXORCipher(Soccer3::mMutateMaterialI));
-        mLayerBA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskA, Soccer3::mShiftMaskedCipherRotationBA));
-        mLayerBA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskB, Soccer3::mShiftMaskedCipherRotationBB));
-        mLayerBA.Add(new PasswordXORCipher(Soccer3::mMutateMaterialJ));
+        mLayerBA.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBALeft, Soccer3::mPlaneShiftBARight,
+            Soccer3::mMutateMaterialJ));
 
         // Layer BB
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBA, Soccer3::mBitRowBB,
-            Soccer3::mFlameToadCipherRotationBBA, Soccer3::mFlameToadCipherRotationBBB, Soccer3::mFlameToadCipherRotationBBC, Soccer3::mFlameToadCipherRotationBBD,
+        mLayerBB.Add(new PasswordXORKernel(Soccer3::mMutateMaterialK));
+        mLayerBB.Add(new FourToadKernel(
+            {Soccer3::mBitRowBA, Soccer3::mBitRowBB,
+             {Soccer3::mToadCipherRotationBBLeftA, Soccer3::mToadCipherRotationBBLeftB, Soccer3::mToadCipherRotationBBLeftC, Soccer3::mToadCipherRotationBBLeftD}},
+            {Soccer3::mBitRowBC, Soccer3::mBitRowBD,
+             {Soccer3::mToadCipherRotationBBLeftE, Soccer3::mToadCipherRotationBBLeftF, Soccer3::mToadCipherRotationBBLeftG, Soccer3::mToadCipherRotationBBLeftH}},
+            {Soccer3::mBitRowBE, Soccer3::mBitRowBF,
+             {Soccer3::mToadCipherRotationBBRightA, Soccer3::mToadCipherRotationBBRightB, Soccer3::mToadCipherRotationBBRightC, Soccer3::mToadCipherRotationBBRightD}},
+            {Soccer3::mBitRowBG, Soccer3::mBitRowBH,
+             {Soccer3::mToadCipherRotationBBRightE, Soccer3::mToadCipherRotationBBRightF, Soccer3::mToadCipherRotationBBRightG, Soccer3::mToadCipherRotationBBRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBC, Soccer3::mBitRowBD,
-            Soccer3::mFlameToadCipherRotationBBE, Soccer3::mFlameToadCipherRotationBBF, Soccer3::mFlameToadCipherRotationBBG, Soccer3::mFlameToadCipherRotationBBH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBE, Soccer3::mBitRowBF,
-            Soccer3::mFlameToadCipherRotationBBI, Soccer3::mFlameToadCipherRotationBBJ, Soccer3::mFlameToadCipherRotationBBK, Soccer3::mFlameToadCipherRotationBBL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBG, Soccer3::mBitRowBH,
-            Soccer3::mFlameToadCipherRotationBBM, Soccer3::mFlameToadCipherRotationBBN, Soccer3::mFlameToadCipherRotationBBO, Soccer3::mFlameToadCipherRotationBBP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new PasswordXORCipher(Soccer3::mMutateMaterialK));
-        mLayerBB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskC, Soccer3::mShiftMaskedCipherRotationBC));
-        mLayerBB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskD, Soccer3::mShiftMaskedCipherRotationBD));
-        mLayerBB.Add(new PasswordXORCipher(Soccer3::mMutateMaterialL));
+        mLayerBB.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBBLeft, Soccer3::mPlaneShiftBBRight,
+            Soccer3::mMutateMaterialL));
 
         // Layer BC
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCA, Soccer3::mBitRowCB,
-            Soccer3::mFlameToadCipherRotationBCA, Soccer3::mFlameToadCipherRotationBCB, Soccer3::mFlameToadCipherRotationBCC, Soccer3::mFlameToadCipherRotationBCD,
+        mLayerBC.Add(new PasswordXORKernel(Soccer3::mMutateMaterialM));
+        mLayerBC.Add(new FourToadKernel(
+            {Soccer3::mBitRowCA, Soccer3::mBitRowCB,
+             {Soccer3::mToadCipherRotationBCLeftA, Soccer3::mToadCipherRotationBCLeftB, Soccer3::mToadCipherRotationBCLeftC, Soccer3::mToadCipherRotationBCLeftD}},
+            {Soccer3::mBitRowCC, Soccer3::mBitRowCD,
+             {Soccer3::mToadCipherRotationBCLeftE, Soccer3::mToadCipherRotationBCLeftF, Soccer3::mToadCipherRotationBCLeftG, Soccer3::mToadCipherRotationBCLeftH}},
+            {Soccer3::mBitRowCE, Soccer3::mBitRowCF,
+             {Soccer3::mToadCipherRotationBCRightA, Soccer3::mToadCipherRotationBCRightB, Soccer3::mToadCipherRotationBCRightC, Soccer3::mToadCipherRotationBCRightD}},
+            {Soccer3::mBitRowCG, Soccer3::mBitRowCH,
+             {Soccer3::mToadCipherRotationBCRightE, Soccer3::mToadCipherRotationBCRightF, Soccer3::mToadCipherRotationBCRightG, Soccer3::mToadCipherRotationBCRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCC, Soccer3::mBitRowCD,
-            Soccer3::mFlameToadCipherRotationBCE, Soccer3::mFlameToadCipherRotationBCF, Soccer3::mFlameToadCipherRotationBCG, Soccer3::mFlameToadCipherRotationBCH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCE, Soccer3::mBitRowCF,
-            Soccer3::mFlameToadCipherRotationBCI, Soccer3::mFlameToadCipherRotationBCJ, Soccer3::mFlameToadCipherRotationBCK, Soccer3::mFlameToadCipherRotationBCL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCG, Soccer3::mBitRowCH,
-            Soccer3::mFlameToadCipherRotationBCM, Soccer3::mFlameToadCipherRotationBCN, Soccer3::mFlameToadCipherRotationBCO, Soccer3::mFlameToadCipherRotationBCP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialM));
-        mLayerBC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskE, Soccer3::mShiftMaskedCipherRotationBE));
-        mLayerBC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskF, Soccer3::mShiftMaskedCipherRotationBF));
-        mLayerBC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialN));
+        mLayerBC.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBCLeft, Soccer3::mPlaneShiftBCRight,
+            Soccer3::mMutateMaterialN));
 
         // Layer BD
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDA, Soccer3::mBitRowDB,
-            Soccer3::mFlameToadCipherRotationBDA, Soccer3::mFlameToadCipherRotationBDB, Soccer3::mFlameToadCipherRotationBDC, Soccer3::mFlameToadCipherRotationBDD,
+        mLayerBD.Add(new PasswordXORKernel(Soccer3::mMutateMaterialO));
+        mLayerBD.Add(new FourToadKernel(
+            {Soccer3::mBitRowDA, Soccer3::mBitRowDB,
+             {Soccer3::mToadCipherRotationBDLeftA, Soccer3::mToadCipherRotationBDLeftB, Soccer3::mToadCipherRotationBDLeftC, Soccer3::mToadCipherRotationBDLeftD}},
+            {Soccer3::mBitRowDC, Soccer3::mBitRowDD,
+             {Soccer3::mToadCipherRotationBDLeftE, Soccer3::mToadCipherRotationBDLeftF, Soccer3::mToadCipherRotationBDLeftG, Soccer3::mToadCipherRotationBDLeftH}},
+            {Soccer3::mBitRowDE, Soccer3::mBitRowDF,
+             {Soccer3::mToadCipherRotationBDRightA, Soccer3::mToadCipherRotationBDRightB, Soccer3::mToadCipherRotationBDRightC, Soccer3::mToadCipherRotationBDRightD}},
+            {Soccer3::mBitRowDG, Soccer3::mBitRowDH,
+             {Soccer3::mToadCipherRotationBDRightE, Soccer3::mToadCipherRotationBDRightF, Soccer3::mToadCipherRotationBDRightG, Soccer3::mToadCipherRotationBDRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDC, Soccer3::mBitRowDD,
-            Soccer3::mFlameToadCipherRotationBDE, Soccer3::mFlameToadCipherRotationBDF, Soccer3::mFlameToadCipherRotationBDG, Soccer3::mFlameToadCipherRotationBDH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDE, Soccer3::mBitRowDF,
-            Soccer3::mFlameToadCipherRotationBDI, Soccer3::mFlameToadCipherRotationBDJ, Soccer3::mFlameToadCipherRotationBDK, Soccer3::mFlameToadCipherRotationBDL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDG, Soccer3::mBitRowDH,
-            Soccer3::mFlameToadCipherRotationBDM, Soccer3::mFlameToadCipherRotationBDN, Soccer3::mFlameToadCipherRotationBDO, Soccer3::mFlameToadCipherRotationBDP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialO));
-        mLayerBD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskG, Soccer3::mShiftMaskedCipherRotationBG));
-        mLayerBD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskH, Soccer3::mShiftMaskedCipherRotationBH));
-        mLayerBD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialP));
+        mLayerBD.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBDLeft, Soccer3::mPlaneShiftBDRight,
+            Soccer3::mMutateMaterialP));
 
         mMaterialCount = 16U;
     } else { // Normal, including unrecognized strength values.
         mStrength = EncryptionStrength::kNormal;
         // Layer AA
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAA, Soccer3::mBitRowAB,
-            Soccer3::mFlameToadCipherRotationAAA, Soccer3::mFlameToadCipherRotationAAB, Soccer3::mFlameToadCipherRotationAAC, Soccer3::mFlameToadCipherRotationAAD,
+        mLayerAA.Add(new FourToadKernel(
+            {Soccer3::mBitRowAA, Soccer3::mBitRowAB,
+             {Soccer3::mToadCipherRotationAALeftA, Soccer3::mToadCipherRotationAALeftB, Soccer3::mToadCipherRotationAALeftC, Soccer3::mToadCipherRotationAALeftD}},
+            {Soccer3::mBitRowAC, Soccer3::mBitRowAD,
+             {Soccer3::mToadCipherRotationAALeftE, Soccer3::mToadCipherRotationAALeftF, Soccer3::mToadCipherRotationAALeftG, Soccer3::mToadCipherRotationAALeftH}},
+            {Soccer3::mBitRowAE, Soccer3::mBitRowAF,
+             {Soccer3::mToadCipherRotationAARightA, Soccer3::mToadCipherRotationAARightB, Soccer3::mToadCipherRotationAARightC, Soccer3::mToadCipherRotationAARightD}},
+            {Soccer3::mBitRowAG, Soccer3::mBitRowAH,
+             {Soccer3::mToadCipherRotationAARightE, Soccer3::mToadCipherRotationAARightF, Soccer3::mToadCipherRotationAARightG, Soccer3::mToadCipherRotationAARightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAC, Soccer3::mBitRowAD,
-            Soccer3::mFlameToadCipherRotationAAE, Soccer3::mFlameToadCipherRotationAAF, Soccer3::mFlameToadCipherRotationAAG, Soccer3::mFlameToadCipherRotationAAH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAE, Soccer3::mBitRowAF,
-            Soccer3::mFlameToadCipherRotationAAI, Soccer3::mFlameToadCipherRotationAAJ, Soccer3::mFlameToadCipherRotationAAK, Soccer3::mFlameToadCipherRotationAAL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new FlameToadCipher(Soccer3::mBitRowAG, Soccer3::mBitRowAH,
-            Soccer3::mFlameToadCipherRotationAAM, Soccer3::mFlameToadCipherRotationAAN, Soccer3::mFlameToadCipherRotationAAO, Soccer3::mFlameToadCipherRotationAAP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskA, Soccer3::mShiftMaskedCipherRotationAA));
-        mLayerAA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskB, Soccer3::mShiftMaskedCipherRotationAB));
-        mLayerAA.Add(new PasswordXORCipher(Soccer3::mMutateMaterialA));
+        mLayerAA.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftAALeft, Soccer3::mPlaneShiftAARight,
+            Soccer3::mMutateMaterialA));
 
         // Layer AB
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBA, Soccer3::mBitRowBB,
-            Soccer3::mFlameToadCipherRotationABA, Soccer3::mFlameToadCipherRotationABB, Soccer3::mFlameToadCipherRotationABC, Soccer3::mFlameToadCipherRotationABD,
+        mLayerAB.Add(new FourToadKernel(
+            {Soccer3::mBitRowBA, Soccer3::mBitRowBB,
+             {Soccer3::mToadCipherRotationABLeftA, Soccer3::mToadCipherRotationABLeftB, Soccer3::mToadCipherRotationABLeftC, Soccer3::mToadCipherRotationABLeftD}},
+            {Soccer3::mBitRowBC, Soccer3::mBitRowBD,
+             {Soccer3::mToadCipherRotationABLeftE, Soccer3::mToadCipherRotationABLeftF, Soccer3::mToadCipherRotationABLeftG, Soccer3::mToadCipherRotationABLeftH}},
+            {Soccer3::mBitRowBE, Soccer3::mBitRowBF,
+             {Soccer3::mToadCipherRotationABRightA, Soccer3::mToadCipherRotationABRightB, Soccer3::mToadCipherRotationABRightC, Soccer3::mToadCipherRotationABRightD}},
+            {Soccer3::mBitRowBG, Soccer3::mBitRowBH,
+             {Soccer3::mToadCipherRotationABRightE, Soccer3::mToadCipherRotationABRightF, Soccer3::mToadCipherRotationABRightG, Soccer3::mToadCipherRotationABRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBC, Soccer3::mBitRowBD,
-            Soccer3::mFlameToadCipherRotationABE, Soccer3::mFlameToadCipherRotationABF, Soccer3::mFlameToadCipherRotationABG, Soccer3::mFlameToadCipherRotationABH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBE, Soccer3::mBitRowBF,
-            Soccer3::mFlameToadCipherRotationABI, Soccer3::mFlameToadCipherRotationABJ, Soccer3::mFlameToadCipherRotationABK, Soccer3::mFlameToadCipherRotationABL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new FlameToadCipher(Soccer3::mBitRowBG, Soccer3::mBitRowBH,
-            Soccer3::mFlameToadCipherRotationABM, Soccer3::mFlameToadCipherRotationABN, Soccer3::mFlameToadCipherRotationABO, Soccer3::mFlameToadCipherRotationABP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskC, Soccer3::mShiftMaskedCipherRotationAC));
-        mLayerAB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskD, Soccer3::mShiftMaskedCipherRotationAD));
-        mLayerAB.Add(new PasswordXORCipher(Soccer3::mMutateMaterialB));
+        mLayerAB.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftABLeft, Soccer3::mPlaneShiftABRight,
+            Soccer3::mMutateMaterialB));
 
         // Layer AC
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCA, Soccer3::mBitRowCB,
-            Soccer3::mFlameToadCipherRotationACA, Soccer3::mFlameToadCipherRotationACB, Soccer3::mFlameToadCipherRotationACC, Soccer3::mFlameToadCipherRotationACD,
+        mLayerAC.Add(new FourToadKernel(
+            {Soccer3::mBitRowCA, Soccer3::mBitRowCB,
+             {Soccer3::mToadCipherRotationACLeftA, Soccer3::mToadCipherRotationACLeftB, Soccer3::mToadCipherRotationACLeftC, Soccer3::mToadCipherRotationACLeftD}},
+            {Soccer3::mBitRowCC, Soccer3::mBitRowCD,
+             {Soccer3::mToadCipherRotationACLeftE, Soccer3::mToadCipherRotationACLeftF, Soccer3::mToadCipherRotationACLeftG, Soccer3::mToadCipherRotationACLeftH}},
+            {Soccer3::mBitRowCE, Soccer3::mBitRowCF,
+             {Soccer3::mToadCipherRotationACRightA, Soccer3::mToadCipherRotationACRightB, Soccer3::mToadCipherRotationACRightC, Soccer3::mToadCipherRotationACRightD}},
+            {Soccer3::mBitRowCG, Soccer3::mBitRowCH,
+             {Soccer3::mToadCipherRotationACRightE, Soccer3::mToadCipherRotationACRightF, Soccer3::mToadCipherRotationACRightG, Soccer3::mToadCipherRotationACRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCC, Soccer3::mBitRowCD,
-            Soccer3::mFlameToadCipherRotationACE, Soccer3::mFlameToadCipherRotationACF, Soccer3::mFlameToadCipherRotationACG, Soccer3::mFlameToadCipherRotationACH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCE, Soccer3::mBitRowCF,
-            Soccer3::mFlameToadCipherRotationACI, Soccer3::mFlameToadCipherRotationACJ, Soccer3::mFlameToadCipherRotationACK, Soccer3::mFlameToadCipherRotationACL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new FlameToadCipher(Soccer3::mBitRowCG, Soccer3::mBitRowCH,
-            Soccer3::mFlameToadCipherRotationACM, Soccer3::mFlameToadCipherRotationACN, Soccer3::mFlameToadCipherRotationACO, Soccer3::mFlameToadCipherRotationACP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskE, Soccer3::mShiftMaskedCipherRotationAE));
-        mLayerAC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskF, Soccer3::mShiftMaskedCipherRotationAF));
-        mLayerAC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialC));
+        mLayerAC.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftACLeft, Soccer3::mPlaneShiftACRight,
+            Soccer3::mMutateMaterialC));
 
         // Layer AD
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDA, Soccer3::mBitRowDB,
-            Soccer3::mFlameToadCipherRotationADA, Soccer3::mFlameToadCipherRotationADB, Soccer3::mFlameToadCipherRotationADC, Soccer3::mFlameToadCipherRotationADD,
+        mLayerAD.Add(new FourToadKernel(
+            {Soccer3::mBitRowDA, Soccer3::mBitRowDB,
+             {Soccer3::mToadCipherRotationADLeftA, Soccer3::mToadCipherRotationADLeftB, Soccer3::mToadCipherRotationADLeftC, Soccer3::mToadCipherRotationADLeftD}},
+            {Soccer3::mBitRowDC, Soccer3::mBitRowDD,
+             {Soccer3::mToadCipherRotationADLeftE, Soccer3::mToadCipherRotationADLeftF, Soccer3::mToadCipherRotationADLeftG, Soccer3::mToadCipherRotationADLeftH}},
+            {Soccer3::mBitRowDE, Soccer3::mBitRowDF,
+             {Soccer3::mToadCipherRotationADRightA, Soccer3::mToadCipherRotationADRightB, Soccer3::mToadCipherRotationADRightC, Soccer3::mToadCipherRotationADRightD}},
+            {Soccer3::mBitRowDG, Soccer3::mBitRowDH,
+             {Soccer3::mToadCipherRotationADRightE, Soccer3::mToadCipherRotationADRightF, Soccer3::mToadCipherRotationADRightG, Soccer3::mToadCipherRotationADRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDC, Soccer3::mBitRowDD,
-            Soccer3::mFlameToadCipherRotationADE, Soccer3::mFlameToadCipherRotationADF, Soccer3::mFlameToadCipherRotationADG, Soccer3::mFlameToadCipherRotationADH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDE, Soccer3::mBitRowDF,
-            Soccer3::mFlameToadCipherRotationADI, Soccer3::mFlameToadCipherRotationADJ, Soccer3::mFlameToadCipherRotationADK, Soccer3::mFlameToadCipherRotationADL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new FlameToadCipher(Soccer3::mBitRowDG, Soccer3::mBitRowDH,
-            Soccer3::mFlameToadCipherRotationADM, Soccer3::mFlameToadCipherRotationADN, Soccer3::mFlameToadCipherRotationADO, Soccer3::mFlameToadCipherRotationADP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerAD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskG, Soccer3::mShiftMaskedCipherRotationAG));
-        mLayerAD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskH, Soccer3::mShiftMaskedCipherRotationAH));
-        mLayerAD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialD));
-        mLayerAD.Add(new BitReverseCipher{});
+        mLayerAD.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftADLeft, Soccer3::mPlaneShiftADRight,
+            Soccer3::mMutateMaterialD));
+        mLayerAD.Add(new BitReverseKernel{});
 
         // Layer BA
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAA, Soccer3::mBitRowAB,
-            Soccer3::mFlameToadCipherRotationBAA, Soccer3::mFlameToadCipherRotationBAB, Soccer3::mFlameToadCipherRotationBAC, Soccer3::mFlameToadCipherRotationBAD,
+        mLayerBA.Add(new FourToadKernel(
+            {Soccer3::mBitRowAA, Soccer3::mBitRowAB,
+             {Soccer3::mToadCipherRotationBALeftA, Soccer3::mToadCipherRotationBALeftB, Soccer3::mToadCipherRotationBALeftC, Soccer3::mToadCipherRotationBALeftD}},
+            {Soccer3::mBitRowAC, Soccer3::mBitRowAD,
+             {Soccer3::mToadCipherRotationBALeftE, Soccer3::mToadCipherRotationBALeftF, Soccer3::mToadCipherRotationBALeftG, Soccer3::mToadCipherRotationBALeftH}},
+            {Soccer3::mBitRowAE, Soccer3::mBitRowAF,
+             {Soccer3::mToadCipherRotationBARightA, Soccer3::mToadCipherRotationBARightB, Soccer3::mToadCipherRotationBARightC, Soccer3::mToadCipherRotationBARightD}},
+            {Soccer3::mBitRowAG, Soccer3::mBitRowAH,
+             {Soccer3::mToadCipherRotationBARightE, Soccer3::mToadCipherRotationBARightF, Soccer3::mToadCipherRotationBARightG, Soccer3::mToadCipherRotationBARightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAC, Soccer3::mBitRowAD,
-            Soccer3::mFlameToadCipherRotationBAE, Soccer3::mFlameToadCipherRotationBAF, Soccer3::mFlameToadCipherRotationBAG, Soccer3::mFlameToadCipherRotationBAH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAE, Soccer3::mBitRowAF,
-            Soccer3::mFlameToadCipherRotationBAI, Soccer3::mFlameToadCipherRotationBAJ, Soccer3::mFlameToadCipherRotationBAK, Soccer3::mFlameToadCipherRotationBAL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new FlameToadCipher(Soccer3::mBitRowAG, Soccer3::mBitRowAH,
-            Soccer3::mFlameToadCipherRotationBAM, Soccer3::mFlameToadCipherRotationBAN, Soccer3::mFlameToadCipherRotationBAO, Soccer3::mFlameToadCipherRotationBAP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskA, Soccer3::mShiftMaskedCipherRotationBA));
-        mLayerBA.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskB, Soccer3::mShiftMaskedCipherRotationBB));
-        mLayerBA.Add(new PasswordXORCipher(Soccer3::mMutateMaterialE));
+        mLayerBA.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBALeft, Soccer3::mPlaneShiftBARight,
+            Soccer3::mMutateMaterialE));
 
         // Layer BB
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBA, Soccer3::mBitRowBB,
-            Soccer3::mFlameToadCipherRotationBBA, Soccer3::mFlameToadCipherRotationBBB, Soccer3::mFlameToadCipherRotationBBC, Soccer3::mFlameToadCipherRotationBBD,
+        mLayerBB.Add(new FourToadKernel(
+            {Soccer3::mBitRowBA, Soccer3::mBitRowBB,
+             {Soccer3::mToadCipherRotationBBLeftA, Soccer3::mToadCipherRotationBBLeftB, Soccer3::mToadCipherRotationBBLeftC, Soccer3::mToadCipherRotationBBLeftD}},
+            {Soccer3::mBitRowBC, Soccer3::mBitRowBD,
+             {Soccer3::mToadCipherRotationBBLeftE, Soccer3::mToadCipherRotationBBLeftF, Soccer3::mToadCipherRotationBBLeftG, Soccer3::mToadCipherRotationBBLeftH}},
+            {Soccer3::mBitRowBE, Soccer3::mBitRowBF,
+             {Soccer3::mToadCipherRotationBBRightA, Soccer3::mToadCipherRotationBBRightB, Soccer3::mToadCipherRotationBBRightC, Soccer3::mToadCipherRotationBBRightD}},
+            {Soccer3::mBitRowBG, Soccer3::mBitRowBH,
+             {Soccer3::mToadCipherRotationBBRightE, Soccer3::mToadCipherRotationBBRightF, Soccer3::mToadCipherRotationBBRightG, Soccer3::mToadCipherRotationBBRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBC, Soccer3::mBitRowBD,
-            Soccer3::mFlameToadCipherRotationBBE, Soccer3::mFlameToadCipherRotationBBF, Soccer3::mFlameToadCipherRotationBBG, Soccer3::mFlameToadCipherRotationBBH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBE, Soccer3::mBitRowBF,
-            Soccer3::mFlameToadCipherRotationBBI, Soccer3::mFlameToadCipherRotationBBJ, Soccer3::mFlameToadCipherRotationBBK, Soccer3::mFlameToadCipherRotationBBL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new FlameToadCipher(Soccer3::mBitRowBG, Soccer3::mBitRowBH,
-            Soccer3::mFlameToadCipherRotationBBM, Soccer3::mFlameToadCipherRotationBBN, Soccer3::mFlameToadCipherRotationBBO, Soccer3::mFlameToadCipherRotationBBP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskC, Soccer3::mShiftMaskedCipherRotationBC));
-        mLayerBB.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskD, Soccer3::mShiftMaskedCipherRotationBD));
-        mLayerBB.Add(new PasswordXORCipher(Soccer3::mMutateMaterialF));
+        mLayerBB.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBBLeft, Soccer3::mPlaneShiftBBRight,
+            Soccer3::mMutateMaterialF));
 
         // Layer BC
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCA, Soccer3::mBitRowCB,
-            Soccer3::mFlameToadCipherRotationBCA, Soccer3::mFlameToadCipherRotationBCB, Soccer3::mFlameToadCipherRotationBCC, Soccer3::mFlameToadCipherRotationBCD,
+        mLayerBC.Add(new FourToadKernel(
+            {Soccer3::mBitRowCA, Soccer3::mBitRowCB,
+             {Soccer3::mToadCipherRotationBCLeftA, Soccer3::mToadCipherRotationBCLeftB, Soccer3::mToadCipherRotationBCLeftC, Soccer3::mToadCipherRotationBCLeftD}},
+            {Soccer3::mBitRowCC, Soccer3::mBitRowCD,
+             {Soccer3::mToadCipherRotationBCLeftE, Soccer3::mToadCipherRotationBCLeftF, Soccer3::mToadCipherRotationBCLeftG, Soccer3::mToadCipherRotationBCLeftH}},
+            {Soccer3::mBitRowCE, Soccer3::mBitRowCF,
+             {Soccer3::mToadCipherRotationBCRightA, Soccer3::mToadCipherRotationBCRightB, Soccer3::mToadCipherRotationBCRightC, Soccer3::mToadCipherRotationBCRightD}},
+            {Soccer3::mBitRowCG, Soccer3::mBitRowCH,
+             {Soccer3::mToadCipherRotationBCRightE, Soccer3::mToadCipherRotationBCRightF, Soccer3::mToadCipherRotationBCRightG, Soccer3::mToadCipherRotationBCRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCC, Soccer3::mBitRowCD,
-            Soccer3::mFlameToadCipherRotationBCE, Soccer3::mFlameToadCipherRotationBCF, Soccer3::mFlameToadCipherRotationBCG, Soccer3::mFlameToadCipherRotationBCH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCE, Soccer3::mBitRowCF,
-            Soccer3::mFlameToadCipherRotationBCI, Soccer3::mFlameToadCipherRotationBCJ, Soccer3::mFlameToadCipherRotationBCK, Soccer3::mFlameToadCipherRotationBCL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new FlameToadCipher(Soccer3::mBitRowCG, Soccer3::mBitRowCH,
-            Soccer3::mFlameToadCipherRotationBCM, Soccer3::mFlameToadCipherRotationBCN, Soccer3::mFlameToadCipherRotationBCO, Soccer3::mFlameToadCipherRotationBCP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskE, Soccer3::mShiftMaskedCipherRotationBE));
-        mLayerBC.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskF, Soccer3::mShiftMaskedCipherRotationBF));
-        mLayerBC.Add(new PasswordXORCipher(Soccer3::mMutateMaterialG));
+        mLayerBC.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBCLeft, Soccer3::mPlaneShiftBCRight,
+            Soccer3::mMutateMaterialG));
 
         // Layer BD
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDA, Soccer3::mBitRowDB,
-            Soccer3::mFlameToadCipherRotationBDA, Soccer3::mFlameToadCipherRotationBDB, Soccer3::mFlameToadCipherRotationBDC, Soccer3::mFlameToadCipherRotationBDD,
+        mLayerBD.Add(new FourToadKernel(
+            {Soccer3::mBitRowDA, Soccer3::mBitRowDB,
+             {Soccer3::mToadCipherRotationBDLeftA, Soccer3::mToadCipherRotationBDLeftB, Soccer3::mToadCipherRotationBDLeftC, Soccer3::mToadCipherRotationBDLeftD}},
+            {Soccer3::mBitRowDC, Soccer3::mBitRowDD,
+             {Soccer3::mToadCipherRotationBDLeftE, Soccer3::mToadCipherRotationBDLeftF, Soccer3::mToadCipherRotationBDLeftG, Soccer3::mToadCipherRotationBDLeftH}},
+            {Soccer3::mBitRowDE, Soccer3::mBitRowDF,
+             {Soccer3::mToadCipherRotationBDRightA, Soccer3::mToadCipherRotationBDRightB, Soccer3::mToadCipherRotationBDRightC, Soccer3::mToadCipherRotationBDRightD}},
+            {Soccer3::mBitRowDG, Soccer3::mBitRowDH,
+             {Soccer3::mToadCipherRotationBDRightE, Soccer3::mToadCipherRotationBDRightF, Soccer3::mToadCipherRotationBDRightG, Soccer3::mToadCipherRotationBDRightH}},
             {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDC, Soccer3::mBitRowDD,
-            Soccer3::mFlameToadCipherRotationBDE, Soccer3::mFlameToadCipherRotationBDF, Soccer3::mFlameToadCipherRotationBDG, Soccer3::mFlameToadCipherRotationBDH,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDE, Soccer3::mBitRowDF,
-            Soccer3::mFlameToadCipherRotationBDI, Soccer3::mFlameToadCipherRotationBDJ, Soccer3::mFlameToadCipherRotationBDK, Soccer3::mFlameToadCipherRotationBDL,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new FlameToadCipher(Soccer3::mBitRowDG, Soccer3::mBitRowDH,
-            Soccer3::mFlameToadCipherRotationBDM, Soccer3::mFlameToadCipherRotationBDN, Soccer3::mFlameToadCipherRotationBDO, Soccer3::mFlameToadCipherRotationBDP,
-            {Soccer3::mPackedRows, Soccer3::mPackedRowLength}));
-        mLayerBD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskG, Soccer3::mShiftMaskedCipherRotationBG));
-        mLayerBD.Add(new ShiftMaskedCipher(Soccer3::mRotationMaskH, Soccer3::mShiftMaskedCipherRotationBH));
-        mLayerBD.Add(new PasswordXORCipher(Soccer3::mMutateMaterialH));
+        mLayerBD.Add(new FourRavenKernel(
+            Soccer3::mPlaneShiftBDLeft, Soccer3::mPlaneShiftBDRight,
+            Soccer3::mMutateMaterialH));
 
         mMaterialCount = 8U;
     }
@@ -465,32 +417,32 @@ bool Cryptex::Build(EncryptionStrength pStrength) {
 
 bool Cryptex::SealData(const std::uint8_t *pSource, std::uint8_t *pWorkerA,
                        std::uint8_t *pWorkerB, std::uint8_t *pDestination,
-                       std::size_t pLength, CipherErrorCode *pErrorCode) const {
+                       std::size_t pLength, KernelErrorCode *pErrorCode) const {
     return Apply(false, pSource, pWorkerA, pWorkerB, pDestination, pLength, pErrorCode);
 }
 
 bool Cryptex::UnsealData(const std::uint8_t *pSource, std::uint8_t *pWorkerA,
                          std::uint8_t *pWorkerB, std::uint8_t *pDestination,
-                         std::size_t pLength, CipherErrorCode *pErrorCode) const {
+                         std::size_t pLength, KernelErrorCode *pErrorCode) const {
     return Apply(true, pSource, pWorkerA, pWorkerB, pDestination, pLength, pErrorCode);
 }
 
 bool Cryptex::Apply(bool pUnseal, const std::uint8_t *pSource, std::uint8_t *pWorkerA,
                     std::uint8_t *pWorkerB, std::uint8_t *pDestination,
-                    std::size_t pLength, CipherErrorCode *pErrorCode) const {
+                    std::size_t pLength, KernelErrorCode *pErrorCode) const {
     const CryptexLayer *aLayers[kLayerCount] = {
         &mLayerAA, &mLayerAB, &mLayerAC, &mLayerAD,
         &mLayerBA, &mLayerBB, &mLayerBC, &mLayerBD
     };
     if (pLength == 0U) {
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
         return true;
     }
-    
+
     const std::uint8_t *aBuffers[] = {pSource, pWorkerA, pWorkerB, pDestination};
     for (const auto *aBuffer : aBuffers) {
         if (aBuffer == nullptr) {
-            SetCipherErrorCode(pErrorCode, CipherErrorCode::kNullBuffer);
+            SetKernelErrorCode(pErrorCode, KernelErrorCode::kNullBuffer);
             return false;
         }
     }
@@ -501,7 +453,7 @@ bool Cryptex::Apply(bool pUnseal, const std::uint8_t *pSource, std::uint8_t *pWo
             const auto aDistance = aFirstAddress < aSecondAddress
                 ? aSecondAddress - aFirstAddress : aFirstAddress - aSecondAddress;
             if (aDistance < pLength) {
-                SetCipherErrorCode(pErrorCode, CipherErrorCode::kAliasedBuffer);
+                SetKernelErrorCode(pErrorCode, KernelErrorCode::kAliasedBuffer);
                 return false;
             }
         }
@@ -522,6 +474,6 @@ bool Cryptex::Apply(bool pUnseal, const std::uint8_t *pSource, std::uint8_t *pWo
         if (!aSuccess) return false;
         aInput = aOutput;
     }
-    SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+    SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
     return true;
 }

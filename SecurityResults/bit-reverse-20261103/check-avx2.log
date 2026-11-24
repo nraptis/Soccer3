@@ -1,0 +1,1 @@
+PASS: every byte value, forward/inverse reference, tails, unaligned 1 MiB, guards, overlap/null rejection

@@ -350,7 +350,7 @@
 					"$(SRCROOT)/Scramble/Expander/Core",
 					"$(SRCROOT)/Scramble/Expander/Family",
 					"$(SRCROOT)/Scramble/Encrypter",
-					"$(SRCROOT)/Scramble/Encrypter/Ciphers",
+					"$(SRCROOT)/Scramble/Encrypter/Kernels",
 					"$(SRCROOT)/Scramble/Public",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.7;
@@ -377,7 +377,7 @@
 					"$(SRCROOT)/Scramble/Expander/Core",
 					"$(SRCROOT)/Scramble/Expander/Family",
 					"$(SRCROOT)/Scramble/Encrypter",
-					"$(SRCROOT)/Scramble/Encrypter/Ciphers",
+					"$(SRCROOT)/Scramble/Encrypter/Kernels",
 					"$(SRCROOT)/Scramble/Public",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.7;

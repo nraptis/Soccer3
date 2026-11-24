@@ -212,14 +212,14 @@ std::vector<std::string> PrintExamplesHelper::GetExample(const std::vector<std::
                                                          const std::vector<std::uint8_t> &pExpected,
                                                          const std::size_t pGroupSize,
                                                          const char *pGroupSeparator) {
-    std::vector<std::string> aLines = GetRows("Before Cipher",
+    std::vector<std::string> aLines = GetRows("Before Kernel",
                                               pSource.data(),
                                               pSource.size(),
                                               pGroupSize,
                                               pGroupSeparator);
     aLines.push_back("");
     
-    std::vector<std::string> aAfterLines = GetRows("After Cipher",
+    std::vector<std::string> aAfterLines = GetRows("After Kernel",
                                                    pExpected.data(),
                                                    pExpected.size(),
                                                    pGroupSize,
@@ -258,7 +258,7 @@ std::vector<std::string> PrintExamplesHelper::GetBeforeAfter(const std::string &
     aLines.push_back("----- " + pTitle + " -----");
     aLines.push_back("");
     
-    std::vector<std::string> aBeforeLines = GetRows("Before Cipher",
+    std::vector<std::string> aBeforeLines = GetRows("Before Kernel",
                                                     pBefore,
                                                     pSourceLength,
                                                     pGroupSize,
@@ -266,7 +266,7 @@ std::vector<std::string> PrintExamplesHelper::GetBeforeAfter(const std::string &
     aLines.insert(aLines.end(), aBeforeLines.begin(), aBeforeLines.end());
     aLines.push_back("");
     
-    std::vector<std::string> aAfterLines = GetRows("After Cipher",
+    std::vector<std::string> aAfterLines = GetRows("After Kernel",
                                                    pAfter,
                                                    pSourceLength,
                                                    pGroupSize,

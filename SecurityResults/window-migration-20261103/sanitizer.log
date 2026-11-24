@@ -1,0 +1,2 @@
+PASS: 128 full packs, 2304 jobs, bounded sources and independent validator; ASan/UBSan.
+Entropy bytes consumed per job: min=44738 max=46028 allocated=49152

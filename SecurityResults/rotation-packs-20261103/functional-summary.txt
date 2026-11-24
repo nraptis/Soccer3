@@ -1,0 +1,48 @@
+Test Case '-[EncryptionVaultPlanTests testBothSelectorsAll144RotationsAndAllStrongMaterialsReachTheVault]' started.
+Test Case '-[EncryptionVaultPlanTests testBothSelectorsAll144RotationsAndAllStrongMaterialsReachTheVault]' passed (0.818 seconds).
+Test Case '-[EncryptionVaultPlanTests testExactRowsMasksRotationsAndMaterialSchedule]' started.
+Test Case '-[EncryptionVaultPlanTests testExactRowsMasksRotationsAndMaterialSchedule]' passed (0.028 seconds).
+Test Case '-[EncryptionVaultPlanTests testFullMiBCiphertextMatchesLiteralReferenceForEveryStrength]' started.
+Test Case '-[EncryptionVaultPlanTests testFullMiBCiphertextMatchesLiteralReferenceForEveryStrength]' passed (1.693 seconds).
+Test Case '-[EncryptionVaultPlanTests testRealSeedRepeatsIndependentBlocksAndReconstructsVaultForDecryption]' started.
+Test Case '-[EncryptionVaultPlanTests testRealSeedRepeatsIndependentBlocksAndReconstructsVaultForDecryption]' passed (46.366 seconds).
+Test Case '-[EncryptionVaultPlanTests testRejectsInvalidPlansMissingMaterialsAndFailedConfiguration]' started.
+Test Case '-[EncryptionVaultPlanTests testRejectsInvalidPlansMissingMaterialsAndFailedConfiguration]' passed (0.016 seconds).
+	 Executed 5 tests, with 0 failures (0 unexpected) in 48.920 (48.922) seconds
+Test Case '-[EncryptionVaultTests testActualCiphersMatchTwoRoundsAndRepeatIndependentBlocks]' started.
+Test Case '-[EncryptionVaultTests testActualCiphersMatchTwoRoundsAndRepeatIndependentBlocks]' passed (0.007 seconds).
+Test Case '-[EncryptionVaultTests testEightLayerVaultOrderWithEmptyOddAndEvenLayers]' started.
+Test Case '-[EncryptionVaultTests testEightLayerVaultOrderWithEmptyOddAndEvenLayers]' passed (0.049 seconds).
+Test Case '-[EncryptionVaultTests testErrorPropagationCleanupAndCipherOwnership]' started.
+Test Case '-[EncryptionVaultTests testErrorPropagationCleanupAndCipherOwnership]' passed (0.001 seconds).
+Test Case '-[EncryptionVaultTests testFourLayerRoundOrderAndInverseOnOneMiB]' started.
+Test Case '-[EncryptionVaultTests testFourLayerRoundOrderAndInverseOnOneMiB]' passed (0.038 seconds).
+Test Case '-[EncryptionVaultTests testRoundBufferValidationAndEmptyIdentity]' started.
+Test Case '-[EncryptionVaultTests testRoundBufferValidationAndEmptyIdentity]' passed (0.001 seconds).
+Test Case '-[EncryptionVaultTests testVaultBufferValidationAndEmptyIdentity]' started.
+Test Case '-[EncryptionVaultTests testVaultBufferValidationAndEmptyIdentity]' passed (0.001 seconds).
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.095 (0.097) seconds
+Test Case '-[FlameToadCipherTests testAllOrderedRowPairsPackingWrapsAndIndependentInverse]' started.
+Test Case '-[FlameToadCipherTests testAllOrderedRowPairsPackingWrapsAndIndependentInverse]' passed (0.012 seconds).
+Test Case '-[FlameToadCipherTests testPackedCacheCapacityAliasingGuardsAndFreshInverse]' started.
+Test Case '-[FlameToadCipherTests testPackedCacheCapacityAliasingGuardsAndFreshInverse]' passed (0.008 seconds).
+Test Case '-[FlameToadCipherTests testUnalignedMiBGuardsAndRejectedArguments]' started.
+Test Case '-[FlameToadCipherTests testUnalignedMiBGuardsAndRejectedArguments]' passed (0.003 seconds).
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.022 (0.022) seconds
+Test Case '-[MaskCollisionTests test_MaskBalance]' started.
+Test Case '-[MaskCollisionTests test_MaskBalance]' passed (0.001 seconds).
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Case '-[RotationWindowTests testCursorWrapAndExhaustionHaveNoGlobalSideEffects]' started.
+Test Case '-[RotationWindowTests testCursorWrapAndExhaustionHaveNoGlobalSideEffects]' passed (0.002 seconds).
+Test Case '-[RotationWindowTests testEightPacksGlobalExclusionsAndAllLocalSubsetSums]' started.
+Test Case '-[RotationWindowTests testEightPacksGlobalExclusionsAndAllLocalSubsetSums]' passed (0.093 seconds).
+Test Case '-[RotationWindowTests testFarmingReproducesAndUsesSeparateIntermediateTailSlices]' started.
+Test Case '-[RotationWindowTests testFarmingReproducesAndUsesSeparateIntermediateTailSlices]' passed (0.006 seconds).
+Test Case '-[RotationWindowTests testSixteenBitShuffleAgainstIndependentReferenceAndShortEntropy]' started.
+Test Case '-[RotationWindowTests testSixteenBitShuffleAgainstIndependentReferenceAndShortEntropy]' passed (0.001 seconds).
+Test Case '-[RotationWindowTests testValidatorRejectsDuplicatesComplementsAndLocalCombinationCollisions]' started.
+Test Case '-[RotationWindowTests testValidatorRejectsDuplicatesComplementsAndLocalCombinationCollisions]' passed (0.001 seconds).
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.103 (0.105) seconds
+	 Executed 20 tests, with 0 failures (0 unexpected) in 49.141 (49.148) seconds
+	 Executed 20 tests, with 0 failures (0 unexpected) in 49.141 (49.149) seconds
+** TEST SUCCEEDED **

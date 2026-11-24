@@ -1,0 +1,3052 @@
+{
+  "construction": "flame-toad-vault",
+  "statistical": [
+    {
+      "status": "PASS",
+      "strength": "normal",
+      "fixture": 0,
+      "best_accuracy_percent": 50.9644,
+      "significant": 0,
+      "confirmed": 0,
+      "seconds": 187.5
+    },
+    {
+      "status": "PASS",
+      "strength": "normal",
+      "fixture": 1,
+      "best_accuracy_percent": 50.6714,
+      "significant": 0,
+      "confirmed": 0,
+      "seconds": 176.7
+    },
+    {
+      "status": "PASS",
+      "strength": "strong",
+      "fixture": 0,
+      "best_accuracy_percent": 50.7935,
+      "significant": 0,
+      "confirmed": 0,
+      "seconds": 325.3
+    },
+    {
+      "status": "PASS",
+      "strength": "strong",
+      "fixture": 1,
+      "best_accuracy_percent": 51.0132,
+      "significant": 0,
+      "confirmed": 0,
+      "seconds": 299.0
+    },
+    {
+      "status": "PASS",
+      "strength": "weak",
+      "fixture": 0,
+      "best_accuracy_percent": 51.0559,
+      "significant": 0,
+      "confirmed": 0,
+      "seconds": 336.3
+    },
+    {
+      "status": "PASS",
+      "strength": "weak",
+      "fixture": 1,
+      "best_accuracy_percent": 51.0132,
+      "significant": 0,
+      "confirmed": 0,
+      "seconds": 203.9
+    }
+  ],
+  "whole_block_parity": [
+    {
+      "status": "PASS",
+      "strength": "normal",
+      "fixture": 0,
+      "accuracy_percent": 50.3906,
+      "best_orientation_percent": 50.3906,
+      "cutoff_percent": 58.9214
+    },
+    {
+      "status": "PASS",
+      "strength": "normal",
+      "fixture": 1,
+      "accuracy_percent": 48.9258,
+      "best_orientation_percent": 51.0742,
+      "cutoff_percent": 58.9214
+    },
+    {
+      "status": "PASS",
+      "strength": "strong",
+      "fixture": 0,
+      "accuracy_percent": 49.4141,
+      "best_orientation_percent": 50.5859,
+      "cutoff_percent": 58.9214
+    },
+    {
+      "status": "PASS",
+      "strength": "strong",
+      "fixture": 1,
+      "accuracy_percent": 49.6094,
+      "best_orientation_percent": 50.3906,
+      "cutoff_percent": 58.9214
+    },
+    {
+      "status": "PASS",
+      "strength": "weak",
+      "fixture": 0,
+      "accuracy_percent": 50.1953,
+      "best_orientation_percent": 50.1953,
+      "cutoff_percent": 58.9214
+    },
+    {
+      "status": "PASS",
+      "strength": "weak",
+      "fixture": 1,
+      "accuracy_percent": 51.9531,
+      "best_orientation_percent": 51.9531,
+      "cutoff_percent": 58.9214
+    }
+  ],
+  "bit_plane_parity": [
+    {
+      "status": "PASS",
+      "strength": "normal",
+      "fixture": 0,
+      "best_accuracy_percent": 52.7344,
+      "cutoff_percent": 57.3024,
+      "significant": 0,
+      "shuffled": 0
+    },
+    {
+      "status": "PASS",
+      "strength": "normal",
+      "fixture": 1,
+      "best_accuracy_percent": 52.6855,
+      "cutoff_percent": 57.3024,
+      "significant": 0,
+      "shuffled": 0
+    },
+    {
+      "status": "PASS",
+      "strength": "strong",
+      "fixture": 0,
+      "best_accuracy_percent": 52.7344,
+      "cutoff_percent": 57.3024,
+      "significant": 0,
+      "shuffled": 0
+    },
+    {
+      "status": "PASS",
+      "strength": "strong",
+      "fixture": 1,
+      "best_accuracy_percent": 52.7344,
+      "cutoff_percent": 57.3024,
+      "significant": 0,
+      "shuffled": 0
+    },
+    {
+      "status": "PASS",
+      "strength": "weak",
+      "fixture": 0,
+      "best_accuracy_percent": 53.4668,
+      "cutoff_percent": 57.3024,
+      "significant": 0,
+      "shuffled": 0
+    },
+    {
+      "status": "PASS",
+      "strength": "weak",
+      "fixture": 1,
+      "best_accuracy_percent": 53.125,
+      "cutoff_percent": 57.3024,
+      "significant": 0,
+      "shuffled": 0
+    }
+  ],
+  "test_suites": [
+    {
+      "log": "functional-4.log",
+      "completed": true,
+      "passed_cases": 23,
+      "failed_cases": 0
+    },
+    {
+      "log": "security-1.log",
+      "completed": true,
+      "passed_cases": 50,
+      "failed_cases": 0
+    },
+    {
+      "log": "plane-parity.log",
+      "completed": true,
+      "passed_cases": 5,
+      "failed_cases": 0
+    }
+  ],
+  "vault_timings": [
+    {
+      "strength": 0,
+      "calls": 128,
+      "bytes": 1048576,
+      "encrypt_median_us": 6061.38,
+      "decrypt_median_us": 6003.58,
+      "checksum": 17649
+    },
+    {
+      "strength": 1,
+      "calls": 128,
+      "bytes": 1048576,
+      "encrypt_median_us": 6260.38,
+      "decrypt_median_us": 6295.71,
+      "checksum": 18410
+    },
+    {
+      "strength": 2,
+      "calls": 128,
+      "bytes": 1048576,
+      "encrypt_median_us": 6629.25,
+      "decrypt_median_us": 6616.5,
+      "checksum": 19096
+    }
+  ],
+  "configurations": [
+    {
+      "strength": 0,
+      "fixture": 0,
+      "configuration": {
+        "construction": "flame-toad-vault",
+        "bit_plane_selection": [
+          2026,
+          17
+        ],
+        "window_multiplier": 12017,
+        "byte_multiplier": 63,
+        "material_count": 4,
+        "bit_rotate_three_after_layer": 3,
+        "layers": [
+          {
+            "index": 0,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              529718,
+              747766
+            ],
+            "sampling_rotations": [
+              [
+                7439,
+                4185,
+                11926,
+                10255
+              ],
+              [
+                16140,
+                4062,
+                6662,
+                7279
+              ],
+              [
+                5422,
+                286,
+                13752,
+                16170
+              ],
+              [
+                9201,
+                11931,
+                4929,
+                3718
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 1,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              598965,
+              73529
+            ],
+            "sampling_rotations": [
+              [
+                11312,
+                7650,
+                560,
+                7719
+              ],
+              [
+                14033,
+                1246,
+                10005,
+                12699
+              ],
+              [
+                14283,
+                5240,
+                9603,
+                9017
+              ],
+              [
+                16014,
+                12984,
+                6757,
+                15956
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 2,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              912060,
+              983548
+            ],
+            "sampling_rotations": [
+              [
+                4589,
+                9266,
+                9205,
+                10536
+              ],
+              [
+                3130,
+                12825,
+                4060,
+                965
+              ],
+              [
+                13475,
+                12023,
+                13784,
+                14159
+              ],
+              [
+                12079,
+                3939,
+                5427,
+                12301
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 0
+          },
+          {
+            "index": 3,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              606769,
+              81658
+            ],
+            "sampling_rotations": [
+              [
+                6321,
+                10099,
+                3068,
+                8122
+              ],
+              [
+                316,
+                15829,
+                4837,
+                11869
+              ],
+              [
+                3780,
+                7781,
+                9268,
+                3507
+              ],
+              [
+                5018,
+                7776,
+                3501,
+                8275
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 1
+          },
+          {
+            "index": 4,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              507637,
+              457980
+            ],
+            "sampling_rotations": [
+              [
+                13290,
+                8708,
+                5084,
+                6198
+              ],
+              [
+                5332,
+                7936,
+                4771,
+                15833
+              ],
+              [
+                1926,
+                2,
+                6165,
+                16297
+              ],
+              [
+                13044,
+                16050,
+                7500,
+                7559
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 5,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              636797,
+              842553
+            ],
+            "sampling_rotations": [
+              [
+                12520,
+                6573,
+                6601,
+                10655
+              ],
+              [
+                10594,
+                2453,
+                2606,
+                4308
+              ],
+              [
+                563,
+                7408,
+                2545,
+                1180
+              ],
+              [
+                254,
+                962,
+                14961,
+                3223
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 6,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              1003262,
+              729778
+            ],
+            "sampling_rotations": [
+              [
+                62,
+                502,
+                8121,
+                5792
+              ],
+              [
+                9049,
+                2669,
+                8153,
+                37
+              ],
+              [
+                14626,
+                9820,
+                6666,
+                13572
+              ],
+              [
+                279,
+                5794,
+                3506,
+                9509
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 2
+          },
+          {
+            "index": 7,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              509944,
+              271807
+            ],
+            "sampling_rotations": [
+              [
+                8860,
+                7775,
+                5668,
+                5488
+              ],
+              [
+                15332,
+                9853,
+                4801,
+                2230
+              ],
+              [
+                8553,
+                1397,
+                16234,
+                4710
+              ],
+              [
+                4370,
+                14718,
+                6102,
+                13539
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 3
+          }
+        ]
+      }
+    },
+    {
+      "strength": 0,
+      "fixture": 1,
+      "configuration": {
+        "construction": "flame-toad-vault",
+        "bit_plane_selection": [
+          2026,
+          17
+        ],
+        "window_multiplier": 6049,
+        "byte_multiplier": 53,
+        "material_count": 4,
+        "bit_rotate_three_after_layer": 3,
+        "layers": [
+          {
+            "index": 0,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              845502,
+              283293
+            ],
+            "sampling_rotations": [
+              [
+                482,
+                9937,
+                875,
+                16162
+              ],
+              [
+                8475,
+                15826,
+                14891,
+                6375
+              ],
+              [
+                7559,
+                13313,
+                10666,
+                13433
+              ],
+              [
+                3309,
+                2157,
+                9513,
+                10848
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 1,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              584724,
+              19933
+            ],
+            "sampling_rotations": [
+              [
+                10398,
+                6649,
+                2430,
+                585
+              ],
+              [
+                15035,
+                10847,
+                16260,
+                7291
+              ],
+              [
+                2363,
+                2503,
+                8190,
+                15754
+              ],
+              [
+                7802,
+                7921,
+                13448,
+                2508
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 2,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              197895,
+              571569
+            ],
+            "sampling_rotations": [
+              [
+                5191,
+                13127,
+                9043,
+                2317
+              ],
+              [
+                523,
+                13045,
+                11184,
+                13484
+              ],
+              [
+                7838,
+                7678,
+                2767,
+                3366
+              ],
+              [
+                16266,
+                12662,
+                13556,
+                8821
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 0
+          },
+          {
+            "index": 3,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              368327,
+              133714
+            ],
+            "sampling_rotations": [
+              [
+                10935,
+                13479,
+                12486,
+                13278
+              ],
+              [
+                8862,
+                249,
+                13650,
+                13577
+              ],
+              [
+                9576,
+                7637,
+                14767,
+                7983
+              ],
+              [
+                11670,
+                471,
+                4840,
+                9824
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 1
+          },
+          {
+            "index": 4,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              683337,
+              814665
+            ],
+            "sampling_rotations": [
+              [
+                9689,
+                14161,
+                7384,
+                9700
+              ],
+              [
+                10501,
+                4194,
+                21,
+                4613
+              ],
+              [
+                3310,
+                9575,
+                10299,
+                3216
+              ],
+              [
+                6210,
+                5197,
+                14193,
+                12119
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 5,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              473894,
+              136713
+            ],
+            "sampling_rotations": [
+              [
+                14327,
+                6500,
+                14182,
+                13458
+              ],
+              [
+                6520,
+                3097,
+                5424,
+                7177
+              ],
+              [
+                12414,
+                2219,
+                7958,
+                5538
+              ],
+              [
+                3423,
+                518,
+                15770,
+                14187
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": -1
+          },
+          {
+            "index": 6,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              385916,
+              942449
+            ],
+            "sampling_rotations": [
+              [
+                15930,
+                13738,
+                7963,
+                7549
+              ],
+              [
+                9876,
+                8433,
+                16380,
+                4044
+              ],
+              [
+                15289,
+                11034,
+                13722,
+                5258
+              ],
+              [
+                1236,
+                4555,
+                13830,
+                6799
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 2
+          },
+          {
+            "index": 7,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              42483,
+              655186
+            ],
+            "sampling_rotations": [
+              [
+                3573,
+                5528,
+                10300,
+                7595
+              ],
+              [
+                7021,
+                14219,
+                10755,
+                12290
+              ],
+              [
+                11571,
+                11163,
+                125,
+                13691
+              ],
+              [
+                5708,
+                3589,
+                14012,
+                11375
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 3
+          }
+        ]
+      }
+    },
+    {
+      "strength": 1,
+      "fixture": 0,
+      "configuration": {
+        "construction": "flame-toad-vault",
+        "bit_plane_selection": [
+          2026,
+          17
+        ],
+        "window_multiplier": 11649,
+        "byte_multiplier": 61,
+        "material_count": 8,
+        "bit_rotate_three_after_layer": 3,
+        "layers": [
+          {
+            "index": 0,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              197757,
+              341422
+            ],
+            "sampling_rotations": [
+              [
+                5123,
+                10373,
+                16025,
+                15395
+              ],
+              [
+                4327,
+                1460,
+                1135,
+                15942
+              ],
+              [
+                7897,
+                15758,
+                11791,
+                12393
+              ],
+              [
+                2674,
+                15537,
+                5268,
+                5185
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 0
+          },
+          {
+            "index": 1,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              338719,
+              815988
+            ],
+            "sampling_rotations": [
+              [
+                7848,
+                7779,
+                10833,
+                14600
+              ],
+              [
+                10314,
+                11376,
+                4988,
+                11535
+              ],
+              [
+                15897,
+                10570,
+                3480,
+                2314
+              ],
+              [
+                1439,
+                15011,
+                5974,
+                7969
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 1
+          },
+          {
+            "index": 2,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              62519,
+              1019167
+            ],
+            "sampling_rotations": [
+              [
+                3625,
+                15212,
+                11186,
+                13669
+              ],
+              [
+                12680,
+                12006,
+                13932,
+                6724
+              ],
+              [
+                4926,
+                7599,
+                654,
+                7935
+              ],
+              [
+                14178,
+                9387,
+                14482,
+                13389
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 2
+          },
+          {
+            "index": 3,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              15339,
+              872439
+            ],
+            "sampling_rotations": [
+              [
+                8049,
+                16360,
+                4085,
+                15506
+              ],
+              [
+                6690,
+                2944,
+                10422,
+                927
+              ],
+              [
+                4213,
+                14686,
+                6586,
+                14627
+              ],
+              [
+                6537,
+                3193,
+                1744,
+                12040
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 3
+          },
+          {
+            "index": 4,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              607906,
+              730097
+            ],
+            "sampling_rotations": [
+              [
+                7205,
+                13877,
+                15464,
+                6074
+              ],
+              [
+                15893,
+                955,
+                10110,
+                10332
+              ],
+              [
+                1595,
+                15063,
+                4047,
+                7814
+              ],
+              [
+                13438,
+                14845,
+                9993,
+                11497
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 4
+          },
+          {
+            "index": 5,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              244474,
+              952122
+            ],
+            "sampling_rotations": [
+              [
+                9187,
+                15475,
+                14949,
+                6600
+              ],
+              [
+                2774,
+                7215,
+                13420,
+                156
+              ],
+              [
+                9799,
+                2657,
+                8537,
+                5209
+              ],
+              [
+                11950,
+                12587,
+                5552,
+                9135
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 5
+          },
+          {
+            "index": 6,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              1024744,
+              843441
+            ],
+            "sampling_rotations": [
+              [
+                13742,
+                15634,
+                3978,
+                9650
+              ],
+              [
+                8886,
+                8620,
+                14413,
+                2646
+              ],
+              [
+                4379,
+                7402,
+                2100,
+                16201
+              ],
+              [
+                7682,
+                8478,
+                10965,
+                13417
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 6
+          },
+          {
+            "index": 7,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              794085,
+              939298
+            ],
+            "sampling_rotations": [
+              [
+                14579,
+                9685,
+                1723,
+                9740
+              ],
+              [
+                7924,
+                2449,
+                15717,
+                10750
+              ],
+              [
+                3670,
+                4120,
+                5687,
+                7029
+              ],
+              [
+                6755,
+                8575,
+                2231,
+                11020
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 7
+          }
+        ]
+      }
+    },
+    {
+      "strength": 1,
+      "fixture": 1,
+      "configuration": {
+        "construction": "flame-toad-vault",
+        "bit_plane_selection": [
+          2026,
+          17
+        ],
+        "window_multiplier": 12501,
+        "byte_multiplier": 45,
+        "material_count": 8,
+        "bit_rotate_three_after_layer": 3,
+        "layers": [
+          {
+            "index": 0,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              688244,
+              433929
+            ],
+            "sampling_rotations": [
+              [
+                10979,
+                3311,
+                3492,
+                10292
+              ],
+              [
+                446,
+                68,
+                13799,
+                13302
+              ],
+              [
+                14787,
+                7126,
+                13445,
+                10918
+              ],
+              [
+                2066,
+                8913,
+                9622,
+                15638
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 0
+          },
+          {
+            "index": 1,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              499053,
+              694428
+            ],
+            "sampling_rotations": [
+              [
+                10179,
+                13045,
+                15902,
+                6816
+              ],
+              [
+                302,
+                13150,
+                14093,
+                16318
+              ],
+              [
+                3084,
+                10173,
+                4886,
+                13059
+              ],
+              [
+                14492,
+                8891,
+                9576,
+                10022
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 1
+          },
+          {
+            "index": 2,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              753294,
+              441095
+            ],
+            "sampling_rotations": [
+              [
+                7216,
+                10082,
+                10655,
+                7865
+              ],
+              [
+                6011,
+                11620,
+                14191,
+                4939
+              ],
+              [
+                11462,
+                1125,
+                197,
+                10678
+              ],
+              [
+                1517,
+                5814,
+                635,
+                14568
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 2
+          },
+          {
+            "index": 3,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              16955,
+              417455
+            ],
+            "sampling_rotations": [
+              [
+                9517,
+                1615,
+                6251,
+                7352
+              ],
+              [
+                12902,
+                9743,
+                5294,
+                11921
+              ],
+              [
+                9072,
+                4706,
+                15502,
+                16212
+              ],
+              [
+                9562,
+                12765,
+                7511,
+                15066
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 3
+          },
+          {
+            "index": 4,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              352782,
+              276610
+            ],
+            "sampling_rotations": [
+              [
+                12743,
+                8619,
+                8069,
+                9042
+              ],
+              [
+                4999,
+                9328,
+                13798,
+                16226
+              ],
+              [
+                12593,
+                544,
+                12471,
+                9057
+              ],
+              [
+                13196,
+                3250,
+                5203,
+                3371
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 4
+          },
+          {
+            "index": 5,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              114927,
+              48839
+            ],
+            "sampling_rotations": [
+              [
+                9923,
+                5061,
+                10256,
+                3484
+              ],
+              [
+                8686,
+                10903,
+                4065,
+                12856
+              ],
+              [
+                605,
+                16348,
+                11529,
+                4509
+              ],
+              [
+                8709,
+                14077,
+                14944,
+                6048
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 5
+          },
+          {
+            "index": 6,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              662153,
+              844053
+            ],
+            "sampling_rotations": [
+              [
+                14386,
+                5128,
+                4631,
+                12653
+              ],
+              [
+                15811,
+                16286,
+                6658,
+                6560
+              ],
+              [
+                14983,
+                1312,
+                11868,
+                15021
+              ],
+              [
+                11100,
+                8701,
+                5113,
+                9712
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 6
+          },
+          {
+            "index": 7,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              729723,
+              804039
+            ],
+            "sampling_rotations": [
+              [
+                8936,
+                11846,
+                1004,
+                13406
+              ],
+              [
+                15518,
+                10458,
+                439,
+                2814
+              ],
+              [
+                4630,
+                13444,
+                7088,
+                4231
+              ],
+              [
+                7209,
+                12977,
+                9418,
+                4268
+              ]
+            ],
+            "xor_before_rotations": -1,
+            "xor_after_rotations": 7
+          }
+        ]
+      }
+    },
+    {
+      "strength": 2,
+      "fixture": 0,
+      "configuration": {
+        "construction": "flame-toad-vault",
+        "bit_plane_selection": [
+          2026,
+          17
+        ],
+        "window_multiplier": 14537,
+        "byte_multiplier": 13,
+        "material_count": 16,
+        "bit_rotate_three_after_layer": 3,
+        "layers": [
+          {
+            "index": 0,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              473128,
+              97832
+            ],
+            "sampling_rotations": [
+              [
+                11430,
+                3205,
+                16040,
+                1597
+              ],
+              [
+                2222,
+                12627,
+                10323,
+                15560
+              ],
+              [
+                4067,
+                5679,
+                9828,
+                7673
+              ],
+              [
+                2683,
+                1530,
+                14851,
+                15606
+              ]
+            ],
+            "xor_before_rotations": 0,
+            "xor_after_rotations": 1
+          },
+          {
+            "index": 1,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              379996,
+              145076
+            ],
+            "sampling_rotations": [
+              [
+                5912,
+                3092,
+                11306,
+                8440
+              ],
+              [
+                12935,
+                6050,
+                13719,
+                6023
+              ],
+              [
+                12543,
+                4876,
+                9245,
+                12019
+              ],
+              [
+                15646,
+                8608,
+                457,
+                2000
+              ]
+            ],
+            "xor_before_rotations": 2,
+            "xor_after_rotations": 3
+          },
+          {
+            "index": 2,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              535631,
+              132828
+            ],
+            "sampling_rotations": [
+              [
+                11241,
+                11589,
+                13287,
+                11673
+              ],
+              [
+                14451,
+                2897,
+                13547,
+                6721
+              ],
+              [
+                1004,
+                501,
+                13048,
+                7417
+              ],
+              [
+                9589,
+                4224,
+                3977,
+                6195
+              ]
+            ],
+            "xor_before_rotations": 4,
+            "xor_after_rotations": 5
+          },
+          {
+            "index": 3,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              894682,
+              275855
+            ],
+            "sampling_rotations": [
+              [
+                3000,
+                5174,
+                13369,
+                2987
+              ],
+              [
+                1725,
+                763,
+                3117,
+                2440
+              ],
+              [
+                11417,
+                10631,
+                15264,
+                4115
+              ],
+              [
+                9612,
+                1639,
+                2394,
+                8675
+              ]
+            ],
+            "xor_before_rotations": 6,
+            "xor_after_rotations": 7
+          },
+          {
+            "index": 4,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              792986,
+              802882
+            ],
+            "sampling_rotations": [
+              [
+                10522,
+                13042,
+                4914,
+                11017
+              ],
+              [
+                245,
+                4396,
+                10740,
+                13893
+              ],
+              [
+                6073,
+                3327,
+                174,
+                16300
+              ],
+              [
+                2071,
+                10694,
+                9241,
+                7960
+              ]
+            ],
+            "xor_before_rotations": 8,
+            "xor_after_rotations": 9
+          },
+          {
+            "index": 5,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              611047,
+              471489
+            ],
+            "sampling_rotations": [
+              [
+                9302,
+                7260,
+                8042,
+                15933
+              ],
+              [
+                5046,
+                1224,
+                1415,
+                15105
+              ],
+              [
+                13373,
+                12329,
+                3740,
+                12763
+              ],
+              [
+                8239,
+                1069,
+                10547,
+                13780
+              ]
+            ],
+            "xor_before_rotations": 10,
+            "xor_after_rotations": 11
+          },
+          {
+            "index": 6,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              427458,
+              71273
+            ],
+            "sampling_rotations": [
+              [
+                15711,
+                4826,
+                12067,
+                11239
+              ],
+              [
+                12371,
+                9541,
+                2876,
+                7847
+              ],
+              [
+                811,
+                13799,
+                14474,
+                14214
+              ],
+              [
+                1922,
+                635,
+                5306,
+                11172
+              ]
+            ],
+            "xor_before_rotations": 12,
+            "xor_after_rotations": 13
+          },
+          {
+            "index": 7,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              458062,
+              292123
+            ],
+            "sampling_rotations": [
+              [
+                3811,
+                2658,
+                5463,
+                7302
+              ],
+              [
+                14233,
+                3306,
+                587,
+                12918
+              ],
+              [
+                2308,
+                3878,
+                7979,
+                6375
+              ],
+              [
+                6306,
+                7801,
+                10524,
+                11679
+              ]
+            ],
+            "xor_before_rotations": 14,
+            "xor_after_rotations": 15
+          }
+        ]
+      }
+    },
+    {
+      "strength": 2,
+      "fixture": 1,
+      "configuration": {
+        "construction": "flame-toad-vault",
+        "bit_plane_selection": [
+          2026,
+          17
+        ],
+        "window_multiplier": 3237,
+        "byte_multiplier": 57,
+        "material_count": 16,
+        "bit_rotate_three_after_layer": 3,
+        "layers": [
+          {
+            "index": 0,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              105167,
+              527289
+            ],
+            "sampling_rotations": [
+              [
+                14593,
+                1457,
+                3752,
+                13650
+              ],
+              [
+                13821,
+                3407,
+                9695,
+                8515
+              ],
+              [
+                7150,
+                9178,
+                12003,
+                14537
+              ],
+              [
+                9764,
+                10876,
+                1337,
+                4284
+              ]
+            ],
+            "xor_before_rotations": 0,
+            "xor_after_rotations": 1
+          },
+          {
+            "index": 1,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              674169,
+              72982
+            ],
+            "sampling_rotations": [
+              [
+                4139,
+                9723,
+                8477,
+                2811
+              ],
+              [
+                3049,
+                6113,
+                14219,
+                675
+              ],
+              [
+                14339,
+                2242,
+                3038,
+                8384
+              ],
+              [
+                8968,
+                1047,
+                2491,
+                15574
+              ]
+            ],
+            "xor_before_rotations": 2,
+            "xor_after_rotations": 3
+          },
+          {
+            "index": 2,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              629007,
+              938888
+            ],
+            "sampling_rotations": [
+              [
+                1350,
+                753,
+                252,
+                13225
+              ],
+              [
+                12866,
+                2093,
+                8556,
+                13438
+              ],
+              [
+                10268,
+                13476,
+                6153,
+                4283
+              ],
+              [
+                15240,
+                15188,
+                12958,
+                15428
+              ]
+            ],
+            "xor_before_rotations": 4,
+            "xor_after_rotations": 5
+          },
+          {
+            "index": 3,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              16094,
+              596843
+            ],
+            "sampling_rotations": [
+              [
+                14314,
+                9179,
+                212,
+                13730
+              ],
+              [
+                15638,
+                15586,
+                5212,
+                4681
+              ],
+              [
+                15626,
+                3208,
+                517,
+                2613
+              ],
+              [
+                14990,
+                13411,
+                14950,
+                8077
+              ]
+            ],
+            "xor_before_rotations": 6,
+            "xor_after_rotations": 7
+          },
+          {
+            "index": 4,
+            "rows": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "masks": [
+              39,
+              216
+            ],
+            "rotations": [
+              478856,
+              450852
+            ],
+            "sampling_rotations": [
+              [
+                5837,
+                11130,
+                14803,
+                10546
+              ],
+              [
+                8875,
+                794,
+                13410,
+                13370
+              ],
+              [
+                4668,
+                12271,
+                15972,
+                15533
+              ],
+              [
+                7389,
+                15652,
+                15362,
+                848
+              ]
+            ],
+            "xor_before_rotations": 8,
+            "xor_after_rotations": 9
+          },
+          {
+            "index": 5,
+            "rows": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              303858,
+              970490
+            ],
+            "sampling_rotations": [
+              [
+                9073,
+                4031,
+                7256,
+                14844
+              ],
+              [
+                3275,
+                1365,
+                8129,
+                4908
+              ],
+              [
+                9350,
+                8329,
+                10532,
+                14246
+              ],
+              [
+                10997,
+                16091,
+                9007,
+                11329
+              ]
+            ],
+            "xor_before_rotations": 10,
+            "xor_after_rotations": 11
+          },
+          {
+            "index": 6,
+            "rows": [
+              [
+                4,
+                6
+              ],
+              [
+                2,
+                7
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "masks": [
+              23,
+              232
+            ],
+            "rotations": [
+              603641,
+              640136
+            ],
+            "sampling_rotations": [
+              [
+                7771,
+                10358,
+                9045,
+                3289
+              ],
+              [
+                14484,
+                15532,
+                2003,
+                11912
+              ],
+              [
+                12162,
+                2732,
+                15720,
+                595
+              ],
+              [
+                1882,
+                6274,
+                3155,
+                7535
+              ]
+            ],
+            "xor_before_rotations": 12,
+            "xor_after_rotations": 13
+          },
+          {
+            "index": 7,
+            "rows": [
+              [
+                1,
+                5
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "masks": [
+              15,
+              240
+            ],
+            "rotations": [
+              870230,
+              164702
+            ],
+            "sampling_rotations": [
+              [
+                6484,
+                5306,
+                2186,
+                15322
+              ],
+              [
+                13330,
+                8596,
+                7640,
+                8130
+              ],
+              [
+                11353,
+                12349,
+                9724,
+                4946
+              ],
+              [
+                14818,
+                12695,
+                6565,
+                132
+              ]
+            ],
+            "xor_before_rotations": 14,
+            "xor_after_rotations": 15
+          }
+        ]
+      }
+    }
+  ],
+  "all_requested_trials_recorded": true
+}

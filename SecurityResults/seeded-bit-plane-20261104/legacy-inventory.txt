@@ -1,0 +1,71 @@
+Soccer2 legacy / remaining cleanup inventory — 2026-11-04
+
+Completed in this migration
+- Active BitPlaneTool and exhaustive-generator dependencies removed.
+- mVaultBitPlanes, the two fixed selectors, their defaults, and FarmVaultBitPlanes removed.
+- mPremiumSeed stays absent.
+- mBitPlane and mBitPlaneWordA/B/C now drive all eight vault layers through BitPlaneRow.
+- AppDelegate's archived generator menu and launch code removed.
+- Old BitPlaneTool tests moved to DeadTests. The former mixed generator check header is preserved there too.
+- Statistical/ten-shot/standalone result reporting uses the three current words.
+
+Remaining, ordered by likely cleanup value
+
+1. Unused production scratch: mWindowRotationFarmBuffers.mWindowRotationBase
+   Soccer2.hpp:153; WindowRotationFarm.hpp Buffers; WindowRotationFarm.cpp:129-141,190.
+   The embedded uint16_t[16384] takes 32 KiB. Only the standalone FarmEight/FarmPack
+   path writes and reads it. Production FarmPreparedPack reads Soccer2's eighteen
+   persistent base arrays instead. Split the scratch types to remove this 32 KiB
+   from Soccer2 without deleting the useful standalone farmer.
+
+2. Diagnostic counter: mMaterialIndex
+   Soccer2.hpp:180; Soccer2.cpp:369,1446,1525,1537.
+   Production only sets or resets it. Tests read it as a consumption check.
+   mEncryptionVaultPlan.mMaterialCount already holds the same installed count.
+   This can be removed once those assertions use the plan directly.
+
+3. Reserved but ignored API argument: pVersion
+   Soccer2.cpp:1050 and 1151; Scramble/Public/Soccer2.cpp forwards it.
+   Neither internal seed implementation uses it. Do not simply remove an exported
+   API parameter during buffer cleanup. It currently provides no dispatch between
+   old and new ciphertext formats; the seeded bit-plane change changes ciphertext.
+
+4. Separate test-strength encryption path
+   Soccer2.cpp:1306 onward: ConfigureTestBuffers, mTestBlockLength,
+   UnrollNonceAndPasswordToScratch_Test, SeedPrelude_Test, and kTest branches in
+   seed/encrypt/decrypt. It bypasses the vault and XORs mMaterialA directly.
+   It is still exercised by tests, so it is not dead code. A future cleanup could
+   isolate it as test support if retaining that public API is no longer needed.
+
+5. Active but expensive shuffle choices (not unused systems)
+   - SeedEpilogue_Regular_C: 32,760 material-pointer swap attempts over only
+     4/8/16 materials, followed by material reversal choices.
+   - SeedPrelude_Regular_C: two groups of four passes per 16-entry list
+     (eight passes each for materials, workspaces, expanders).
+   - Shuffle_MEWBlockZero: three passes per list; claimed-item bookkeeping
+     is still used while assigning new expander/material/workspace lanes.
+   - Cross pools: build and shuffle up to 64 entries per active lane, but
+     ArrangeCrossPool consumes only the first four. Partial sampling is a
+     possible optimization, with deliberate changes to seeded outputs.
+
+6. Historical naming and helpers
+   SeedEpilogue_Regular_A/C/D names retain the gap for the removed B stage.
+   CROWSCIMASSORMATEX also retains its historical name. Neither implies an
+   active old cipher bank. SoccerFolding::Collapse_Stage0_4 remains outside
+   Soccer2 for historical experiments and has no active Soccer2 call.
+
+Still necessary
+- The 16 material lanes/workspaces support strong; lower strengths use subsets.
+- The four collapse lanes and four condense lanes are used during seed folding.
+  Collapse B/D later serve as data workers; C supplies the packed-row cache.
+- L1-sized condense buffers are folding storage, not legacy L1 encryption layers.
+- Claim lists, mSources, mCross, and the eighteen rotation bases are active.
+- No active Cryptex, old EncryptionPlan, legacy mask bank, or fixed bit-plane
+  selector is used by Soccer2. Archived references inside #if 0 are historical.
+
+Unchanged behavior noted during inspection
+Invalid password arguments return before the marked seed resets/free operations.
+A failed call with invalid arguments can therefore leave the previous configuration
+installed. The new resets follow the user's two marked locations. If fail-closed
+behavior for invalid-argument attempts is desired, handle that separately for the
+entire seed/vault state rather than only these three words.

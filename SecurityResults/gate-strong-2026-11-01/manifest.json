@@ -1,0 +1,26 @@
+{
+  "change": "Two Gates per layer, existing mover between, preserving mutators/rotations/movers and seed layout",
+  "strength_under_statistical_attack": "strong",
+  "gates_per_plan": 18,
+  "slots": {
+    "weak": 40,
+    "normal": 46,
+    "strong": 50
+  },
+  "source_sha256": {
+    "Scramble/Composer/EncryptionPlan.cpp": "e8595dcf23a57661336466460cbaf68cc5bbfc7732c302edc7e9f4b83b0b2601",
+    "Scramble/Composer/EncryptionPlan.hpp": "91e55e797334ec694f64517bdaeeefa4d354583603343d9dc5c9b6b2c2ff0e02",
+    "Scramble/Encrypter/Ciphers/Mix/GateCipher.hpp": "e9092ebc81f3ee01ff1e483780ba30feefd1e9319c36bf0628904fdf4a5ea2c0",
+    "ScrambleTests/StatisticalPlaintextRecoveryTests.mm": "9baf5813947fc3825ce355b6497513ade2622dfcca6a23861a78cb302241b1c5",
+    "ScrambleTests/StatisticalRecoveryHarness.hpp": "73d59a573d03686cd5edb8d42bab5a6485b5f14e02bebd39f22b1ad28fafd3cb"
+  },
+  "statistical_protocol": {
+    "fixtures": 2,
+    "unknown_flags_per_fixture": 64,
+    "training_queries": 8257,
+    "challenge_queries": 16384,
+    "confirmation_queries_if_flagged": 8192,
+    "hypotheses": 384,
+    "family_alpha": 1e-06
+  }
+}

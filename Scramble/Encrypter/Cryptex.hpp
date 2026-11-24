@@ -30,15 +30,16 @@ public:
     // complete length and must not overlap. Execution makes no allocations.
     bool SealData(const std::uint8_t *pSource, std::uint8_t *pWorkerA,
                   std::uint8_t *pWorkerB, std::uint8_t *pDestination,
-                  std::size_t pLength, CipherErrorCode *pErrorCode) const;
+                  std::size_t pLength, KernelErrorCode *pErrorCode) const;
     bool UnsealData(const std::uint8_t *pSource, std::uint8_t *pWorkerA,
                     std::uint8_t *pWorkerB, std::uint8_t *pDestination,
-                    std::size_t pLength, CipherErrorCode *pErrorCode) const;
+                    std::size_t pLength, KernelErrorCode *pErrorCode) const;
 
     CryptexLayer mLayerAA;
     CryptexLayer mLayerAB;
     CryptexLayer mLayerAC;
     CryptexLayer mLayerAD;
+    
     CryptexLayer mLayerBA;
     CryptexLayer mLayerBB;
     CryptexLayer mLayerBC;
@@ -47,7 +48,7 @@ public:
 private:
     bool Apply(bool pUnseal, const std::uint8_t *pSource, std::uint8_t *pWorkerA,
                std::uint8_t *pWorkerB, std::uint8_t *pDestination,
-               std::size_t pLength, CipherErrorCode *pErrorCode) const;
+               std::size_t pLength, KernelErrorCode *pErrorCode) const;
     EncryptionStrength mStrength = EncryptionStrength::kNormal;
     std::size_t mMaterialCount = 0U;
     bool mBuilt = false;

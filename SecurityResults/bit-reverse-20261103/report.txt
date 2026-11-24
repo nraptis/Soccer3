@@ -1,0 +1,64 @@
+BitReverseCipher and retired-source cleanup — 2026-11-03
+
+The active two-round vault now has one BitReverseCipher after all of layer 3,
+including its trailing PasswordXOR. No final reversal is added. The second
+round retains the same numeric bit-row grid. Individual FlameToad passes,
+rotation packs, material budgets, and application counts are unchanged.
+This changes ciphertext compatibility with the previous rotate-by-3 boundary.
+
+BitReverseCipher reverses bit order inside every byte, preserving byte
+positions. Seal and Unseal call the identical operation. No worker, material,
+allocation, or mutable state is needed. Unaligned buffers and arbitrary
+lengths are supported. Nonempty overlapping buffers are rejected.
+
+Backends: ARM64 NEON RBIT; ARMv7 NEON masked swaps; AVX2 32-byte and SSSE3
+16-byte register nibble lookups; SSE2 masked swaps; portable scalar tail.
+Instruction inspection confirms one RBIT per 16 bytes in the ARM64 loop.
+All paths are selected at compile time for the build target.
+
+Verification:
+- 29 XCTest cases passed (260.917 seconds): bit reversal, FlameToad, rotation
+  packs, literal full-vault reference, real-seed independent-block round trips,
+  bit-plane parity recovery, and whole-block parity recovery.
+- The two parity suites passed weak, normal, and strong with two fixtures each.
+  Bit-plane test: 256 training and 2048 challenge blocks, 255 frozen predictors;
+  all six fixtures had zero significant real or shuffled-label findings.
+  Whole-block test: one known block and 1024 balanced-parity challenge blocks.
+- Primitive checks executed successfully on native NEON (ASan+UBSan), scalar,
+  and x86 SSE2/SSSE3/AVX2 under Rosetta. They check every byte value, inverse,
+  tails, 1 MiB blocks, unaligned storage, guards, nulls, and overlap rejection.
+- Xcode Release and standalone production runner builds passed.
+- The full StatisticalPlaintextRecoveryTests campaign was not rerun.
+- ARMv7 fallback and MSVC-specific target macros were not executed here.
+
+App timing: Release, native NEON, 1000 fresh 1 MiB inputs per entry, generated
+outside the timer. Both entries run in the same existing benchmark report.
+                            Median us/MiB    Trimmed mean us/MiB
+BitRotationThreeCipher      20.541           20.697895
+BitReverseCipher            20.542           20.686715
+The observed cost is effectively identical. These are separate consecutive
+benchmark entries, not a paired randomized speed experiment. All 35 cipher
+entries passed the untimed round-trip guard. Raw data and build metadata:
+BenchmarkResults/bit-reverse-20261103/.
+
+Cleanup:
+- Removed LaneCombinations.cpp and SoccerMaskBank.cpp from CMake and the
+  standalone builder. Confirmed neither appears in the app linker inputs or
+  standalone build manifest.
+- Removed the unused lane-combination include from MEWUniquenessTests.
+- Preserved the retired EncryptionPlan.cpp body inside an inactive guard;
+  it no longer introduces a live dependency on the retired lane bank.
+- Mask feasibility analysis now constructs its witnesses mathematically and
+  no longer reads the removed bank. Its saved JSON and documentation agree.
+- Updated the benchmark entry, cipher-name lookup, sweep boundary metadata,
+  literal reference, and current construction documentation.
+- Archived files and the user's other removals were not restored or deleted.
+
+CMake source lists were updated, but a CMake configure/build was not run:
+no CMake executable was available. The repository's cmake directory is only
+an importable namespace, not the Python CMake distribution. The Xcode and
+standalone builds validate the active sources without the retired banks.
+
+Passing these bounded tests does not establish general cryptographic security
+or improvement over rotate-by-3. The measurements establish comparable speed,
+correct reversibility, and the tested aggregate-parity results.

@@ -1,0 +1,318 @@
+Xcode version: 27.2 (27B52)
+22:00:52.479 xcodebuild[90649:860709] Beginning test session StatisticalTests-4FFA0812-C7A6-46C3-B8D3-819154F52A9B at 2026-11-05 22:00:52.479 on target <DVTLocalComputer: 0x788553100 (My Mac | arm64e)> (26.7.1 (25G241))
+22:00:52.479 xcodebuild[90649:860709] 	/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
+-project
+/Users/icarus/Desktop/Codex Maga/Soccer/Scramble.xcodeproj
+-scheme
+StatisticalTests
+-configuration
+Release
+-destination
+platform=macOS,arch=arm64
+-derivedDataPath
+/Users/icarus/Desktop/Codex Maga/Soccer/build/capture-weakest
+-resultBundlePath
+/Users/icarus/Desktop/Codex Maga/Soccer/Statistical Outputs/CaptureWeakestPredictorTest/launch-20261105-220047-90646.xcresult
+-parallel-testing-enabled
+NO
+-enableCodeCoverage
+NO
+-test-timeouts-enabled
+NO
+-only-testing:StatisticalTests/CaptureWeakestPredictorTest/testCaptureWeakestPredictor
+test
+22:00:52.479 xcodebuild[90649:860709] Test standard output and standard error is at /Users/icarus/Desktop/Codex Maga/Soccer/Statistical Outputs/CaptureWeakestPredictorTest/launch-20261105-220047-90646.xcresult/Staging/1_Test/Diagnostics/StatisticalTests-83C934BD-71ED-496F-9F05-CCA45AECDBEB-Configuration-Test Scheme Action-Iteration-1/StatisticalTests-074BE953-CDDF-4FF3-8B8E-5A7A49986A24/StandardOutputAndStandardError.txt
+22:00:52.479 xcodebuild[90649:860709] Setting up test runner session
+22:00:52.480 xcodebuild[90649:860709] Requesting a socket for communication with testmanagerd.
+22:00:52.480 xcodebuild[90649:860709] Registering/updating daemon-based crash report observer for process names (
+    WindowServer,
+    Scramble,
+    xctest,
+    DTServiceHub,
+    debugserver,
+    testmanagerd
+)
+22:00:52.480 xcodebuild[90649:860738] Got socket for DTX-layer communication.
+22:00:52.480 xcodebuild[90649:860735] Received connection for test runner session
+22:00:52.480 xcodebuild[90649:860738] XPC connection for control was invalidated.
+22:00:52.480 xcodebuild[90649:860735] Listening for proxy connection request from the test bundle
+22:00:52.480 xcodebuild[90649:860709] Test runner session acquired connection.
+22:00:52.480 xcodebuild[90649:860735] Initiating session with identifier: 4FFA0812-C7A6-46C3-B8D3-819154F52A9B
+22:00:52.605 xcodebuild[90649:860709] Finished requesting crash reports. Continuing with testing.
+22:00:52.605 xcodebuild[90649:860740] Got reply to session initiation request with identifier 4FFA0812-C7A6-46C3-B8D3-819154F52A9B (error: (null))
+22:00:52.632 xcodebuild[90649:860709] Launch session started.
+22:00:52.707 xcodebuild[90649:860709] Test process runnable PID is 90678.
+22:00:52.707 xcodebuild[90649:860749] XCTHTestOperationStateMachine: Transitioning from state Initial to AcquiredPID
+2026-11-05 22:00:53.208803-0500 Scramble[90678:861003] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209026-0500 Scramble[90678:861003] [Application] Error registering app with intents framework: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209281-0500 Scramble[90678:861007] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209305-0500 Scramble[90678:861007] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209772-0500 Scramble[90678:861006] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209788-0500 Scramble[90678:861006] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.210182-0500 Scramble[90678:861006] [Connection] Will NOT re-try to establish the connection
+2026-11-05 22:00:53.210208-0500 Scramble[90678:861003] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.210221-0500 Scramble[90678:861003] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.229688-0500 Scramble[90678:860964] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/p8/80ypymb56jngdf60h84pshtr0000gn/T/com.star.road.scramble.Scramble.savedState
+Skipping App Delegate Test Code, On Test Target
+22:00:53.388 xcodebuild[90649:860734] Handling proxy channel request from test runner
+22:00:53.388 Scramble[90678:860964] Creating future for 'requesting test configuration' with timeout 600.00
+22:00:53.388 Scramble[90678:860964] Notifying test runner ready
+22:00:53.389 xcodebuild[90649:860734] Test runner is ready with capabilities: <XCTCapabilities: 0x786f084a0>: {
+    "delayed attachment transfer" = 1;
+    "fetch all test identifiers" = 2;
+    "supports crashlog generation progress" = 4;
+    "ubiquitous test identifiers" = 1;
+}
+22:00:53.389 xcodebuild[90649:860709] Test runner session successfully initiated.
+22:00:53.389 xcodebuild[90649:860709] Authorizing test process ID 90678
+22:00:53.389 xcodebuild[90649:860746] XCTHTestOperationStateMachine: Transitioning from state AcquiredPID to ReportedReady
+22:00:53.388 Scramble[90678:860964] <XCTWaiter: 0x7ccf01bf0> entering wait loop for 600.00s with expectations: `requesting test configuration`
+22:00:53.390 Scramble[90678:861007] Received test runner ready reply. Waiting for request to start running tests.
+22:00:53.390 Scramble[90678:860964] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x7ccf01bf0>
+22:00:53.390 Scramble[90678:860964] Wait <XCTWaiterWait: 0x7cc8d9c00> completed after 0.002s
+22:00:53.390 Scramble[90678:860964] cleaning up requesting test configuration
+22:00:53.390 xcodebuild[90649:860709] Got authorization response from test daemon: Success
+22:00:53.390 xcodebuild[90649:860709] Registering/updating daemon-based crash report observer for process names (
+    WindowServer,
+    Scramble,
+    xctest,
+    DTServiceHub,
+    debugserver,
+    testmanagerd
+)
+22:00:53.390 Scramble[90678:860964] Loading test bundle at: file:///Users/icarus/Desktop/Codex%20Maga/Soccer/build/capture-weakest/Build/Products/Release/Scramble.app/Contents/PlugIns/StatisticalTests.xctest/
+22:00:53.390 Scramble[90678:860964] Finished loading test bundle
+22:00:53.390 xcodebuild[90649:860709] Telling test runner to start executing tests.
+22:00:53.390 Scramble[90678:860964] Interop: installing the default fallback event handler
+22:00:53.390 Scramble[90678:861003] _IDE_startExecutingTestPlanWithProtocolVersion:36
+22:00:53.390 Scramble[90678:860964] Interop: fallback event handler installation outcome: true
+22:00:53.391 Scramble[90678:860964] Registering in-process symbolication service with image names: StatisticalTests, Scramble
+22:00:53.391 Scramble[90678:860964] Running tests with active test configuration: <XCTestConfiguration: 0x7ccdd5500>
+	                  testBundleURL:file:///Users/icarus/Desktop/Codex%20Maga/Soccer/build/capture-weakest/Build/Products/Release/Scramble.app/Contents/PlugIns/StatisticalTests.xctest/
+	         testBundleRelativePath:Contents/PlugIns/StatisticalTests.xctest
+	              productModuleName:StatisticalTests
+	                  testSelection:<XCTTestSelection: 0x7ccf01ef0>
+	            identifiersToRun:<XCTTestIdentifier leaf, method ["CaptureWeakestPredictorTest", "testCaptureWeakestPredictor"]>, <XCTTestIdentifier container ["CaptureWeakestPredictorTest", "testCaptureWeakestPredictor"]>
+	            identifiersToSkip:
+	            tagsToRun:(null)
+	            tagsToSkip:<XCTTagSelection: 0x7ccf54100>
+	            mode:and
+	            tags:{(
+)}
+	  includeXCTests:NO
+
+
+	             reportResultsToIDE:YES
+	     resultChannelConfiguration:(null)
+	                   baseTestsURL:test://com.apple.xcode/Scramble/StatisticalTests
+	               testsDrivenByIDE:NO
+	inProcessParallelizationEnabled:NO
+	              sessionIdentifier:4FFA0812-C7A6-46C3-B8D3-819154F52A9B
+	      disablePerformanceMetrics:NO
+	treatMissingBaselinesAsFailures:NO
+	                baselineFileURL:(null)
+	       baselineFileRelativePath:(null)
+	          targetApplicationPath:(null)
+	      targetApplicationBundleID:(null)
+	 testApplicationDependencies:
+{
+    "com.star.road.scramble.Scramble" = "/Users/icarus/Desktop/Codex Maga/Soccer/build/capture-weakest/Build/Products/Release/Scramble.app";
+}
+	 bundleIDsForCrashReportEmphasis:
+{(
+    "com.star.road.scramble.Scramble",
+    "com.usda.agriculture.StatisticalTests"
+)}
+	 testApplicationUserOverrides:(null)
+	     targetApplicationArguments:
+	   targetApplicationEnvironment:(null)
+	                  reportActivities:YES
+	          testsMustRunOnMainThread:NO
+	            initializeForUITesting:NO
+	            traceCollectionEnabled:(null)
+	 enablePerformanceTestsDiagnostics:(null)
+	 aggregateStatisticsBeforeCrash:
+{
+    XCSuiteRecordsKey =     {
+    };
+}
+	        automationFrameworkPath:/System/Library/PrivateFrameworks/XCTAutomationSupport.framework
+	                     emitOSLogs:NO
+	       systemAttachmentLifetime:deleteOnSuccess
+	         userAttachmentLifetime:deleteOnSuccess
+	   preferredScreenCaptureFormat:screenRecording
+	   gatherLocalizableStringsData:NO
+	          testExecutionOrdering:alphabetical
+	    randomExecutionOrderingSeed:(null)
+	               repetitionPolicy:<XCTRepetitionPolicy: 0x7ccf56e60>
+	            mode:None
+	            maximumIterations:1
+	            repeatInNewRunnerProcess:NO
+
+	       runtimeDiagnosticsPolicy:<XCTRuntimeDiagnosticsPolicy: 0x7ccf02100>
+	            otherRuntimeIssuesDetectionPolicy:<XCTRuntimeIssueDetectionPolicy: 0x7ccf56ec0>
+	            detectionEnabled:YES
+	            severity:warning
+
+	            threadPerformanceCheckerRuntimeIssueDetectionPolicy:<XCTRuntimeIssueDetectionPolicy: 0x7ccf56ec0>
+	            detectionEnabled:YES
+	            severity:warning
+
+	            mainThreadCheckerDetectionPolicy:<XCTRuntimeIssueDetectionPolicy: 0x7ccf56ec0>
+	            detectionEnabled:YES
+	            severity:warning
+
+	            checkedAllocations:disabled
+
+	 isMemoryTaggingAddressSanitizerEnabled:NO
+	    deferSymbolicationToHarness:NO
+	applicationCrashDetectionPolicy:<XCTApplicationCrashDetectionPolicy: 0x7ccf57ae0>
+	            severity:Failure
+
+	          hangDetectionPolicy:<XCTHangDetectionPolicy: detectionEnabled=NO, severity=off, durationThreshold=1.000s>
+	            testTimeoutsEnabled:NO
+	              leaksCheckingMode:off
+	                testInteropMode:limited
+	 defaultTestExecutionTimeAllowance:600
+	 maximumTestExecutionTimeAllowance:0
+	                IDECapabilities:<XCTCapabilities: 0x7cd654cf0>: {
+    "XCTIssue capability" = 1;
+    "delayed attachment transfer" = 1;
+    "expected failure test capability" = 1;
+    "in-process test parallelization capability" = 1;
+    "lazy test case snapshots" = 1;
+    "monitoring crash reports for additional processes" = 1;
+    "request diagnostics for specific devices" = 1;
+    "request spindump capability" = 1;
+    "runner plan" = 1;
+    "skipped suite capability" = 1;
+    "skipped test capability" = 1;
+    "sync crash reporter capability" = 1;
+    "test case run configurations" = 1;
+    "test iterations" = 3;
+    "test timeout capability" = 1;
+    traits = 1;
+    "ubiquitous test identifiers" = 1;
+    "unified issue recorded" = 1;
+}
+	        symbolicationImageNames:StatisticalTests, Scramble
+	         applicationBundleInfos:(null)
+
+22:00:53.391 Scramble[90678:860964] <XCTWaiter: 0x7ccf02340> entering wait loop for 600.00s with expectations: `requesting ready for testing`
+22:00:53.391 Scramble[90678:860964] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x7ccf02340>
+22:00:53.391 Scramble[90678:860964] Wait <XCTWaiterWait: 0x7cc8d9e80> completed after 0.000s
+22:00:53.391 Scramble[90678:860964] cleaning up requesting ready for testing
+22:00:53.391 Scramble[90678:860964] <XCTWaiter: 0x7ccf02580> entering wait loop for 600.00s with expectations: `IDE proxy`
+22:00:53.391 Scramble[90678:860964] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x7ccf02580>
+22:00:53.391 Scramble[90678:860964] Wait <XCTWaiterWait: 0x7cc8d9fc0> completed after 0.000s
+22:00:53.391 Scramble[90678:860964] cleaning up IDE proxy
+22:00:53.391 Scramble[90678:860964] Bypassing UI testing initialization because the test configuration does not request it.
+22:00:53.392 Scramble[90678:860964] Loading test suite...
+22:00:53.392 Scramble[90678:860964] Finished loading test suite, took 0.000s
+22:00:53.392 Scramble[90678:860964] <XCTWaiter: 0x7ccf01320> entering wait loop for 599.99s with expectations: `preparing execution worker`
+Test Suite 'Selected tests' started at 2026-11-05 22:00:53.396.
+Test Suite 'StatisticalTests.xctest' started at 2026-11-05 22:00:53.396.
+Test Suite 'CaptureWeakestPredictorTest' started at 2026-11-05 22:00:53.396.
+Test Case '-[CaptureWeakestPredictorTest testCaptureWeakestPredictor]' started.
+CAPTURE START | weak only | seed=0xb0c46ddd618c14f0 | first fixture=0 | run limit=0 (0=unlimited) | screen=16384, fresh verification=262144 per predictor | save every run | directory=/Users/icarus/Desktop/Codex Maga/Soccer/Statistical Outputs/CaptureWeakestPredictorTest/20261106T030053Z-0xb0c46ddd618c14f0-3679C4FB-F531-4AE3-8BD8-B03E8DE730F3
+CAPTURE | weak | run=1 fixture=0 | running | training 0/8257 blocks (0.0%)
+22:00:53.395 Scramble[90678:860964] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x7ccf01320>
+22:00:53.395 Scramble[90678:860964] Wait <XCTWaiterWait: 0x7cc8da4c0> completed after 0.003s
+22:00:53.395 Scramble[90678:860964] cleaning up preparing execution worker
+22:00:53.401 xcodebuild[90649:860709] Test runner started executing tests.
+22:00:53.395 Scramble[90678:860964] Entering test execution event loop
+22:00:53.401 xcodebuild[90649:860746] XCTHTestOperationStateMachine: Transitioning from state ReportedReady to ExecutingTests
+22:00:53.396 Scramble[90678:860964] Setting a new interop record handler: Optional(XCTestCore.XCTestInteropRecordHandler())
+22:00:53.396 Scramble[90678:860964] -[XCTRunnerIDESession(_XCTestObservationInternal) testBundleWillStart:]
+22:00:53.396 Scramble[90678:860964] Running suite...
+22:00:53.396 Scramble[90678:860964] -[XCTRunnerIDESession(_XCTestObservationInternal) testSuiteWillStart:]
+22:00:53.401 xcodebuild[90649:860709] _XCT_testSuiteWithIdentifier:<XCTTestIdentifier container ["Selected tests"]> didStartAt:2026-11-06 03:00:53 +0000 traits:(null)
+22:00:53.403 xcodebuild[90649:860709] Nothing to delete
+22:00:53.396 Scramble[90678:860964] -[XCTRunnerIDESession(_XCTestObservationInternal) testSuiteWillStart:]
+22:00:53.403 xcodebuild[90649:860709] _XCT_testSuiteWithIdentifier:<XCTTestIdentifier container []> didStartAt:2026-11-06 03:00:53 +0000 traits:(null)
+22:00:53.403 xcodebuild[90649:860709] Nothing to delete
+22:00:53.396 Scramble[90678:860964] -[XCTRunnerIDESession(_XCTestObservationInternal) testSuiteWillStart:]
+22:00:53.403 xcodebuild[90649:860709] _XCT_testSuiteWithIdentifier:<XCTTestIdentifier container, class ["CaptureWeakestPredictorTest"]> didStartAt:2026-11-06 03:00:53 +0000 traits:(null)
+22:00:53.403 xcodebuild[90649:860709] Nothing to delete
+22:00:53.397 Scramble[90678:860964] -[XCTRuntimeIssueDetectionManager runtimeIssueDetectionEnabled] runtimeIssueDetectionEnabled based on XCTDisableRuntimeIssues and runtime diagnostics policies: YES
+22:00:53.397 Scramble[90678:860964] -[XCTRunnerIDESession(_XCTestObservationInternal) testCaseWillStart:] CaptureWeakestPredictorTest testCaptureWeakestPredictor
+22:00:53.403 xcodebuild[90649:860709] _XCT_testCaseDidStartWithIdentifier:<XCTTestIdentifier leaf, method ["CaptureWeakestPredictorTest", "testCaptureWeakestPredictor"]>testCaseRunConfiguration:<XCTestCaseRunConfiguration: 0x788c31ac0>traits:(null)
+22:00:53.404 xcodebuild[90649:860709] Test case did start: <XCTTestIdentifier leaf, method ["CaptureWeakestPredictorTest", "testCaptureWeakestPredictor"]>
+22:00:53.404 xcodebuild[90649:860709] Nothing to delete
+22:00:53.397 Scramble[90678:860964] <XCTWaiter: 0x7ccf03a80> entering indefinite wait loop for expectations: `failable invocation block completion`
+22:00:53.397 Scramble[90678:860964] Returning result XCTWaiterResultCompleted for synchronous waiter <XCTWaiter: 0x7ccf03a80>
+22:00:53.397 Scramble[90678:860964] Wait <XCTWaiterWait: 0x7cc8dab80> completed after 0.000s
+22:00:53.397 Scramble[90678:860964] cleaning up failable invocation block completion
+22:00:53.397 Scramble[90678:860964] _assertObjectsInvalidAfterScope
+22:00:53.406 xcodebuild[90649:860709] Nothing to delete
+22:00:53.406 xcodebuild[90649:860709] Nothing to delete
+22:00:53.406 xcodebuild[90649:860709] Nothing to delete
+22:00:53.407 xcodebuild[90649:860709] Nothing to delete
+22:00:53.408 xcodebuild[90649:860709] Nothing to delete
+22:00:53.408 xcodebuild[90649:860709] Nothing to delete
+22:00:53.408 xcodebuild[90649:860709] Nothing to delete
+CAPTURE | weak | run=1 fixture=0 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=1 fixture=0 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=2 fixture=1 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=2 fixture=1 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=2 fixture=1 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=3 fixture=2 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=3 fixture=2 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=3 fixture=2 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=4 fixture=3 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=4 fixture=3 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=4 fixture=3 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=5 fixture=4 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=5 fixture=4 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=5 fixture=4 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | runs=5, completed=5, errors=0 | above50=50.0807% (n=152) | below50=49.9235% (n=168) | equal50=0 | overall=49.9982% | shuffled above50=50.0776% below50=49.9267% | max deviation=0.2872pp (match=50.2872% run=2 flag=50) | screen-selected fresh mean=49.9113% | batch=2700.1s
+CAPTURE | weak | run=6 fixture=5 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=6 fixture=5 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 229376/262144 blocks (87.5%)

@@ -1,0 +1,43 @@
+Random shuffle rebalance — validation, 2026-11-03
+
+Release arm64 Xcode build and tests: PASS.
+24 tests, 0 failures, 323.142 seconds.
+  EncryptionVaultPlanTests: 5
+  Shuffle_MEWBlockZeroTests: 3
+  WindowRotationMigrationTests: 5
+  WindowRotationPackTests: 5
+  WindowRotationShuffleTests: 4
+  StatisticalPlaintextRecoveryTests: strong + threshold/scenario control, 2
+
+Real-seed reconstruction and out-of-order independent 1 MiB block decryption
+passed for weak, normal and strong. Literal-reference cipher comparisons and
+all 144 rotation-input influence checks passed.
+
+Strong statistical recovery, policy window-pack-alternating-budget-v2:
+  Fixture 0: best held-out prediction 50.6165%, significant 0/64, 134.4 s.
+  Fixture 1: best held-out prediction 50.6226%, significant 0/64, 135.3 s.
+  Chance 50%; 16384 held-out challenge blocks per fixture.
+  Both fixtures printed exactly 589824 shuffle bytes.
+  Candidate scans totaled 150 and 147 across the eighteen jobs.
+  Thresholds and attack protocols were unchanged.
+These are bounded tests, not security certification. Weak/normal statistical
+recovery, the parity suites, and the overnight campaign were not rerun here.
+
+ASan/UBSan: 128 prepared packs / 2304 jobs passed. Exact 589824-byte budgets.
+Minimum final available prefix 418; maximum candidates read per job 12.
+Source and log: sanitizer.cpp, sanitizer.log.
+
+Standalone security runner built successfully:
+  build-security/shuffle-rebalance/strong_security_sweep
+Its build preceded the test-only Random::Shuffle fix and final comment edits.
+No encryption/rotation implementation changed after that standalone build.
+
+Initial validation exposed a pre-existing pointer-array shuffle bug and
+crashed the MEW workspace test. Random::Shuffle(T*, int) now swaps pointers
+rather than objects. All three claimed-list tests passed after the fix.
+An array-to-pointer XCTest assertion compile error was also corrected.
+
+Final log: verified.log
+XCTest bundle: /private/tmp/soccer-shuffle-rebalance/verified.xcresult
+Full allocation/repetition audit: audit.txt
+No file deletions. git diff --check passed.

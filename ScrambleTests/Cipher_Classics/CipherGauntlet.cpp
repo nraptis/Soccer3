@@ -6,6 +6,7 @@
 //
 
 #include "CipherGauntlet.hpp"
+#include "../../Scramble/Composer/Soccer3.hpp"
 #include "PrintExamplesHelper.hpp"
 #include "Random.hpp"
 #include "TestConstants.hpp"
@@ -23,7 +24,7 @@ void PrintExpectingSuccessFailure(const std::string &pFunction,
 
 void PrintExpectingSuccessError(const std::string &pFunction,
                                 const std::string &pName,
-                                const CipherErrorCode pErrorCode) {
+                                const KernelErrorCode pErrorCode) {
     printf("%s failed on %s, error code %u.\n",
            pFunction.c_str(),
            pName.c_str(),
@@ -41,7 +42,7 @@ void PrintExpectingFailureSuccess(const std::string &pFunction,
 
 void PrintExpectingFailureError(const std::string &pFunction,
                                 const std::string &pName,
-                                const CipherErrorCode pErrorCode) {
+                                const KernelErrorCode pErrorCode) {
     printf("%s failed (expecting failure) on %s, error code %u.\n",
            pFunction.c_str(),
            pName.c_str(),
@@ -131,7 +132,7 @@ void CipherGauntlet::ArrayOne(std::uint8_t *pData, std::size_t pSize) {
     memset(pData, 0xFF, pSize);
 }
 
-bool CipherGauntlet::RunCipher(Cipher *pCipher, std::string pName) {
+bool CipherGauntlet::RunCipher(Kernel *pCipher, std::string pName) {
 
     for (std::size_t aTrial = 0; aTrial < (TEST_COUNT_MAIN_TRIAL_L1); aTrial++) {
         if (!RunCipherWithSizeExpectingSuccess(pCipher, SOCCER_BLOCK_QUARTER, pName, aTrial)) {
@@ -142,7 +143,7 @@ bool CipherGauntlet::RunCipher(Cipher *pCipher, std::string pName) {
     return true;
 }
 
-bool CipherGauntlet::RunCipherWithSizeExpectingSuccess(Cipher *pCipher, std::size_t pSize, std::string pName, std::size_t pIndex) {
+bool CipherGauntlet::RunCipherWithSizeExpectingSuccess(Kernel *pCipher, std::size_t pSize, std::string pName, std::size_t pIndex) {
     
     if (pSize > SOCCER_BLOCK_SIZE) {
         printf("RunCipherWithSizeExpectingSuccess %s cannot run with size %d, too large\n", pName.c_str(), (int)pSize);
@@ -151,7 +152,7 @@ bool CipherGauntlet::RunCipherWithSizeExpectingSuccess(Cipher *pCipher, std::siz
     
     RandomizeSource(pSize, pIndex);
     
-    CipherErrorCode aErrorCode;
+    KernelErrorCode aErrorCode;
     if (!pCipher->SealData(mSource,
                          mWorkerA,
                           mEncrypted,
@@ -185,7 +186,7 @@ bool CipherGauntlet::SealDataExpectingSuccess(const std::uint8_t *pSource,
                                               std::uint8_t *pWorker,
                                               std::uint8_t *pDestination,
                                               std::size_t pSize,
-                                              Cipher *pCipher,
+                                              Kernel *pCipher,
                                               std::string pName) {
     if (pCipher == nullptr) {
         PrintExpectingSuccessFailure("SealDataExpectingSuccess",
@@ -212,7 +213,7 @@ bool CipherGauntlet::SealDataExpectingSuccess(const std::uint8_t *pSource,
         return false;
     }
     
-    CipherErrorCode aErrorCode = CipherErrorCode::kNone;
+    KernelErrorCode aErrorCode = KernelErrorCode::kNone;
     
     if (!pCipher->SealData(pSource,
                           pWorker,
@@ -232,7 +233,7 @@ bool CipherGauntlet::UnsealDataExpectingSuccess(const std::uint8_t *pSource,
                                                 std::uint8_t *pWorker,
                                                 std::uint8_t *pDestination,
                                                 std::size_t pSize,
-                                                Cipher *pCipher,
+                                                Kernel *pCipher,
                                                 std::string pName) {
     if (pCipher == nullptr) {
         PrintExpectingSuccessFailure("UnsealDataExpectingSuccess",
@@ -259,7 +260,7 @@ bool CipherGauntlet::UnsealDataExpectingSuccess(const std::uint8_t *pSource,
         return false;
     }
     
-    CipherErrorCode aErrorCode = CipherErrorCode::kNone;
+    KernelErrorCode aErrorCode = KernelErrorCode::kNone;
     
     if (!pCipher->UnsealData(pSource,
                             pWorker,

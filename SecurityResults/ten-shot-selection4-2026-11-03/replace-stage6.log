@@ -1,0 +1,18 @@
+Statistical recovery challenge: strength=1 fixture=0 queries=16384 features=211176 sampled_bytes=11057 best_flag=61 accuracy=8341/16384 (50.9094%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32889/65536 (50.1846%)
+  clustered row=1 correct=32912/65536 (50.2197%)
+  clustered row=2 correct=32806/65536 (50.0580%)
+  clustered row=3 correct=32926/65536 (50.2411%)
+  clustered row=4 correct=32521/65536 (49.6231%)
+  clustered row=5 correct=32903/65536 (50.2060%)
+  clustered row=6 correct=32721/65536 (49.9283%)
+  clustered row=7 correct=32736/65536 (49.9512%)
+  distributed row=0 correct=32963/65536 (50.2975%)
+  distributed row=1 correct=32769/65536 (50.0015%)
+  distributed row=2 correct=32510/65536 (49.6063%)
+  distributed row=3 correct=33038/65536 (50.4120%)
+  distributed row=4 correct=32644/65536 (49.8108%)
+  distributed row=5 correct=32977/65536 (50.3189%)
+  distributed row=6 correct=32789/65536 (50.0320%)
+  distributed row=7 correct=32761/65536 (49.9893%)
+COMPLETE selection=4 fixture=1 seconds=63.5656

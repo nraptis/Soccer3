@@ -1,48 +1,47 @@
 #include "CryptexLayer.hpp"
-#include "Jelly.hpp"
 
 #include <cstdint>
 #include <cstring>
 
 CryptexLayer::CryptexLayer() {
-    mCipherCount = 0;
-    for (std::size_t aCipherIndex=0; aCipherIndex<CRYPTEX_LAYER_MAX_CIPHER_COUNT; aCipherIndex++) {
-        mCiphers[aCipherIndex] = nullptr;
+    mKernelCount = 0;
+    for (std::size_t aKernelIndex=0; aKernelIndex<CRYPTEX_LAYER_MAX_KERNEL_COUNT; aKernelIndex++) {
+        mKernels[aKernelIndex] = nullptr;
     }
 }
 
 CryptexLayer::~CryptexLayer() {
-    for (std::size_t aCipherIndex=0; aCipherIndex<mCipherCount; aCipherIndex++) {
-        delete mCiphers[aCipherIndex];
-        mCiphers[aCipherIndex] = nullptr;
+    for (std::size_t aKernelIndex=0; aKernelIndex<mKernelCount; aKernelIndex++) {
+        delete mKernels[aKernelIndex];
+        mKernels[aKernelIndex] = nullptr;
     }
-    mCipherCount = 0;
+    mKernelCount = 0;
 }
 
-void CryptexLayer::Add(Cipher *pCipher) {
-    if (mCipherCount < CRYPTEX_LAYER_MAX_CIPHER_COUNT) {
-        mCiphers[mCipherCount] = pCipher;
-        mCipherCount++;
+void CryptexLayer::Add(Kernel *pKernel) {
+    if (mKernelCount < CRYPTEX_LAYER_MAX_KERNEL_COUNT) {
+        mKernels[mKernelCount] = pKernel;
+        mKernelCount++;
     } else {
 
-        delete pCipher;
+        delete pKernel;
     }
 }
 
 void CryptexLayer::Clear() {
-    for (std::size_t aCipherIndex=0; aCipherIndex<mCipherCount; aCipherIndex++) {
-        delete mCiphers[aCipherIndex];
-        mCiphers[aCipherIndex] = nullptr;
+    for (std::size_t aKernelIndex=0; aKernelIndex<mKernelCount; aKernelIndex++) {
+        delete mKernels[aKernelIndex];
+        mKernels[aKernelIndex] = nullptr;
     }
-    mCipherCount = 0;
+    mKernelCount = 0;
 }
 
 void CryptexLayer::Zero() {
-    for (std::size_t aCipherIndex=0U;
-         aCipherIndex<mCipherCount;
-         aCipherIndex++) {
-        if (mCiphers[aCipherIndex] != nullptr) {
-            mCiphers[aCipherIndex]->Zero();
+    for (std::size_t aKernelIndex=0U;
+         aKernelIndex<mKernelCount;
+         aKernelIndex++) {
+        if (mKernels[aKernelIndex] != nullptr) {
+            mKernels[aKernelIndex]->Zero();
         }
     }
 }
@@ -51,50 +50,50 @@ bool CryptexLayer::SealData(const std::uint8_t* pSource,
                                std::uint8_t* pScratch,
                                std::uint8_t* pDestination,
                                std::size_t pLength,
-                               CipherErrorCode *pErrorCode) const {
+                               KernelErrorCode *pErrorCode) const {
     if (pLength == 0) {
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
         return true;
     }
     
     if (pSource == nullptr || pScratch == nullptr || pDestination == nullptr) {
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kNullBuffer);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kNullBuffer);
         return false;
     }
     
-    if (mCipherCount == 0) {
+    if (mKernelCount == 0) {
         if (pSource != pDestination) {
             std::memcpy(pDestination, pSource, pLength);
         }
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
         return true;
     }
     
     if ((pSource == pDestination) ||
         (pSource == pScratch) ||
         (pDestination == pScratch)) {
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kAliasedBuffer);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kAliasedBuffer);
         return false;
     }
     
     const std::uint8_t* aInput = pSource;
     std::uint8_t* aOutput =
-    ((mCipherCount & 1U) == 0U) ? pScratch : pDestination;
+    ((mKernelCount & 1U) == 0U) ? pScratch : pDestination;
     
-    for (std::size_t aCipherIndex=0; aCipherIndex<mCipherCount; aCipherIndex++) {
-        Cipher *aCipher = mCiphers[aCipherIndex];
-        if (aCipher == nullptr) {
-            SetCipherErrorCode(pErrorCode, CipherErrorCode::kNullCipher);
+    for (std::size_t aKernelIndex=0; aKernelIndex<mKernelCount; aKernelIndex++) {
+        Kernel *aKernel = mKernels[aKernelIndex];
+        if (aKernel == nullptr) {
+            SetKernelErrorCode(pErrorCode, KernelErrorCode::kNullKernel);
             return false;
         }
-        if (!aCipher->SealData(aInput, pScratch, aOutput, pLength, pErrorCode)) {
+        if (!aKernel->SealData(aInput, pScratch, aOutput, pLength, pErrorCode)) {
             return false;
         }
         aInput = aOutput;
         aOutput = (aOutput == pDestination) ? pScratch : pDestination;
     }
     
-    SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+    SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
     return true;
 }
 
@@ -102,45 +101,45 @@ bool CryptexLayer::UnsealData(const std::uint8_t* pSource,
                                  std::uint8_t* pScratch,
                                  std::uint8_t* pDestination,
                                  std::size_t pLength,
-                                 CipherErrorCode *pErrorCode) const {
+                                 KernelErrorCode *pErrorCode) const {
     if (pLength == 0) {
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
         return true;
     }
     
     if (pSource == nullptr || pScratch == nullptr || pDestination == nullptr) {
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kNullBuffer);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kNullBuffer);
         return false;
     }
     
-    if (mCipherCount == 0) {
+    if (mKernelCount == 0) {
         if (pSource != pDestination) {
             std::memcpy(pDestination, pSource, pLength);
         }
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
         return true;
     }
     
     if ((pSource == pDestination) ||
         (pSource == pScratch) ||
         (pDestination == pScratch)) {
-        SetCipherErrorCode(pErrorCode, CipherErrorCode::kAliasedBuffer);
+        SetKernelErrorCode(pErrorCode, KernelErrorCode::kAliasedBuffer);
         return false;
     }
     
     const std::uint8_t* aInput = pSource;
     std::uint8_t* aOutput =
-    ((mCipherCount & 1U) == 0U) ? pScratch : pDestination;
+    ((mKernelCount & 1U) == 0U) ? pScratch : pDestination;
     
-    std::size_t aCipherIndex = mCipherCount;
-    while (aCipherIndex > 0) {
-        aCipherIndex--;
-        Cipher *aCipher = mCiphers[aCipherIndex];
-        if (aCipher == nullptr) {
-            SetCipherErrorCode(pErrorCode, CipherErrorCode::kNullCipher);
+    std::size_t aKernelIndex = mKernelCount;
+    while (aKernelIndex > 0) {
+        aKernelIndex--;
+        Kernel *aKernel = mKernels[aKernelIndex];
+        if (aKernel == nullptr) {
+            SetKernelErrorCode(pErrorCode, KernelErrorCode::kNullKernel);
             return false;
         }
-        if (!aCipher->UnsealData(aInput, pScratch, aOutput, pLength,
+        if (!aKernel->UnsealData(aInput, pScratch, aOutput, pLength,
                                  pErrorCode)) {
             return false;
         }
@@ -148,11 +147,11 @@ bool CryptexLayer::UnsealData(const std::uint8_t* pSource,
         aOutput = (aOutput == pDestination) ? pScratch : pDestination;
     }
     
-    SetCipherErrorCode(pErrorCode, CipherErrorCode::kNone);
+    SetKernelErrorCode(pErrorCode, KernelErrorCode::kNone);
     return true;
 }
 
-CipherType CryptexLayer::GetCipherType(std::size_t pIndex) const {
-    return pIndex < mCipherCount && mCiphers[pIndex] != nullptr
-        ? mCiphers[pIndex]->mType : CipherType::kNone;
+KernelType CryptexLayer::GetKernelType(std::size_t pIndex) const {
+    return pIndex < mKernelCount && mKernels[pIndex] != nullptr
+        ? mKernels[pIndex]->mType : KernelType::kNone;
 }

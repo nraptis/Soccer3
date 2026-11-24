@@ -1,42 +1,45 @@
 #include "Soccer3.hpp"
 
+std::uint32_t Soccer3::ShiftMaskedByteOffset(std::uint64_t pWord) {
+    return static_cast<std::uint32_t>(1U + 2U * (pWord % 32U));
+}
+
 BitPlane                    Soccer3::mBitPlane{};
 std::uint64_t               Soccer3::mBitPlaneWordA = 0U;
 std::uint64_t               Soccer3::mBitPlaneWordB = 0U;
 std::uint64_t               Soccer3::mBitPlaneWordC = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordA = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordB = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordC = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordD = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordE = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordF = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordG = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordH = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordI = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordJ = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordK = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordL = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordM = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordN = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordO = 0U;
-std::uint64_t               Soccer3::mFreeRotationWordP = 0U;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAA = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAB = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAC = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAD = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAE = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAF = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAG = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationAH = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBA = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBB = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBC = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBD = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBE = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBF = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBG = 0;
-std::int32_t                Soccer3::mShiftMaskedCipherRotationBH = 0;
-WindowRotationPack          Soccer3::mWindowRotationPack{};
+std::uint64_t               Soccer3::mShiftMaskedRotationWordAALeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordAARight = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordABLeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordABRight = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordACLeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordACRight = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordADLeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordADRight = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBALeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBARight = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBBLeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBBRight = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBCLeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBCRight = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBDLeft = 0U;
+std::uint64_t               Soccer3::mShiftMaskedRotationWordBDRight = 0U;
+Soccer3::PlaneShift         Soccer3::mPlaneShiftAALeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftAARight{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftABLeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftABRight{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftACLeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftACRight{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftADLeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftADRight{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBALeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBARight{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBBLeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBBRight{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBCLeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBCRight{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBDLeft{};
+Soccer3::PlaneShift         Soccer3::mPlaneShiftBDRight{};
 Cryptex                     Soccer3::mCryptex;
 bool                        Soccer3::mEncryptionReady = false;
 std::size_t                 Soccer3::mMaterialIndex = 0;
@@ -74,142 +77,134 @@ std::uint8_t                Soccer3::mBitRowDE = 0U;
 std::uint8_t                Soccer3::mBitRowDF = 0U;
 std::uint8_t                Soccer3::mBitRowDG = 0U;
 std::uint8_t                Soccer3::mBitRowDH = 0U;
-std::uint8_t                Soccer3::mRotationMaskA = 0U;
-std::uint8_t                Soccer3::mRotationMaskB = 0U;
-std::uint8_t                Soccer3::mRotationMaskC = 0U;
-std::uint8_t                Soccer3::mRotationMaskD = 0U;
-std::uint8_t                Soccer3::mRotationMaskE = 0U;
-std::uint8_t                Soccer3::mRotationMaskF = 0U;
-std::uint8_t                Soccer3::mRotationMaskG = 0U;
-std::uint8_t                Soccer3::mRotationMaskH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationAAP = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationABP = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationACP = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationADP = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBAP = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBBP = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBCP = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDA = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDB = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDC = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDD = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDE = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDF = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDG = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDH = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDI = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDJ = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDK = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDL = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDM = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDN = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDO = 0U;
-std::uint16_t               Soccer3::mFlameToadCipherRotationBDP = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAALeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationAARightH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABLeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationABRightH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACLeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationACRightH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADLeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationADRightH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBALeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBARightH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBLeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBBRightH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCLeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBCRightH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDLeftH = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightA = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightB = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightC = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightD = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightE = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightF = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightG = 0U;
+std::uint16_t               Soccer3::mToadCipherRotationBDRightH = 0U;
 const std::uint8_t *        Soccer3::mMutateMaterialA = nullptr;
 const std::uint8_t *        Soccer3::mMutateMaterialB = nullptr;
 const std::uint8_t *        Soccer3::mMutateMaterialC = nullptr;
@@ -236,41 +231,194 @@ bool                        Soccer3::ValidateCryptexInputs(EncryptionStrength pS
     aPlane.SetRow(2U, BitPlaneRow{{{mBitRowCA, mBitRowCB}, {mBitRowCC, mBitRowCD}, {mBitRowCE, mBitRowCF}, {mBitRowCG, mBitRowCH}}});
     aPlane.SetRow(3U, BitPlaneRow{{{mBitRowDA, mBitRowDB}, {mBitRowDC, mBitRowDD}, {mBitRowDE, mBitRowDF}, {mBitRowDG, mBitRowDH}}});
     if (!aPlane.IsValid()) return false;
-    const std::uint8_t aMasks[] = {mRotationMaskA, mRotationMaskB, mRotationMaskC, mRotationMaskD, mRotationMaskE, mRotationMaskF, mRotationMaskG, mRotationMaskH};
-    for (std::size_t aLayer = 0U; aLayer < 4U; ++aLayer) {
-        std::uint8_t aFirst = 0U, aSecond = 0U;
-        for (const auto &aPair : aPlane.GetRow(aLayer % 4U).mPairs) {
-            aFirst |= static_cast<std::uint8_t>(1U << aPair.mBitA);
-            aSecond |= static_cast<std::uint8_t>(1U << aPair.mBitB);
-        }
-        if (aMasks[2U * aLayer] != aFirst || aMasks[2U * aLayer + 1U] != aSecond) return false;
-    }
-    const std::int32_t aFreeRotations[WindowRotationFarm::kFreeRotationCount] = {
-        mShiftMaskedCipherRotationAA, mShiftMaskedCipherRotationAB, mShiftMaskedCipherRotationAC, mShiftMaskedCipherRotationAD,
-        mShiftMaskedCipherRotationAE, mShiftMaskedCipherRotationAF, mShiftMaskedCipherRotationAG, mShiftMaskedCipherRotationAH,
-        mShiftMaskedCipherRotationBA, mShiftMaskedCipherRotationBB, mShiftMaskedCipherRotationBC, mShiftMaskedCipherRotationBD,
-        mShiftMaskedCipherRotationBE, mShiftMaskedCipherRotationBF, mShiftMaskedCipherRotationBG, mShiftMaskedCipherRotationBH
+    const PlaneShift aPlaneShifts[2][kRotationsPerList] = {
+        {
+            mPlaneShiftAALeft,
+            mPlaneShiftABLeft,
+            mPlaneShiftACLeft,
+            mPlaneShiftADLeft,
+            mPlaneShiftBALeft,
+            mPlaneShiftBBLeft,
+            mPlaneShiftBCLeft,
+            mPlaneShiftBDLeft,
+        },
+        {
+            mPlaneShiftAARight,
+            mPlaneShiftABRight,
+            mPlaneShiftACRight,
+            mPlaneShiftADRight,
+            mPlaneShiftBARight,
+            mPlaneShiftBBRight,
+            mPlaneShiftBCRight,
+            mPlaneShiftBDRight,
+        },
     };
-    for (const auto aRotation : aFreeRotations)
-        if (aRotation <= 0 || aRotation >= static_cast<std::int32_t>(SOCCER_BLOCK_SIZE)) return false;
-    WindowRotationPack aRotations{};
-    aRotations.mPlaneA.mChunkA = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationAA / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationAB / 64),
-        mFlameToadCipherRotationAAA, mFlameToadCipherRotationAAB, mFlameToadCipherRotationAAC, mFlameToadCipherRotationAAD, mFlameToadCipherRotationAAE, mFlameToadCipherRotationAAF, mFlameToadCipherRotationAAG, mFlameToadCipherRotationAAH, mFlameToadCipherRotationAAI, mFlameToadCipherRotationAAJ, mFlameToadCipherRotationAAK, mFlameToadCipherRotationAAL, mFlameToadCipherRotationAAM, mFlameToadCipherRotationAAN, mFlameToadCipherRotationAAO, mFlameToadCipherRotationAAP};
-    aRotations.mPlaneA.mChunkB = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationAC / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationAD / 64),
-        mFlameToadCipherRotationABA, mFlameToadCipherRotationABB, mFlameToadCipherRotationABC, mFlameToadCipherRotationABD, mFlameToadCipherRotationABE, mFlameToadCipherRotationABF, mFlameToadCipherRotationABG, mFlameToadCipherRotationABH, mFlameToadCipherRotationABI, mFlameToadCipherRotationABJ, mFlameToadCipherRotationABK, mFlameToadCipherRotationABL, mFlameToadCipherRotationABM, mFlameToadCipherRotationABN, mFlameToadCipherRotationABO, mFlameToadCipherRotationABP};
-    aRotations.mPlaneA.mChunkC = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationAE / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationAF / 64),
-        mFlameToadCipherRotationACA, mFlameToadCipherRotationACB, mFlameToadCipherRotationACC, mFlameToadCipherRotationACD, mFlameToadCipherRotationACE, mFlameToadCipherRotationACF, mFlameToadCipherRotationACG, mFlameToadCipherRotationACH, mFlameToadCipherRotationACI, mFlameToadCipherRotationACJ, mFlameToadCipherRotationACK, mFlameToadCipherRotationACL, mFlameToadCipherRotationACM, mFlameToadCipherRotationACN, mFlameToadCipherRotationACO, mFlameToadCipherRotationACP};
-    aRotations.mPlaneA.mChunkD = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationAG / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationAH / 64),
-        mFlameToadCipherRotationADA, mFlameToadCipherRotationADB, mFlameToadCipherRotationADC, mFlameToadCipherRotationADD, mFlameToadCipherRotationADE, mFlameToadCipherRotationADF, mFlameToadCipherRotationADG, mFlameToadCipherRotationADH, mFlameToadCipherRotationADI, mFlameToadCipherRotationADJ, mFlameToadCipherRotationADK, mFlameToadCipherRotationADL, mFlameToadCipherRotationADM, mFlameToadCipherRotationADN, mFlameToadCipherRotationADO, mFlameToadCipherRotationADP};
-    aRotations.mPlaneB.mChunkA = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationBA / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationBB / 64),
-        mFlameToadCipherRotationBAA, mFlameToadCipherRotationBAB, mFlameToadCipherRotationBAC, mFlameToadCipherRotationBAD, mFlameToadCipherRotationBAE, mFlameToadCipherRotationBAF, mFlameToadCipherRotationBAG, mFlameToadCipherRotationBAH, mFlameToadCipherRotationBAI, mFlameToadCipherRotationBAJ, mFlameToadCipherRotationBAK, mFlameToadCipherRotationBAL, mFlameToadCipherRotationBAM, mFlameToadCipherRotationBAN, mFlameToadCipherRotationBAO, mFlameToadCipherRotationBAP};
-    aRotations.mPlaneB.mChunkB = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationBC / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationBD / 64),
-        mFlameToadCipherRotationBBA, mFlameToadCipherRotationBBB, mFlameToadCipherRotationBBC, mFlameToadCipherRotationBBD, mFlameToadCipherRotationBBE, mFlameToadCipherRotationBBF, mFlameToadCipherRotationBBG, mFlameToadCipherRotationBBH, mFlameToadCipherRotationBBI, mFlameToadCipherRotationBBJ, mFlameToadCipherRotationBBK, mFlameToadCipherRotationBBL, mFlameToadCipherRotationBBM, mFlameToadCipherRotationBBN, mFlameToadCipherRotationBBO, mFlameToadCipherRotationBBP};
-    aRotations.mPlaneB.mChunkC = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationBE / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationBF / 64),
-        mFlameToadCipherRotationBCA, mFlameToadCipherRotationBCB, mFlameToadCipherRotationBCC, mFlameToadCipherRotationBCD, mFlameToadCipherRotationBCE, mFlameToadCipherRotationBCF, mFlameToadCipherRotationBCG, mFlameToadCipherRotationBCH, mFlameToadCipherRotationBCI, mFlameToadCipherRotationBCJ, mFlameToadCipherRotationBCK, mFlameToadCipherRotationBCL, mFlameToadCipherRotationBCM, mFlameToadCipherRotationBCN, mFlameToadCipherRotationBCO, mFlameToadCipherRotationBCP};
-    aRotations.mPlaneB.mChunkD = {static_cast<std::uint16_t>(mShiftMaskedCipherRotationBG / 64), static_cast<std::uint16_t>(mShiftMaskedCipherRotationBH / 64),
-        mFlameToadCipherRotationBDA, mFlameToadCipherRotationBDB, mFlameToadCipherRotationBDC, mFlameToadCipherRotationBDD, mFlameToadCipherRotationBDE, mFlameToadCipherRotationBDF, mFlameToadCipherRotationBDG, mFlameToadCipherRotationBDH, mFlameToadCipherRotationBDI, mFlameToadCipherRotationBDJ, mFlameToadCipherRotationBDK, mFlameToadCipherRotationBDL, mFlameToadCipherRotationBDM, mFlameToadCipherRotationBDN, mFlameToadCipherRotationBDO, mFlameToadCipherRotationBDP};
-    if (!WindowRotationFarm::IsValid(aRotations, aFreeRotations)) return false;
+    const std::uint8_t aRowPairs[kRotationsPerList][4] = {
+        {mBitRowAA, mBitRowAC, mBitRowAE, mBitRowAG},
+        {mBitRowAB, mBitRowAD, mBitRowAF, mBitRowAH},
+        {mBitRowAA, mBitRowAE, mBitRowAC, mBitRowAG},
+        {mBitRowAB, mBitRowAF, mBitRowAD, mBitRowAH},
+        {mBitRowAA, mBitRowAD, mBitRowAE, mBitRowAH},
+        {mBitRowAB, mBitRowAC, mBitRowAF, mBitRowAG},
+        {mBitRowAA, mBitRowAF, mBitRowAC, mBitRowAH},
+        {mBitRowAB, mBitRowAE, mBitRowAD, mBitRowAG},
+    };
+    for (std::size_t aLayer = 0U; aLayer < kRotationsPerList; ++aLayer) {
+        for (std::size_t aSide = 0U; aSide < 2U; ++aSide) {
+            const auto aMask = static_cast<std::uint8_t>(
+                (1U << aRowPairs[aLayer][2U * aSide]) | (1U << aRowPairs[aLayer][2U * aSide + 1U]));
+            if (aPlaneShifts[aSide][aLayer].mMask != aMask) return false;
+        }
+    }
+    const std::uint16_t aWindowRotations[kRotationListCount][kRotationsPerList] = {
+        {
+            mShiftMaskedRotationListChosenA[0], mShiftMaskedRotationListChosenA[1],
+            mShiftMaskedRotationListChosenA[2], mShiftMaskedRotationListChosenA[3],
+            mShiftMaskedRotationListChosenA[4], mShiftMaskedRotationListChosenA[5],
+            mShiftMaskedRotationListChosenA[6], mShiftMaskedRotationListChosenA[7],
+        },
+        {
+            mShiftMaskedRotationListChosenB[0], mShiftMaskedRotationListChosenB[1],
+            mShiftMaskedRotationListChosenB[2], mShiftMaskedRotationListChosenB[3],
+            mShiftMaskedRotationListChosenB[4], mShiftMaskedRotationListChosenB[5],
+            mShiftMaskedRotationListChosenB[6], mShiftMaskedRotationListChosenB[7],
+        },
+        {
+            mToadCipherRotationAALeftA, mToadCipherRotationAALeftB,
+            mToadCipherRotationAALeftC, mToadCipherRotationAALeftD,
+            mToadCipherRotationAALeftE, mToadCipherRotationAALeftF,
+            mToadCipherRotationAALeftG, mToadCipherRotationAALeftH
+        },
+        {
+            mToadCipherRotationAARightA, mToadCipherRotationAARightB,
+            mToadCipherRotationAARightC, mToadCipherRotationAARightD,
+            mToadCipherRotationAARightE, mToadCipherRotationAARightF,
+            mToadCipherRotationAARightG, mToadCipherRotationAARightH
+        },
+        {
+            mToadCipherRotationABLeftA, mToadCipherRotationABLeftB,
+            mToadCipherRotationABLeftC, mToadCipherRotationABLeftD,
+            mToadCipherRotationABLeftE, mToadCipherRotationABLeftF,
+            mToadCipherRotationABLeftG, mToadCipherRotationABLeftH
+        },
+        {
+            mToadCipherRotationABRightA, mToadCipherRotationABRightB,
+            mToadCipherRotationABRightC, mToadCipherRotationABRightD,
+            mToadCipherRotationABRightE, mToadCipherRotationABRightF,
+            mToadCipherRotationABRightG, mToadCipherRotationABRightH
+        },
+        {
+            mToadCipherRotationACLeftA, mToadCipherRotationACLeftB,
+            mToadCipherRotationACLeftC, mToadCipherRotationACLeftD,
+            mToadCipherRotationACLeftE, mToadCipherRotationACLeftF,
+            mToadCipherRotationACLeftG, mToadCipherRotationACLeftH
+        },
+        {
+            mToadCipherRotationACRightA, mToadCipherRotationACRightB,
+            mToadCipherRotationACRightC, mToadCipherRotationACRightD,
+            mToadCipherRotationACRightE, mToadCipherRotationACRightF,
+            mToadCipherRotationACRightG, mToadCipherRotationACRightH
+        },
+        {
+            mToadCipherRotationADLeftA, mToadCipherRotationADLeftB,
+            mToadCipherRotationADLeftC, mToadCipherRotationADLeftD,
+            mToadCipherRotationADLeftE, mToadCipherRotationADLeftF,
+            mToadCipherRotationADLeftG, mToadCipherRotationADLeftH
+        },
+        {
+            mToadCipherRotationADRightA, mToadCipherRotationADRightB,
+            mToadCipherRotationADRightC, mToadCipherRotationADRightD,
+            mToadCipherRotationADRightE, mToadCipherRotationADRightF,
+            mToadCipherRotationADRightG, mToadCipherRotationADRightH
+        },
+        {
+            mToadCipherRotationBALeftA, mToadCipherRotationBALeftB,
+            mToadCipherRotationBALeftC, mToadCipherRotationBALeftD,
+            mToadCipherRotationBALeftE, mToadCipherRotationBALeftF,
+            mToadCipherRotationBALeftG, mToadCipherRotationBALeftH
+        },
+        {
+            mToadCipherRotationBARightA, mToadCipherRotationBARightB,
+            mToadCipherRotationBARightC, mToadCipherRotationBARightD,
+            mToadCipherRotationBARightE, mToadCipherRotationBARightF,
+            mToadCipherRotationBARightG, mToadCipherRotationBARightH
+        },
+        {
+            mToadCipherRotationBBLeftA, mToadCipherRotationBBLeftB,
+            mToadCipherRotationBBLeftC, mToadCipherRotationBBLeftD,
+            mToadCipherRotationBBLeftE, mToadCipherRotationBBLeftF,
+            mToadCipherRotationBBLeftG, mToadCipherRotationBBLeftH
+        },
+        {
+            mToadCipherRotationBBRightA, mToadCipherRotationBBRightB,
+            mToadCipherRotationBBRightC, mToadCipherRotationBBRightD,
+            mToadCipherRotationBBRightE, mToadCipherRotationBBRightF,
+            mToadCipherRotationBBRightG, mToadCipherRotationBBRightH
+        },
+        {
+            mToadCipherRotationBCLeftA, mToadCipherRotationBCLeftB,
+            mToadCipherRotationBCLeftC, mToadCipherRotationBCLeftD,
+            mToadCipherRotationBCLeftE, mToadCipherRotationBCLeftF,
+            mToadCipherRotationBCLeftG, mToadCipherRotationBCLeftH
+        },
+        {
+            mToadCipherRotationBCRightA, mToadCipherRotationBCRightB,
+            mToadCipherRotationBCRightC, mToadCipherRotationBCRightD,
+            mToadCipherRotationBCRightE, mToadCipherRotationBCRightF,
+            mToadCipherRotationBCRightG, mToadCipherRotationBCRightH
+        },
+        {
+            mToadCipherRotationBDLeftA, mToadCipherRotationBDLeftB,
+            mToadCipherRotationBDLeftC, mToadCipherRotationBDLeftD,
+            mToadCipherRotationBDLeftE, mToadCipherRotationBDLeftF,
+            mToadCipherRotationBDLeftG, mToadCipherRotationBDLeftH
+        },
+        {
+            mToadCipherRotationBDRightA, mToadCipherRotationBDRightB,
+            mToadCipherRotationBDRightC, mToadCipherRotationBDRightD,
+            mToadCipherRotationBDRightE, mToadCipherRotationBDRightF,
+            mToadCipherRotationBDRightG, mToadCipherRotationBDRightH
+        },
+    };
+    bool aSingleBlocked[kRotationWindowCount] = {};
+    aSingleBlocked[0U] = true;
+    aSingleBlocked[kRotationWindowCount / 2U] = true;
+    for (std::size_t aList = 0U; aList < kRotationListCount; ++aList) {
+        const bool aMasked = aList < 2U;
+        for (std::size_t aIndex = 0U; aIndex < kRotationsPerList; ++aIndex) {
+            const std::size_t aWindow = aWindowRotations[aList][aIndex];
+            if (aWindow >= kRotationWindowCount || aSingleBlocked[aWindow]) return false;
+            if (aMasked) {
+                const auto aShift = aPlaneShifts[aList][aIndex].mRotation;
+                if (aShift == 0U || aShift >= SOCCER_BLOCK_SIZE ||
+                    (aShift & 1) == 0 || aShift / kRotationWindowBytes != aWindow) return false;
+            }
+            aSingleBlocked[aWindow] = true;
+            aSingleBlocked[kRotationWindowCount - aWindow] = true;
+            if (aMasked) aSingleBlocked[kRotationWindowCount - 1U - aWindow] = true;
+        }
+        // Independently enumerate every subset instead of reusing the selector's
+        // difference-blocking algorithm. Include the empty sum to detect zero sums.
+        bool aSeenWindows[kRotationWindowCount] = {};
+        std::uint32_t aByteSums[1U << kRotationsPerList] = {};
+        for (std::size_t aSubset = 0U; aSubset < (1U << kRotationsPerList); ++aSubset) {
+            std::uint32_t aWindowSum = 0U, aByteSum = 0U;
+            for (std::size_t aIndex = 0U; aIndex < kRotationsPerList; ++aIndex) {
+                if ((aSubset & (1U << aIndex)) == 0U) continue;
+                aWindowSum += aWindowRotations[aList][aIndex];
+                if (aMasked) aByteSum += static_cast<std::uint32_t>(aPlaneShifts[aList][aIndex].mRotation);
+            }
+            aWindowSum %= kRotationWindowCount;
+            if (aSeenWindows[aWindowSum]) return false;
+            aSeenWindows[aWindowSum] = true;
+            if (aMasked) {
+                aByteSum %= SOCCER_BLOCK_SIZE;
+                for (std::size_t aPrevious = 0U; aPrevious < aSubset; ++aPrevious)
+                    if (aByteSum == aByteSums[aPrevious]) return false;
+                aByteSums[aSubset] = aByteSum;
+            }
+        }
+    }
     if (mPackedRows == nullptr || mPackedRowLength < SOCCER_BLOCK_SIZE / 4U) return false;
     const std::uint8_t *aMaterials[] = {mMutateMaterialA, mMutateMaterialB, mMutateMaterialC, mMutateMaterialD, mMutateMaterialE, mMutateMaterialF, mMutateMaterialG, mMutateMaterialH, mMutateMaterialI, mMutateMaterialJ, mMutateMaterialK, mMutateMaterialL, mMutateMaterialM, mMutateMaterialN, mMutateMaterialO, mMutateMaterialP};
     const std::size_t aMaterialCount = pStrength == EncryptionStrength::kWeak ? 4U :
@@ -284,3 +432,261 @@ bool                        Soccer3::ValidateCryptexInputs(EncryptionStrength pS
     }
     return true;
 }
+
+bool Soccer3::SeedEpilogue_Regular_D() {
+    if (!mBitPlane.IsValid()) return false;
+    const auto aRowA = mBitPlane.GetRow(0U);
+    mBitRowAA = aRowA.mPairs[0U].mBitA;
+    mBitRowAB = aRowA.mPairs[0U].mBitB;
+    mBitRowAC = aRowA.mPairs[1U].mBitA;
+    mBitRowAD = aRowA.mPairs[1U].mBitB;
+    mBitRowAE = aRowA.mPairs[2U].mBitA;
+    mBitRowAF = aRowA.mPairs[2U].mBitB;
+    mBitRowAG = aRowA.mPairs[3U].mBitA;
+    mBitRowAH = aRowA.mPairs[3U].mBitB;
+    const auto aRowB = mBitPlane.GetRow(1U);
+    mBitRowBA = aRowB.mPairs[0U].mBitA;
+    mBitRowBB = aRowB.mPairs[0U].mBitB;
+    mBitRowBC = aRowB.mPairs[1U].mBitA;
+    mBitRowBD = aRowB.mPairs[1U].mBitB;
+    mBitRowBE = aRowB.mPairs[2U].mBitA;
+    mBitRowBF = aRowB.mPairs[2U].mBitB;
+    mBitRowBG = aRowB.mPairs[3U].mBitA;
+    mBitRowBH = aRowB.mPairs[3U].mBitB;
+    const auto aRowC = mBitPlane.GetRow(2U);
+    mBitRowCA = aRowC.mPairs[0U].mBitA;
+    mBitRowCB = aRowC.mPairs[0U].mBitB;
+    mBitRowCC = aRowC.mPairs[1U].mBitA;
+    mBitRowCD = aRowC.mPairs[1U].mBitB;
+    mBitRowCE = aRowC.mPairs[2U].mBitA;
+    mBitRowCF = aRowC.mPairs[2U].mBitB;
+    mBitRowCG = aRowC.mPairs[3U].mBitA;
+    mBitRowCH = aRowC.mPairs[3U].mBitB;
+    const auto aRowD = mBitPlane.GetRow(3U);
+    mBitRowDA = aRowD.mPairs[0U].mBitA;
+    mBitRowDB = aRowD.mPairs[0U].mBitB;
+    mBitRowDC = aRowD.mPairs[1U].mBitA;
+    mBitRowDD = aRowD.mPairs[1U].mBitB;
+    mBitRowDE = aRowD.mPairs[2U].mBitA;
+    mBitRowDF = aRowD.mPairs[2U].mBitB;
+    mBitRowDG = aRowD.mPairs[3U].mBitA;
+    mBitRowDH = aRowD.mPairs[3U].mBitB;
+    // One shared row labels all corvid pairs. Each side has its own farmed window and odd byte offset.
+    mPlaneShiftAALeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAA) | (1U << mBitRowAC)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[0U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordAALeft)};
+    mPlaneShiftAARight = {
+        static_cast<std::uint8_t>((1U << mBitRowAE) | (1U << mBitRowAG)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[0U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordAARight)};
+    mPlaneShiftABLeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAB) | (1U << mBitRowAD)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[1U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordABLeft)};
+    mPlaneShiftABRight = {
+        static_cast<std::uint8_t>((1U << mBitRowAF) | (1U << mBitRowAH)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[1U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordABRight)};
+    mPlaneShiftACLeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAA) | (1U << mBitRowAE)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[2U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordACLeft)};
+    mPlaneShiftACRight = {
+        static_cast<std::uint8_t>((1U << mBitRowAC) | (1U << mBitRowAG)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[2U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordACRight)};
+    mPlaneShiftADLeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAB) | (1U << mBitRowAF)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[3U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordADLeft)};
+    mPlaneShiftADRight = {
+        static_cast<std::uint8_t>((1U << mBitRowAD) | (1U << mBitRowAH)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[3U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordADRight)};
+    mPlaneShiftBALeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAA) | (1U << mBitRowAD)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[4U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBALeft)};
+    mPlaneShiftBARight = {
+        static_cast<std::uint8_t>((1U << mBitRowAE) | (1U << mBitRowAH)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[4U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBARight)};
+    mPlaneShiftBBLeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAB) | (1U << mBitRowAC)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[5U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBBLeft)};
+    mPlaneShiftBBRight = {
+        static_cast<std::uint8_t>((1U << mBitRowAF) | (1U << mBitRowAG)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[5U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBBRight)};
+    mPlaneShiftBCLeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAA) | (1U << mBitRowAF)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[6U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBCLeft)};
+    mPlaneShiftBCRight = {
+        static_cast<std::uint8_t>((1U << mBitRowAC) | (1U << mBitRowAH)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[6U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBCRight)};
+    mPlaneShiftBDLeft = {
+        static_cast<std::uint8_t>((1U << mBitRowAB) | (1U << mBitRowAE)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenA[7U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBDLeft)};
+    mPlaneShiftBDRight = {
+        static_cast<std::uint8_t>((1U << mBitRowAD) | (1U << mBitRowAG)),
+        kRotationWindowBytes * mShiftMaskedRotationListChosenB[7U] +
+            ShiftMaskedByteOffset(mShiftMaskedRotationWordBDRight)};
+
+    mToadCipherRotationAALeftA = mFlameToadRotationListChosenAALeft[0U];
+    mToadCipherRotationAALeftB = mFlameToadRotationListChosenAALeft[1U];
+    mToadCipherRotationAALeftC = mFlameToadRotationListChosenAALeft[2U];
+    mToadCipherRotationAALeftD = mFlameToadRotationListChosenAALeft[3U];
+    mToadCipherRotationAALeftE = mFlameToadRotationListChosenAALeft[4U];
+    mToadCipherRotationAALeftF = mFlameToadRotationListChosenAALeft[5U];
+    mToadCipherRotationAALeftG = mFlameToadRotationListChosenAALeft[6U];
+    mToadCipherRotationAALeftH = mFlameToadRotationListChosenAALeft[7U];
+    mToadCipherRotationAARightA = mFlameToadRotationListChosenAARight[0U];
+    mToadCipherRotationAARightB = mFlameToadRotationListChosenAARight[1U];
+    mToadCipherRotationAARightC = mFlameToadRotationListChosenAARight[2U];
+    mToadCipherRotationAARightD = mFlameToadRotationListChosenAARight[3U];
+    mToadCipherRotationAARightE = mFlameToadRotationListChosenAARight[4U];
+    mToadCipherRotationAARightF = mFlameToadRotationListChosenAARight[5U];
+    mToadCipherRotationAARightG = mFlameToadRotationListChosenAARight[6U];
+    mToadCipherRotationAARightH = mFlameToadRotationListChosenAARight[7U];
+    mToadCipherRotationABLeftA = mFlameToadRotationListChosenABLeft[0U];
+    mToadCipherRotationABLeftB = mFlameToadRotationListChosenABLeft[1U];
+    mToadCipherRotationABLeftC = mFlameToadRotationListChosenABLeft[2U];
+    mToadCipherRotationABLeftD = mFlameToadRotationListChosenABLeft[3U];
+    mToadCipherRotationABLeftE = mFlameToadRotationListChosenABLeft[4U];
+    mToadCipherRotationABLeftF = mFlameToadRotationListChosenABLeft[5U];
+    mToadCipherRotationABLeftG = mFlameToadRotationListChosenABLeft[6U];
+    mToadCipherRotationABLeftH = mFlameToadRotationListChosenABLeft[7U];
+    mToadCipherRotationABRightA = mFlameToadRotationListChosenABRight[0U];
+    mToadCipherRotationABRightB = mFlameToadRotationListChosenABRight[1U];
+    mToadCipherRotationABRightC = mFlameToadRotationListChosenABRight[2U];
+    mToadCipherRotationABRightD = mFlameToadRotationListChosenABRight[3U];
+    mToadCipherRotationABRightE = mFlameToadRotationListChosenABRight[4U];
+    mToadCipherRotationABRightF = mFlameToadRotationListChosenABRight[5U];
+    mToadCipherRotationABRightG = mFlameToadRotationListChosenABRight[6U];
+    mToadCipherRotationABRightH = mFlameToadRotationListChosenABRight[7U];
+    mToadCipherRotationACLeftA = mFlameToadRotationListChosenACLeft[0U];
+    mToadCipherRotationACLeftB = mFlameToadRotationListChosenACLeft[1U];
+    mToadCipherRotationACLeftC = mFlameToadRotationListChosenACLeft[2U];
+    mToadCipherRotationACLeftD = mFlameToadRotationListChosenACLeft[3U];
+    mToadCipherRotationACLeftE = mFlameToadRotationListChosenACLeft[4U];
+    mToadCipherRotationACLeftF = mFlameToadRotationListChosenACLeft[5U];
+    mToadCipherRotationACLeftG = mFlameToadRotationListChosenACLeft[6U];
+    mToadCipherRotationACLeftH = mFlameToadRotationListChosenACLeft[7U];
+    mToadCipherRotationACRightA = mFlameToadRotationListChosenACRight[0U];
+    mToadCipherRotationACRightB = mFlameToadRotationListChosenACRight[1U];
+    mToadCipherRotationACRightC = mFlameToadRotationListChosenACRight[2U];
+    mToadCipherRotationACRightD = mFlameToadRotationListChosenACRight[3U];
+    mToadCipherRotationACRightE = mFlameToadRotationListChosenACRight[4U];
+    mToadCipherRotationACRightF = mFlameToadRotationListChosenACRight[5U];
+    mToadCipherRotationACRightG = mFlameToadRotationListChosenACRight[6U];
+    mToadCipherRotationACRightH = mFlameToadRotationListChosenACRight[7U];
+    mToadCipherRotationADLeftA = mFlameToadRotationListChosenADLeft[0U];
+    mToadCipherRotationADLeftB = mFlameToadRotationListChosenADLeft[1U];
+    mToadCipherRotationADLeftC = mFlameToadRotationListChosenADLeft[2U];
+    mToadCipherRotationADLeftD = mFlameToadRotationListChosenADLeft[3U];
+    mToadCipherRotationADLeftE = mFlameToadRotationListChosenADLeft[4U];
+    mToadCipherRotationADLeftF = mFlameToadRotationListChosenADLeft[5U];
+    mToadCipherRotationADLeftG = mFlameToadRotationListChosenADLeft[6U];
+    mToadCipherRotationADLeftH = mFlameToadRotationListChosenADLeft[7U];
+    mToadCipherRotationADRightA = mFlameToadRotationListChosenADRight[0U];
+    mToadCipherRotationADRightB = mFlameToadRotationListChosenADRight[1U];
+    mToadCipherRotationADRightC = mFlameToadRotationListChosenADRight[2U];
+    mToadCipherRotationADRightD = mFlameToadRotationListChosenADRight[3U];
+    mToadCipherRotationADRightE = mFlameToadRotationListChosenADRight[4U];
+    mToadCipherRotationADRightF = mFlameToadRotationListChosenADRight[5U];
+    mToadCipherRotationADRightG = mFlameToadRotationListChosenADRight[6U];
+    mToadCipherRotationADRightH = mFlameToadRotationListChosenADRight[7U];
+    mToadCipherRotationBALeftA = mFlameToadRotationListChosenBALeft[0U];
+    mToadCipherRotationBALeftB = mFlameToadRotationListChosenBALeft[1U];
+    mToadCipherRotationBALeftC = mFlameToadRotationListChosenBALeft[2U];
+    mToadCipherRotationBALeftD = mFlameToadRotationListChosenBALeft[3U];
+    mToadCipherRotationBALeftE = mFlameToadRotationListChosenBALeft[4U];
+    mToadCipherRotationBALeftF = mFlameToadRotationListChosenBALeft[5U];
+    mToadCipherRotationBALeftG = mFlameToadRotationListChosenBALeft[6U];
+    mToadCipherRotationBALeftH = mFlameToadRotationListChosenBALeft[7U];
+    mToadCipherRotationBARightA = mFlameToadRotationListChosenBARight[0U];
+    mToadCipherRotationBARightB = mFlameToadRotationListChosenBARight[1U];
+    mToadCipherRotationBARightC = mFlameToadRotationListChosenBARight[2U];
+    mToadCipherRotationBARightD = mFlameToadRotationListChosenBARight[3U];
+    mToadCipherRotationBARightE = mFlameToadRotationListChosenBARight[4U];
+    mToadCipherRotationBARightF = mFlameToadRotationListChosenBARight[5U];
+    mToadCipherRotationBARightG = mFlameToadRotationListChosenBARight[6U];
+    mToadCipherRotationBARightH = mFlameToadRotationListChosenBARight[7U];
+    mToadCipherRotationBBLeftA = mFlameToadRotationListChosenBBLeft[0U];
+    mToadCipherRotationBBLeftB = mFlameToadRotationListChosenBBLeft[1U];
+    mToadCipherRotationBBLeftC = mFlameToadRotationListChosenBBLeft[2U];
+    mToadCipherRotationBBLeftD = mFlameToadRotationListChosenBBLeft[3U];
+    mToadCipherRotationBBLeftE = mFlameToadRotationListChosenBBLeft[4U];
+    mToadCipherRotationBBLeftF = mFlameToadRotationListChosenBBLeft[5U];
+    mToadCipherRotationBBLeftG = mFlameToadRotationListChosenBBLeft[6U];
+    mToadCipherRotationBBLeftH = mFlameToadRotationListChosenBBLeft[7U];
+    mToadCipherRotationBBRightA = mFlameToadRotationListChosenBBRight[0U];
+    mToadCipherRotationBBRightB = mFlameToadRotationListChosenBBRight[1U];
+    mToadCipherRotationBBRightC = mFlameToadRotationListChosenBBRight[2U];
+    mToadCipherRotationBBRightD = mFlameToadRotationListChosenBBRight[3U];
+    mToadCipherRotationBBRightE = mFlameToadRotationListChosenBBRight[4U];
+    mToadCipherRotationBBRightF = mFlameToadRotationListChosenBBRight[5U];
+    mToadCipherRotationBBRightG = mFlameToadRotationListChosenBBRight[6U];
+    mToadCipherRotationBBRightH = mFlameToadRotationListChosenBBRight[7U];
+    mToadCipherRotationBCLeftA = mFlameToadRotationListChosenBCLeft[0U];
+    mToadCipherRotationBCLeftB = mFlameToadRotationListChosenBCLeft[1U];
+    mToadCipherRotationBCLeftC = mFlameToadRotationListChosenBCLeft[2U];
+    mToadCipherRotationBCLeftD = mFlameToadRotationListChosenBCLeft[3U];
+    mToadCipherRotationBCLeftE = mFlameToadRotationListChosenBCLeft[4U];
+    mToadCipherRotationBCLeftF = mFlameToadRotationListChosenBCLeft[5U];
+    mToadCipherRotationBCLeftG = mFlameToadRotationListChosenBCLeft[6U];
+    mToadCipherRotationBCLeftH = mFlameToadRotationListChosenBCLeft[7U];
+    mToadCipherRotationBCRightA = mFlameToadRotationListChosenBCRight[0U];
+    mToadCipherRotationBCRightB = mFlameToadRotationListChosenBCRight[1U];
+    mToadCipherRotationBCRightC = mFlameToadRotationListChosenBCRight[2U];
+    mToadCipherRotationBCRightD = mFlameToadRotationListChosenBCRight[3U];
+    mToadCipherRotationBCRightE = mFlameToadRotationListChosenBCRight[4U];
+    mToadCipherRotationBCRightF = mFlameToadRotationListChosenBCRight[5U];
+    mToadCipherRotationBCRightG = mFlameToadRotationListChosenBCRight[6U];
+    mToadCipherRotationBCRightH = mFlameToadRotationListChosenBCRight[7U];
+    mToadCipherRotationBDLeftA = mFlameToadRotationListChosenBDLeft[0U];
+    mToadCipherRotationBDLeftB = mFlameToadRotationListChosenBDLeft[1U];
+    mToadCipherRotationBDLeftC = mFlameToadRotationListChosenBDLeft[2U];
+    mToadCipherRotationBDLeftD = mFlameToadRotationListChosenBDLeft[3U];
+    mToadCipherRotationBDLeftE = mFlameToadRotationListChosenBDLeft[4U];
+    mToadCipherRotationBDLeftF = mFlameToadRotationListChosenBDLeft[5U];
+    mToadCipherRotationBDLeftG = mFlameToadRotationListChosenBDLeft[6U];
+    mToadCipherRotationBDLeftH = mFlameToadRotationListChosenBDLeft[7U];
+    mToadCipherRotationBDRightA = mFlameToadRotationListChosenBDRight[0U];
+    mToadCipherRotationBDRightB = mFlameToadRotationListChosenBDRight[1U];
+    mToadCipherRotationBDRightC = mFlameToadRotationListChosenBDRight[2U];
+    mToadCipherRotationBDRightD = mFlameToadRotationListChosenBDRight[3U];
+    mToadCipherRotationBDRightE = mFlameToadRotationListChosenBDRight[4U];
+    mToadCipherRotationBDRightF = mFlameToadRotationListChosenBDRight[5U];
+    mToadCipherRotationBDRightG = mFlameToadRotationListChosenBDRight[6U];
+    mToadCipherRotationBDRightH = mFlameToadRotationListChosenBDRight[7U];
+    mMutateMaterialA = mMaterials[0U];
+    mMutateMaterialB = mMaterials[1U];
+    mMutateMaterialC = mMaterials[2U];
+    mMutateMaterialD = mMaterials[3U];
+    mMutateMaterialE = mMaterials[4U];
+    mMutateMaterialF = mMaterials[5U];
+    mMutateMaterialG = mMaterials[6U];
+    mMutateMaterialH = mMaterials[7U];
+    mMutateMaterialI = mMaterials[8U];
+    mMutateMaterialJ = mMaterials[9U];
+    mMutateMaterialK = mMaterials[10U];
+    mMutateMaterialL = mMaterials[11U];
+    mMutateMaterialM = mMaterials[12U];
+    mMutateMaterialN = mMaterials[13U];
+    mMutateMaterialO = mMaterials[14U];
+    mMutateMaterialP = mMaterials[15U];
+    // B/D route block data; C is a distinct cache, repacked by every FlameToad.
+    mPackedRows = mCollapseLaneC;
+    mPackedRowLength = SOCCER_BLOCK_SIZE / 4U;
+    if (!mCryptex.Build(mStrength)) return false;
+    mMaterialIndex = mCryptex.GetMaterialCount();
+    mEncryptionReady = true;
+    return true;
+}
+

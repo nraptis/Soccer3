@@ -4,9 +4,9 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "Cipher.hpp"
+#include "Kernel.hpp"
 
-#define CRYPTEX_LAYER_MAX_CIPHER_COUNT 32
+#define CRYPTEX_LAYER_MAX_KERNEL_COUNT 32
 
 class CryptexLayer {
 public:
@@ -16,10 +16,10 @@ public:
     CryptexLayer &operator=(const CryptexLayer &) = delete;
     CryptexLayer(CryptexLayer &&) = delete;
     CryptexLayer &operator=(CryptexLayer &&) = delete;
-    std::size_t                 GetCipherCount() const { return mCipherCount; }
-    CipherType                  GetCipherType(std::size_t pIndex) const;
+    std::size_t                 GetKernelCount() const { return mKernelCount; }
+    KernelType                  GetKernelType(std::size_t pIndex) const;
     
-    void                        Add(Cipher *pCipher);
+    void                        Add(Kernel *pKernel);
     void                        Clear();
     void                        Zero();
     
@@ -27,18 +27,18 @@ public:
                                          std::uint8_t* pScratch,
                                          std::uint8_t* pDestination,
                                          std::size_t pLength,
-                                         CipherErrorCode *pErrorCode) const;
+                                         KernelErrorCode *pErrorCode) const;
 
     bool                        UnsealData(const std::uint8_t* pSource,
                                            std::uint8_t* pScratch,
                                            std::uint8_t* pDestination,
                                            std::size_t pLength,
-                                           CipherErrorCode *pErrorCode) const;
+                                           KernelErrorCode *pErrorCode) const;
     
 private:
     
-    Cipher                      *mCiphers[CRYPTEX_LAYER_MAX_CIPHER_COUNT];
-    std::size_t                 mCipherCount;
+    Kernel                      *mKernels[CRYPTEX_LAYER_MAX_KERNEL_COUNT];
+    std::size_t                 mKernelCount;
     
 };
 

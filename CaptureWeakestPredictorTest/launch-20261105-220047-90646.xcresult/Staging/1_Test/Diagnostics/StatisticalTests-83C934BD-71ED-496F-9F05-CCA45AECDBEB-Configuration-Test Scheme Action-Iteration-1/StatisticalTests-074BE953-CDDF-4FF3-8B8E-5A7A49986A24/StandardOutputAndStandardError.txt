@@ -1,0 +1,82 @@
+2026-11-05 22:00:53.208803-0500 Scramble[90678:861003] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209026-0500 Scramble[90678:861003] [Application] Error registering app with intents framework: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209281-0500 Scramble[90678:861007] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209305-0500 Scramble[90678:861007] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209772-0500 Scramble[90678:861006] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.209788-0500 Scramble[90678:861006] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.210182-0500 Scramble[90678:861006] [Connection] Will NOT re-try to establish the connection
+2026-11-05 22:00:53.210208-0500 Scramble[90678:861003] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.210221-0500 Scramble[90678:861003] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-05 22:00:53.229688-0500 Scramble[90678:860964] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/p8/80ypymb56jngdf60h84pshtr0000gn/T/com.star.road.scramble.Scramble.savedState
+Skipping App Delegate Test Code, On Test Target
+Test Suite 'Selected tests' started at 2026-11-05 22:00:53.396.
+Test Suite 'StatisticalTests.xctest' started at 2026-11-05 22:00:53.396.
+Test Suite 'CaptureWeakestPredictorTest' started at 2026-11-05 22:00:53.396.
+Test Case '-[CaptureWeakestPredictorTest testCaptureWeakestPredictor]' started.
+CAPTURE START | weak only | seed=0xb0c46ddd618c14f0 | first fixture=0 | run limit=0 (0=unlimited) | screen=16384, fresh verification=262144 per predictor | save every run | directory=/Users/icarus/Desktop/Codex Maga/Soccer/Statistical Outputs/CaptureWeakestPredictorTest/20261106T030053Z-0xb0c46ddd618c14f0-3679C4FB-F531-4AE3-8BD8-B03E8DE730F3
+CAPTURE | weak | run=1 fixture=0 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=1 fixture=0 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=1 fixture=0 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=1 fixture=0 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=2 fixture=1 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=2 fixture=1 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=2 fixture=1 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=2 fixture=1 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=3 fixture=2 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=3 fixture=2 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=3 fixture=2 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=3 fixture=2 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=4 fixture=3 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=4 fixture=3 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=4 fixture=3 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=4 fixture=3 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | run=5 fixture=4 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=5 fixture=4 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=5 fixture=4 | running | verification 229376/262144 blocks (87.5%)
+CAPTURE | weak | run=5 fixture=4 | completed | verification 262144/262144 blocks (100.0%)
+CAPTURE | weak | runs=5, completed=5, errors=0 | above50=50.0807% (n=152) | below50=49.9235% (n=168) | equal50=0 | overall=49.9982% | shuffled above50=50.0776% below50=49.9267% | max deviation=0.2872pp (match=50.2872% run=2 flag=50) | screen-selected fresh mean=49.9113% | batch=2700.1s
+CAPTURE | weak | run=6 fixture=5 | running | training 0/8257 blocks (0.0%)
+CAPTURE | weak | run=6 fixture=5 | running | screening 0/16384 blocks (0.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 0/262144 blocks (0.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 32768/262144 blocks (12.5%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 65536/262144 blocks (25.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 98304/262144 blocks (37.5%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 131072/262144 blocks (50.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 163840/262144 blocks (62.5%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 196608/262144 blocks (75.0%)
+CAPTURE | weak | run=6 fixture=5 | running | verification 229376/262144 blocks (87.5%)

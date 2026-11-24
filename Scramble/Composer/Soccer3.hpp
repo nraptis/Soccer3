@@ -14,11 +14,80 @@
 #include "SoccerTypes.hpp"
 #include "RandomShuffleLayout.hpp"
 #include "Cryptex.hpp"
-#include "WindowRotationFarm.hpp"
 #include "BitPlaneFarm.hpp"
 #include "SoccerDelegate.hpp"
 
-#include "Jelly.hpp"
+/*
+we have 1 bit-plan, for all the rotations
+
+[a b] [c d] [e f] [g h]
+
+layer 1: [a c] rotates [e g] rotates
+layer 2: [b d] rotates [f h] rotates
+
+layer 3: [a e] rotates [c g] rotates
+layer 4: [b f] rotates [d h] rotates
+
+layer 5: [a d] rotates [e h] rotates
+layer 6: [b c] rotates [f g] rotates
+
+layer 7: [a f] rotates [c h] rotates
+layer 8: [b e] rotates [d g] rotates
+
+All 16 pairs are unique. Each bit appears four times.
+Layers 1+2, 3+4, 5+6, and 7+8 each shift all eight planes.
+ 
+ weak:
+ layer 1:
+ layer 2: mutate
+
+ layer 3:
+ layer 4: mutate
+
+ layer 5:
+ layer 6: mutate
+
+ layer 7:
+ layer 8: mutate
+ 
+ normal: (all 8 mutate)
+ strong: (all 8 mutate twice)
+
+ Active corvid usage, with one XOR included in each Raven:
+ weak:   FourCrowKernel, FourRavenKernel, FourCrowKernel, FourRavenKernel,
+         FourCrowKernel, FourRavenKernel, FourCrowKernel, FourRavenKernel
+ normal: FourRavenKernel on every layer
+ strong: FourRavenKernel on every layer, plus a separate PasswordXORKernel
+         before each FourToadKernel to separate the two mutates with nonlinear work
+
+*/
+
+#ifndef IGNORE_SIMD
+#define IGNORE_SIMD 0
+#endif
+
+#if !IGNORE_SIMD && (defined(__ARM_NEON) || defined(__ARM_NEON__))
+#define SOCCER_USE_NEON 1
+#else
+#define SOCCER_USE_NEON 0
+#endif
+
+#if !IGNORE_SIMD && (defined(__AVX2__) || defined(__SSSE3__))
+#define SOCCER_USE_SIMD 1
+#else
+#define SOCCER_USE_SIMD 0
+#endif
+
+#if SOCCER_USE_NEON
+#include <arm_neon.h>
+#endif
+
+#if SOCCER_USE_SIMD
+#include <immintrin.h>
+#endif
+
+#define SOCCER_BLOCK_SIZE 1048576
+#define SOCCER_BLOCK_QUARTER 262144
 
 #include "TwistExpander_Aldebaran.hpp"
 #include "TwistExpander_Altair.hpp"
@@ -48,8 +117,15 @@
 #define SOCCER_SCRATCH_WORKER_A mCollapseLaneB
 #define SOCCER_WORKER_B mCollapseLaneD
 
+static_assert(SOCCER_BLOCK_SIZE == Kernel::kBlockBytes);
+
 class Soccer3Internal {
 public:
+    // Planning metadata only. Crow and Raven each own their kernel Shift type.
+    struct PlaneShift {
+        std::uint8_t mMask;
+        std::size_t mRotation;
+    };
 
     static SoccerDelegate                           *mDelegate;
 
@@ -170,145 +246,135 @@ public:
     static std::uint8_t                             mBitRowDG;
     static std::uint8_t                             mBitRowDH;
 
-    // Four complementary mask pairs, A/B through G/H, shared by both rounds.
-    static std::uint8_t                             mRotationMaskA;
-    static std::uint8_t                             mRotationMaskB;
-    static std::uint8_t                             mRotationMaskC;
-    static std::uint8_t                             mRotationMaskD;
-    static std::uint8_t                             mRotationMaskE;
-    static std::uint8_t                             mRotationMaskF;
-    static std::uint8_t                             mRotationMaskG;
-    static std::uint8_t                             mRotationMaskH;
-
     // Sixteen sampling windows per layer: four consecutive windows per FlameToad.
-    static std::uint16_t                            mFlameToadCipherRotationAAA;
-    static std::uint16_t                            mFlameToadCipherRotationAAB;
-    static std::uint16_t                            mFlameToadCipherRotationAAC;
-    static std::uint16_t                            mFlameToadCipherRotationAAD;
-    static std::uint16_t                            mFlameToadCipherRotationAAE;
-    static std::uint16_t                            mFlameToadCipherRotationAAF;
-    static std::uint16_t                            mFlameToadCipherRotationAAG;
-    static std::uint16_t                            mFlameToadCipherRotationAAH;
-    static std::uint16_t                            mFlameToadCipherRotationAAI;
-    static std::uint16_t                            mFlameToadCipherRotationAAJ;
-    static std::uint16_t                            mFlameToadCipherRotationAAK;
-    static std::uint16_t                            mFlameToadCipherRotationAAL;
-    static std::uint16_t                            mFlameToadCipherRotationAAM;
-    static std::uint16_t                            mFlameToadCipherRotationAAN;
-    static std::uint16_t                            mFlameToadCipherRotationAAO;
-    static std::uint16_t                            mFlameToadCipherRotationAAP;
-    static std::uint16_t                            mFlameToadCipherRotationABA;
-    static std::uint16_t                            mFlameToadCipherRotationABB;
-    static std::uint16_t                            mFlameToadCipherRotationABC;
-    static std::uint16_t                            mFlameToadCipherRotationABD;
-    static std::uint16_t                            mFlameToadCipherRotationABE;
-    static std::uint16_t                            mFlameToadCipherRotationABF;
-    static std::uint16_t                            mFlameToadCipherRotationABG;
-    static std::uint16_t                            mFlameToadCipherRotationABH;
-    static std::uint16_t                            mFlameToadCipherRotationABI;
-    static std::uint16_t                            mFlameToadCipherRotationABJ;
-    static std::uint16_t                            mFlameToadCipherRotationABK;
-    static std::uint16_t                            mFlameToadCipherRotationABL;
-    static std::uint16_t                            mFlameToadCipherRotationABM;
-    static std::uint16_t                            mFlameToadCipherRotationABN;
-    static std::uint16_t                            mFlameToadCipherRotationABO;
-    static std::uint16_t                            mFlameToadCipherRotationABP;
-    static std::uint16_t                            mFlameToadCipherRotationACA;
-    static std::uint16_t                            mFlameToadCipherRotationACB;
-    static std::uint16_t                            mFlameToadCipherRotationACC;
-    static std::uint16_t                            mFlameToadCipherRotationACD;
-    static std::uint16_t                            mFlameToadCipherRotationACE;
-    static std::uint16_t                            mFlameToadCipherRotationACF;
-    static std::uint16_t                            mFlameToadCipherRotationACG;
-    static std::uint16_t                            mFlameToadCipherRotationACH;
-    static std::uint16_t                            mFlameToadCipherRotationACI;
-    static std::uint16_t                            mFlameToadCipherRotationACJ;
-    static std::uint16_t                            mFlameToadCipherRotationACK;
-    static std::uint16_t                            mFlameToadCipherRotationACL;
-    static std::uint16_t                            mFlameToadCipherRotationACM;
-    static std::uint16_t                            mFlameToadCipherRotationACN;
-    static std::uint16_t                            mFlameToadCipherRotationACO;
-    static std::uint16_t                            mFlameToadCipherRotationACP;
-    static std::uint16_t                            mFlameToadCipherRotationADA;
-    static std::uint16_t                            mFlameToadCipherRotationADB;
-    static std::uint16_t                            mFlameToadCipherRotationADC;
-    static std::uint16_t                            mFlameToadCipherRotationADD;
-    static std::uint16_t                            mFlameToadCipherRotationADE;
-    static std::uint16_t                            mFlameToadCipherRotationADF;
-    static std::uint16_t                            mFlameToadCipherRotationADG;
-    static std::uint16_t                            mFlameToadCipherRotationADH;
-    static std::uint16_t                            mFlameToadCipherRotationADI;
-    static std::uint16_t                            mFlameToadCipherRotationADJ;
-    static std::uint16_t                            mFlameToadCipherRotationADK;
-    static std::uint16_t                            mFlameToadCipherRotationADL;
-    static std::uint16_t                            mFlameToadCipherRotationADM;
-    static std::uint16_t                            mFlameToadCipherRotationADN;
-    static std::uint16_t                            mFlameToadCipherRotationADO;
-    static std::uint16_t                            mFlameToadCipherRotationADP;
-    static std::uint16_t                            mFlameToadCipherRotationBAA;
-    static std::uint16_t                            mFlameToadCipherRotationBAB;
-    static std::uint16_t                            mFlameToadCipherRotationBAC;
-    static std::uint16_t                            mFlameToadCipherRotationBAD;
-    static std::uint16_t                            mFlameToadCipherRotationBAE;
-    static std::uint16_t                            mFlameToadCipherRotationBAF;
-    static std::uint16_t                            mFlameToadCipherRotationBAG;
-    static std::uint16_t                            mFlameToadCipherRotationBAH;
-    static std::uint16_t                            mFlameToadCipherRotationBAI;
-    static std::uint16_t                            mFlameToadCipherRotationBAJ;
-    static std::uint16_t                            mFlameToadCipherRotationBAK;
-    static std::uint16_t                            mFlameToadCipherRotationBAL;
-    static std::uint16_t                            mFlameToadCipherRotationBAM;
-    static std::uint16_t                            mFlameToadCipherRotationBAN;
-    static std::uint16_t                            mFlameToadCipherRotationBAO;
-    static std::uint16_t                            mFlameToadCipherRotationBAP;
-    static std::uint16_t                            mFlameToadCipherRotationBBA;
-    static std::uint16_t                            mFlameToadCipherRotationBBB;
-    static std::uint16_t                            mFlameToadCipherRotationBBC;
-    static std::uint16_t                            mFlameToadCipherRotationBBD;
-    static std::uint16_t                            mFlameToadCipherRotationBBE;
-    static std::uint16_t                            mFlameToadCipherRotationBBF;
-    static std::uint16_t                            mFlameToadCipherRotationBBG;
-    static std::uint16_t                            mFlameToadCipherRotationBBH;
-    static std::uint16_t                            mFlameToadCipherRotationBBI;
-    static std::uint16_t                            mFlameToadCipherRotationBBJ;
-    static std::uint16_t                            mFlameToadCipherRotationBBK;
-    static std::uint16_t                            mFlameToadCipherRotationBBL;
-    static std::uint16_t                            mFlameToadCipherRotationBBM;
-    static std::uint16_t                            mFlameToadCipherRotationBBN;
-    static std::uint16_t                            mFlameToadCipherRotationBBO;
-    static std::uint16_t                            mFlameToadCipherRotationBBP;
-    static std::uint16_t                            mFlameToadCipherRotationBCA;
-    static std::uint16_t                            mFlameToadCipherRotationBCB;
-    static std::uint16_t                            mFlameToadCipherRotationBCC;
-    static std::uint16_t                            mFlameToadCipherRotationBCD;
-    static std::uint16_t                            mFlameToadCipherRotationBCE;
-    static std::uint16_t                            mFlameToadCipherRotationBCF;
-    static std::uint16_t                            mFlameToadCipherRotationBCG;
-    static std::uint16_t                            mFlameToadCipherRotationBCH;
-    static std::uint16_t                            mFlameToadCipherRotationBCI;
-    static std::uint16_t                            mFlameToadCipherRotationBCJ;
-    static std::uint16_t                            mFlameToadCipherRotationBCK;
-    static std::uint16_t                            mFlameToadCipherRotationBCL;
-    static std::uint16_t                            mFlameToadCipherRotationBCM;
-    static std::uint16_t                            mFlameToadCipherRotationBCN;
-    static std::uint16_t                            mFlameToadCipherRotationBCO;
-    static std::uint16_t                            mFlameToadCipherRotationBCP;
-    static std::uint16_t                            mFlameToadCipherRotationBDA;
-    static std::uint16_t                            mFlameToadCipherRotationBDB;
-    static std::uint16_t                            mFlameToadCipherRotationBDC;
-    static std::uint16_t                            mFlameToadCipherRotationBDD;
-    static std::uint16_t                            mFlameToadCipherRotationBDE;
-    static std::uint16_t                            mFlameToadCipherRotationBDF;
-    static std::uint16_t                            mFlameToadCipherRotationBDG;
-    static std::uint16_t                            mFlameToadCipherRotationBDH;
-    static std::uint16_t                            mFlameToadCipherRotationBDI;
-    static std::uint16_t                            mFlameToadCipherRotationBDJ;
-    static std::uint16_t                            mFlameToadCipherRotationBDK;
-    static std::uint16_t                            mFlameToadCipherRotationBDL;
-    static std::uint16_t                            mFlameToadCipherRotationBDM;
-    static std::uint16_t                            mFlameToadCipherRotationBDN;
-    static std::uint16_t                            mFlameToadCipherRotationBDO;
-    static std::uint16_t                            mFlameToadCipherRotationBDP;
+    static std::uint16_t                            mToadCipherRotationAALeftA;
+    static std::uint16_t                            mToadCipherRotationAALeftB;
+    static std::uint16_t                            mToadCipherRotationAALeftC;
+    static std::uint16_t                            mToadCipherRotationAALeftD;
+    static std::uint16_t                            mToadCipherRotationAALeftE;
+    static std::uint16_t                            mToadCipherRotationAALeftF;
+    static std::uint16_t                            mToadCipherRotationAALeftG;
+    static std::uint16_t                            mToadCipherRotationAALeftH;
+    static std::uint16_t                            mToadCipherRotationAARightA;
+    static std::uint16_t                            mToadCipherRotationAARightB;
+    static std::uint16_t                            mToadCipherRotationAARightC;
+    static std::uint16_t                            mToadCipherRotationAARightD;
+    static std::uint16_t                            mToadCipherRotationAARightE;
+    static std::uint16_t                            mToadCipherRotationAARightF;
+    static std::uint16_t                            mToadCipherRotationAARightG;
+    static std::uint16_t                            mToadCipherRotationAARightH;
+    static std::uint16_t                            mToadCipherRotationABLeftA;
+    static std::uint16_t                            mToadCipherRotationABLeftB;
+    static std::uint16_t                            mToadCipherRotationABLeftC;
+    static std::uint16_t                            mToadCipherRotationABLeftD;
+    static std::uint16_t                            mToadCipherRotationABLeftE;
+    static std::uint16_t                            mToadCipherRotationABLeftF;
+    static std::uint16_t                            mToadCipherRotationABLeftG;
+    static std::uint16_t                            mToadCipherRotationABLeftH;
+    static std::uint16_t                            mToadCipherRotationABRightA;
+    static std::uint16_t                            mToadCipherRotationABRightB;
+    static std::uint16_t                            mToadCipherRotationABRightC;
+    static std::uint16_t                            mToadCipherRotationABRightD;
+    static std::uint16_t                            mToadCipherRotationABRightE;
+    static std::uint16_t                            mToadCipherRotationABRightF;
+    static std::uint16_t                            mToadCipherRotationABRightG;
+    static std::uint16_t                            mToadCipherRotationABRightH;
+    static std::uint16_t                            mToadCipherRotationACLeftA;
+    static std::uint16_t                            mToadCipherRotationACLeftB;
+    static std::uint16_t                            mToadCipherRotationACLeftC;
+    static std::uint16_t                            mToadCipherRotationACLeftD;
+    static std::uint16_t                            mToadCipherRotationACLeftE;
+    static std::uint16_t                            mToadCipherRotationACLeftF;
+    static std::uint16_t                            mToadCipherRotationACLeftG;
+    static std::uint16_t                            mToadCipherRotationACLeftH;
+    static std::uint16_t                            mToadCipherRotationACRightA;
+    static std::uint16_t                            mToadCipherRotationACRightB;
+    static std::uint16_t                            mToadCipherRotationACRightC;
+    static std::uint16_t                            mToadCipherRotationACRightD;
+    static std::uint16_t                            mToadCipherRotationACRightE;
+    static std::uint16_t                            mToadCipherRotationACRightF;
+    static std::uint16_t                            mToadCipherRotationACRightG;
+    static std::uint16_t                            mToadCipherRotationACRightH;
+    static std::uint16_t                            mToadCipherRotationADLeftA;
+    static std::uint16_t                            mToadCipherRotationADLeftB;
+    static std::uint16_t                            mToadCipherRotationADLeftC;
+    static std::uint16_t                            mToadCipherRotationADLeftD;
+    static std::uint16_t                            mToadCipherRotationADLeftE;
+    static std::uint16_t                            mToadCipherRotationADLeftF;
+    static std::uint16_t                            mToadCipherRotationADLeftG;
+    static std::uint16_t                            mToadCipherRotationADLeftH;
+    static std::uint16_t                            mToadCipherRotationADRightA;
+    static std::uint16_t                            mToadCipherRotationADRightB;
+    static std::uint16_t                            mToadCipherRotationADRightC;
+    static std::uint16_t                            mToadCipherRotationADRightD;
+    static std::uint16_t                            mToadCipherRotationADRightE;
+    static std::uint16_t                            mToadCipherRotationADRightF;
+    static std::uint16_t                            mToadCipherRotationADRightG;
+    static std::uint16_t                            mToadCipherRotationADRightH;
+    static std::uint16_t                            mToadCipherRotationBALeftA;
+    static std::uint16_t                            mToadCipherRotationBALeftB;
+    static std::uint16_t                            mToadCipherRotationBALeftC;
+    static std::uint16_t                            mToadCipherRotationBALeftD;
+    static std::uint16_t                            mToadCipherRotationBALeftE;
+    static std::uint16_t                            mToadCipherRotationBALeftF;
+    static std::uint16_t                            mToadCipherRotationBALeftG;
+    static std::uint16_t                            mToadCipherRotationBALeftH;
+    static std::uint16_t                            mToadCipherRotationBARightA;
+    static std::uint16_t                            mToadCipherRotationBARightB;
+    static std::uint16_t                            mToadCipherRotationBARightC;
+    static std::uint16_t                            mToadCipherRotationBARightD;
+    static std::uint16_t                            mToadCipherRotationBARightE;
+    static std::uint16_t                            mToadCipherRotationBARightF;
+    static std::uint16_t                            mToadCipherRotationBARightG;
+    static std::uint16_t                            mToadCipherRotationBARightH;
+    static std::uint16_t                            mToadCipherRotationBBLeftA;
+    static std::uint16_t                            mToadCipherRotationBBLeftB;
+    static std::uint16_t                            mToadCipherRotationBBLeftC;
+    static std::uint16_t                            mToadCipherRotationBBLeftD;
+    static std::uint16_t                            mToadCipherRotationBBLeftE;
+    static std::uint16_t                            mToadCipherRotationBBLeftF;
+    static std::uint16_t                            mToadCipherRotationBBLeftG;
+    static std::uint16_t                            mToadCipherRotationBBLeftH;
+    static std::uint16_t                            mToadCipherRotationBBRightA;
+    static std::uint16_t                            mToadCipherRotationBBRightB;
+    static std::uint16_t                            mToadCipherRotationBBRightC;
+    static std::uint16_t                            mToadCipherRotationBBRightD;
+    static std::uint16_t                            mToadCipherRotationBBRightE;
+    static std::uint16_t                            mToadCipherRotationBBRightF;
+    static std::uint16_t                            mToadCipherRotationBBRightG;
+    static std::uint16_t                            mToadCipherRotationBBRightH;
+    static std::uint16_t                            mToadCipherRotationBCLeftA;
+    static std::uint16_t                            mToadCipherRotationBCLeftB;
+    static std::uint16_t                            mToadCipherRotationBCLeftC;
+    static std::uint16_t                            mToadCipherRotationBCLeftD;
+    static std::uint16_t                            mToadCipherRotationBCLeftE;
+    static std::uint16_t                            mToadCipherRotationBCLeftF;
+    static std::uint16_t                            mToadCipherRotationBCLeftG;
+    static std::uint16_t                            mToadCipherRotationBCLeftH;
+    static std::uint16_t                            mToadCipherRotationBCRightA;
+    static std::uint16_t                            mToadCipherRotationBCRightB;
+    static std::uint16_t                            mToadCipherRotationBCRightC;
+    static std::uint16_t                            mToadCipherRotationBCRightD;
+    static std::uint16_t                            mToadCipherRotationBCRightE;
+    static std::uint16_t                            mToadCipherRotationBCRightF;
+    static std::uint16_t                            mToadCipherRotationBCRightG;
+    static std::uint16_t                            mToadCipherRotationBCRightH;
+    static std::uint16_t                            mToadCipherRotationBDLeftA;
+    static std::uint16_t                            mToadCipherRotationBDLeftB;
+    static std::uint16_t                            mToadCipherRotationBDLeftC;
+    static std::uint16_t                            mToadCipherRotationBDLeftD;
+    static std::uint16_t                            mToadCipherRotationBDLeftE;
+    static std::uint16_t                            mToadCipherRotationBDLeftF;
+    static std::uint16_t                            mToadCipherRotationBDLeftG;
+    static std::uint16_t                            mToadCipherRotationBDLeftH;
+    static std::uint16_t                            mToadCipherRotationBDRightA;
+    static std::uint16_t                            mToadCipherRotationBDRightB;
+    static std::uint16_t                            mToadCipherRotationBDRightC;
+    static std::uint16_t                            mToadCipherRotationBDRightD;
+    static std::uint16_t                            mToadCipherRotationBDRightE;
+    static std::uint16_t                            mToadCipherRotationBDRightF;
+    static std::uint16_t                            mToadCipherRotationBDRightG;
+    static std::uint16_t                            mToadCipherRotationBDRightH;
 
     // Ordered material pointers and the shared, disposable packed-row cache.
     static const std::uint8_t *                     mMutateMaterialA;
@@ -332,64 +398,147 @@ public:
 
     static bool                                     ValidateCryptexInputs(EncryptionStrength pStrength);
 
-    // A/B belong to layer 0, C/D to layer 1, through O/P on layer 7.
+    // Left and Right words supply the two corvid shifts at each layer.
     // Keep the word inputs separate so their random positions can change independently.
-    static std::uint64_t                            mFreeRotationWordA;
-    static std::uint64_t                            mFreeRotationWordB;
-    static std::uint64_t                            mFreeRotationWordC;
-    static std::uint64_t                            mFreeRotationWordD;
-    static std::uint64_t                            mFreeRotationWordE;
-    static std::uint64_t                            mFreeRotationWordF;
-    static std::uint64_t                            mFreeRotationWordG;
-    static std::uint64_t                            mFreeRotationWordH;
-    static std::uint64_t                            mFreeRotationWordI;
-    static std::uint64_t                            mFreeRotationWordJ;
-    static std::uint64_t                            mFreeRotationWordK;
-    static std::uint64_t                            mFreeRotationWordL;
-    static std::uint64_t                            mFreeRotationWordM;
-    static std::uint64_t                            mFreeRotationWordN;
-    static std::uint64_t                            mFreeRotationWordO;
-    static std::uint64_t                            mFreeRotationWordP;
+    static std::uint64_t                            mShiftMaskedRotationWordAALeft;
+    static std::uint64_t                            mShiftMaskedRotationWordAARight;
+    static std::uint64_t                            mShiftMaskedRotationWordABLeft;
+    static std::uint64_t                            mShiftMaskedRotationWordABRight;
+    static std::uint64_t                            mShiftMaskedRotationWordACLeft;
+    static std::uint64_t                            mShiftMaskedRotationWordACRight;
+    static std::uint64_t                            mShiftMaskedRotationWordADLeft;
+    static std::uint64_t                            mShiftMaskedRotationWordADRight;
+    static std::uint64_t                            mShiftMaskedRotationWordBALeft;
+    static std::uint64_t                            mShiftMaskedRotationWordBARight;
+    static std::uint64_t                            mShiftMaskedRotationWordBBLeft;
+    static std::uint64_t                            mShiftMaskedRotationWordBBRight;
+    static std::uint64_t                            mShiftMaskedRotationWordBCLeft;
+    static std::uint64_t                            mShiftMaskedRotationWordBCRight;
+    static std::uint64_t                            mShiftMaskedRotationWordBDLeft;
+    static std::uint64_t                            mShiftMaskedRotationWordBDRight;
 
-    // Final byte shifts: AA..AH for round A, BA..BH for round B.
-    // Consecutive pairs feed each layer; pack chunks retain only window indices.
-    static std::int32_t                             mShiftMaskedCipherRotationAA;
-    static std::int32_t                             mShiftMaskedCipherRotationAB;
-    static std::int32_t                             mShiftMaskedCipherRotationAC;
-    static std::int32_t                             mShiftMaskedCipherRotationAD;
-    static std::int32_t                             mShiftMaskedCipherRotationAE;
-    static std::int32_t                             mShiftMaskedCipherRotationAF;
-    static std::int32_t                             mShiftMaskedCipherRotationAG;
-    static std::int32_t                             mShiftMaskedCipherRotationAH;
-    static std::int32_t                             mShiftMaskedCipherRotationBA;
-    static std::int32_t                             mShiftMaskedCipherRotationBB;
-    static std::int32_t                             mShiftMaskedCipherRotationBC;
-    static std::int32_t                             mShiftMaskedCipherRotationBD;
-    static std::int32_t                             mShiftMaskedCipherRotationBE;
-    static std::int32_t                             mShiftMaskedCipherRotationBF;
-    static std::int32_t                             mShiftMaskedCipherRotationBG;
-    static std::int32_t                             mShiftMaskedCipherRotationBH;
+    // Two independent two-bit shifts per layer, derived from the first bit-plane row.
+    static PlaneShift                              mPlaneShiftAALeft;
+    static PlaneShift                              mPlaneShiftAARight;
+    static PlaneShift                              mPlaneShiftABLeft;
+    static PlaneShift                              mPlaneShiftABRight;
+    static PlaneShift                              mPlaneShiftACLeft;
+    static PlaneShift                              mPlaneShiftACRight;
+    static PlaneShift                              mPlaneShiftADLeft;
+    static PlaneShift                              mPlaneShiftADRight;
+    static PlaneShift                              mPlaneShiftBALeft;
+    static PlaneShift                              mPlaneShiftBARight;
+    static PlaneShift                              mPlaneShiftBBLeft;
+    static PlaneShift                              mPlaneShiftBBRight;
+    static PlaneShift                              mPlaneShiftBCLeft;
+    static PlaneShift                              mPlaneShiftBCRight;
+    static PlaneShift                              mPlaneShiftBDLeft;
+    static PlaneShift                              mPlaneShiftBDRight;
 
-    // One data-only two-plane pack, populated by eighteen eight-value jobs.
-    // Each base keeps its permutation across the 38 seed generations.
-    static std::uint16_t                            mWindowRotationBase[WindowRotationFarm::kJobCount][WindowRotationFarm::kWindowCount];
-    static std::size_t                              mWindowRotationAvailable[WindowRotationFarm::kJobCount];
-    static std::size_t                              mWindowRotationShuffleBytes[WindowRotationFarm::kJobCount];
+    static constexpr std::size_t                    kRotationWindowCount = 16384U;
+    static constexpr std::size_t                    kRotationWindowBytes = 64U;
+    static constexpr std::size_t                    kRotationListCount = 18U; // Two corvid shift lists and sixteen FourToadKernel lists.
+    static constexpr std::size_t                    kRotationsPerList = 8U;
+
+    // Two eight-window lists per layer: Left feeds frogs 1/2, Right feeds frogs 3/4.
+    // ShiftMasked A/B supply each layer's Left/Right corvid shift windows.
+    // Bases retain their permutations across all seed shuffle generations.
+    static std::uint16_t                            mShiftMaskedRotationListBaseA[kRotationWindowCount];
+    static std::uint16_t                            mShiftMaskedRotationListChosenA[kRotationsPerList];
+    static std::size_t                              mShiftMaskedRotationListAvailableA;
+
+    static std::uint16_t                            mFlameToadRotationListBaseAALeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenAALeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableAALeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseAARight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenAARight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableAARight;
+
+    static std::uint16_t                            mFlameToadRotationListBaseABLeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenABLeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableABLeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseABRight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenABRight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableABRight;
+
+    static std::uint16_t                            mFlameToadRotationListBaseACLeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenACLeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableACLeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseACRight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenACRight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableACRight;
+
+    static std::uint16_t                            mFlameToadRotationListBaseADLeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenADLeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableADLeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseADRight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenADRight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableADRight;
+
+    static std::uint16_t                            mShiftMaskedRotationListBaseB[kRotationWindowCount];
+    static std::uint16_t                            mShiftMaskedRotationListChosenB[kRotationsPerList];
+    static std::size_t                              mShiftMaskedRotationListAvailableB;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBALeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBALeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBALeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBARight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBARight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBARight;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBBLeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBBLeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBBLeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBBRight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBBRight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBBRight;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBCLeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBCLeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBCLeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBCRight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBCRight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBCRight;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBDLeft[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBDLeft[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBDLeft;
+
+    static std::uint16_t                            mFlameToadRotationListBaseBDRight[kRotationWindowCount];
+    static std::uint16_t                            mFlameToadRotationListChosenBDRight[kRotationsPerList];
+    static std::size_t                              mFlameToadRotationListAvailableBDRight;
+
+    // Selection scratch. Only the single/complement map spans lists.
+    static bool                                     mRotationWindowBlocked[kRotationWindowCount];
+    static bool                                     mRotationWindowSingleBlocked[kRotationWindowCount];
+    static std::size_t                              mRotationCandidatesRead;
+    static std::size_t                              mRotationFallbackCandidatesRead;
+    static std::size_t                              mRotationShuffleBytesRead;
     static std::size_t                              mRandomShuffleGeneration;
-    static void                                     ShuffleCROWUnit(std::uint16_t (&pRotationList)[WindowRotationFarm::kWindowCount],
+
+    // A non-null base has kRotationWindowCount entries. Prefer pAvailable entries,
+    // then the opposite tail, then numeric candidates. Always fills all eight.
+    // Null pOffsetWords selects whole-window rotations; otherwise eight words
+    // also constrain the eventual masked BYTE shifts. Writes window indices
+    // directly into the caller's eight-entry chosen list.
+    static void                                     SelectEightRotations(const std::uint16_t *pRotationList,
+                                                                         std::size_t pAvailable,
+                                                                         std::uint16_t (&pChosenRotations)[kRotationsPerList],
+                                                                         const std::uint64_t *pOffsetWords = nullptr);
+    static std::uint32_t                             ShiftMaskedByteOffset(std::uint64_t pWord);
+    static void                                     ShuffleCROWUnit(std::uint16_t (&pRotationList)[kRotationWindowCount],
                                                                     std::uint64_t &pBitPlaneWordA,
                                                                     std::uint64_t &pBitPlaneWordB,
                                                                     std::uint64_t &pBitPlaneWordC,
-                                                                    std::size_t pRotationIndex,
+                                                                    std::size_t &pAvailable,
                                                                     std::size_t pOffset);
-    
-    
-    //static std::int32_t                             mWindowRotationListA[16384];
-    
-    
-    static WindowRotationPack                       mWindowRotationPack;
-    static WindowRotationFarm::Buffers              mWindowRotationFarmBuffers;
-    static WindowRotationFarm::Statistics           mWindowRotationFarmStatistics[WindowRotationFarm::kJobCount];
 
     static std::uint8_t                             *mSources[16];
 

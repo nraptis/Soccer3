@@ -1,0 +1,74 @@
+{
+  "result": "FAIL",
+  "strength": "strong",
+  "layout": "two Gates per layer, existing mover between",
+  "scope": "Chosen-plaintext template family with 64 unknown bits; all other plaintext bits known. This is not arbitrary-plaintext or key recovery.",
+  "attack_protocol_changed": false,
+  "controls_passed": [
+    "testBiasedNonlinearControlIsRecoveredWithoutPerfectAccuracy",
+    "testConservativeThresholdAndScenarioCoverage",
+    "testFailuresAreNotSecurityPasses",
+    "testIndependentOutputControl",
+    "testTwoBitParityControl"
+  ],
+  "measurements": [
+    {
+      "phase": "challenge",
+      "fixture": 0,
+      "queries": 16384,
+      "features": 211020,
+      "sampled_bytes": 11035,
+      "best_flag": 0,
+      "best_correct": 16384,
+      "accuracy_percent": 100.0,
+      "adjusted_tail_bound": 0.0,
+      "significant_flags": 64,
+      "shuffled_significant_flags": 0,
+      "exact_plaintexts": 16384
+    },
+    {
+      "phase": "confirmation",
+      "fixture": 0,
+      "queries": 8192,
+      "features": 211020,
+      "sampled_bytes": 11035,
+      "best_flag": 0,
+      "best_correct": 8192,
+      "accuracy_percent": 100.0,
+      "adjusted_tail_bound": 0.0,
+      "significant_flags": 64,
+      "shuffled_significant_flags": 0,
+      "exact_plaintexts": 8192
+    },
+    {
+      "phase": "challenge",
+      "fixture": 1,
+      "queries": 16384,
+      "features": 210780,
+      "sampled_bytes": 11029,
+      "best_flag": 0,
+      "best_correct": 16384,
+      "accuracy_percent": 100.0,
+      "adjusted_tail_bound": 0.0,
+      "significant_flags": 64,
+      "shuffled_significant_flags": 0,
+      "exact_plaintexts": 16384
+    },
+    {
+      "phase": "confirmation",
+      "fixture": 1,
+      "queries": 8192,
+      "features": 210780,
+      "sampled_bytes": 11029,
+      "best_flag": 0,
+      "best_correct": 8192,
+      "accuracy_percent": 100.0,
+      "adjusted_tail_bound": 0.0,
+      "significant_flags": 64,
+      "shuffled_significant_flags": 0,
+      "exact_plaintexts": 8192
+    }
+  ],
+  "functional_checks": "Layout, budgets, retained factories, and independent-block round trips passed. Ciphertext fixtures updated for the new layout and passed.",
+  "xcresult": "/private/tmp/soccer-gate-plans/strong-statistical.xcresult"
+}

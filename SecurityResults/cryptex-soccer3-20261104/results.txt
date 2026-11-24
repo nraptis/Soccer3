@@ -1,0 +1,39 @@
+Cryptex / Soccer3 migration — 2026-11-04
+
+Active Soccer2 source/API, tests and tool references renamed to Soccer3.
+EncryptionVaultPlan/Tool and the nested Vault/LayerRound/Layer executor
+are retired under Dead Code/CryptexMigration. The earlier Cryptex archive
+is untouched. Previous tests are preserved under DeadTests/CryptexMigration.
+
+Cryptex owns eight CryptexLayer instances, AA/AB/AC/AD/BA/BB/BC/BD.
+Clear frees all ciphers. Build clears first, validates named Soccer3 inputs,
+then explicitly adds each cipher in weak, strong or fallback-normal branches.
+No plan objects, factories, or layer-building loops remain. Clear/failed build
+invalidate the built flag; Soccer cannot encrypt through an emptied stack.
+
+PrepareCryptexInputs publishes named bit rows, masks, 128 sample windows,
+16 final byte rotations, 16 ordered material pointers and the packed-row cache.
+Cryptex reads these values directly. The accumulated free-rotation words are
+NOT byte shifts; Build uses mFreeRotationA..P, the assembled values.
+
+Schedule unchanged: 32 FlameToads, 16 masked rotations, one bit reversal
+at the end of AD; weak/normal/strong use 4/8/16 PasswordXOR ciphers.
+Totals: 53/57/65. kTest still uses Soccer's existing separate test path;
+calling Cryptex::Build with kTest or another unrecognized value builds normal.
+
+Xcode Release macOS arm64: 22 tests passed, zero failures, 55.997 seconds.
+Includes literal independent ciphertext reference at all three strengths,
+all 144 rotations and all strong materials reaching the output, seed replay,
+independent 1 MiB round trips, normal fallback, rebuild/clear/ownership/error
+routing, accumulation/reset/farm tests and quick ten-shot fixture/control tests.
+
+Standalone security runner built and its public Soccer3 API self-test passed:
+seed, encrypt, rebuild, decrypt, repeat, and complete eight-layer config dump.
+C++20 syntax checks and git diff --check passed. CMake source/install lists
+updated; CMake itself is unavailable in this environment. Long statistical
+and overnight campaigns were not rerun: this is a structural migration with
+ciphertext checked against the preceding literal reference.
+
+MacArchiver uses a separate vendored Soccer2 library/header and still needs
+a consumer/dependency migration. Its files and existing release binaries
+were not modified by this Soccer source migration.

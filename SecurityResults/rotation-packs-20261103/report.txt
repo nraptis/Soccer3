@@ -1,0 +1,40 @@
+Eight rotation packs — 2026-11-03
+
+Soccer now owns RotationPack mRotationPacks[8]. Each has a 16384-element
+uint16_t permutation, a wrapping cursor, 4x4 selected frog windows, and two
+masked byte rotations. No InitializeRotations or block-stage rotation
+shuffle is used. Flat selected arrays remain as adapters to the plan API.
+
+Each pack uses a disjoint 64 KiB slice from the last 128 KiB of the existing
+256 KiB intermediate fold lanes A-D. Two packs use each lane. These bytes
+are reused after Stage1 folding; no additional expander work is performed.
+A 16-bit rejection-sampled Fisher-Yates pass must complete, then the
+remaining slice supplies the byte offsets. Exhaustion fails rather than
+using a partial shuffle or relaxing exclusions.
+
+Global rules: exclude zero, half-turn, duplicates, window complements,
+and actual-byte inverse windows. Each frog's four offsets plus its layer's
+two masked offsets must have all 64 subset sums distinct in both rings.
+Each layer has at least one odd byte rotation. Local sums are not globally
+blocked. One candidate search wraps but stops after one complete traversal.
+
+Twenty focused XCTest cases passed: RotationWindowTests (5),
+EncryptionVaultPlanTests (5), EncryptionVaultTests (6),
+FlameToadCipherTests (3), MaskCollisionTests (1). This includes actual
+password/nonce seeding and reconstruction at all strengths, independent
+blocks, literal-reference ciphertext checks, and tests that every chosen
+rotation reaches the final cipher.
+
+A standalone ASan+UBSan check farmed and independently validated 1000 full
+eight-pack plans. No failures. Maximum candidate reads per pack: 22.
+Mean reads per pack: 18.236. Maximum entropy used: 46250 of 65536 bytes.
+Native build: Apple clang, C++20, -O2, address/undefined sanitizers.
+
+Removed only the unused Soccer mask-bank buffer/selection/shuffle plumbing.
+SoccerMaskBank and the active plan's derived complementary masks remain.
+Final folded words now serve material-pointer shuffling and reversals.
+
+The rotation policy and seed allocation change ciphertext. Historical
+ciphertext requires its original implementation. This work validates the
+new allocation and correctness, not cryptographic security. The full
+statistical/parity campaigns have not been rerun for the new policy.

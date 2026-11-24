@@ -1,0 +1,499 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Scramble.xcodeproj -scheme Scramble -configuration Release -destination platform=macOS,arch=arm64 -derivedDataPath /private/tmp/soccer-flame-overhaul/DerivedData -resultBundlePath /private/tmp/soccer-flame-overhaul/security-1.xcresult -parallel-testing-enabled NO "-only-testing:ScrambleTests/RepeatedPlanSecurityTests" "-only-testing:ScrambleTests/RepeatedPlanSecurityAdaptedTests" "-only-testing:ScrambleTests/XORSuperpositionTests" "-only-testing:ScrambleTests/MultiBitParityRecoveryTests" "-only-testing:ScrambleTests/PlaintextRecoveryTests" "-only-testing:ScrambleTests/WholeBlockParityRecoveryTests" "-only-testing:ScrambleTests/StatisticalPlaintextRecoveryTests" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/soccer-flame-overhaul/security-1.xcresult
+
+2026-11-03 13:14:36.166048-0500 Scramble[18492:233487] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.166221-0500 Scramble[18492:233487] [Application] Error registering app with intents framework: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.166464-0500 Scramble[18492:233477] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.166489-0500 Scramble[18492:233477] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.166847-0500 Scramble[18492:233487] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.166863-0500 Scramble[18492:233487] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.167257-0500 Scramble[18492:233487] [Connection] Will NOT re-try to establish the connection
+2026-11-03 13:14:36.167281-0500 Scramble[18492:233477] [Connection] Unable to get synchronousRemoteObjectProxy, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.167289-0500 Scramble[18492:233477] [Connection] Unable to re-register with Process Instance Registry, error: Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.linkd.autoShortcut" UserInfo={NSDebugDescription=connection to service named com.apple.linkd.autoShortcut}
+2026-11-03 13:14:36.177717-0500 Scramble[18492:233448] ApplePersistenceIgnoreState: Existing state will not be touched. New state will be written to /var/folders/p8/80ypymb56jngdf60h84pshtr0000gn/T/com.star.road.scramble.Scramble.savedState
+Skipping App Delegate Test Code, On Test Target
+Test Suite 'Selected tests' started at 2026-11-03 13:14:36.266.
+Test Suite 'ScrambleTests.xctest' started at 2026-11-03 13:14:36.266.
+Test Suite 'MultiBitParityRecoveryTests' started at 2026-11-03 13:14:36.266.
+Test Case '-[MultiBitParityRecoveryTests testControlRecoversMultiBitRelationsAcrossPermutedBytes]' started.
+Test Case '-[MultiBitParityRecoveryTests testControlRecoversMultiBitRelationsAcrossPermutedBytes]' passed (0.008 seconds).
+Test Case '-[MultiBitParityRecoveryTests testControlRecoversPartialLeakage]' started.
+Test Case '-[MultiBitParityRecoveryTests testControlRecoversPartialLeakage]' passed (0.010 seconds).
+Test Case '-[MultiBitParityRecoveryTests testControlRejectsNonlinearByteSubstitution]' started.
+Test Case '-[MultiBitParityRecoveryTests testControlRejectsNonlinearByteSubstitution]' passed (0.009 seconds).
+Test Case '-[MultiBitParityRecoveryTests testControlReportsOracleErrors]' started.
+Test Case '-[MultiBitParityRecoveryTests testControlReportsOracleErrors]' passed (0.003 seconds).
+Test Case '-[MultiBitParityRecoveryTests testMultiBitParityRecovery_Normal]' started.
+Multi-bit parity: strength=1 fixture=0 sampled_bytes=15064 features=813258 output_features_searched=813258 training_queries=128 validation_queries=64 training_matches=0 validated=0 challenge_queries=64 correct=0/0 perfect_relations=0
+Multi-bit parity: strength=1 fixture=1 sampled_bytes=15064 features=813258 output_features_searched=813258 training_queries=128 validation_queries=64 training_matches=0 validated=0 challenge_queries=64 correct=0/0 perfect_relations=0
+Test Case '-[MultiBitParityRecoveryTests testMultiBitParityRecovery_Normal]' passed (17.260 seconds).
+Test Case '-[MultiBitParityRecoveryTests testMultiBitParityRecovery_Strong]' started.
+Multi-bit parity: strength=2 fixture=0 sampled_bytes=15064 features=813258 output_features_searched=813258 training_queries=128 validation_queries=64 training_matches=0 validated=0 challenge_queries=64 correct=0/0 perfect_relations=0
+Multi-bit parity: strength=2 fixture=1 sampled_bytes=15064 features=813258 output_features_searched=813258 training_queries=128 validation_queries=64 training_matches=0 validated=0 challenge_queries=64 correct=0/0 perfect_relations=0
+Test Case '-[MultiBitParityRecoveryTests testMultiBitParityRecovery_Strong]' passed (30.338 seconds).
+Test Case '-[MultiBitParityRecoveryTests testMultiBitParityRecovery_Weak]' started.
+Multi-bit parity: strength=0 fixture=0 sampled_bytes=15064 features=813258 output_features_searched=813258 training_queries=128 validation_queries=64 training_matches=0 validated=0 challenge_queries=64 correct=0/0 perfect_relations=0
+Multi-bit parity: strength=0 fixture=1 sampled_bytes=15064 features=813258 output_features_searched=813258 training_queries=128 validation_queries=64 training_matches=0 validated=0 challenge_queries=64 correct=0/0 perfect_relations=0
+Test Case '-[MultiBitParityRecoveryTests testMultiBitParityRecovery_Weak]' passed (10.774 seconds).
+Test Suite 'MultiBitParityRecoveryTests' passed at 2026-11-03 13:15:34.670.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 58.401 (58.404) seconds
+Test Suite 'PlaintextRecoveryTests' started at 2026-11-03 13:15:34.670.
+Test Case '-[PlaintextRecoveryTests testControlLinearFitDoesNotProvePlaintextRecovery]' started.
+Test Case '-[PlaintextRecoveryTests testControlLinearFitDoesNotProvePlaintextRecovery]' passed (0.001 seconds).
+Test Case '-[PlaintextRecoveryTests testControlRecoversFlagsDespiteNonlinearResidual]' started.
+Test Case '-[PlaintextRecoveryTests testControlRecoversFlagsDespiteNonlinearResidual]' passed (0.001 seconds).
+Test Case '-[PlaintextRecoveryTests testControlRecoversUnseenPlaintexts]' started.
+Test Case '-[PlaintextRecoveryTests testControlRecoversUnseenPlaintexts]' passed (0.001 seconds).
+Test Case '-[PlaintextRecoveryTests testControlRejectsRankDeficiencyAndInvalidInputs]' started.
+Test Case '-[PlaintextRecoveryTests testControlRejectsRankDeficiencyAndInvalidInputs]' passed (0.001 seconds).
+Test Case '-[PlaintextRecoveryTests testControlReportsOracleErrors]' started.
+Test Case '-[PlaintextRecoveryTests testControlReportsOracleErrors]' passed (0.001 seconds).
+Test Case '-[PlaintextRecoveryTests testPlaintextRecovery_Normal]' started.
+Plaintext recovery: strength=1 fixture=0 layout=clustered unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2074/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191410..4197923
+Recovery example (grader only): hidden_flags=0x77c5a15c573c74c2 predicted_flags=0x7c9f33ef5745baf3 perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=1 fixture=0 layout=distributed unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=1993/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191432..4197959
+Recovery example (grader only): hidden_flags=0xf98218b783343e31 predicted_flags=0x2b351a605e2ab59a perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=1 fixture=1 layout=clustered unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=1988/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4190113..4197934
+Recovery example (grader only): hidden_flags=0x3bfdd15476477639 predicted_flags=0xaf722f8523cec20b perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=1 fixture=1 layout=distributed unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2021/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191187..4197402
+Recovery example (grader only): hidden_flags=0x17b057abcafb5f3a predicted_flags=0x2fb941a2c517446a perfect_flag_mask=0x0000000000000000
+Test Case '-[PlaintextRecoveryTests testPlaintextRecovery_Normal]' passed (17.168 seconds).
+Test Case '-[PlaintextRecoveryTests testPlaintextRecovery_Strong]' started.
+Plaintext recovery: strength=2 fixture=0 layout=clustered unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2039/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4190763..4196943
+Recovery example (grader only): hidden_flags=0xefc9bbfd826c815e predicted_flags=0x9081cff956b838cb perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=2 fixture=0 layout=distributed unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2082/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4190256..4197442
+Recovery example (grader only): hidden_flags=0x1cd1779cd9e586b8 predicted_flags=0xdcb454224314804a perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=2 fixture=1 layout=clustered unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2062/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191901..4196773
+Recovery example (grader only): hidden_flags=0x31fdcd677b0df9fe predicted_flags=0x0241d28573a5c7db perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=2 fixture=1 layout=distributed unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2034/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4190001..4198865
+Recovery example (grader only): hidden_flags=0xa4e28995b9ff8248 predicted_flags=0x0919d6afd99d4075 perfect_flag_mask=0x0000000000000000
+Test Case '-[PlaintextRecoveryTests testPlaintextRecovery_Strong]' passed (30.258 seconds).
+Test Case '-[PlaintextRecoveryTests testPlaintextRecovery_Weak]' started.
+Plaintext recovery: strength=0 fixture=0 layout=clustered unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2054/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191138..4197583
+Recovery example (grader only): hidden_flags=0x1e88b4ac93b84f93 predicted_flags=0xa58337d76495ebba perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=0 fixture=0 layout=distributed unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2045/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191747..4198112
+Recovery example (grader only): hidden_flags=0x68e5d3a604316c8c predicted_flags=0x77ea550061251087 perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=0 fixture=1 layout=clustered unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2024/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191380..4198517
+Recovery example (grader only): hidden_flags=0xb8011f23cf590ab9 predicted_flags=0xdcef23129934c200 perfect_flag_mask=0x0000000000000000
+Plaintext recovery: strength=0 fixture=1 layout=distributed unknown_bits=64 training_queries=65 rank=64 challenges=64 predictions=64 exact_plaintexts=0/64 correct_flag_bits=2039/4096 perfect_flags=0/64 linear_fits=0/64 residual_bits=4191712..4197944
+Recovery example (grader only): hidden_flags=0xf9de5d1b308931bf predicted_flags=0x63ec054d303dab85 perfect_flag_mask=0x0000000000000000
+Test Case '-[PlaintextRecoveryTests testPlaintextRecovery_Weak]' passed (10.614 seconds).
+Test Suite 'PlaintextRecoveryTests' passed at 2026-11-03 13:16:32.716.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 58.043 (58.045) seconds
+Test Suite 'RepeatedPlanSecurityAdaptedTests' started at 2026-11-03 13:16:32.716.
+Test Case '-[RepeatedPlanSecurityAdaptedTests testAllBitDiffusion_Normal]' started.
+Adapted diffusion: strength=1 input_bit=0 single_bit_cases=0/8 min_changed=4191949 max_changed=4196133
+Adapted diffusion: strength=1 input_bit=1 single_bit_cases=0/8 min_changed=4193065 max_changed=4195110
+Adapted diffusion: strength=1 input_bit=2 single_bit_cases=0/8 min_changed=4192763 max_changed=4195970
+Adapted diffusion: strength=1 input_bit=3 single_bit_cases=0/8 min_changed=4190746 max_changed=4197583
+Adapted diffusion: strength=1 input_bit=4 single_bit_cases=0/8 min_changed=4193738 max_changed=4197539
+Adapted diffusion: strength=1 input_bit=5 single_bit_cases=0/8 min_changed=4191284 max_changed=4194588
+Adapted diffusion: strength=1 input_bit=6 single_bit_cases=0/8 min_changed=4191297 max_changed=4196374
+Adapted diffusion: strength=1 input_bit=7 single_bit_cases=0/8 min_changed=4192878 max_changed=4195724
+Test Case '-[RepeatedPlanSecurityAdaptedTests testAllBitDiffusion_Normal]' passed (7.018 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testAllBitDiffusion_Strong]' started.
+Adapted diffusion: strength=2 input_bit=0 single_bit_cases=0/8 min_changed=4193047 max_changed=4195957
+Adapted diffusion: strength=2 input_bit=1 single_bit_cases=0/8 min_changed=4191986 max_changed=4195533
+Adapted diffusion: strength=2 input_bit=2 single_bit_cases=0/8 min_changed=4193522 max_changed=4195702
+Adapted diffusion: strength=2 input_bit=3 single_bit_cases=0/8 min_changed=4192608 max_changed=4196724
+Adapted diffusion: strength=2 input_bit=4 single_bit_cases=0/8 min_changed=4193995 max_changed=4196502
+Adapted diffusion: strength=2 input_bit=5 single_bit_cases=0/8 min_changed=4192763 max_changed=4195785
+Adapted diffusion: strength=2 input_bit=6 single_bit_cases=0/8 min_changed=4191988 max_changed=4196302
+Adapted diffusion: strength=2 input_bit=7 single_bit_cases=0/8 min_changed=4191837 max_changed=4196331
+Test Case '-[RepeatedPlanSecurityAdaptedTests testAllBitDiffusion_Strong]' passed (13.517 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testAllBitDiffusion_Weak]' started.
+Adapted diffusion: strength=0 input_bit=0 single_bit_cases=0/8 min_changed=3144695 max_changed=3932417
+Adapted diffusion: strength=0 input_bit=1 single_bit_cases=0/8 min_changed=3929770 max_changed=3932326
+Adapted diffusion: strength=0 input_bit=2 single_bit_cases=0/8 min_changed=3665819 max_changed=3932935
+Adapted diffusion: strength=0 input_bit=3 single_bit_cases=0/8 min_changed=3929736 max_changed=3932128
+Adapted diffusion: strength=0 input_bit=4 single_bit_cases=0/8 min_changed=3928792 max_changed=3931947
+Adapted diffusion: strength=0 input_bit=5 single_bit_cases=0/8 min_changed=3929107 max_changed=3933207
+Adapted diffusion: strength=0 input_bit=6 single_bit_cases=0/8 min_changed=3669706 max_changed=3933178
+Adapted diffusion: strength=0 input_bit=7 single_bit_cases=0/8 min_changed=3666193 max_changed=3933814
+Test Case '-[RepeatedPlanSecurityAdaptedTests testAllBitDiffusion_Weak]' passed (3.772 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlRecoversMaskedPermutationAcrossBitPlanes]' started.
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlRecoversMaskedPermutationAcrossBitPlanes]' passed (0.001 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlRecoversPartialLeakWithoutGlobalPermutation]' started.
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlRecoversPartialLeakWithoutGlobalPermutation]' passed (0.001 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlRejectsNonlinearSingleBitCandidates]' started.
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlRejectsNonlinearSingleBitCandidates]' passed (0.001 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlReportsOracleFailures]' started.
+Test Case '-[RepeatedPlanSecurityAdaptedTests testControlReportsOracleFailures]' passed (0.001 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testCrossBitRecovery_Normal]' started.
+Adapted recovery: strength=1 mapping_queries=24 validation_queries=64 surviving_outputs=0 unique_plaintext_bits=0/8388608
+Adapted coverage: strength=1 input_bit=0 selected=0/1048576
+Adapted coverage: strength=1 input_bit=1 selected=0/1048576
+Adapted coverage: strength=1 input_bit=2 selected=0/1048576
+Adapted coverage: strength=1 input_bit=3 selected=0/1048576
+Adapted coverage: strength=1 input_bit=4 selected=0/1048576
+Adapted coverage: strength=1 input_bit=5 selected=0/1048576
+Adapted coverage: strength=1 input_bit=6 selected=0/1048576
+Adapted coverage: strength=1 input_bit=7 selected=0/1048576
+Adapted challenge: strength=1 block=0 correct=0/0; inverse OK
+Adapted challenge: strength=1 block=1 correct=0/0; inverse OK
+Adapted challenge: strength=1 block=2 correct=0/0; inverse OK
+Adapted challenge: strength=1 block=3 correct=0/0; inverse OK
+Adapted challenge: strength=1 block=4 correct=0/0; inverse OK
+Adapted challenge: strength=1 block=5 correct=0/0; inverse OK
+Adapted challenge: strength=1 block=6 correct=0/0; inverse OK
+Adapted challenge: strength=1 block=7 correct=0/0; inverse OK
+Adapted result: strength=1 training_queries=88 challenge_blocks=8 selected_bits_per_block=0 correct=0/0 accuracy=0.000000%
+Test Case '-[RepeatedPlanSecurityAdaptedTests testCrossBitRecovery_Normal]' passed (7.752 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testCrossBitRecovery_Strong]' started.
+Adapted recovery: strength=2 mapping_queries=24 validation_queries=64 surviving_outputs=0 unique_plaintext_bits=0/8388608
+Adapted coverage: strength=2 input_bit=0 selected=0/1048576
+Adapted coverage: strength=2 input_bit=1 selected=0/1048576
+Adapted coverage: strength=2 input_bit=2 selected=0/1048576
+Adapted coverage: strength=2 input_bit=3 selected=0/1048576
+Adapted coverage: strength=2 input_bit=4 selected=0/1048576
+Adapted coverage: strength=2 input_bit=5 selected=0/1048576
+Adapted coverage: strength=2 input_bit=6 selected=0/1048576
+Adapted coverage: strength=2 input_bit=7 selected=0/1048576
+Adapted challenge: strength=2 block=0 correct=0/0; inverse OK
+Adapted challenge: strength=2 block=1 correct=0/0; inverse OK
+Adapted challenge: strength=2 block=2 correct=0/0; inverse OK
+Adapted challenge: strength=2 block=3 correct=0/0; inverse OK
+Adapted challenge: strength=2 block=4 correct=0/0; inverse OK
+Adapted challenge: strength=2 block=5 correct=0/0; inverse OK
+Adapted challenge: strength=2 block=6 correct=0/0; inverse OK
+Adapted challenge: strength=2 block=7 correct=0/0; inverse OK
+Adapted result: strength=2 training_queries=88 challenge_blocks=8 selected_bits_per_block=0 correct=0/0 accuracy=0.000000%
+Test Case '-[RepeatedPlanSecurityAdaptedTests testCrossBitRecovery_Strong]' passed (14.212 seconds).
+Test Case '-[RepeatedPlanSecurityAdaptedTests testCrossBitRecovery_Weak]' started.
+Adapted recovery: strength=0 mapping_queries=24 validation_queries=64 surviving_outputs=0 unique_plaintext_bits=0/8388608
+Adapted coverage: strength=0 input_bit=0 selected=0/1048576
+Adapted coverage: strength=0 input_bit=1 selected=0/1048576
+Adapted coverage: strength=0 input_bit=2 selected=0/1048576
+Adapted coverage: strength=0 input_bit=3 selected=0/1048576
+Adapted coverage: strength=0 input_bit=4 selected=0/1048576
+Adapted coverage: strength=0 input_bit=5 selected=0/1048576
+Adapted coverage: strength=0 input_bit=6 selected=0/1048576
+Adapted coverage: strength=0 input_bit=7 selected=0/1048576
+Adapted challenge: strength=0 block=0 correct=0/0; inverse OK
+Adapted challenge: strength=0 block=1 correct=0/0; inverse OK
+Adapted challenge: strength=0 block=2 correct=0/0; inverse OK
+Adapted challenge: strength=0 block=3 correct=0/0; inverse OK
+Adapted challenge: strength=0 block=4 correct=0/0; inverse OK
+Adapted challenge: strength=0 block=5 correct=0/0; inverse OK
+Adapted challenge: strength=0 block=6 correct=0/0; inverse OK
+Adapted challenge: strength=0 block=7 correct=0/0; inverse OK
+Adapted result: strength=0 training_queries=88 challenge_blocks=8 selected_bits_per_block=0 correct=0/0 accuracy=0.000000%
+Test Case '-[RepeatedPlanSecurityAdaptedTests testCrossBitRecovery_Weak]' passed (4.489 seconds).
+Test Suite 'RepeatedPlanSecurityAdaptedTests' passed at 2026-11-03 13:17:23.481.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 50.763 (50.765) seconds
+Test Suite 'RepeatedPlanSecurityTests' started at 2026-11-03 13:17:23.481.
+Test Case '-[RepeatedPlanSecurityTests testSingleHighBit_Normal]' started.
+Single-bit probe: strength=1 input=0 changed_bits=4193168 last_changed_byte=1048575
+Single-bit probe: strength=1 input=15 changed_bits=4195724 last_changed_byte=1048575
+Single-bit probe: strength=1 input=32 changed_bits=4194093 last_changed_byte=1048575
+Single-bit probe: strength=1 input=262143 changed_bits=4193154 last_changed_byte=1048575
+Single-bit probe: strength=1 input=262144 changed_bits=4194937 last_changed_byte=1048575
+Single-bit probe: strength=1 input=524287 changed_bits=4192878 last_changed_byte=1048575
+Single-bit probe: strength=1 input=524288 changed_bits=4192949 last_changed_byte=1048575
+Single-bit probe: strength=1 input=1048575 changed_bits=4195627 last_changed_byte=1048575
+Test Case '-[RepeatedPlanSecurityTests testSingleHighBit_Normal]' passed (6.628 seconds).
+Test Case '-[RepeatedPlanSecurityTests testSingleHighBit_Strong]' started.
+Single-bit probe: strength=2 input=0 changed_bits=4196331 last_changed_byte=1048575
+Single-bit probe: strength=2 input=15 changed_bits=4195563 last_changed_byte=1048575
+Single-bit probe: strength=2 input=32 changed_bits=4194300 last_changed_byte=1048575
+Single-bit probe: strength=2 input=262143 changed_bits=4194012 last_changed_byte=1048575
+Single-bit probe: strength=2 input=262144 changed_bits=4193302 last_changed_byte=1048575
+Single-bit probe: strength=2 input=524287 changed_bits=4192947 last_changed_byte=1048575
+Single-bit probe: strength=2 input=524288 changed_bits=4191837 last_changed_byte=1048575
+Single-bit probe: strength=2 input=1048575 changed_bits=4192601 last_changed_byte=1048575
+Test Case '-[RepeatedPlanSecurityTests testSingleHighBit_Strong]' passed (13.095 seconds).
+Test Case '-[RepeatedPlanSecurityTests testSingleHighBit_Weak]' started.
+Single-bit probe: strength=0 input=0 changed_bits=3928795 last_changed_byte=1048575
+Single-bit probe: strength=0 input=15 changed_bits=3933648 last_changed_byte=1048575
+Single-bit probe: strength=0 input=32 changed_bits=3928134 last_changed_byte=1048575
+Single-bit probe: strength=0 input=262143 changed_bits=3932339 last_changed_byte=1048575
+Single-bit probe: strength=0 input=262144 changed_bits=3933814 last_changed_byte=1048575
+Single-bit probe: strength=0 input=524287 changed_bits=3666193 last_changed_byte=1048575
+Single-bit probe: strength=0 input=524288 changed_bits=3931978 last_changed_byte=1048575
+Single-bit probe: strength=0 input=1048575 changed_bits=3931282 last_changed_byte=1048575
+Test Case '-[RepeatedPlanSecurityTests testSingleHighBit_Weak]' passed (3.396 seconds).
+Test Case '-[RepeatedPlanSecurityTests testTwentyOneQueryRecovery_Normal]' started.
+21-query probe: strength=1 model is not a permutation; this specific attack did not learn a valid map
+Test Case '-[RepeatedPlanSecurityTests testTwentyOneQueryRecovery_Normal]' passed (6.702 seconds).
+Test Case '-[RepeatedPlanSecurityTests testTwentyOneQueryRecovery_Strong]' started.
+21-query probe: strength=2 model is not a permutation; this specific attack did not learn a valid map
+Test Case '-[RepeatedPlanSecurityTests testTwentyOneQueryRecovery_Strong]' passed (13.173 seconds).
+Test Case '-[RepeatedPlanSecurityTests testTwentyOneQueryRecovery_Weak]' started.
+21-query probe: strength=0 model is not a permutation; this specific attack did not learn a valid map
+Test Case '-[RepeatedPlanSecurityTests testTwentyOneQueryRecovery_Weak]' passed (3.479 seconds).
+Test Suite 'RepeatedPlanSecurityTests' passed at 2026-11-03 13:18:09.956.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 46.473 (46.475) seconds
+Test Suite 'StatisticalPlaintextRecoveryTests' started at 2026-11-03 13:18:09.956.
+Test Case '-[StatisticalPlaintextRecoveryTests testBiasedNonlinearControlIsRecoveredWithoutPerfectAccuracy]' started.
+Test Case '-[StatisticalPlaintextRecoveryTests testBiasedNonlinearControlIsRecoveredWithoutPerfectAccuracy]' passed (0.049 seconds).
+Test Case '-[StatisticalPlaintextRecoveryTests testConservativeThresholdAndScenarioCoverage]' started.
+Test Case '-[StatisticalPlaintextRecoveryTests testConservativeThresholdAndScenarioCoverage]' passed (0.001 seconds).
+Test Case '-[StatisticalPlaintextRecoveryTests testFailuresAreNotSecurityPasses]' started.
+Test Case '-[StatisticalPlaintextRecoveryTests testFailuresAreNotSecurityPasses]' passed (0.088 seconds).
+Test Case '-[StatisticalPlaintextRecoveryTests testIndependentOutputControl]' started.
+Test Case '-[StatisticalPlaintextRecoveryTests testIndependentOutputControl]' passed (0.050 seconds).
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryNormal]' started.
+CONFIG | flame-toad-vault | strength=1 fixture=0 selectors=2026,17 window_multiplier=11649 byte_multiplier=61
+Statistical recovery training: strength=1 fixture=0 budget=8257
+Statistical recovery training complete: queries=8257 features=211036 sampled_bytes=11040
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=1 fixture=0 queries=16384 features=211036 sampled_bytes=11040 best_flag=9 accuracy=8350/16384 (50.9644%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32733/65536 (49.9466%)
+  clustered row=1 correct=32865/65536 (50.1480%)
+  clustered row=2 correct=32839/65536 (50.1083%)
+  clustered row=3 correct=32778/65536 (50.0153%)
+  clustered row=4 correct=32715/65536 (49.9191%)
+  clustered row=5 correct=32653/65536 (49.8245%)
+  clustered row=6 correct=32930/65536 (50.2472%)
+  clustered row=7 correct=32805/65536 (50.0565%)
+  distributed row=0 correct=32907/65536 (50.2121%)
+  distributed row=1 correct=32833/65536 (50.0992%)
+  distributed row=2 correct=32844/65536 (50.1160%)
+  distributed row=3 correct=32720/65536 (49.9268%)
+  distributed row=4 correct=32944/65536 (50.2686%)
+  distributed row=5 correct=32617/65536 (49.7696%)
+  distributed row=6 correct=32726/65536 (49.9359%)
+  distributed row=7 correct=32918/65536 (50.2289%)
+PASS | flame-toad-vault | strength=1 fixture=0 | best prediction=50.9644% | significant=0/64 confirmed=0/64 | 187.5s
+CONFIG | flame-toad-vault | strength=1 fixture=1 selectors=2026,17 window_multiplier=12501 byte_multiplier=45
+Statistical recovery training: strength=1 fixture=1 budget=8257
+Statistical recovery training complete: queries=8257 features=211176 sampled_bytes=11054
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=1 fixture=1 queries=16384 features=211176 sampled_bytes=11054 best_flag=3 accuracy=8302/16384 (50.6714%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32906/65536 (50.2106%)
+  clustered row=1 correct=32693/65536 (49.8856%)
+  clustered row=2 correct=32794/65536 (50.0397%)
+  clustered row=3 correct=32818/65536 (50.0763%)
+  clustered row=4 correct=32729/65536 (49.9405%)
+  clustered row=5 correct=32772/65536 (50.0061%)
+  clustered row=6 correct=32502/65536 (49.5941%)
+  clustered row=7 correct=32659/65536 (49.8337%)
+  distributed row=0 correct=32705/65536 (49.9039%)
+  distributed row=1 correct=32668/65536 (49.8474%)
+  distributed row=2 correct=32793/65536 (50.0381%)
+  distributed row=3 correct=32548/65536 (49.6643%)
+  distributed row=4 correct=32570/65536 (49.6979%)
+  distributed row=5 correct=32825/65536 (50.0870%)
+  distributed row=6 correct=32642/65536 (49.8077%)
+  distributed row=7 correct=32771/65536 (50.0046%)
+PASS | flame-toad-vault | strength=1 fixture=1 | best prediction=50.6714% | significant=0/64 confirmed=0/64 | 176.7s
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryNormal]' passed (364.272 seconds).
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryStrong]' started.
+CONFIG | flame-toad-vault | strength=2 fixture=0 selectors=2026,17 window_multiplier=14537 byte_multiplier=13
+Statistical recovery training: strength=2 fixture=0 budget=8257
+Statistical recovery training complete: queries=8257 features=211176 sampled_bytes=11048
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=2 fixture=0 queries=16384 features=211176 sampled_bytes=11048 best_flag=19 accuracy=8322/16384 (50.7935%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32666/65536 (49.8444%)
+  clustered row=1 correct=32742/65536 (49.9603%)
+  clustered row=2 correct=32831/65536 (50.0961%)
+  clustered row=3 correct=33080/65536 (50.4761%)
+  clustered row=4 correct=32698/65536 (49.8932%)
+  clustered row=5 correct=32752/65536 (49.9756%)
+  clustered row=6 correct=32513/65536 (49.6109%)
+  clustered row=7 correct=32606/65536 (49.7528%)
+  distributed row=0 correct=32690/65536 (49.8810%)
+  distributed row=1 correct=32686/65536 (49.8749%)
+  distributed row=2 correct=32895/65536 (50.1938%)
+  distributed row=3 correct=32609/65536 (49.7574%)
+  distributed row=4 correct=33073/65536 (50.4654%)
+  distributed row=5 correct=32529/65536 (49.6353%)
+  distributed row=6 correct=32762/65536 (49.9908%)
+  distributed row=7 correct=32701/65536 (49.8978%)
+PASS | flame-toad-vault | strength=2 fixture=0 | best prediction=50.7935% | significant=0/64 confirmed=0/64 | 325.3s
+CONFIG | flame-toad-vault | strength=2 fixture=1 selectors=2026,17 window_multiplier=3237 byte_multiplier=57
+Statistical recovery training: strength=2 fixture=1 budget=8257
+Statistical recovery training complete: queries=8257 features=211044 sampled_bytes=11039
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=2 fixture=1 queries=16384 features=211044 sampled_bytes=11039 best_flag=1 accuracy=8358/16384 (51.0132%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32791/65536 (50.0351%)
+  clustered row=1 correct=33054/65536 (50.4364%)
+  clustered row=2 correct=32638/65536 (49.8016%)
+  clustered row=3 correct=32654/65536 (49.8260%)
+  clustered row=4 correct=32586/65536 (49.7223%)
+  clustered row=5 correct=32580/65536 (49.7131%)
+  clustered row=6 correct=32680/65536 (49.8657%)
+  clustered row=7 correct=32846/65536 (50.1190%)
+  distributed row=0 correct=33030/65536 (50.3998%)
+  distributed row=1 correct=32709/65536 (49.9100%)
+  distributed row=2 correct=32723/65536 (49.9313%)
+  distributed row=3 correct=32913/65536 (50.2213%)
+  distributed row=4 correct=32720/65536 (49.9268%)
+  distributed row=5 correct=32832/65536 (50.0977%)
+  distributed row=6 correct=32786/65536 (50.0275%)
+  distributed row=7 correct=32742/65536 (49.9603%)
+PASS | flame-toad-vault | strength=2 fixture=1 | best prediction=51.0132% | significant=0/64 confirmed=0/64 | 299.0s
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryStrong]' passed (624.307 seconds).
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryWeak]' started.
+CONFIG | flame-toad-vault | strength=0 fixture=0 selectors=2026,17 window_multiplier=12017 byte_multiplier=63
+Statistical recovery training: strength=0 fixture=0 budget=8257
+Statistical recovery training complete: queries=8257 features=211036 sampled_bytes=11047
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=0 fixture=0 queries=16384 features=211036 sampled_bytes=11047 best_flag=39 accuracy=8365/16384 (51.0559%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32677/65536 (49.8611%)
+  clustered row=1 correct=32699/65536 (49.8947%)
+  clustered row=2 correct=33032/65536 (50.4028%)
+  clustered row=3 correct=32968/65536 (50.3052%)
+  clustered row=4 correct=32637/65536 (49.8001%)
+  clustered row=5 correct=32761/65536 (49.9893%)
+  clustered row=6 correct=32860/65536 (50.1404%)
+  clustered row=7 correct=32866/65536 (50.1495%)
+  distributed row=0 correct=32899/65536 (50.1999%)
+  distributed row=1 correct=32709/65536 (49.9100%)
+  distributed row=2 correct=32804/65536 (50.0549%)
+  distributed row=3 correct=32551/65536 (49.6689%)
+  distributed row=4 correct=32867/65536 (50.1511%)
+  distributed row=5 correct=32657/65536 (49.8306%)
+  distributed row=6 correct=32866/65536 (50.1495%)
+  distributed row=7 correct=33001/65536 (50.3555%)
+PASS | flame-toad-vault | strength=0 fixture=0 | best prediction=51.0559% | significant=0/64 confirmed=0/64 | 336.3s
+CONFIG | flame-toad-vault | strength=0 fixture=1 selectors=2026,17 window_multiplier=6049 byte_multiplier=53
+Statistical recovery training: strength=0 fixture=1 budget=8257
+Statistical recovery training complete: queries=8257 features=211176 sampled_bytes=11055
+Statistical recovery challenge progress: 4096/16384
+Statistical recovery challenge progress: 8192/16384
+Statistical recovery challenge progress: 12288/16384
+Statistical recovery challenge progress: 16384/16384
+Statistical recovery challenge: strength=0 fixture=1 queries=16384 features=211176 sampled_bytes=11055 best_flag=23 accuracy=8358/16384 (51.0132%) adjusted_tail_bound=1 significant=0x0000000000000000 shuffled_significant=0x0000000000000000 exact_plaintexts=0
+  clustered row=0 correct=32764/65536 (49.9939%)
+  clustered row=1 correct=32644/65536 (49.8108%)
+  clustered row=2 correct=32981/65536 (50.3250%)
+  clustered row=3 correct=32800/65536 (50.0488%)
+  clustered row=4 correct=33044/65536 (50.4211%)
+  clustered row=5 correct=32680/65536 (49.8657%)
+  clustered row=6 correct=32843/65536 (50.1144%)
+  clustered row=7 correct=32938/65536 (50.2594%)
+  distributed row=0 correct=32487/65536 (49.5712%)
+  distributed row=1 correct=32688/65536 (49.8779%)
+  distributed row=2 correct=32736/65536 (49.9512%)
+  distributed row=3 correct=32802/65536 (50.0519%)
+  distributed row=4 correct=32708/65536 (49.9084%)
+  distributed row=5 correct=32647/65536 (49.8154%)
+  distributed row=6 correct=32934/65536 (50.2533%)
+  distributed row=7 correct=32761/65536 (49.9893%)
+PASS | flame-toad-vault | strength=0 fixture=1 | best prediction=51.0132% | significant=0/64 confirmed=0/64 | 203.9s
+Test Case '-[StatisticalPlaintextRecoveryTests testStatisticalRecoveryWeak]' passed (540.152 seconds).
+Test Case '-[StatisticalPlaintextRecoveryTests testTwoBitParityControl]' started.
+Test Case '-[StatisticalPlaintextRecoveryTests testTwoBitParityControl]' passed (0.049 seconds).
+Test Suite 'StatisticalPlaintextRecoveryTests' passed at 2026-11-03 13:43:38.927.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 1528.969 (1528.971) seconds
+Test Suite 'WholeBlockParityRecoveryTests' started at 2026-11-03 13:43:38.927.
+Test Case '-[WholeBlockParityRecoveryTests testControlRecoversFixedParityOffset]' started.
+Test Case '-[WholeBlockParityRecoveryTests testControlRecoversFixedParityOffset]' passed (0.001 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityNormal]' started.
+Whole-block parity | flame-toad-vault | strength=1 fixture=0 | prediction=50.3906% | two-sided best=50.3906% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=1 fixture=1 | prediction=48.9258% | two-sided best=51.0742% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityNormal]' passed (29.019 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityStrong]' started.
+Whole-block parity | flame-toad-vault | strength=2 fixture=0 | prediction=49.4141% | two-sided best=50.5859% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=2 fixture=1 | prediction=49.6094% | two-sided best=50.3906% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityStrong]' passed (42.503 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityWeak]' started.
+Whole-block parity | flame-toad-vault | strength=0 fixture=0 | prediction=50.1953% | two-sided best=50.1953% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=0 fixture=1 | prediction=51.9531% | two-sided best=51.9531% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityWeak]' passed (22.297 seconds).
+Test Suite 'WholeBlockParityRecoveryTests' passed at 2026-11-03 13:45:12.747.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 93.819 (93.820) seconds
+Test Suite 'XORSuperpositionTests' started at 2026-11-03 13:45:12.748.
+Test Case '-[XORSuperpositionTests testControlDetectsAffineMixingWithOffsets]' started.
+Test Case '-[XORSuperpositionTests testControlDetectsAffineMixingWithOffsets]' passed (0.001 seconds).
+Test Case '-[XORSuperpositionTests testControlDetectsNonlinearInteractions]' started.
+Test Case '-[XORSuperpositionTests testControlDetectsNonlinearInteractions]' passed (0.001 seconds).
+Test Case '-[XORSuperpositionTests testControlFindsAnAffinePlaneInsideANonlinearFunction]' started.
+Test Case '-[XORSuperpositionTests testControlFindsAnAffinePlaneInsideANonlinearFunction]' passed (0.000 seconds).
+Test Case '-[XORSuperpositionTests testControlReportsOracleErrors]' started.
+Test Case '-[XORSuperpositionTests testControlReportsOracleErrors]' passed (0.000 seconds).
+Test Case '-[XORSuperpositionTests testXORSuperposition_Normal]' started.
+XOR superposition: strength=1 fixture=0 change_mask=0xff queries=32 zero_residuals=0/8 residual_bits=4192420..4195897
+XOR superposition: strength=1 fixture=0 change_mask=0x01 queries=16 zero_residuals=0/4 residual_bits=4192617..4194907
+XOR superposition: strength=1 fixture=0 change_mask=0x02 queries=16 zero_residuals=0/4 residual_bits=4194563..4194942
+XOR superposition: strength=1 fixture=0 change_mask=0x04 queries=16 zero_residuals=0/4 residual_bits=4191714..4194480
+XOR superposition: strength=1 fixture=0 change_mask=0x08 queries=16 zero_residuals=0/4 residual_bits=4193906..4196269
+XOR superposition: strength=1 fixture=0 change_mask=0x10 queries=16 zero_residuals=0/4 residual_bits=4190952..4194811
+XOR superposition: strength=1 fixture=0 change_mask=0x20 queries=16 zero_residuals=0/4 residual_bits=4193253..4194957
+XOR superposition: strength=1 fixture=0 change_mask=0x40 queries=16 zero_residuals=0/4 residual_bits=4190985..4197507
+XOR superposition: strength=1 fixture=0 change_mask=0x80 queries=16 zero_residuals=0/4 residual_bits=4193206..4197447
+XOR superposition: strength=1 fixture=1 change_mask=0xff queries=32 zero_residuals=0/8 residual_bits=4192682..4195729
+XOR superposition: strength=1 fixture=1 change_mask=0x01 queries=16 zero_residuals=0/4 residual_bits=4193084..4194610
+XOR superposition: strength=1 fixture=1 change_mask=0x02 queries=16 zero_residuals=0/4 residual_bits=4193073..4194377
+XOR superposition: strength=1 fixture=1 change_mask=0x04 queries=16 zero_residuals=0/4 residual_bits=4193160..4193722
+XOR superposition: strength=1 fixture=1 change_mask=0x08 queries=16 zero_residuals=0/4 residual_bits=4193335..4196333
+XOR superposition: strength=1 fixture=1 change_mask=0x10 queries=16 zero_residuals=0/4 residual_bits=4194913..4195669
+XOR superposition: strength=1 fixture=1 change_mask=0x20 queries=16 zero_residuals=0/4 residual_bits=4192054..4193926
+XOR superposition: strength=1 fixture=1 change_mask=0x40 queries=16 zero_residuals=0/4 residual_bits=4192188..4197333
+XOR superposition: strength=1 fixture=1 change_mask=0x80 queries=16 zero_residuals=0/4 residual_bits=4191916..4196905
+Test Case '-[XORSuperpositionTests testXORSuperposition_Normal]' passed (15.905 seconds).
+Test Case '-[XORSuperpositionTests testXORSuperposition_Strong]' started.
+XOR superposition: strength=2 fixture=0 change_mask=0xff queries=32 zero_residuals=0/8 residual_bits=4190179..4196455
+XOR superposition: strength=2 fixture=0 change_mask=0x01 queries=16 zero_residuals=0/4 residual_bits=4193588..4195216
+XOR superposition: strength=2 fixture=0 change_mask=0x02 queries=16 zero_residuals=0/4 residual_bits=4192160..4195549
+XOR superposition: strength=2 fixture=0 change_mask=0x04 queries=16 zero_residuals=0/4 residual_bits=4194021..4197488
+XOR superposition: strength=2 fixture=0 change_mask=0x08 queries=16 zero_residuals=0/4 residual_bits=4194591..4198726
+XOR superposition: strength=2 fixture=0 change_mask=0x10 queries=16 zero_residuals=0/4 residual_bits=4194727..4196850
+XOR superposition: strength=2 fixture=0 change_mask=0x20 queries=16 zero_residuals=0/4 residual_bits=4194152..4197236
+XOR superposition: strength=2 fixture=0 change_mask=0x40 queries=16 zero_residuals=0/4 residual_bits=4192395..4196581
+XOR superposition: strength=2 fixture=0 change_mask=0x80 queries=16 zero_residuals=0/4 residual_bits=4194002..4195266
+XOR superposition: strength=2 fixture=1 change_mask=0xff queries=32 zero_residuals=0/8 residual_bits=4191544..4195501
+XOR superposition: strength=2 fixture=1 change_mask=0x01 queries=16 zero_residuals=0/4 residual_bits=4193427..4196839
+XOR superposition: strength=2 fixture=1 change_mask=0x02 queries=16 zero_residuals=0/4 residual_bits=4190148..4195432
+XOR superposition: strength=2 fixture=1 change_mask=0x04 queries=16 zero_residuals=0/4 residual_bits=4193312..4197713
+XOR superposition: strength=2 fixture=1 change_mask=0x08 queries=16 zero_residuals=0/4 residual_bits=4193495..4196224
+XOR superposition: strength=2 fixture=1 change_mask=0x10 queries=16 zero_residuals=0/4 residual_bits=4191656..4196523
+XOR superposition: strength=2 fixture=1 change_mask=0x20 queries=16 zero_residuals=0/4 residual_bits=4191925..4195013
+XOR superposition: strength=2 fixture=1 change_mask=0x40 queries=16 zero_residuals=0/4 residual_bits=4191917..4195009
+XOR superposition: strength=2 fixture=1 change_mask=0x80 queries=16 zero_residuals=0/4 residual_bits=4193937..4195717
+Test Case '-[XORSuperpositionTests testXORSuperposition_Strong]' passed (28.882 seconds).
+Test Case '-[XORSuperpositionTests testXORSuperposition_Weak]' started.
+XOR superposition: strength=0 fixture=0 change_mask=0xff queries=32 zero_residuals=0/8 residual_bits=4193558..4196050
+XOR superposition: strength=0 fixture=0 change_mask=0x01 queries=16 zero_residuals=0/4 residual_bits=4193795..4197482
+XOR superposition: strength=0 fixture=0 change_mask=0x02 queries=16 zero_residuals=0/4 residual_bits=4192088..4194490
+XOR superposition: strength=0 fixture=0 change_mask=0x04 queries=16 zero_residuals=0/4 residual_bits=4192314..4195373
+XOR superposition: strength=0 fixture=0 change_mask=0x08 queries=16 zero_residuals=0/4 residual_bits=4194533..4197075
+XOR superposition: strength=0 fixture=0 change_mask=0x10 queries=16 zero_residuals=0/4 residual_bits=4192074..4196567
+XOR superposition: strength=0 fixture=0 change_mask=0x20 queries=16 zero_residuals=0/4 residual_bits=4192993..4197343
+XOR superposition: strength=0 fixture=0 change_mask=0x40 queries=16 zero_residuals=0/4 residual_bits=4193482..4195022
+XOR superposition: strength=0 fixture=0 change_mask=0x80 queries=16 zero_residuals=0/4 residual_bits=4194110..4197101
+XOR superposition: strength=0 fixture=1 change_mask=0xff queries=32 zero_residuals=0/8 residual_bits=4191156..4195834
+XOR superposition: strength=0 fixture=1 change_mask=0x01 queries=16 zero_residuals=0/4 residual_bits=4192493..4196465
+XOR superposition: strength=0 fixture=1 change_mask=0x02 queries=16 zero_residuals=0/4 residual_bits=4194357..4195875
+XOR superposition: strength=0 fixture=1 change_mask=0x04 queries=16 zero_residuals=0/4 residual_bits=4193681..4194503
+XOR superposition: strength=0 fixture=1 change_mask=0x08 queries=16 zero_residuals=0/4 residual_bits=4193723..4195332
+XOR superposition: strength=0 fixture=1 change_mask=0x10 queries=16 zero_residuals=0/4 residual_bits=4193058..4194584
+XOR superposition: strength=0 fixture=1 change_mask=0x20 queries=16 zero_residuals=0/4 residual_bits=4192841..4195393
+XOR superposition: strength=0 fixture=1 change_mask=0x40 queries=16 zero_residuals=0/4 residual_bits=4193239..4194739
+XOR superposition: strength=0 fixture=1 change_mask=0x80 queries=16 zero_residuals=0/4 residual_bits=4192288..4198547
+Test Case '-[XORSuperpositionTests testXORSuperposition_Weak]' passed (9.391 seconds).
+Test Suite 'XORSuperpositionTests' passed at 2026-11-03 13:46:06.930.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 54.181 (54.182) seconds
+Test Suite 'ScrambleTests.xctest' passed at 2026-11-03 13:46:06.930.
+	 Executed 50 tests, with 0 failures (0 unexpected) in 1890.649 (1890.664) seconds
+Test Suite 'Selected tests' passed at 2026-11-03 13:46:06.930.
+	 Executed 50 tests, with 0 failures (0 unexpected) in 1890.649 (1890.664) seconds
+2026-11-03 13:46:07.225 xcodebuild[18489:233336] [MT] IDETestOperationsObserverDebug: 1891.430 elapsed -- Testing started completed.
+2026-11-03 13:46:07.225 xcodebuild[18489:233336] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-03 13:46:07.225 xcodebuild[18489:233336] [MT] IDETestOperationsObserverDebug: 1891.430 sec, +1891.430 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/soccer-flame-overhaul/security-1.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

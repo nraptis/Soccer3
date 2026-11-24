@@ -1,0 +1,13 @@
+{
+  "blocks_encrypted_in_phase" : 229376,
+  "campaign_seed" : "0xb0c46ddd618c14f0",
+  "cipher_plan" : "fourtoad-corvid-per-layer-v1",
+  "fixture_index" : 5,
+  "nonce" : "0x708f0469d77651bd",
+  "password_hex" : "73228d48a8d52db7412b0b91a22ee3bb5c55090e2a11149527190072aadac81c",
+  "phase" : "verification",
+  "phase_total_blocks" : 262144,
+  "run" : 6,
+  "status" : "running",
+  "updated_unix_seconds" : 1793937245.8138289
+}

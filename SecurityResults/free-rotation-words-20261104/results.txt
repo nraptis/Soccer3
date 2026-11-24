@@ -1,0 +1,32 @@
+Free rotation word accumulation — 2026-11-04
+
+Sixteen separate mFreeRotationWordA..P uint64 sums; A/B are layer 0,
+C/D layer 1, through O/P layer 7. Each Shuffle_CROWSCIMASSORMATEX call
+adds one distinct little-endian uint64 from mRandom bytes 0..127.
+Zero and the two marked seed entry reset locations clear all sums and the
+sixteen assembled int32 mFreeRotationA..P values.
+
+Ordering ranges shifted to bytes 128..1151; bit-plane sums 1152..1343;
+cross starts 1344. Rotation-list allocation remains 589824 bytes/seed.
+No overlap; all 32768 bytes assigned. Free sums receive 38 words each.
+
+SeedEpilogue_Regular_C calls FarmRotationWindows, which combines each
+window with 1 + word % 63; the second offset in a layer uses
+1 + 2*(word % 32) when the first offset is even. Final byte subset checks
+remain in the farmer, as do all prior window/complement exclusions.
+Successful results populate both the named scalar outputs and the pack.
+The production path no longer reads the Stage2 tails for free offsets.
+Standalone raw-entropy farming is retained for existing callers/tests.
+
+Validation: Xcode Release, macOS arm64, 25 focused tests passed, zero
+failures (53.033 seconds). Includes new FreeRotationSeedTests (3), existing
+BitPlaneSeedTests (3), EncryptionVaultPlanTests (5),
+WindowRotationMigrationTests (5), WindowRotationPackTests (5), and
+WindowRotationShuffleTests (4). Real password/nonce seed reconstruction
+and independent 1 MiB round trips passed for weak, normal and strong.
+The updated standalone security-sweep source passed C++20 syntax checking.
+Long statistical/parity/overnight campaigns were not rerun for this task.
+
+This changes seeded configurations/ciphertext. Results from earlier
+policies describe earlier versions. New policy identifier:
+window-pack-accumulated-offsets-v3.

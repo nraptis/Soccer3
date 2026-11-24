@@ -1,5 +1,5 @@
 #import <XCTest/XCTest.h>
-#include "PasswordXORCipher.hpp"
+#include "PasswordXORKernel.hpp"
 #include "CipherGauntlet.hpp"
 
 @interface Battery_PasswordXORCipher : XCTestCase
@@ -13,10 +13,10 @@
 
     for (std::size_t aTrial = 0U; aTrial < TEST_COUNT_OUTER_LOOP; ++aTrial) {
         CipherGauntlet::ArrayRandomize(aPassword, sizeof(aPassword));
-        PasswordXORCipher aCipher(aPassword);
+        PasswordXORKernel aCipher(aPassword);
 
-        if (!aGauntlet.RunCipher(&aCipher, "PasswordXORCipher")) {
-            XCTFail("[PasswordXORCipher] gauntlet failed at trial %zu.", aTrial);
+        if (!aGauntlet.RunCipher(&aCipher, "PasswordXORKernel")) {
+            XCTFail("[PasswordXORKernel] gauntlet failed at trial %zu.", aTrial);
             return;
         }
     }

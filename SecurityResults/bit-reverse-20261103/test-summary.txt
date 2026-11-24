@@ -1,0 +1,80 @@
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityNormal]' started.
+Bit-plane parity | flame-toad-vault | strength=1 fixture=0 | best=53.9062% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=1 fixture=1 | best=53.4180% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityNormal]' passed (41.284 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityStrong]' started.
+Bit-plane parity | flame-toad-vault | strength=2 fixture=0 | best=52.8809% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=2 fixture=1 | best=52.7832% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityStrong]' passed (55.367 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityWeak]' started.
+Bit-plane parity | flame-toad-vault | strength=0 fixture=0 | best=52.7344% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Bit-plane parity | flame-toad-vault | strength=0 fixture=1 | best=53.6621% cutoff=57.3024% | significant=0/255 shuffled=0 | PASS
+Test Case '-[BitPlaneParityRecoveryTests testBitPlaneParityWeak]' passed (32.855 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testControlRecoversRotatedPlanesWithFixedOffset]' started.
+Test Case '-[BitPlaneParityRecoveryTests testControlRecoversRotatedPlanesWithFixedOffset]' passed (0.014 seconds).
+Test Case '-[BitPlaneParityRecoveryTests testControlRejectsIndependentOutputAndOracleErrors]' started.
+Test Case '-[BitPlaneParityRecoveryTests testControlRejectsIndependentOutputAndOracleErrors]' passed (0.014 seconds).
+	 Executed 5 tests, with 0 failures (0 unexpected) in 129.535 (129.536) seconds
+Test Case '-[BitReverseCipherTests testAllByteValuesBothDirectionsTailsGuardsAndRejectedBuffers]' started.
+Test Case '-[BitReverseCipherTests testAllByteValuesBothDirectionsTailsGuardsAndRejectedBuffers]' passed (0.009 seconds).
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.009 (0.010) seconds
+Test Case '-[EncryptionVaultPlanTests testBothSelectorsAll144RotationsAndAllStrongMaterialsReachTheVault]' started.
+Test Case '-[EncryptionVaultPlanTests testBothSelectorsAll144RotationsAndAllStrongMaterialsReachTheVault]' passed (0.797 seconds).
+Test Case '-[EncryptionVaultPlanTests testExactRowsMasksRotationsAndMaterialSchedule]' started.
+Test Case '-[EncryptionVaultPlanTests testExactRowsMasksRotationsAndMaterialSchedule]' passed (0.028 seconds).
+Test Case '-[EncryptionVaultPlanTests testFullMiBCiphertextMatchesLiteralReferenceForEveryStrength]' started.
+Test Case '-[EncryptionVaultPlanTests testFullMiBCiphertextMatchesLiteralReferenceForEveryStrength]' passed (1.772 seconds).
+Test Case '-[EncryptionVaultPlanTests testRealSeedRepeatsIndependentBlocksAndReconstructsVaultForDecryption]' started.
+Test Case '-[EncryptionVaultPlanTests testRealSeedRepeatsIndependentBlocksAndReconstructsVaultForDecryption]' passed (46.243 seconds).
+Test Case '-[EncryptionVaultPlanTests testRejectsInvalidPlansMissingMaterialsAndFailedConfiguration]' started.
+Test Case '-[EncryptionVaultPlanTests testRejectsInvalidPlansMissingMaterialsAndFailedConfiguration]' passed (0.016 seconds).
+	 Executed 5 tests, with 0 failures (0 unexpected) in 48.856 (48.857) seconds
+Test Case '-[EncryptionVaultTests testActualCiphersMatchTwoRoundsAndRepeatIndependentBlocks]' started.
+Test Case '-[EncryptionVaultTests testActualCiphersMatchTwoRoundsAndRepeatIndependentBlocks]' passed (0.007 seconds).
+Test Case '-[EncryptionVaultTests testEightLayerVaultOrderWithEmptyOddAndEvenLayers]' started.
+Test Case '-[EncryptionVaultTests testEightLayerVaultOrderWithEmptyOddAndEvenLayers]' passed (0.047 seconds).
+Test Case '-[EncryptionVaultTests testErrorPropagationCleanupAndCipherOwnership]' started.
+Test Case '-[EncryptionVaultTests testErrorPropagationCleanupAndCipherOwnership]' passed (0.000 seconds).
+Test Case '-[EncryptionVaultTests testFourLayerRoundOrderAndInverseOnOneMiB]' started.
+Test Case '-[EncryptionVaultTests testFourLayerRoundOrderAndInverseOnOneMiB]' passed (0.037 seconds).
+Test Case '-[EncryptionVaultTests testRoundBufferValidationAndEmptyIdentity]' started.
+Test Case '-[EncryptionVaultTests testRoundBufferValidationAndEmptyIdentity]' passed (0.001 seconds).
+Test Case '-[EncryptionVaultTests testVaultBufferValidationAndEmptyIdentity]' started.
+Test Case '-[EncryptionVaultTests testVaultBufferValidationAndEmptyIdentity]' passed (0.000 seconds).
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.093 (0.094) seconds
+Test Case '-[FlameToadCipherTests testAllOrderedRowPairsPackingWrapsAndIndependentInverse]' started.
+Test Case '-[FlameToadCipherTests testAllOrderedRowPairsPackingWrapsAndIndependentInverse]' passed (0.011 seconds).
+Test Case '-[FlameToadCipherTests testPackedCacheCapacityAliasingGuardsAndFreshInverse]' started.
+Test Case '-[FlameToadCipherTests testPackedCacheCapacityAliasingGuardsAndFreshInverse]' passed (0.007 seconds).
+Test Case '-[FlameToadCipherTests testUnalignedMiBGuardsAndRejectedArguments]' started.
+Test Case '-[FlameToadCipherTests testUnalignedMiBGuardsAndRejectedArguments]' passed (0.003 seconds).
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.022 (0.022) seconds
+Test Case '-[RotationWindowTests testCursorWrapAndExhaustionHaveNoGlobalSideEffects]' started.
+Test Case '-[RotationWindowTests testCursorWrapAndExhaustionHaveNoGlobalSideEffects]' passed (0.002 seconds).
+Test Case '-[RotationWindowTests testEightPacksGlobalExclusionsAndAllLocalSubsetSums]' started.
+Test Case '-[RotationWindowTests testEightPacksGlobalExclusionsAndAllLocalSubsetSums]' passed (0.091 seconds).
+Test Case '-[RotationWindowTests testFarmingReproducesAndUsesSeparateIntermediateTailSlices]' started.
+Test Case '-[RotationWindowTests testFarmingReproducesAndUsesSeparateIntermediateTailSlices]' passed (0.006 seconds).
+Test Case '-[RotationWindowTests testSixteenBitShuffleAgainstIndependentReferenceAndShortEntropy]' started.
+Test Case '-[RotationWindowTests testSixteenBitShuffleAgainstIndependentReferenceAndShortEntropy]' passed (0.001 seconds).
+Test Case '-[RotationWindowTests testValidatorRejectsDuplicatesComplementsAndLocalCombinationCollisions]' started.
+Test Case '-[RotationWindowTests testValidatorRejectsDuplicatesComplementsAndLocalCombinationCollisions]' passed (0.001 seconds).
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.100 (0.101) seconds
+Test Case '-[WholeBlockParityRecoveryTests testControlRecoversFixedParityOffset]' started.
+Test Case '-[WholeBlockParityRecoveryTests testControlRecoversFixedParityOffset]' passed (0.001 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityNormal]' started.
+Whole-block parity | flame-toad-vault | strength=1 fixture=0 | prediction=48.5352% | two-sided best=51.4648% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=1 fixture=1 | prediction=51.4648% | two-sided best=51.4648% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityNormal]' passed (25.235 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityStrong]' started.
+Whole-block parity | flame-toad-vault | strength=2 fixture=0 | prediction=47.8516% | two-sided best=52.1484% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=2 fixture=1 | prediction=52.2461% | two-sided best=52.2461% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityStrong]' passed (38.769 seconds).
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityWeak]' started.
+Whole-block parity | flame-toad-vault | strength=0 fixture=0 | prediction=50.9766% | two-sided best=50.9766% cutoff=58.9214% | PASS
+Whole-block parity | flame-toad-vault | strength=0 fixture=1 | prediction=51.8555% | two-sided best=51.8555% cutoff=58.9214% | PASS
+Test Case '-[WholeBlockParityRecoveryTests testWholeBlockParityWeak]' passed (18.298 seconds).
+	 Executed 4 tests, with 0 failures (0 unexpected) in 82.303 (82.304) seconds
+	 Executed 29 tests, with 0 failures (0 unexpected) in 260.917 (260.926) seconds
+	 Executed 29 tests, with 0 failures (0 unexpected) in 260.917 (260.926) seconds
+** TEST SUCCEEDED **

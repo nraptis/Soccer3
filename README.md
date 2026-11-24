@@ -109,34 +109,31 @@ All strengths use `Cryptex`: eight full-size 1 MiB layers named AA, AB, AC, AD, 
 Each layer executes the same structure:
 
 ```text
-FlameToad(pair 0, four windows)
-FlameToad(pair 1, four windows)
-FlameToad(pair 2, four windows)
-FlameToad(pair 3, four windows)
 PasswordXOR (strong only)
-ShiftMasked (first member of each pair)
-ShiftMasked (second member of each pair)
-PasswordXOR (when scheduled)
+FourToadKernel (four sequential Toad stages, one pair and four windows per stage)
+FourCrowKernel or FourRavenKernel (two independent two-bit shifts; Raven includes one XOR)
 ```
 
 `Soccer3::mBitPlane` supplies the 4-by-4 grid. Each layer and pair column covers
 all eight bits once; pair members are not circularly adjacent. Both rounds
 reuse the selected numeric grid. Three 64-bit words select the representative,
 row order, and column order through `BitPlaneFarm::Select`.
-One `BitReverseCipher` follows all of layer 3, including its trailing XOR.
+One `BitReverseKernel` follows the fourth layer (AD), including its Raven.
 It reverses bits within each byte (bit 0 swaps with bit 7, etc.). Both rounds
 use the same numeric row grid; it is not mirrored to compensate. Decryption
 uses the identical reversal. There is no final bit reversal. All eight layers have separate offsets
 and material assignments. No per-block material is generated.
 
-| Strength | XOR before rotations | XOR after rotations | Material | Cipher applications |
-| --- | --- | --- | ---: | ---: |
-| Weak | None | Layers 2, 3, 6, 7 | 4 MiB | 53 |
-| Normal | None | Every layer | 8 MiB | 57 |
-| Strong | Every layer | Every layer | 16 MiB | 65 |
+Layer numbers below run from 1 through 8.
 
-There are 32 FlameToads, 16 masked byte rotations, and one boundary bit
-reversal. `Soccer3::SeedEpilogue_Regular_D()` assigns named bit rows, rotation
+| Strength | XOR before FourToadKernel | Corvid after FourToadKernel | Material | Kernel applications |
+| --- | --- | --- | ---: | ---: |
+| Weak | None | Crow on 1, 3, 5, 7; Raven on 2, 4, 6, 8 | 4 MiB | 17 |
+| Normal | None | Raven on every layer | 8 MiB | 17 |
+| Strong | Every layer | Raven on every layer | 16 MiB | 25 |
+
+There are eight FourToads (32 Toad stages), eight corvids incorporating
+sixteen masked shifts, and one boundary bit reversal. `Soccer3::SeedEpilogue_Regular_D()` assigns named bit rows, rotation
 masks, sampling windows, ordered material pointers, and a packed-row cache.
 `Cryptex.cpp` reads those values directly. `Build(pStrength)` validates the prepared inputs, then executes one of three
 manually spelled-out branches: weak, strong, or normal as the fallback.
@@ -166,8 +163,8 @@ rotation and cross-permutation lists. The delegate registration is retained.
 The test-mode length returns to 1 MiB; configure smaller test buffers after
 seeding. Invalid seed arguments also discard any previous configuration.
 
-Epilogue C contains bit-plane selection, window farming, byte-shift assembly,
-and material ordering. Epilogue D assigns the named Cryptex inputs and builds
+Epilogue C selects the bit plane and eighteen window lists, then orders materials.
+Epilogue D assembles byte shifts, assigns the named Cryptex inputs, and builds
 the cipher stack once. The former seed-reset, one-time initialization, selection, farming,
 and input-preparation helpers are removed. Soccer operations must be serialized;
 concurrent or independently repeated seed-stage calls are unsupported.
@@ -202,29 +199,35 @@ call, or 684 across the 38 seed generations. The epilogue selects the plane
 from the completed sums. `Zero()` and both seed entry points reset the words
 and clear the plane. `mPremiumSeed` and the fixed selectors are absent.
 
-Each unit also adds one distinct word to each of `mFreeRotationWordA` through
-`mFreeRotationWordP`: 18 words per accumulator per call, 684 per seed.
-A/B belong to layer AA, C/D to AB, through O/P on BD. All word inputs occupy
-separate ranges from the shuffles. Their locations repeat within each unit,
-spreading every accumulator's samples across almost the whole random block.
+Each unit also adds one distinct word to each of the sixteen
+`mShiftMaskedRotationWordAALeft` / `AARight` through `BDLeft` / `BDRight`
+accumulators: 18 words per accumulator per call, 684 per seed. All word inputs
+occupy separate ranges from the shuffles. Their locations repeat within each
+unit, spreading every accumulator's samples across almost the whole random block.
 
-`SeedEpilogue_Regular_C` directly selects the bit plane, farms windows, and
-forms byte shifts as `64 * selectedWindow + offset`.
-Ordinarily `offset = 1 + word % 63`. When the first shift in a layer is even,
-the second uses `offset = 1 + 2 * (word % 32)`, keeping at least one odd shift.
-The farmer checks actual byte subset sums before accepting a window; assembly
-validates them again. All word values, including zero, are valid. Modulo 63
-has a small remainder bias.
+`SeedEpilogue_Regular_C` selects the bit plane and fills the chosen window lists.
+`SeedEpilogue_Regular_D`, in `Soccer3Cryptex.cpp`, forms the final byte shifts
+as `64 * selectedWindow + 1 + 2 * (offsetWord % 32)`. Every corvid has two
+odd shifts. Pool A and the Left words supply the first shift of every layer;
+pool B and the Right words supply the second. Both pools use slots 0–7 for
+AA, AB, AC, AD, BA, BB, BC, BD. Stage C validates collisions for both pools.
 
-The pack stores only `uint16_t` window indices, including `mWindowFreeA/B`.
-The final byte shifts are `mShiftMaskedCipherRotationAA..AH` for round A and
-`mShiftMaskedCipherRotationBA..BH` for round B. Consecutive pairs feed each
-layer. Sampling windows are `mFlameToadCipherRotationAAA..BDP` (round, layer,
-then window within that layer). All Cryptex input definitions, word sums,
-selected grid/pack, and Cryptex state reside in `Soccer3Cryptex.cpp`.
-`ShiftMaskedCipher` replaces the active `ShiftMaskCipher` name; its numeric
-cipher ID and forward/reverse operations are unchanged.
-`Zero()` and both seed entry points clear words and derived inputs.
+All corvid masks use the first selected bit-plane row, labelled
+`[a b] [c d] [e f] [g h]`, throughout both rounds. Their pairs are
+`ac/eg`, `bd/fh`, `ae/cg`, `bf/dh`, `ad/eh`, `bc/fg`, `af/ch`, `be/dg`.
+All sixteen pairs are unique, every plane is shifted four times, and each
+consecutive pair of layers covers all eight planes. Each corvid gathers the
+two pairs at separate byte offsets. FourRavenKernel then XORs one full material lane.
+
+Chosen lists store `uint16_t` window indices. The receiving layers use
+`mPlaneShiftAALeft` / `AARight` through `BDLeft` / `BDRight`, each holding a
+mask and its final byte rotation.
+Final sampling windows are `mToadCipherRotationAALeftA..H` and
+`AARightA..H`, through `BDLeftA..H` and `BDRightA..H`.
+For each layer, Left A–D feed frog 1, Left E–H frog 2, Right A–D frog 3,
+and Right E–H frog 4. Kernel-input definitions, word accumulators, the bit
+plane, and Cryptex state reside in `Soccer3Cryptex.cpp`; rotation-list storage
+and selection reside in `Soccer3.cpp`. `Zero()` resets them once per seed.
 
 The exhaustive generator and old `BitPlaneTool` bank are archived in `Dead Code`.
 The app no longer has the generator menu/launch option. Whole old tool tests
@@ -232,10 +235,10 @@ were moved to `DeadTests`; active tests validate the bank, swaps, seeded sums,
 nonoverlapping ranges, and the full vault. TenShot keeps its deliberate word
 variations inside the test fixture, after production seeding.
 
-This migration changes the seeded cipher configuration and ciphertext; old
+The earlier seeded-bit-plane migration changed the cipher configuration and ciphertext; old
 fixed-grid test results describe the previous construction.
 
-### BitReverseCipher
+### BitReverseKernel
 
 The boundary cipher maps bit `b` to bit `7-b` inside each byte without moving
 bytes. Seal and Unseal use the same operation. ARM64 NEON uses vector RBIT;
@@ -243,9 +246,19 @@ SSSE3 and AVX2 use nibble-reversal tables held in registers, and SSE2 uses
 three masked bit-swap stages. The ISA path is selected at compile time.
 A scalar tail handles arbitrary lengths. Unaligned buffers are supported;
 nonempty source/output buffers must not overlap. No worker, material, or
-per-block allocation is used. FlameToad's individual passes are unchanged.
+per-block allocation is used. FourToadKernel's individual stages are unchanged.
 
-### FlameToad
+### FourToadKernel
+
+FourToadKernel groups the four stages of a layer into one call. For a 1 MiB block,
+the caller and three persistent helper threads each process one quarter.
+They pack the first stage's keys before transforming. On NEON, each of the
+first three transforms also packs the next stage's keys directly from its
+output registers. Two 256 KiB key buffers alternate: one borrowed from the
+caller and one owned by the worker team. A barrier publishes the next keys
+before the following stage begins. Decryption visits stages in reverse order
+and subtracts the same key bytes. The four-lane update is explicitly unrolled
+to retain its vectors in registers even in size-optimized builds.
 
 Each of four offset 64-byte windows supplies both protected rows. Four source
 bytes pack into `[A0 B0 A1 B1 A2 B2 A3 B3]` (A0 is the least-significant bit),
@@ -257,25 +270,24 @@ all sampled bits and makes the lowest key bit nonlinear in the source rows.
 
 Each resulting key is added modulo 64 to the destination's six writable
 positions. Carries skip protected positions. Inversion regenerates the key
-from the unchanged rows and subtracts. The combined cipher packs every source
-window once into a 256 KiB cache, then gathers four offset views and adds or
-subtracts directly. It never materializes a 1 MiB mask. Soccer reuses the first
-256 KiB of `mCollapseLaneC` after seeding; the B/D lanes remain the data
-ping-pong buffers. All FlameToads share the cache sequentially and rebuild it
-for every encryption or decryption call.
+from the unchanged rows and subtracts. For each stage, FourToadKernel packs every
+source window once and applies the gate before storing its key bytes. All
+four offset reads use those precomputed keys. Soccer supplies the first
+256 KiB of `mCollapseLaneC` as scratch. The first stage writes the destination
+buffer, and the remaining three update it in place.
 
-The optional seventh constructor argument is a non-owning
-`std::span<std::uint8_t>` with at least `length/4` bytes. It must outlive the
-cipher and must not overlap input, output, or key material. Concurrent calls
-need separate caches. Omitting it retains the direct packing path. There is
-no allocation or physical source-buffer rotation. NEON, SSE2, and scalar
-implementations are checked against the independent gather/add/scatter
-reference, including decryption after overwriting the cache. This optimization
-preserves the previous FlameToad ciphertext and the vault's operation order.
+`FourToadKernel`, `FourCrowKernel`, and `FourRavenKernel` each keep their implementation,
+backend selection, and reusable worker team in their own header/source pair.
+Their only external project include is `Kernel.hpp`. FourCrowKernel and FourRavenKernel
+own separate `Shift` types; Soccer3's `PlaneShift` records are planning data.
+Both rotation kernels use four workers for 1 MiB calls, with two NEON masked
+selects per vector instead of a chain of AND/OR combinations. Raven adds the
+material XOR after forward rotation and removes it at each sampled position
+during inverse rotation.
 
 This removes the old TreeFrog even-flip argument for whole-block parity.
 It still preserves the global parity of physical bit 0 within an individual
-FlameToad: the same packing function is translated four times, so its lowest
+Toad stage: the same packing function is translated four times, so its lowest
 key-bit contributions cancel in that aggregate. The boundary bit reversal
 exchanges the row positions between rounds, reversing the orientation of
 later carries relative to the preceding round. `BitPlaneParityRecoveryTests`
@@ -286,77 +298,58 @@ It is an experimental mixer, not a security proof. Functional checks and
 bounded recovery attacks are distinct; results must name their tested
 fixtures, row selections, and statistical limits.
 
-### Window rotation farming
+### Flat rotation lists
 
-The active seed path uses one data-only `Soccer3::mWindowRotationPack`.
-`WindowRotationPackChunk.hpp` holds `mWindowFreeA/B` and `mWindowA..P` as
-**64-byte window indices**, all `uint16_t`. Four chunks form a plane; two
-planes form the pack: 144 values in 288 bytes.
-Within a chunk, A..D feed frog 1, E..H frog 2, I..L frog 3, and M..P frog 4.
-Cryptex reads the named inputs prepared from the pack and accumulated words.
-The eight masks and four rows of pairs are shared between both rounds.
+Soccer3 owns eighteen separate `uint16_t[16384]` bases (**589,824 bytes**):
+sixteen `mFlameToadRotationListBaseAALeft` / `AARight` through `BDLeft` /
+`BDRight`, and two `mShiftMaskedRotationListBaseA` / `B`. Each base has a `ListAvailable` prefix. All eighteen bases each supply
+a `ListChosen` array of eight window indices.
 
-`WindowRotationFarm.cpp` provides the separate farming functions. Each plane
-uses nine eight-value jobs:
+Each base starts at 0..16383 once per seed and retains its permutation across
+the 38 fresh `mRandom` generations. `Shuffle_CROWSCIMASSORMATEX()` explicitly
+gives each list one forward partial Fisher–Yates pass per call, using
+little-endian 16-bit choices and out-of-range rejection. There is no backward
+shuffle or extra epilogue shuffle. The byte budgets appear below; the base-list
+storage size is not the shuffle-input budget.
 
-| Chunk | Free-rotation job | Window jobs |
-| --- | --- | --- |
-| A | a (two of its eight values) | b: A..H, c: I..P |
-| B | a (two of its eight values) | d: A..H, e: I..P |
-| C | a (two of its eight values) | f: A..H, g: I..P |
-| D | a (two of its eight values) | h: A..H, i: I..P |
+Stage C selects from both masked-shift pools first, then from the two
+FourToadKernel lists for each layer in execution order. The eighteen selections
+supply sixteen corvid-shift windows and 128 FourToadKernel windows.
 
-Soccer retains eighteen `uint16_t[16384]` base lists, taking **589,824 bytes**.
-They start at 0..16383 once per seed and retain their permutations across the
-38 fresh `mRandom` generations. `Shuffle_CROWSCIMASSORMATEX()` gives every
-list one forward partial Fisher–Yates pass per call, using little-endian
-16-bit choices and out-of-range rejection. There is no backward pass.
-Each list retains its permutation across calls; every call starts at index 0.
-Positions fixed by the final partial pass are preferred for farming.
-The byte budgets are in the table below; 589,824 bytes is the base-list
-storage size, not the current shuffle-input budget.
+Selection prefers the completed prefix, then scans the remaining tail from
+the opposite end. Missing or malformed bases fall back to numeric candidates.
+Every candidate still passes all collision checks; no fallback accepts an
+invalid last-eight slice. Selection returns `void` and fills all eight values.
+Within the eighteen active lists, a counting bound guarantees
+that numeric candidates remain even at the eighth choice. Zero offset-word
+values are valid and produce byte offset 1.
 
-If the preferred prefix is exhausted, farming scans the remaining list from
-its opposite end. Missing or malformed lists fall back to numeric window
-candidates; every candidate still passes the window and byte collision checks.
-Missing offset entropy defaults to 1. These fallbacks are deterministic, so
-seeding encryption and decryption produces the same pack. There is no full
-epilogue re-shuffle. The independent `FarmPack` API uses as much shuffle entropy
-as supplied and applies the same fallbacks to finish all eighteen jobs.
-`mWindowRotationFarmBuffers` supplies the shared selection scratch.
-`mWindowRotationBlocked[16384]` tracks combination exclusions within the
-current job; `mWindowRotation[8]` holds its selections. These reset each job.
-`mWindowRotationSingleBlocked[16384]` persists across all 18 jobs, blocking
-selected window slots, their complements, and the window containing each
-free byte rotation's inverse. Zero and the self-inverse half turn are excluded.
-Free values get a separate offset from 1..63; each layer retains at least one
-odd free rotation. Statistics distinguish shuffle bytes, list candidates read, and fallback candidate attempts.
+`mRotationWindowBlocked[16384]` tracks subset differences within the current
+list and resets on every selection. `mRotationWindowSingleBlocked[16384]`
+tracks selected windows, complements, and the window containing each masked
+byte shift's inverse across all eighteen selections. `Zero()` clears the
+shared exclusions for each new seed. Window zero and the self-inverse half
+turn are excluded. Aggregate counters report shuffle bytes, base candidates,
+and fallback candidate attempts without another per-list statistics array.
 
-Each job requires **256 different subset sums**, including the empty sum,
-modulo 16384 windows. Free jobs additionally check actual byte sums modulo
-1048576, because adding intra-window offsets can carry into another window.
-The temporary block map records both signs of differences between existing
-subset sums. This excludes signed relations using each selected rotation at
-most once. It does not forbid repeated multiples of a rotation.
+Each eight-value list requires **256 different subset sums**, including the
+empty sum, modulo 16384 windows. Each masked-shift list additionally requires distinct
+actual byte sums modulo 1048576, because intra-window offsets can carry into
+another window. Blocking both signs of subset differences excludes signed
+relations using each selected rotation at most once. It does not forbid
+repeated multiples of a rotation. Combination sums are not blocked across
+lists: a frog's windows and its layer's masked shift do not share a combined
+subset-sum guarantee. Sequential rejection does not imply uniform sampling
+over all valid configurations.
 
-Combination sums are not blocked across jobs. A frog's windows and its
-layer's free rotations do **not** share a combined subset-sum guarantee.
-The archived farmer checked those six-value groups; this layout checks eight
-window values across two frogs, and eight free rotations across four layers.
-Neither set of constraints implies the other. Sequential rejection also does
-not promise uniform selection over every valid eighteen-job pack.
-
-`WindowRotationFarm::IsValid(pack)` checks window ranges, single exclusions,
-and all eighteen window-subset groups. Its overload accepting sixteen final
-byte shifts also checks matching windows, offsets 1..63, odd pairs, and
-actual byte-subset sums. Production assembly and Cryptex construction use
-the complete validation before installing ciphers. Each seed entry point calls `Zero()` first. Failed or cancelled seeding leaves
-encryption unavailable because only successful epilogue D marks it ready.
-The epilogues do not clear or reset state a second time.
-`RotationPack` and `RotationSelection` remain in `Dead Code`; no active source
-includes them. Whole retired tests are preserved in `DeadTests`. The old
-rotation-only fixture checks are commented out; dedicated pack/migration
-and full-vault tests cover the current implementation.
+`ValidateCryptexInputs` checks the final cipher values independently, including
+window/byte ranges, global single exclusions, all eighteen subset groups,
+and an odd shift from the assigned pool A window for each layer. Every seed starts with `Zero()`;
+only successful stage D marks encryption ready. The single-shift plan changes ciphertext. Archives encrypted with the
+previous two-shift plan require that version to decrypt.
+The old rotation farm and Pack/Plane/Chunk files are preserved in `Dead Code`;
+their standalone fallback test is in `DeadTests`. Active selection/fallback,
+collision, and encryption roundtrip tests use the flat Soccer3 storage.
 
 ### Seed material
 
@@ -398,7 +391,7 @@ call, intentionally following the repeated-unit design.
 The prelude's eight passes per ordering list and the epilogue's 32,760
 material swaps are also unchanged and remain candidates for simplification.
 
-Free intra-window offsets now come from the sixteen accumulated words;
+The eight active intra-window offsets come from the Left accumulated words;
 rotation farming no longer reads the two Stage2 lane tails. There is no
 additional expander output or per-block material. This changes seeded plans
 and ciphertext; it is not a compatibility-preserving format change.
@@ -451,47 +444,45 @@ license.
 ## Misleading Data, we lost days of work due to scoring bias!
 
 ![Misleading scoring data](https://raw.githubusercontent.com/nraptis/Soccer/refs/heads/main/misleading_graph.png)
-## Main-app cipher timings
+## Main-app kernel timings
 
-Normal app launch measures the four remaining cipher classes automatically
-(five entries, including cached and direct FlameToad).
-**Benchmarks → Run All Ciphers (1,000 × 1 MiB)** runs the report again.
-It runs in the background and prints each result to the console as it finishes,
-then shows the report directory. It does not
-seed Soccer3 or change its configured encryption plan.
+Normal app launch prepares and measures exactly five active kernels:
+`FourToadKernel`, `FourCrowKernel`, `FourRavenKernel`, `PasswordXORKernel`, and `BitReverseKernel`.
+Archived Bog, Quirk, FlameToad, EightRaven, and ShiftMasked implementations are
+excluded from the mainline build and benchmark registry.
 
-For comparable Release timings with code-coverage counters disabled, run:
+`KernelBenchmarkSet` constructs the kernels and their borrowed material/cache
+buffers before calling the shared `QBTests` executor. Normal launch uses
+`QBTests::Execute(set.GetKernels(), 100, 0.1, 0.1)`: 100 calls per direction,
+10 fastest and 10 slowest discarded, and the mean of the remaining 80 printed
+in an appropriate time unit. At least one sample is always retained.
+
+Every timed call processes exactly `Kernel::kBlockBytes` (1,048,576 bytes).
+Construction, allocation, material generation, input randomization, worker
+startup, warm-up, output consumption, and reporting occur outside the timer.
+Encryption and decryption use separate timer gates. The executor checks call
+success and prints timings; it does not perform correctness comparisons.
+Each kernel retains its normal worker model. This measures warm-buffer kernel
+calls with representative fixed settings.
+
+For a saved main-app report with code coverage disabled, run:
 
 ```sh
-"/Users/icarus/Desktop/Codex Maga/Soccer/Tools/run_cipher_benchmarks.sh"
+./Tools/run_cipher_benchmarks.sh
 ```
 
-The launcher builds and executes the main `Scramble.app`, not an XCTest.
-An optional first argument selects a new output directory. Reports default
-to `BenchmarkResults/ciphers-YYYYMMDD-HHMMSS`. Existing reports are never
-overwritten. In Xcode, use a Release Run configuration with coverage disabled;
-no launch argument is needed. `--readme-example` runs the older seed demo instead.
-`--benchmark-output /path/to/new/directory` selects the report folder;
-`--benchmark-exit` exits the app after completion.
+An optional first argument selects a new report directory. The launcher builds
+and executes `Scramble.app` with `--benchmark-output /path/to/new/directory`
+and `--benchmark-exit`. This report mode uses `RunKernelBenchmarks`: 1,000 calls
+per direction, discards the slowest 5%, and prints each result as it completes.
+Existing report directories are never overwritten. It does not seed Soccer3
+or alter the configured cryptex.
 
-Each call receives freshly randomized 1 MiB input, with randomization,
-construction, material generation, round-trip verification and warmups all
-outside the timer. Only `SealData` is measured. Each cipher reuses its fixed
-synthetic materials and representative parameters. The input sequence is the
-same for each cipher. Each cipher completes its 1,000 calls before the next one.
-Both execution and report order start with FlameToad (cached/direct),
-PasswordXOR, ShiftMasked, and BitReverse. Only PasswordXOR needs a material buffer;
-the benchmark now allocates one lane. Source,
-worker and destination are distinct, and buffers are reused without cache
-flushing. This is a warm-input standalone measurement, not whole-plan speed.
-
-The 1,000 measured calls process **1,000 MiB = 0.9765625 GiB per cipher**.
-The summary reports median, fastest-to-p95 range, p99, maximum, and throughput.
-Trimmed mean/throughput exclude exactly the slowest 50 calls; raw throughput
-includes all 1,000. `samples.csv` retains every timing and its inclusion flag,
-`summary.csv` contains per-cipher statistics, and `metadata.txt` records build,
-backend, coverage detection, parameters and completion. Do not compare Debug
-or coverage-instrumented timings with an optimized uninstrumented run.
+`summary.csv` contains trimmed means and min/max samples for each direction;
+`samples.csv` retains all raw timings in collection order. `metadata.txt`
+records block size, compiler/backend, warm-ups, trimming, coverage detection,
+and completion. The CSV name column is `kernel`. Use optimized builds with
+coverage disabled for speed comparisons.
 
 ## Mask-list feasibility
 
@@ -563,3 +554,83 @@ training/validation procedure, campaign-wide significance correction, and
 shuffled-label controls remain in use. An unconfirmed finding is still a
 screen failure. This is a long experiment; focused scheduling, reporting,
 threshold, and biased-control checks do not substitute for running it.
+
+### CaptureWeakestPredictorTest
+
+Run `Tools/run_capture_weakest.sh` for an overnight capture. It selects only
+`CaptureWeakestPredictorTest/testCaptureWeakestPredictor`, uses Release mode,
+disables test timeouts and parallel tests, and retains its console log and
+Xcode result bundle under `Statistical Outputs/CaptureWeakestPredictorTest/`.
+The test holds an activity assertion to prevent idle system sleep while running.
+It releases the assertion when it exits. Invalid configuration fails visibly.
+The same method can be run individually in Xcode's `StatisticalTests` scheme.
+It uses **weak only**, continues until stopped, and has
+**no security pass/fail threshold**. Every run seeds a new random password,
+nonce, template, and set of 64 unknown bits. It shares ManyShot's fixture recipe,
+so the same campaign seed and zero-based fixture index reproduce that fixture.
+
+Each run performs 65 discovery probes, 4,096 training queries, and 4,096
+validation queries. It freezes all 64 predictors, evaluates them on 16,384
+screening blocks, and chooses the predictor with the largest absolute deviation
+from 50%. It then evaluates the same frozen predictors on **262,144 separately
+seeded verification blocks**, regardless of the screen result. Polarity is never
+flipped after either challenge. The result for the screen-selected predictor is
+kept separately from the maximum selected afterward on verification data.
+
+A startup line prints the replay seed and output directory. The console and
+`progress.json` show the current fixture and block count at each phase change
+and every 32,768 blocks within a phase. The recorder saves each completed
+fixture before starting the next one. After every five
+attempted runs, one console line reports cumulative verification averages
+strictly above and below 50%, their predictor counts, the exact-50% count,
+the overall average, corresponding shuffled-label controls, the most deviant
+match in either direction, and the screen-selected predictors' fresh mean.
+These are **match percentages**, not Pearson coefficients. Side-conditioned
+means naturally differ from 50% even under chance; they and the largest observed
+deviation are descriptive statistics, not significance claims. Errors are
+recorded separately and excluded from the rates. The loop continues after an
+observed correlation or a reported API error.
+
+The default directory is
+`Statistical Outputs/CaptureWeakestPredictorTest/<timestamp-seed-session>/`:
+
+- `progress.json` records the active password, nonce, replay seed, fixture
+  index, phase, and latest block count. After an interruption, the timestamp
+  shows when that fixture last reported progress.
+- `summary.json` is atomically replaced after each fixture and includes cumulative
+  counts, averages, controls, the most deviant predictor, and its full replay record.
+- `runs.jsonl` appends one record per fixture, with all 64 predictor
+  definitions, raw screening/verification/control hit counts, per-run averages,
+  password, nonce, bit addresses, seeds, sample counts, and runtime.
+- `weakest-run-N-template.bin`: the exact 1 MiB template for a new checkpoint's
+  strongest observation. Previous captures remain available. Predictor bit
+  addresses are zero-based from the start of the block; bit 0 is the byte's LSB.
+  Prediction is `ciphertext_bit_a XOR ciphertext_bit_b XOR polarity`, omitting
+  bit B when it is null. Each replay record includes the template ciphertext's
+  SHA-256 to detect a changed cipher configuration when reproducing the capture.
+
+Every progress file, run record, and summary identifies the cipher plan as
+`fourtoad-corvid-per-layer-v1`, separating these captures from earlier layouts.
+Configuration is saved immediately on startup. To continue after stopping,
+use the campaign seed and `next_fixture_index` from the last summary. An
+interrupted fixture starts from its first block. If saving fails, the
+checkpoint JSON is printed for manual capture. Each invocation gets a new
+session directory.
+
+Optional environment variables can be set in the test scheme or before invoking
+the launcher. The launcher forwards them to the XCTest process.
+
+| Variable | Default | Meaning |
+| --- | --- | --- |
+| `SOCCER_CAPTURE_SEED` | Random uint64 | Decimal or `0x` campaign seed |
+| `SOCCER_CAPTURE_FIRST_FIXTURE` | `0` | Zero-based starting fixture for replay |
+| `SOCCER_CAPTURE_RUNS` | `0` | Zero runs indefinitely; positive values stop after that many attempts |
+| `SOCCER_CAPTURE_VERIFICATION_SAMPLES` | `262144` | Fresh blocks per predictor per run, 1–16,777,216 |
+| `SOCCER_CAPTURE_OUTPUT` | Project directory above | Parent directory for the new session |
+
+To reproduce a captured fixture, use its campaign seed and fixture index and
+set the run count to 1. Keep its verification sample count and the same source
+version. Run serially and disable Xcode test timeouts for the indefinite run.
+The separate `CaptureWeakestPredictorReportingTests` class exercises accounting,
+checkpoint serialization, and a bounded weak-encryption smoke run. Its smoke
+reports go in `Statistical Outputs/ReportingTests/`.

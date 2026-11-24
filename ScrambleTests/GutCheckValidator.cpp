@@ -130,7 +130,7 @@ bool GutCheckValidator::ValidatePostSeed(const char *pTestName,
         return false;
     }
     
-    // Legacy rotation fixture disabled during WindowRotationPack migration.
+    // Legacy rotation fixture disabled; current lists are validated during seeding.
 #if 0
     if (!ValidateSeedIndices(pTestName)) {
         return false;
@@ -141,7 +141,7 @@ bool GutCheckValidator::ValidatePostSeed(const char *pTestName,
         return false;
     }
     
-    // Legacy rotation fixture disabled during WindowRotationPack migration.
+    // Legacy rotation fixture disabled; current lists are validated during seeding.
 #if 0
     if (!ValidateRotation(pTestName)) {
         return false;

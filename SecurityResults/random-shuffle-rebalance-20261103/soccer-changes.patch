@@ -1,0 +1,318 @@
+--- /private/tmp/soccer-shuffle-rebalance/Soccer2.cpp.before	2026-11-03 21:04:36
++++ Scramble/Composer/Soccer2.cpp	2026-11-03 21:06:02
+@@ -126,6 +126,11 @@
+ std::array<std::uint64_t, 2U>                Soccer2::mVaultBitPlaneSelectionValues = kDefaultVaultBitPlaneSelectionValues;
+ BitPlaneTool::Plan                         Soccer2::mVaultBitPlanes{};
+ EncryptionVaultPlan                       Soccer2::mEncryptionVaultPlan{};
++std::uint16_t                             Soccer2::mWindowRotationBase[WindowRotationFarm::kJobCount][WindowRotationFarm::kWindowCount];
++std::size_t                               Soccer2::mWindowRotationAvailable[WindowRotationFarm::kJobCount];
++std::size_t                               Soccer2::mWindowRotationShuffleBytes[WindowRotationFarm::kJobCount];
++std::size_t                               Soccer2::mRandomShuffleGeneration = 0U;
++bool                                      Soccer2::mWindowRotationOdd = false;
+ WindowRotationPack                        Soccer2::mWindowRotationPack{};
+ WindowRotationFarm::Buffers                Soccer2::mWindowRotationFarmBuffers{};
+ WindowRotationFarm::Statistics             Soccer2::mWindowRotationFarmStatistics[WindowRotationFarm::kJobCount]{};
+@@ -269,6 +274,11 @@
+     mVaultBitPlanes = {};
+     mEncryptionVaultPlan = {};
+     mWindowRotationPack = {};
++    std::memset(mWindowRotationBase, 0, sizeof(mWindowRotationBase));
++    std::memset(mWindowRotationAvailable, 0, sizeof(mWindowRotationAvailable));
++    std::memset(mWindowRotationShuffleBytes, 0, sizeof(mWindowRotationShuffleBytes));
++    mRandomShuffleGeneration = 0U;
++    mWindowRotationOdd = false;
+     mWindowRotationFarmBuffers = {};
+     std::memset(mWindowRotationFarmStatistics, 0, sizeof(mWindowRotationFarmStatistics));
+ 
+@@ -360,162 +370,77 @@
+     mStrength = EncryptionStrength::kNormal;
+ }
+ 
+-void Soccer2::Shuffle_CROWSCIMASSORMATEX() {
+-    constexpr std::size_t cSpan = 256U;
+-    constexpr std::size_t cBlockSpan = 4U * cSpan;
+-    static_assert(S_BLOCK == (32U * cBlockSpan));
+-
+-    /*
++void Soccer2::InitializeRotationWindows() {
++    for (auto &aList : mWindowRotationBase)
++        for (std::size_t aIndex = 0U; aIndex < WindowRotationFarm::kWindowCount; ++aIndex)
++            aList[aIndex] = static_cast<std::uint16_t>(aIndex);
++    std::memset(mWindowRotationAvailable, 0, sizeof(mWindowRotationAvailable));
++    std::memset(mWindowRotationShuffleBytes, 0, sizeof(mWindowRotationShuffleBytes));
++    mRandomShuffleGeneration = 0U;
++    mWindowRotationOdd = false;
++}
+ 
+-     materials // block 0
+-     sources // block 1
+-     work_spaces // block 2
+-     expanders // block 3
+-     ciphers // block 4
+-     permute_0_3 // block 5
+-     permute_4_7 // block 6
+-     permute_8_11 // block 7
+-     permute_12_15 // block 8
+-     
+-     materials // block 9
+-     sources // block 10
+-     work_spaces // block 11
+-     expanders // block 12
+-     ciphers // block 13
+-     permute_0_3 // block 14
+-     permute_4_7 // block 15
+-     permute_8_11 // block 16
+-     permute_12_15 // block 17
+-     
+-     materials // block 18
+-     sources // block 19
+-     work_spaces // block 20
+-     expanders // block 21
+-     ciphers // block 22
+-     permute_0_3 // block 23
+-     permute_4_7 // block 24
+-     permute_8_11 // block 25
+-     permute_12_15 // block 26
+-     
+-     materials // block 27
+-     sources // block 28
+-     work_spaces // block 29
+-     expanders // block 30
+-     ciphers // block 31
+-    */
+-    
+-    // Materials: blocks 0, 9, 18, and 27.
+-    if (mStrength == EncryptionStrength::kWeak) {
+-        TwistShuffle::ShuffleList4(mMaterials, mRandom,  0U * cBlockSpan,  1U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mMaterials, mRandom,  9U * cBlockSpan, 10U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mMaterials, mRandom, 18U * cBlockSpan, 19U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mMaterials, mRandom, 27U * cBlockSpan, 28U * cBlockSpan, 1U);
+-    } else if (mStrength == EncryptionStrength::kStrong) {
+-        TwistShuffle::ShuffleList16(mMaterials, mRandom,  0U * cBlockSpan,  1U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mMaterials, mRandom,  9U * cBlockSpan, 10U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mMaterials, mRandom, 18U * cBlockSpan, 19U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mMaterials, mRandom, 27U * cBlockSpan, 28U * cBlockSpan, 1U);
+-    } else {
+-        TwistShuffle::ShuffleList8(mMaterials, mRandom,  0U * cBlockSpan,  1U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mMaterials, mRandom,  9U * cBlockSpan, 10U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mMaterials, mRandom, 18U * cBlockSpan, 19U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mMaterials, mRandom, 27U * cBlockSpan, 28U * cBlockSpan, 1U);
++void Soccer2::ShuffleRotationWindows(bool pOdd) {
++    using Layout = RandomShuffleLayout;
++    static_assert(Layout::kRandomBytes == S_BLOCK);
++    static_assert(Layout::kGenerationCount == BLOCK_COUNT + WARM_UP_BLOCKS);
++    static_assert(Layout::kRotationListCount == WindowRotationFarm::kJobCount);
++    if (mRandomShuffleGeneration >= Layout::kGenerationCount) return;
++    const auto aBytes = Layout::RotationBytesPerList(mRandomShuffleGeneration);
++    for (std::size_t aJob = 0U; aJob < WindowRotationFarm::kJobCount; ++aJob) {
++        std::size_t aRead = 0U;
++        // A bounded partial pass is intentional. We only farm the positions
++        // actually fixed by the final pass; no epilogue re-shuffle is needed.
++        TwistShuffle::ShuffleList16384(mWindowRotationBase[aJob],
++            mRandom + Layout::RotationListBegin(mRandomShuffleGeneration, aJob),
++            aBytes, aRead, pOdd, &mWindowRotationAvailable[aJob]);
++        mWindowRotationShuffleBytes[aJob] += aRead;
+     }
++    mWindowRotationOdd = pOdd;
++    ++mRandomShuffleGeneration;
++}
+ 
+-    // Expanders: blocks 3, 12, 21, and 30.
+-    TwistShuffle::ShuffleList16(mExpanders, mRandom,  3U * cBlockSpan,  4U * cBlockSpan, 1U);
+-    TwistShuffle::ShuffleList16(mExpanders, mRandom, 12U * cBlockSpan, 13U * cBlockSpan, 1U);
+-    TwistShuffle::ShuffleList16(mExpanders, mRandom, 21U * cBlockSpan, 22U * cBlockSpan, 1U);
+-    TwistShuffle::ShuffleList16(mExpanders, mRandom, 30U * cBlockSpan, 31U * cBlockSpan, 1U);
+-
+-    // Work spaces: blocks 2, 11, 20, and 29.
+-    if (mStrength == EncryptionStrength::kWeak) {
+-        TwistShuffle::ShuffleList4(mWorkSpaces, mRandom,  2U * cBlockSpan,  3U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mWorkSpaces, mRandom, 11U * cBlockSpan, 12U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mWorkSpaces, mRandom, 20U * cBlockSpan, 21U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mWorkSpaces, mRandom, 29U * cBlockSpan, 30U * cBlockSpan, 1U);
+-    } else if (mStrength == EncryptionStrength::kStrong) {
+-        TwistShuffle::ShuffleList16(mWorkSpaces, mRandom,  2U * cBlockSpan,  3U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mWorkSpaces, mRandom, 11U * cBlockSpan, 12U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mWorkSpaces, mRandom, 20U * cBlockSpan, 21U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mWorkSpaces, mRandom, 29U * cBlockSpan, 30U * cBlockSpan, 1U);
+-    } else {
+-        TwistShuffle::ShuffleList8(mWorkSpaces, mRandom,  2U * cBlockSpan,  3U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mWorkSpaces, mRandom, 11U * cBlockSpan, 12U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mWorkSpaces, mRandom, 20U * cBlockSpan, 21U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mWorkSpaces, mRandom, 29U * cBlockSpan, 30U * cBlockSpan, 1U);
+-    }
+-
+-    // Sources: blocks 1, 10, 19, and 28.
+-    if (mStrength == EncryptionStrength::kWeak) {
+-        TwistShuffle::ShuffleList4(mSources, mRandom,  1U * cBlockSpan,  2U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mSources, mRandom, 10U * cBlockSpan, 11U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mSources, mRandom, 19U * cBlockSpan, 20U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList4(mSources, mRandom, 28U * cBlockSpan, 29U * cBlockSpan, 1U);
+-    } else if (mStrength == EncryptionStrength::kStrong) {
+-        TwistShuffle::ShuffleList16(mSources, mRandom,  1U * cBlockSpan,  2U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mSources, mRandom, 10U * cBlockSpan, 11U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mSources, mRandom, 19U * cBlockSpan, 20U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList16(mSources, mRandom, 28U * cBlockSpan, 29U * cBlockSpan, 1U);
+-    } else {
+-        TwistShuffle::ShuffleList8(mSources, mRandom,  1U * cBlockSpan,  2U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mSources, mRandom, 10U * cBlockSpan, 11U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mSources, mRandom, 19U * cBlockSpan, 20U * cBlockSpan, 1U);
+-        TwistShuffle::ShuffleList8(mSources, mRandom, 28U * cBlockSpan, 29U * cBlockSpan, 1U);
+-    }
++void Soccer2::Shuffle_CROWSCIMASSORMATEX(bool pOdd) {
++    using Layout = RandomShuffleLayout;
++    const auto aShuffleActive = [&](auto *pList, std::size_t pBegin) {
++        const auto aEnd = pBegin + Layout::kOrderingRangeBytes;
++        if (mStrength == EncryptionStrength::kWeak)
++            TwistShuffle::ShuffleList4(pList, mRandom, pBegin, aEnd, 1U);
++        else if (mStrength == EncryptionStrength::kStrong)
++            TwistShuffle::ShuffleList16(pList, mRandom, pBegin, aEnd, 1U);
++        else
++            TwistShuffle::ShuffleList8(pList, mRandom, pBegin, aEnd, 1U);
++    };
++    // One complete pass per list, using separate ranges. Expanders retain
++    // all sixteen entries; other lists use the strength's active prefix.
++    aShuffleActive(mMaterials, Layout::kMaterialsBegin);
++    aShuffleActive(mSources, Layout::kSourcesBegin);
++    aShuffleActive(mWorkSpaces, Layout::kWorkSpacesBegin);
++    TwistShuffle::ShuffleList16(mExpanders, mRandom, Layout::kExpandersBegin,
++        Layout::kExpandersBegin + Layout::kOrderingRangeBytes, 1U);
++    ShuffleRotationWindows(pOdd);
+ }
+ 
+ void Soccer2::Shuffle_CROPER(std::size_t pPermutationCount) {
+-    constexpr std::size_t cSpan = 256U;
+-    constexpr std::size_t cBlockSpan = 4U * cSpan;
+-    constexpr std::size_t cCrossBlocks[3][4] = {
+-        { 5U,  6U,  7U,  8U},
+-        {14U, 15U, 16U, 17U},
+-        {23U, 24U, 25U, 26U},
+-    };
+-    static_assert(S_BLOCK == (32U * cBlockSpan));
+-    
+-    for (std::size_t aRoundIndex=0U; aRoundIndex<3U; aRoundIndex++) {
+-        for (std::size_t aLaneGroup=0U; aLaneGroup<4U; aLaneGroup++) {
+-            const std::size_t aBlockIndex = cCrossBlocks[aRoundIndex][aLaneGroup];
+-            for (std::size_t aQuarterIndex=0U; aQuarterIndex<4U; aQuarterIndex++) {
+-                const std::size_t aLaneIndex = (aLaneGroup * 4U) + aQuarterIndex;
+-                const std::size_t aStartIndex = (aBlockIndex * cBlockSpan) + (aQuarterIndex * cSpan);
+-                const std::size_t aCeilingIndex = aStartIndex + cSpan;
+-
+-                if (pPermutationCount == 4U) {
+-                    TwistShuffle::ShuffleList4(mCrossPermutations[aLaneIndex],
+-                                               mRandom,
+-                                               aStartIndex,
+-                                               aCeilingIndex,
+-                                               1U);
+-                } else if (pPermutationCount == 8U) {
+-                    TwistShuffle::ShuffleList8(mCrossPermutations[aLaneIndex],
+-                                               mRandom,
+-                                               aStartIndex,
+-                                               aCeilingIndex,
+-                                               1U);
+-                } else if (pPermutationCount == 16U) {
+-                    TwistShuffle::ShuffleList16(mCrossPermutations[aLaneIndex],
+-                                                mRandom,
+-                                                aStartIndex,
+-                                                aCeilingIndex,
+-                                                1U);
+-                } else if (pPermutationCount == 32U) {
+-                    TwistShuffle::ShuffleList32(mCrossPermutations[aLaneIndex],
+-                                                mRandom,
+-                                                aStartIndex,
+-                                                aCeilingIndex,
+-                                                1U);
+-                } else {
+-                    TwistShuffle::ShuffleList64(mCrossPermutations[aLaneIndex],
+-                                                mRandom,
+-                                                aStartIndex,
+-                                                aCeilingIndex,
+-                                                1U);
+-                }
+-            }
+-        }
++    using Layout = RandomShuffleLayout;
++    // This consumes the middle range of the SAME random generation whose
++    // order/rotation ranges the preceding CROWSCIMASSORMATEX consumed.
++    const auto aGeneration = mRandomShuffleGeneration == 0U ? 0U : mRandomShuffleGeneration - 1U;
++    const std::size_t aLaneCount = mStrength == EncryptionStrength::kWeak ? 4U :
++                                  mStrength == EncryptionStrength::kStrong ? 16U : 8U;
++    for (std::size_t aLane = 0U; aLane < aLaneCount; ++aLane) {
++        const auto aBegin = Layout::CrossBoundary(aGeneration, aLane, aLaneCount);
++        const auto aEnd = Layout::CrossBoundary(aGeneration, aLane + 1U, aLaneCount);
++        if (pPermutationCount == 4U)
++            TwistShuffle::ShuffleList4(mCrossPermutations[aLane], mRandom, aBegin, aEnd, 1U);
++        else if (pPermutationCount == 8U)
++            TwistShuffle::ShuffleList8(mCrossPermutations[aLane], mRandom, aBegin, aEnd, 1U);
++        else if (pPermutationCount == 16U)
++            TwistShuffle::ShuffleList16(mCrossPermutations[aLane], mRandom, aBegin, aEnd, 1U);
++        else if (pPermutationCount == 32U)
++            TwistShuffle::ShuffleList32(mCrossPermutations[aLane], mRandom, aBegin, aEnd, 1U);
++        else
++            TwistShuffle::ShuffleList64(mCrossPermutations[aLane], mRandom, aBegin, aEnd, 1U);
+     }
+ }
+ 
+@@ -577,7 +502,7 @@
+                      mMaterials[aMaterialIndex] + aDestinationByteIndex + S_BLOCK);
+     }
+     
+-    Shuffle_CROWSCIMASSORMATEX();
++    Shuffle_CROWSCIMASSORMATEX((pBlockIndex & 1U) != 0U);
+     
+     WRITE_OUT_MUTABLE_PARAMS;
+     
+@@ -925,7 +850,7 @@
+     
+     READ_IN_MUTABLE_PARAMS_INTERNAL;
+ 
+-    Shuffle_CROWSCIMASSORMATEX();
++    Shuffle_CROWSCIMASSORMATEX((aWarmUpSeedBlockIndex & 1U) != 0U);
+ 
+     BuildCrossPool_WarmUp1(aComplexity, aWarmUpSeedByteIndex);
+     Shuffle_CROPER(mCrossPoolCount[0]);
+@@ -1418,6 +1343,7 @@
+     InitializeExpanders();
+     InitializeWorkSpaces();
+     InitializeMaterials();
++    InitializeRotationWindows();
+     
+     memset(mClaimedExpanders, 0, sizeof(mClaimedExpanders));
+     mClaimedExpanderCount = 0;
+@@ -1491,7 +1417,7 @@
+     SoccerFolding::Collapse_Stage1_4(mCondenseLaneA, mCondenseLaneB, mCondenseLaneC, mCondenseLaneD,
+                                      mCollapseLaneA, mCollapseLaneB, mCollapseLaneC, mCollapseLaneD);
+     
+-    // Stage1 supplies material shuffles; Stage2 slices supply eighteen rotation jobs.
++    // Stage1 supplies material shuffles; two Stage2 tails supply free-byte offsets.
+     // Keep the Stage0 implementation on disk for historical experiments.
+     mMaterialIndex = 0;
+     
+@@ -1509,11 +1435,15 @@
+     using Layout = SeedMaterialLayout;
+     static_assert(Layout::kIntermediateLaneBytes == SOCCER_BLOCK_SIZE_L1);
+     const std::uint8_t *aLanes[] = {mCondenseLaneA, mCondenseLaneB, mCondenseLaneC, mCondenseLaneD};
+-    WindowRotationFarm::Source aSources[WindowRotationFarm::kJobCount];
++    WindowRotationFarm::PreparedSource aSources[WindowRotationFarm::kJobCount];
+     for (std::size_t aJob = 0U; aJob < WindowRotationFarm::kJobCount; ++aJob) {
++        const bool aFree = aJob % WindowRotationFarm::kJobsPerPlane == 0U;
+         aSources[aJob] = {
+-            aLanes[Layout::RotationLaneIndex(aJob)] + Layout::RotationByteIndex(aJob),
+-            Layout::kRotationJobBytes
++            mWindowRotationBase[aJob], mWindowRotationAvailable[aJob], mWindowRotationOdd,
++            {aFree ? aLanes[2U * (aJob / WindowRotationFarm::kJobsPerPlane)] +
++                         Layout::kRotationOffsetBegin : nullptr,
++             aFree ? Layout::kRotationOffsetBytes : 0U},
++            mWindowRotationShuffleBytes[aJob]
+         };
+     }
+     // A re-farm invalidates the previous installed configuration, including
+@@ -1521,7 +1451,8 @@
+     mEncryptionVault.Free();
+     mEncryptionReady = false;
+     mEncryptionVaultPlan = {};
+-    if (!WindowRotationFarm::FarmPack(aSources, mWindowRotationFarmBuffers,
++    if (mRandomShuffleGeneration != RandomShuffleLayout::kGenerationCount ||
++        !WindowRotationFarm::FarmPreparedPack(aSources, mWindowRotationFarmBuffers,
+                                       mWindowRotationPack, mWindowRotationFarmStatistics) ||
+         !WindowRotationFarm::IsValid(mWindowRotationPack)) {
+         mWindowRotationPack = {};

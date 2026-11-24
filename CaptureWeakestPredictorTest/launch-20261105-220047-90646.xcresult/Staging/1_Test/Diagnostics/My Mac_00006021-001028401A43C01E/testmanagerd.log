@@ -1,0 +1,25 @@
+22:00:52.470 xcodebuild[90649:860735] Requesting a socket for communication with testmanagerd.
+22:00:52.471 xcodebuild[90649:860736] Got socket for DTX-layer communication.
+22:00:52.471 xcodebuild[90649:860736] Initiating control session with IDE capabilities: <XCTCapabilities: 0x78584c440>: {
+    "report crashes capability" = 3;
+}
+22:00:52.471 xcodebuild[90649:860736] XPC connection for control was invalidated.
+22:00:52.472 xcodebuild[90649:860740] Got reply to control session initiation request (result:error): <XCTCapabilities: 0x78584c1f0>: {
+    "authorize test session capability" = 1;
+    "automation mode" = 1;
+    "daemon container sandbox extension" = 1;
+    "initiate daemon control session capability" = 4;
+    "initiate test runner session capability" = 2;
+    "record UI interaction capability" = 2;
+    "report crashes capability" = 1;
+    "request log archive capability" = 1;
+    "request spindump capability" = 2;
+    "request tailspin capability" = 1;
+    "supports delayed attachment transfers" = 1;
+}: (null)
+22:00:52.472 xcodebuild[90649:860738] Got reply to daemon container sandbox extension request (result:error): 1d995b5364769c4a874bad902c7e29d6dcfbf1fe8792e73ef8c17471f4ee8b28;00;00000000;00000000;00000000;000000000000001a;com.apple.app-sandbox.read;01;0100000d;00000000002e0c6d;40;/users/icarus/library/daemon containers/7a1b1913-01fc-4401-8457-e46c17423eb7/data: (null)
+22:00:52.480 xcodebuild[90649:860736] Requesting crash report collection for process names: xctest, testmanagerd, debugserver, WindowServer, DTServiceHub, Scramble
+22:00:52.605 xcodebuild[90649:860740] Got reply to crash report collection request (error: (null))
+22:00:53.390 xcodebuild[90649:860746] Requesting authorization for pid 90678
+22:00:53.390 xcodebuild[90649:860734] Got reply to authorization request for pid 90678 (result:error): 1: (null)
+Error parsing crash report: noRootDictionary

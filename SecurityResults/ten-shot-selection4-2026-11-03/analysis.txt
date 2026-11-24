@@ -1,0 +1,149 @@
+Targeted analysis: normal, ten-shot selection 4, fixture 1
+2026-11-03
+
+Selection numbers here are one-based. Selection 1 is index 0 / the default.
+No production encryption code or ten-shot test protocol was changed.
+
+REPRODUCTION
+Selection 1: 8355/16384 = 50.9949%, no significant flags.
+Selection 4: 8990/16384 = 54.8706%, six significant flags, four confirmed.
+Strongest confirmation: 4512/8192 = 55.0781%.
+All shuffled-label controls passed; no complete 64-flag plaintext was recovered.
+These match the user's printed observations exactly.
+
+ACTUAL ROWS (constructor order; row 0 is the LSB)
+Rows repeat in A/B/C groups with different sampled-window rotations.
+These include the within-group 0/3/6 row rotations.
+
+               Frog 1        Frog 2        Frog 3
+Selection 1 L3  0,2           1,5,7         3,4,6
+Selection 1 L2  6,7,2         5,1           3,4,0
+Selection 1 L1  7,3,4         6,1,2         0,5
+Selection 4 L3  0,7           2,3,6         1,4,5
+Selection 4 L2  4,7,1         0,2           3,5,6
+Selection 4 L1  0,1,3         6,7,2         4,5
+
+Both arrangements satisfy eight-row coverage. Same fixture means the same
+materials, mutation choices, and numeric window/byte rotation values. The
+changed row assignment also changes which rows each masked rotation moves.
+Full selectors, masks and offsets are in each configuration.txt.
+
+EXACT STRONGEST PREDICTOR (zero-based positions)
+P[1015809].bit7 ~= C[12].bit1 XOR C[20].bit1 XOR 1
+Every one of the six significant predictors uses bit 1 in two ciphertext
+bytes eight positions apart. See selection4-fixture1/predictors.csv.
+The attack's trained predictor reads only ciphertext. Internal trace data
+was used separately to diagnose why that predictor works.
+
+A CONCRETE LEAKAGE ROUTE
+A fresh diagnostic stream (seed 0xC346F40A77B09E21, 8192 samples) traced the
+strongest predictor's main positional path backward through byte/bit moves.
+The separately constructed operation trace matched the production API.
+
+In L1A's third Frog (FrogTwoCipherA), the relevant bytes are 128432 and 128440.
+Protected rows are 4 and 5. Interpreting the remaining six writable bits as
+a six-bit number, their input values are fixed at 28 and 38. Both receive
+the same six-bit key modulo 64 because they share the same mask-byte slot.
+Observed states in all 8192 diagnostic samples:
+
+secret 0: key 13, 16, or 45; XOR of the two result high bits = 0
+secret 1: key  2, 34, or 63; XOR of the two result high bits = 1
+
+For example, adding 13 produces 41 and 51 (high bits 1,1).
+Adding 2 produces 30 and 40 (high bits 0,1).
+This is a complete sampled explanation of the intermediate perfect parity,
+not a proof that these are all states over the full 2^64 input-flag space.
+The six-bit representation is for analysis only; no packing was added.
+See trace4-probe/l1a_flag63_addition.csv for counts.
+
+In selection 1's corresponding trace, the possible input/key combinations
+occur under BOTH values of the secret. That path stays near chance.
+See trace1-probe/l1a_flag63_addition.csv.
+
+Observed agreement of the traced pair parity with the secret or its inverse:
+After L1A / L3B: 100.0000%
+After L2B:        81.4941%
+After L1B:        81.4941%
+After L3C:        55.4443%
+After L2C:        54.7607%
+Final:           55.0903%
+These are diagnostic correlations on a separate stream, not the original
+held-out percentages and not separately trained intermediate attacks.
+Selection 1's same final predictor is 50.1953% on this diagnostic stream.
+
+WHY THE ROUTE SURVIVES
+Frog repeats eight mask bytes eight times. Two destination bytes eight apart
+inside one 64-byte window receive the same added value. At a lowest writable
+bit, addition is XOR, so the shared contribution cancels in a two-byte parity.
+At higher bits, differences in carry can reveal information about the added
+value, as the 28/38 example demonstrates.
+
+L1B places this pair on bit 0. Frog 1 protects bit 0; Frogs 2 and 3 update it
+by XOR with the same sampled mask bit in both bytes. The pair parity therefore
+survives that entire triplet exactly. A/B packing variants both repeat their
+mask eight times, so reversing packing does not remove the repetition.
+Fixed XOR material changes a parity only by a fixed inversion. Rotations
+move the tracked bits; carries in other stages weaken the correlation but
+leave a measurable residual in this arrangement and fixture.
+
+Selection 4 also groups rows 0 and 1 in L1's first Frog. On those rows, the
+next two Frogs act as one shared addition modulo 4 for a same-window pair.
+That gives an exact low-two-bit modular-difference invariant across that
+triplet. It is not by itself the full cause: replacing all L1 arrangements
+still leaves a different detectable route.
+
+CONTROLLED REPLACEMENTS
+All retain selection 4's fixture/materials/offset values. Replace the named
+row arrangements with selection 1's, rebuild the plan, and retrain the same
+bounded attacker. All use 16384 challenge blocks and the original correction.
+
+Replace all L3 arrangements: 50.9949%, no significant flags.
+Replace all L2 arrangements: 51.0681%, no significant flags.
+Replace all L1 arrangements: 54.6875%, four significant flags, three confirmed.
+Replace only L3C:             50.9094%, no significant flags.
+Replace only L2C:             50.5676%, no significant flags.
+
+These are exploratory causal diagnostics. They may break the original
+cross-level row-partition constraint and are not proposed production plans
+or security guarantees. They isolate sensitivity to particular late-stage
+row choices, instead of suggesting that more total row coverage is missing.
+
+FIXTURE DEPENDENCE
+Fixture 1 has five XOR-style mutations and two add/subtract mutations.
+Fixture 2 has one XOR-style mutation and six add/subtract mutations, as well
+as different materials and offsets. This is consistent with carry-dependent
+leakage and the user's fixture-2 pass, but is not an isolated mutation test.
+Selection 4 cannot be declared universally weaker from this one fixture.
+
+HOW STRONG IS 54.8706%?
+This is a 4.8706 percentage-point guessing advantage for the best tested bit,
+not recovery of 54.87% of the plaintext. The +/-1 correlation is 0.0974121.
+It is 798 extra correct guesses over the chance expectation of 8192 in
+16384 trials: 12.46875 null-standard-deviation units. The harness's conservative
+family-adjusted tail bound is 6.67589e-31. Confirmation uses a disjoint stream.
+
+The learned model uses 8257 chosen-plaintext queries (65 discovery + 4096
+training + 4096 validation). Its prediction stage does not query encryption.
+This is leakage on a mostly-known fixed template with 64 unknown bits under
+one repeated independent-block plan. It does not demonstrate key recovery,
+ARX-state recovery, or full arbitrary-archive plaintext recovery.
+Repeating the identical deterministic ciphertext does not give new independent
+evidence; amplifying a bias requires genuinely new applicable observations.
+
+REPRODUCTION ARTIFACTS
+Tools/ten_shot_diagnostic.cpp and Tools/TenShotTrace.hpp are diagnostic-only.
+The main ten-shot test remains quiet and unchanged.
+source_manifest.json and source_snapshot.tar.gz preserve the analyzed code.
+experiments.json summarizes controlled comparisons.
+Each trial directory contains its exact configuration and frozen predictors.
+
+Build:
+DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer python3 Tools/build_strong_security_sweep.py build-security/diagnostic Tools/ten_shot_diagnostic.cpp
+Replay:
+build-security/diagnostic/ten_shot_diagnostic --selection 4 --fixture 1 --out SecurityResults/replay4
+Trace a saved model:
+build-security/diagnostic/ten_shot_diagnostic --selection 4 --fixture 1 --trace-model SecurityResults/replay4/model.txt --out SecurityResults/trace4
+
+The runner exits nonzero on an execution error; statistical findings are
+recorded as data and do not change its exit code. Do not treat exit 0 as a
+security pass; inspect significant and confirmed fields.

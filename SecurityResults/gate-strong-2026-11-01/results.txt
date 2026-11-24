@@ -1,0 +1,25 @@
+Gate plan / Strong statistical plaintext recovery: FAIL
+
+All three strengths now use two Gates per layer, with a mover between.
+Strong has 50 slots (formerly 59), 18 Gates, 14 mutators, 9 rotations,
+9 movers, 13 masks and the existing 16 MiB material budget.
+Mutator/mover choices, relative ordering, rotations and seed layout preserved.
+
+The attack protocol and thresholds were not changed. Each fixture used
+8,257 training/discovery/validation queries, 16,384 held-out challenge blocks,
+and 8,192 fresh confirmation blocks. Each block is 1 MiB with 64 unknown
+flags in an otherwise known template.
+
+Fixture  Phase          Significant flags   Exact plaintexts
+      0  challenge      64/64               16384/16384
+      0  confirmation   64/64               8192/8192
+      1  challenge      64/64               16384/16384
+      1  confirmation   64/64               8192/8192
+
+All five attack controls passed; shuffled-label findings were zero.
+Layout/material-budget checks and independent-block reversibility passed.
+The refreshed Strong ciphertext fixtures also passed.
+
+Gate adds within-byte nonlinearity but no cross-byte diffusion. The distant
+sampling relationships were removed; existing movers did not compensate
+in these fixtures. The requested experimental plan remains in place.

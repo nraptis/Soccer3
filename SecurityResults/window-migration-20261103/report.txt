@@ -1,0 +1,105 @@
+WindowRotationPack migration and retired-cipher cleanup — 2026-11-03
+
+IMPLEMENTATION
+The active composer now farms and consumes WindowRotationPack directly.
+Eighteen jobs supply 128 sampling windows and 16 masked byte rotations.
+Each job receives a separate 48 KiB range from existing Stage2 material:
+864 KiB allocated total. No additional expander output or per-block material.
+Validation independently checks exported ranges, global single/complement
+exclusions, each eight-value job's 256 distinct subset sums, actual free-byte
+subset sums, and the odd-offset constraint. Combination exclusions are local
+to each job; there is no cross-job subset-sum guarantee.
+
+Old rotation packs, selection statistics and superseded rotation buffers are
+removed from the active composer. Obsolete source remains in Dead Code.
+A failed farm clears readiness and prevents stale-vault encryption.
+The rotation migration changes generated plans/ciphertext for the same seed.
+The subsequent cipher cleanup does not alter the retained cipher algorithms.
+
+CIPHER INVENTORY
+Eight implementations remain: FlameToad, PasswordXOR, RotateMask, BitReverse,
+Rotate, BitRotationThree, ReverseMask, InvertMask. The production vault uses
+the first four. All eight retain their existing numeric CipherType IDs.
+Retired IDs, unused category/lane flags and factories/import dependencies are
+removed from active code. Historical IDs are in Dead Code/SoccerTypes_Legacy.hpp.
+All 30 headers listed by the user exist in Dead Ciphers. FlameToad packs rows
+internally and has no dependency on TwoStripBuffer/Read/SixAdd.
+Cryptex and the unused Expander/Core/CipherType header are archived in Dead Code.
+Xcode, CMake and the standalone build configuration use the flat cipher folder.
+
+TEST CLEANUP
+Entirely obsolete test files/helpers moved to DeadTests:
+  RotationWindowTests.mm
+  BitPlaneFarmTests.mm
+  SamplingTripletTests.mm
+  BitRotationPlanTests.mm
+  FrogPlanTests.mm
+  FrogStackPlanTests.mm
+  NineLayerPlanTests.mm
+  MutatePlanTests.mm
+  NewtPlanTests.mm
+  PremiumSeedAllocationTests.mm
+  PremiumSeedCollapseTests.mm
+  RetiredCipherPlanTests.mm
+  TenRunsDifferentIndex_Tests.mm
+  FrogCipherTests.mm
+  ToadCipherTests.mm
+  NewtCipherTests.mm
+  GateCipherTests.mm
+  GateCipherChecks.hpp
+  TreeFrogTwoTests.mm
+  TreeFrogTwoChecks.hpp
+  BitRotationCipherTests.mm
+  BitRotationCipherChecks.hpp
+
+Mixed fixtures retain historical portions under #if 0:
+- GutCheckValidator: obsolete seed-index/rotation validators.
+- EncryptionVaultChecks/Tests: old TreeFrog/Frog/PasswordAdd sample stack.
+- BitRotationThreeCipherTests: comparison against retired A/B pair.
+Current vault composition and independent-block round trips are covered by
+EncryptionVaultPlanTests. Statistical thresholds and attack protocols were
+not relaxed. The old nine-layer diagnostic in Tools remains explicitly
+retired under #if 0; its trace header is not part of active builds.
+
+VALIDATION
+1. Release arm64 Xcode build and focused tests AFTER cipher cleanup:
+   26 tests, 0 failures, 52.084 seconds. Test target compiled successfully.
+   Suites: WindowRotationPack, WindowRotationMigration, EncryptionVaultPlan,
+   EncryptionVault, FlameToad, BitPlaneTool, BitReverse, BitRotationThree.
+   Includes all-strength real-seed round trips, 144-field plan influence,
+   replay, bounds, material independence, and failure handling for all 18 jobs.
+   Log: cleanup-functional.log
+   Result bundle: /private/tmp/soccer-window-migration/cleanup-functional.xcresult
+
+2. Security run AFTER rotation migration, BEFORE removing unused cipher code:
+   11 tests, 0 failures, 484.337 seconds.
+   Bit-plane parity and whole-block parity: weak, normal, strong; two fixtures
+   each, with controls. Strong statistical recovery: two fixtures plus controls.
+   Strong best held-out predictions: 50.9399% and 50.9155% (chance 50%).
+   Both had 0/64 significant predictors and no exact plaintext recovery.
+   16,384 challenge blocks per statistical fixture; 8,257 training/discovery/
+   validation oracle calls per fixture. No confirmation run was needed.
+   Log: security.log
+   Result bundle: /private/tmp/soccer-window-migration/security.xcresult
+   These bounded tests are not a cryptographic security proof. The full
+   ten-selection/overnight campaign and weak/normal statistical suites were
+   not run in this validation pass.
+
+3. Native arm64 ASan + UBSan:
+   128 full packs / 2,304 jobs passed, including independent validation and
+   bounded entropy sources. Per-job entropy: 44,738–46,028 bytes; limit 49,152.
+   Source/log: sanitizer.cpp, sanitizer.log
+
+4. Standalone security runner builds successfully after cleanup:
+   build-security/cipher-cleanup/strong_security_sweep
+   Manifest: cleanup-build-manifest.json
+   CMake source lists were updated; no separate CMake build was run.
+
+5. Main-app benchmark after cleanup:
+   Eight classes / nine entries (cached and direct FlameToad), 1,000 x 1 MiB
+   each. All nine passed the untimed round-trip guard and completed timing.
+   Report: BenchmarkResults/cipher-cleanup-20261103/summary.csv
+   Log: cleanup-benchmark.log
+
+6. git diff --check passed. No files were deleted by this cleanup; archived
+   source/test files remain available. Pre-existing user changes were retained.
